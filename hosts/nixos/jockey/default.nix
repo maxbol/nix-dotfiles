@@ -18,17 +18,33 @@
     ];
 
   config.copper.features = [
+    /* Copper */
+    "_1password"
+    "home-manager"
+    "hyprland"
+    "nvidia"
+    "quiet-boot"
+
+    /* Custom */
+    "flatpak"
+    "fonts"
     "grub"
     "hid-apple"
-    "nvidia"
+    "locale-se"
+    "openssh"
     "plymouth"
+    "pulseaudio"
     "tailscale"
+    "wayland"
   ];
 
   networking.hostName = "jockey"; # Change your hostname.
 
   # Enable networking
   networking.networkmanager.enable = true;
+
+  # No firwall for now, will switch when real install
+  networking.firewall.enable = false;
 
   nix.settings = {
     # Enable flake support
