@@ -12,14 +12,14 @@
     ];
 
   config.copper.features = [
-    /* Copper */
     "_1password"
     "home-manager"
     "hyprland"
     "nvidia"
     "quiet-boot"
+  ];
 
-    /* Custom */
+  config.maxdots.features = [
     "flatpak"
     "fonts"
     "grub"
