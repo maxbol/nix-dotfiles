@@ -20,5 +20,5 @@
     font = "Lat2-Terminus16";
     keyMap = lib.mkForce "se";
     useXkbConfig = true;
-  }
+  };
 }

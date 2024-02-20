@@ -51,6 +51,14 @@
         adog = "log --all --decorate --oneline --graph";
         };
     };
+
+    # Change user and set a password !
+    users.users.max = {
+      isNormalUser = true;
+      description = "Max Bolotin";
+      shell = pkgs.zsh;
+      extraGroups = [ "networkmanager" "wheel" "docker" ];
+    };
   }];
   system = "x86_64-linux";
 }

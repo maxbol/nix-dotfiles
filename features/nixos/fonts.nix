@@ -12,7 +12,7 @@
       hack-font
       noto-fonts-cjk-serif
       noto-fonts-cjk-sans
-      noto-fonts-emojiº
+      noto-fonts-emoji
       noto-fonts-extra
 
       # nerdfonts

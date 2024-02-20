@@ -20,12 +20,15 @@
   ];
 
   config.maxdots.features = [
+    "docker"
     "flatpak"
     "fonts"
+    "gc"
     "grub"
     "hid-apple"
     "locale-se"
     "openssh"
+    "pipewire"
     "plymouth"
     "pulseaudio"
     "tailscale"
@@ -33,15 +36,15 @@
     "wayland"
   ];
 
-  networking.hostName = "jockey"; # Change your hostname.
+  config.networking.hostName = "jockey"; # Change your hostname.
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  config.networking.networkmanager.enable = true;
 
   # No firwall for now, will switch when real install
-  networking.firewall.enable = false;
+  config.networking.firewall.enable = false;
 
-  nix.settings = {
+  config.nix.settings = {
     # Enable flake support
     experimental-features = [ "nix-command" "flakes" ];
     # Optimise store
@@ -54,7 +57,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  config.system.stateVersion = "23.11"; # Did you read the comment?
 
 }
 
