@@ -18,7 +18,7 @@
   };
   console = {
     font = "Lat2-Terminus16";
-    keyMap = lib.mkForce "se";
+    keyMap = lib.mkForce "se-lat6";
     useXkbConfig = true;
   };
 }

@@ -1,6 +1,6 @@
-{ ... }: {
+{ lib, ... }: {
   # Bootloader
-  boot.loader = {
+  boot.loader = lib.mkForce {
     efi.canTouchEfiVariables = true;
     grub = {
       enable = true;
@@ -9,4 +9,6 @@
       useOSProber = false;
     };
   };
+
+  boot.initrd.systemd.enable = true;
 }
