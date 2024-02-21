@@ -26,32 +26,19 @@
     copper.file.symlink.enable = true;
 
     maxdots.features = [
-      "calendar"
-      "vscode"
       "azure"
+      "calendar"
       "chrome"
       "gaming"
+      "git"
       "media"
       "node"
       "productivity"
       "security"
       "slack"
       "utils"
+      "vscode"
     ];
-  } {
-    home.packages = [ pkgs.gh ];
-
-    programs.git = {
-        enable = true;
-        package = pkgs.gitAndTools.gitFull;
-
-        userName = "Max Bolotin";
-        userEmail = "maks.bolotin@gmail.com";
-
-        aliases = {
-        adog = "log --all --decorate --oneline --graph";
-        };
-    };
   }];
   system = "x86_64-linux";
 }
