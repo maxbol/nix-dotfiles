@@ -4,7 +4,7 @@
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = null;
     timeout = 5;
-    systemd-boot.enable = lib.mkForce false;
+    systemd-boot.enable = false;
     grub = {
       enable = true;
       device = "nodev";
