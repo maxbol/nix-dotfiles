@@ -3,6 +3,7 @@
   origin,
   hmSpecialArgs,
   hmBaseModules,
+  pkgs,
   ...
 }: let
   importUser = p: import builtins.toPath (pkgs.stdenv.lib.escapeShellArg (toString p));
