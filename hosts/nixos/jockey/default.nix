@@ -24,7 +24,7 @@
     "flatpak"
     "fonts"
     "gc"
-    #"grub"
+    "grub"
     "hid-apple"
     "locale-se"
     "openssh"
