@@ -5,9 +5,7 @@
   hmBaseModules,
   pkgs,
   ...
-}: let
-  importUser = p: import (builtins.toPath (pkgs.stdenv.lib.escapeShellArg (toString p)));
-in {
+}: {
   imports = [
     origin.inputs.copper.inputs.home-manager.nixosModules.home-manager
   ];
@@ -19,7 +17,7 @@ in {
   # TODO: this is an extremely ad-hoc solution. could we inject the whole Flake config instead?
   home-manager.extraSpecialArgs = hmSpecialArgs;
 
-  home-manager.users.max = importUser "../../users/max@jockey.nix";
+  home-manager.users.max = import "../../users/max@jockey.nix";
 
   home-manager.sharedModules =
     hmBaseModules
