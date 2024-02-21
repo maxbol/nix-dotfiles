@@ -40,5 +40,6 @@
       "vscode"
     ];
   }];
+  home.stateVersion = "23.11";
   system = "x86_64-linux";
 }
