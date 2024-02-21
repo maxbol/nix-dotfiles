@@ -1,13 +1,13 @@
 {
   modules = [{
-    copper.features = [
+    copper.features = builtins.trace "sets features" [
       /* Common */
       "catppuccin"
       "chroma"
       "cli"
       "fish"
       "git"
-      # "link-config"
+      "link-config"
       "nvim"
       "zsh"
 
@@ -40,6 +40,5 @@
       "vscode"
     ];
   }];
-  home.stateVersion = "23.11";
   system = "x86_64-linux";
 }

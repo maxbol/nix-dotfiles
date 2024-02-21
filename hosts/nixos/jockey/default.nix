@@ -55,13 +55,6 @@
   # No firwall for now, will switch when real install
   config.networking.firewall.enable = false;
 
-  config.nix.settings = {
-    # Enable flake support
-    experimental-features = [ "nix-command" "flakes" ];
-    # Optimise store
-    auto-optimise-store = true;
-  };
-
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
