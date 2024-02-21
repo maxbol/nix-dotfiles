@@ -6,7 +6,7 @@
   pkgs,
   ...
 }: let
-  importUser = p: import builtins.toPath (pkgs.stdenv.lib.escapeShellArg (toString p));
+  importUser = p: import (builtins.toPath (pkgs.stdenv.lib.escapeShellArg (toString p)));
 in {
   imports = [
     origin.inputs.copper.inputs.home-manager.nixosModules.home-manager
