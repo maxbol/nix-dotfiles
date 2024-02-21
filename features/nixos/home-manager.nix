@@ -9,7 +9,7 @@
   importUser = p: import builtins.toPath (pkgs.stdenv.lib.escapeShellArg (toString p));
 in {
   imports = [
-    origin.inputs.home-manager.nixosModules.home-manager
+    origin.inputs.copper.inputs.home-manager.nixosModules.home-manager
   ];
 
   # Use the same nixpkgs as the system config
