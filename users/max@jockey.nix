@@ -7,7 +7,7 @@
       "cli"
       "fish"
       "git"
-      "link-config"
+      # "link-config"
       "nvim"
       "zsh"
 
@@ -23,7 +23,7 @@
       "nixos/wlogout"
     ];
     copper.file.symlink.base = "/home/max/dotfiles";
-    copper.file.symlink.enable = true;
+    # copper.file.symlink.enable = true;
 
     maxdots.features = [
       "azure"
