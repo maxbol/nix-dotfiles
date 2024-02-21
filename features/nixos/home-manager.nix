@@ -17,7 +17,7 @@
   # TODO: this is an extremely ad-hoc solution. could we inject the whole Flake config instead?
   home-manager.extraSpecialArgs = hmSpecialArgs;
 
-  home-manager.users.max = import "../../users/max@jockey.nix";
+  home-manager.users.max = import (builtins.toPath "../../users/max@jockey.nix");
 
   home-manager.sharedModules =
     hmBaseModules
