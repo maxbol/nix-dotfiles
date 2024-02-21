@@ -38,6 +38,13 @@
 
   config.networking.hostName = "jockey"; # Change your hostname.
 
+  config.users.users.max = {
+    isNormalUser = true;
+    description = "Max Bolotin";
+    extraGroups = [ "networkmanager" "wheel" "docker"];
+    packages = with pkgs; [];
+  };
+
   # Enable networking
   config.networking.networkmanager.enable = true;
 

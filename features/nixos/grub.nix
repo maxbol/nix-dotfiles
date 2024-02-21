@@ -2,7 +2,7 @@
   # Bootloader
   boot.loader = lib.mkForce {
     efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = null;
+    efi.efiSysMountPoint = "/boot";
     timeout = 5;
     systemd-boot.enable = false;
     grub = {
