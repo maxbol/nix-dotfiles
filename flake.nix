@@ -8,6 +8,12 @@
     # Replace the upstream's nixpkgs with our own, so we don't unnecessarily
     # duplicate dependencies.
     copper.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Spicetify flake for Nix integration
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
