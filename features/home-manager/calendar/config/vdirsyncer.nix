@@ -108,7 +108,7 @@ b = "calendar_swedish_holidays_remote"
 collections = null
 
 
-[storage calendar_swedish_holidays_local
+[storage calendar_swedish_holidays_local]
 type = "filesystem"
 path = "~/${config.xdg.dataHome}/calendar/swedish_holidays"
 fileext = ".ics"
