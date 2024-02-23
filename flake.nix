@@ -17,6 +17,5 @@
   };
 
   outputs = inputs: inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
-    maxdots.inheritModules = false;
   });
 }

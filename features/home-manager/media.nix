@@ -1,14 +1,14 @@
 { pkgs
-, inputs
+, origin
 , config
 , ...
 }:
 let
-  spicePkgs = inputs.spicetify-nix.packages.${pkgs.system}.default;
+  spicePkgs = origin.inputs.spicetify-nix.packages.${pkgs.system}.default;
 in
 {
   # import the flake's module for your system
-  imports = [ inputs.spicetify-nix.homeManagerModule ];
+  imports = [ origin.inputs.spicetify-nix.homeManagerModule ];
 
   home.packages = with pkgs; [
     # audio control

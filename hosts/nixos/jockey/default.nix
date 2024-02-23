@@ -26,6 +26,7 @@
     "gc"
     "grub"
     "hid-apple"
+    "home-manager"
     "locale-se"
     "openssh"
     "pipewire"
