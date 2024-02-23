@@ -7,11 +7,13 @@
   allUsers = [
     "max"
   ];
-in {
-  home-manager.users = builtins.listToAttrs (
+
+  users = builtins.listToAttrs (
     forEach allUsers (user: rec {
-      key = userDir user;
-      value = import (builtins.toPath (concatStrings "../../users" key ".nix"));
+      name = userDir user;
+      value = import (./. + (concatStrings ["../../../users/" name ".nix"]));
     })
   );
+in {
+  home-manager.users = users;
 }
