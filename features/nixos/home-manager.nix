@@ -10,7 +10,7 @@
   hasHostSuffix = hasSuffix hostSuffix;
   removeHostSuffix = removeSuffix hostSuffix;
 
-  homeConfigurations = lib.debug.traceVal (loadHome {
+  homeConfigurations = loadHome {
     dir = basepath + "/users";
     specialArgs = autoload.specialArgs;
     modules = autoload.baseModules.home ++ [
@@ -19,7 +19,7 @@
         copper.feature.nixosBase.enable = lib.mkForce true;
       }
     ];
-  });
+  };
 
   makeUserAttr = user: {
     name = removeHostSuffix user;
