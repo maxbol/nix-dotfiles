@@ -11,7 +11,7 @@ in {
   home-manager.users = builtins.listToAttrs (
     forEach allUsers (user: rec {
       key = userDir user;
-      value = import (builtins.toPath (concatStrings "../../users" key));
+      value = import (builtins.toPath (concatStrings "../../users" key ".nix"));
     })
   );
 }

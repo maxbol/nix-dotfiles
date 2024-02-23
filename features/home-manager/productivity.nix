@@ -1,7 +1,6 @@
 { pkgs, ... }:
 
 {
-
   home.packages = with pkgs; [
     # productivity
     obsidian
@@ -9,5 +8,4 @@
     calibre
     gvfs
   ];
-
 }
