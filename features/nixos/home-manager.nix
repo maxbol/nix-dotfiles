@@ -1,19 +1,35 @@
-{ config, lib, ... }: let 
+{ origin, config, lib, ... }: let 
+  inherit (lib.strings) concatStrings hasSuffix removeSuffix;
+  inherit (builtins) attrNames listToAttrs map filter;
+  inherit (origin.inputs) copper;
+  inherit (origin.config.gleaming) autoload basepath;
+  inherit (copper.lib) loadHome;
+
   hostName = config.networking.hostName;
-  inherit (lib.strings) concatStrings;
-  inherit (lib.lists) forEach;
-  userDir = userName: concatStrings [userName "@" hostName];
+  hostSuffix = concatStrings ["@" hostName];
+  hasHostSuffix = hasSuffix hostSuffix;
+  removeHostSuffix = removeSuffix hostSuffix;
 
-  allUsers = [
-    "max"
-  ];
+  homeConfigurations = lib.debug.traceVal (loadHome {
+    dir = basepath + "/users";
+    specialArgs = autoload.specialArgs;
+    modules = autoload.baseModules.home ++ [
+      {
+        copper.feature.standaloneBase.enable = lib.mkForce false;
+        copper.feature.nixosBase.enable = lib.mkForce true;
+      }
+    ];
+  });
 
-  users = builtins.listToAttrs (
-    forEach allUsers (user: rec {
-      name = userDir user;
-      value = import (./. + (concatStrings ["../../../users/" name ".nix"]));
-    })
-  );
+  makeUserAttr = user: {
+    name = removeHostSuffix user;
+    value = homeConfigurations.${user}.config;
+  };
+
+  allUsersWithHost = attrNames homeConfigurations;
+
+  usersForThisHost = filter hasHostSuffix allUsersWithHost;
+  users = listToAttrs (map makeUserAttr usersForThisHost);
 in {
   home-manager.users = users;
 }

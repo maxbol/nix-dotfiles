@@ -1,6 +1,6 @@
 {
   modules = [{
-    copper.features = builtins.trace "sets features" [
+    copper.features = [
       /* Common */
       "chroma"
       "cli"
