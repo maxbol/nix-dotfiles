@@ -54,7 +54,7 @@ in {
   home-manager.extraSpecialArgs = hmSpecialArgs;
 
   home-manager.sharedModules =
-    (lib.debug.traceVal hmBaseModules)
+    hmBaseModules
     ++ [{
       copper.feature.nixosBase.enable = lib.mkDefault true;
       copper.feature.standaloneBase.enable = false;
