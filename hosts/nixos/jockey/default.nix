@@ -36,10 +36,6 @@
     "wayland"
   ];
 
-  config.environment.systemPackages = with pkgs; [
-    cowsay
-  ];
-
   config.networking.hostName = "jockey"; # Change your hostname.
 
   config.users.users.max = {

@@ -1,8 +1,8 @@
 { origin, config, lib, hmSpecialArgs, hmBaseModules, ... }: let 
   inherit (lib.strings) concatStrings hasSuffix removeSuffix splitString;
-  inherit (builtins) attrNames listToAttrs map filter;
+  inherit (builtins) attrNames listToAttrs map filter foldl';
   inherit (origin.inputs) copper nixpkgs;
-  inherit (origin.config.gleaming) autoload basepath;
+  inherit (origin.config.gleaming) basepath;
   inherit (copper.lib) loadDir;
   inherit (copper.inputs) home-manager;
 
@@ -11,18 +11,9 @@
   hasHostSuffix = hasSuffix hostSuffix;
   removeHostSuffix = removeSuffix hostSuffix;
 
-  /* homeConfigurations = loadHome {
-    dir = basepath + "/users";
-    specialArgs = autoload.specialArgs;
-    modules = autoload.baseModules.home ++ [
-      {
-        copper.feature.standaloneBase.enable = false;
-        copper.feature.nixosBase.enable = true;
-      }
-    ];
-  }; */
+  foldUserSettings = modules: foldl' (acc: elem: acc // elem) {} modules;
 
-  loadHome = dir: loadDir dir ({
+  loadUsers = dir: loadDir dir ({
     path,
     name,
     ...
@@ -30,27 +21,23 @@
     user = import path;
     username = builtins.elemAt (splitString "@" name) 0;
     modules' = [
-        ({lib, ...}: {
+        {
           home.username = lib.mkDefault username;
-          home.stateVersion = "22.11";
-        })
+          copper.feature.standaloneBase.enable = false;
+          copper.feature.nixosBase.enable = true;
+        }
       ]
       ++ user.modules or [];
-  in
-    home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.${user.system};
-      modules = modules';
-      extraSpecialArgs = autoload.specialArgs;
-    });
+  in foldUserSettings modules');
 
-  homeConfigurations = lib.debug.traceVal (loadHome (basepath + "/users"));
+  allUsers = loadUsers (basepath + "/users");
 
   makeUserAttr = user: {
     name = removeHostSuffix user;
-    value = homeConfigurations.${user}.config;
+    value = allUsers.${user};
   };
 
-  allUsersWithHost = attrNames homeConfigurations;
+  allUsersWithHost = attrNames allUsers;
 
   usersForThisHost = filter hasHostSuffix allUsersWithHost;
   users = listToAttrs (map makeUserAttr usersForThisHost);
@@ -74,5 +61,4 @@ in {
     }];
 
   home-manager.users = users;
-  
 }
