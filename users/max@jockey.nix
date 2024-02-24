@@ -1,5 +1,8 @@
 {
   modules = [{
+    #copper.feature.standaloneBase.enable = false;
+    #copper.feature.nixosBase.enable = true;
+
     copper.features = [
       /* Common */
       "chroma"
