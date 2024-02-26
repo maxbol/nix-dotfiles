@@ -22,7 +22,7 @@
     HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "fg=red,bold";
   };
 
-  programs.ssh.enable = true;
+  # programs.ssh.enable = true;
 
   # nix-index provides a command-not-found implementation as well as
   # nix-locate, which helps with finding the package a binary is contained in.
