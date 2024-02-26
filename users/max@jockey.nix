@@ -9,7 +9,7 @@
       "fish"
       "git"
       "link-config"
-      "neovim"
+      #"neovim"
 
       /* NixOS specific */
       "nixos/_1password"
