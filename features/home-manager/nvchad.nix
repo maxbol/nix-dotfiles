@@ -20,6 +20,5 @@
 in {
   home.file = fileBindings;
   copper.file.config."nvim/lua/custom" = "config/nvchad-custom";
-
   home.packages = [pkgs.neovim];
 }
