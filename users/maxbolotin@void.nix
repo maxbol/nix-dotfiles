@@ -1,7 +1,9 @@
 {
   modules = [{
     copper.features = [
+      "chroma"
       "link-config"
+      "wezterm"
     ];
 
     maxdots.features = [
