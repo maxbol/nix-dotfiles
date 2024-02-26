@@ -1,4 +1,4 @@
-{lib, ...}: {
+{lib, pkgs, ...}: {
   # Set your time zone.
   time.timeZone = "Europe/Stockholm";
 
@@ -17,7 +17,7 @@
     LC_TIME = "sv_SE.UTF-8";
   };
   console = {
-    font = "Lat2-Terminus16";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-i32n.psf.gz";
     keyMap = lib.mkForce "se-lat6";
     useXkbConfig = true;
   };
