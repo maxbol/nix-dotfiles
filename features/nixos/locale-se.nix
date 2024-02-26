@@ -17,7 +17,7 @@
     LC_TIME = "sv_SE.UTF-8";
   };
   console = {
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-i32n.psf.gz";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-i12n.psf.gz";
     keyMap = lib.mkForce "se-lat6";
     useXkbConfig = true;
   };

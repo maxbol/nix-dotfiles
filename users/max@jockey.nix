@@ -33,6 +33,7 @@
       "media"
       "node"
       "productivity"
+      "rofi-launcher-swwwallselect-patch"
       "security"
       "slack"
       "utils"
