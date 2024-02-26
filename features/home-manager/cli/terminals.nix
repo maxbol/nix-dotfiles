@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 # terminal config
 
@@ -8,7 +8,7 @@ in
 {
   programs.kitty = {
     enable = true;
-    font.name = font;
+    font.name = lib.mkForce font;
     settings = {
       window_padding_width = 5;
       background_opacity = "0.95";
