@@ -60,5 +60,5 @@ in {
       copper.feature.standaloneBase.enable = false;
     }];
 
-  home-manager.users = users;
+  #home-manager.users = users;
 }

@@ -43,6 +43,7 @@
     description = "Max Bolotin";
     extraGroups = [ "networkmanager" "wheel" "docker"];
     packages = with pkgs; [];
+    shell = pkgs.zsh;
   };
 
   # Enable networking
