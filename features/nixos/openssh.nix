@@ -5,7 +5,7 @@
     openFirewall = true;
     settings = {
       PermitRootLogin = "no";
-      PasswordAuthentication = false;
+      PasswordAuthentication = true;
       KbdInteractiveAuthentication = false;
     };
     hostKeys = [
