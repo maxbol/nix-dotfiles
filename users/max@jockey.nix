@@ -6,8 +6,6 @@
     copper.features = [
       /* Common */
       "chroma"
-      "fish"
-      "git"
       "link-config"
       #"neovim"
 
