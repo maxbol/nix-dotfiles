@@ -18,7 +18,7 @@
       "nixos/swim"
       "nixos/waybar-hyprdots"
       "nixos/waybar"
-      "nixos/wlogoutx"
+      "nixos/wlogout"
     ];
     copper.file.symlink.base = "/home/max/dotfiles";
     copper.file.symlink.enable = true;
