@@ -6,12 +6,10 @@
     copper.features = [
       /* Common */
       "chroma"
-      "cli"
       "fish"
       "git"
       "link-config"
       "neovim"
-      # "zsh"
 
       /* NixOS specific */
       "nixos/_1password"
@@ -31,6 +29,7 @@
       "azure"
       "calendar"
       "chrome"
+      "cli"
       "gaming"
       "git"
       "media"
