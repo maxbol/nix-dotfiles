@@ -14,7 +14,6 @@
       la = "eza --icons -la";
       tree = "eza --tree";
       rg = "source ranger";
-      rebuild = "sudo nixos-rebuild switch --flake ${config.home.homeDirectory}/flakes/NixOS#jockey";
     };
     history = {
       # path = "${config.home.homeDirectory}/.zshistory";

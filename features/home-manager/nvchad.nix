@@ -11,7 +11,6 @@
   nvChadFiles = [
     "/init.lua"
     "/LICENSE"
-    "/lazy-lock.json"
     "/lua/core"
     "/lua/plugins"
   ];

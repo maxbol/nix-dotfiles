@@ -5,16 +5,13 @@
 
     copper.features = [
       /* Common */
-      "chroma"
       "link-config"
       #"neovim"
 
       /* NixOS specific */
       "nixos/_1password"
       "nixos/dunst"
-      "nixos/hyprland"
       "nixos/rofi"
-      "nixos/swaylock"
       "nixos/swim"
       "nixos/waybar-hyprdots"
       "nixos/waybar"
@@ -27,15 +24,21 @@
       "azure"
       "calendar"
       "chrome"
-      "cli"
+      "chroma"
+      "cli-nixos"
+      "development"
+      "filemanager"
       "gaming"
       "git"
+      "hyprland"
       "media"
       "node"
+      "nvchad"
       "productivity"
       "rofi-launcher-swwwallselect-patch"
       "security"
       "slack"
+      "swaylock-nosuspend"
       "utils"
       "vscode"
     ];

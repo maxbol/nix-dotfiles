@@ -11,14 +11,19 @@
       ./hardware-configuration.nix
     ];
 
+  # Manually turn of bluetooth - USB adapter
+  config.hardware.bluetooth.enable = true;
+
   config.copper.features = [
     "_1password"
-    "hyprland"
     "nvidia"
     "quiet-boot"
   ];
 
   config.maxdots.features = [
+    "audio"
+    "basics"
+    "bluetooth"
     "docker"
     "flatpak"
     "fonts"
@@ -26,14 +31,14 @@
     "grub"
     "hid-apple"
     "home-manager"
+    "hyprland"
     "locale-se"
     "openssh"
-    "pipewire"
     #"plymouth"
-    "pulseaudio"
     "tailscale"
     "vdirsyncer"
     "wayland"
+    "xserver-misc"
   ];
 
   config.networking.hostName = "jockey"; # Change your hostname.

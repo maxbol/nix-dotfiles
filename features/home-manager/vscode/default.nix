@@ -128,6 +128,8 @@ in
         ms-vsliveshare.vsliveshare
         esbenp.prettier-vscode
         zxh404.vscode-proto3
+        catppuccin.catppuccin-vsc
+        catppuccin.catppuccin-vsc-icons
       ] ++ marketplaceExtensions;
 
      userSettings = builtins.fromJSON ( builtins.readFile ./vscode-user-settings.json );
