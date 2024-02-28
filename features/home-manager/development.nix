@@ -4,5 +4,7 @@
     python3
     postman
     libsecret
+    cargo
+    gcc
   ];
 }

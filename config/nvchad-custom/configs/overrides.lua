@@ -40,6 +40,7 @@ M.mason = {
 
     -- shell stuff
     "shfmt",
+    "nil"
   },
 }
 

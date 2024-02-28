@@ -21,6 +21,7 @@
     copper.file.symlink.enable = true;
 
     maxdots.features = [
+      "accounts"
       "azure"
       "calendar"
       "chrome"
@@ -38,6 +39,7 @@
       "rofi-launcher-swwwallselect-patch"
       "security"
       "slack"
+      "sops"
       "swaylock-nosuspend"
       "utils"
       "vscode"

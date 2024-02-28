@@ -55,10 +55,13 @@ in {
 
   home-manager.sharedModules =
     hmBaseModules
-    ++ [{
-      copper.feature.nixosBase.enable = lib.mkDefault true;
-      copper.feature.standaloneBase.enable = false;
-    }];
+    ++ [
+      {
+        copper.feature.nixosBase.enable = lib.mkDefault true;
+        copper.feature.standaloneBase.enable = false;
+      }
+      origin.inputs.sops-nix.homeManagerModules.sops
+    ];
 
   #home-manager.users = users;
 }
