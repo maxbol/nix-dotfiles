@@ -6,5 +6,6 @@
     libsecret
     cargo
     gcc
+    gnumake
   ];
 }

@@ -38,9 +38,11 @@
       zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
       zstyle ':completion:*' verbose true
       _comp_options+=(globdots)
-    '';
 
+      export NPM_TOKEN=$(cat ${config.xdg.configHome}/.github_packages_token)
+    '';
   };
+
 
   programs.zoxide = {
     enable = true;

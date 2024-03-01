@@ -25,7 +25,14 @@
     settings.source = lib.mkMerge [(lib.mkIf false ["${config.xdg.configHome}/hypr/nvidia.conf"]) ["${config.xdg.configHome}/hypr/entry.conf"]];
   };
 
-  home.packages = [copper.packages.systemctl-toggle pkgs.xwaylandvideobridge pkgs.procps];
+  home.packages = with pkgs; [
+    copper.packages.systemctl-toggle
+    copper.packages.misc-scripts-hyprdots
+    xwaylandvideobridge
+    procps
+    wl-clipboard
+    wl-clipboard-x11
+  ];
 
   systemd.user.services.polkit-authentication-agent = {
     Unit = {

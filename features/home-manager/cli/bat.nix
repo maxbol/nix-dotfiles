@@ -7,6 +7,6 @@
   };
 
   programs.zsh.shellAliases = {
-    cat = "${pkgs.bat}/bin/bat";
+    cat = "${pkgs.bat}/bin/bat --paging=never";
   };
 }

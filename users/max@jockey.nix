@@ -2,6 +2,7 @@
   modules = [{
     #copper.feature.standaloneBase.enable = false;
     #copper.feature.nixosBase.enable = true;
+    nix.settings.netrc-file = "/home/max/.netrc";
 
     copper.features = [
       /* Common */
@@ -23,11 +24,11 @@
     maxdots.features = [
       "accounts"
       "azure"
-      "calendar"
       "chrome"
       "chroma"
       "cli-nixos"
       "development"
+      "edge"
       "filemanager"
       "gaming"
       "git"
@@ -39,6 +40,7 @@
       "rofi-launcher-swwwallselect-patch"
       "security"
       "slack"
+      "social"
       "sops"
       "swaylock-nosuspend"
       "utils"

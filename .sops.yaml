@@ -3,7 +3,7 @@
 # Also see https://github.com/Mic92/dotfiles/blob/master/nixos/.sops.yaml
 # for a more complex example.
 keys:
-  - &admin_max age12zlz6lvcdk6eqaewfylg35w0syh58sm7gh53q5vvn7hd7c6nngyseftjxl
+  - &admin_max age1z5qy8fnarchqsvzeuppq8xmalweknnmhfu2t5kkqfken6p72n4sqf4tqy2
   - &server_jockey age1d805x7m7hhygaa2uq4c49jpraugq82sm3r4dx7hpv3ajqmlwkgrqsn6dna
 creation_rules:
   - path_regex: secrets/users/max/[^/]+\.(yaml|json|env|ini)$
