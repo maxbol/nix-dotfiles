@@ -36,6 +36,7 @@
     "openssh"
     #"plymouth" #
     "sops"
+    "syncthing"
     "tailscale"
     "wayland"
     "xserver-misc"
