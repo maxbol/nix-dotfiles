@@ -1,9 +1,9 @@
-{pkgs, copper, ...}: {
+{pkgs, copper, maxdots, ...}: {
   copper.chroma = {
     enable = true;
     initialTheme = "Catppuccin-Mocha";
   };
-  copper.chroma.themes = copper.chromaThemes;
+  copper.chroma.themes = maxdots.chromaThemes;
 
   copper.chroma.gtk = {
     enable = true;
