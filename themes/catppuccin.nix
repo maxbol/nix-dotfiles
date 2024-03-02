@@ -2,6 +2,7 @@
   pkgs,
   lib,
   self,
+  copper,
   variant ? "latte",
   accent ? "blue",
   accent2 ? "rosewater",
@@ -106,7 +107,7 @@ in rec {
     };
 
     qtct = {
-      package = inputs.copper.packages.catppuccin-qt5ct;
+      package = copper.catppuccin-qt5ct;
       name = "Catppuccin-${Variant}";
       # TODO: how is the accent color configured? (according to the GitHub for the style, it is configurable in qtct)
       # probably unlink the qtct config, copy, change it and see what happens
