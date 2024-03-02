@@ -86,12 +86,12 @@ let
       version = "10.39.1";
       sha256 = "sha256-lwarnLMCjEBTeWaJdNjVKvUaLwK6nDVx39HQjO1Mz3k=";
     }
-    {
+    /*{
       name = "mssql";
       publisher = "ms-mssql";
       version = "1.22.1";
       sha256 = "sha256-eD0O/xwjElZhn/Y88CcFygd16EOXhuEPPkL5xbt7ZKg=";
-    }
+    }*/
   ];
   vscode-insiders = (pkgs.vscode.override{ isInsiders = true; }).overrideAttrs (oldAttrs: rec {
     src = (builtins.fetchTarball {

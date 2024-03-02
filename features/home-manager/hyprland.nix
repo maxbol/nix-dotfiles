@@ -69,10 +69,4 @@
 
   services.network-manager-applet.enable = true;
   services.blueman-applet.enable = true;
-
-  programs.kitty.enable = true;
-  programs.kitty.font.name = "CaskaydiaCove Nerd Font Mono";
-  programs.kitty.extraConfig = ''
-    window_padding_width 5
-  '';
 }
