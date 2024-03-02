@@ -1,6 +1,6 @@
-{pkgs, extraArgs, inputs, ...}: {
+{pkgs, extraArgs, ...}: {
   Catppuccin-Latte = pkgs.callPackage ./catppuccin.nix (extraArgs // {
-    copper = inputs.copper.packages;
+    copper = extraArgs.inputs.copper.packages;
 
     variant = "latte";
     accent = "rosewater";
@@ -26,7 +26,7 @@
   });
 
   Catppuccin-Mocha = pkgs.callPackage ./catppuccin.nix (extraArgs // {
-    copper = inputs.copper.packages;
+    copper = extraArgs.inputs.copper.packages;
 
     variant = "mocha";
 
