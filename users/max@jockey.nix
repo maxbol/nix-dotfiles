@@ -36,7 +36,7 @@
       "media"
       "node"
       "nvchad"
-      "productivity"
+      "nixos/productivity"
       "rofi-launcher-swwwallselect-patch"
       "security"
       "slack"

@@ -9,6 +9,7 @@
     maxdots.features = [
       "nvchad"
       "cli"
+      "productivity"
     ];
 
     nixpkgs.config.permittedInsecurePackages = [
