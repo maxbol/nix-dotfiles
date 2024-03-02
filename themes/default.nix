@@ -1,5 +1,7 @@
-{pkgs, extraArgs, ...}: {
+{pkgs, extraArgs, inputs, ...}: {
   Catppuccin-Latte = pkgs.callPackage ./catppuccin.nix (extraArgs // {
+    copper = inputs.copper.packages;
+
     variant = "latte";
     accent = "rosewater";
 
@@ -24,6 +26,8 @@
   });
 
   Catppuccin-Mocha = pkgs.callPackage ./catppuccin.nix (extraArgs // {
+    copper = inputs.copper.packages;
+
     variant = "mocha";
 
     hyprlandOverrides = palette: {
