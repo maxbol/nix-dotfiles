@@ -11,7 +11,7 @@
   mkCalendar = color: remote: vdirsyncerOpts: {
     inherit remote;
     khal = mkKhal color;
-    local.type = "filesystem";
+    local.type = "singlefile";
     local.fileExt = ".ics";
     vdirsyncer = {
       enable = true;
