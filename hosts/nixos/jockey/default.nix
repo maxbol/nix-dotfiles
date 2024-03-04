@@ -35,6 +35,7 @@
     "locale-se"
     "openssh"
     #"plymouth" #
+    "seahorse"
     "sops"
     "syncthing"
     "tailscale"

@@ -7,5 +7,6 @@
     cargo
     gcc
     gnumake
+    openssl
   ];
 }

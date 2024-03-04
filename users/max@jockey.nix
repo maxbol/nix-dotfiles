@@ -37,6 +37,7 @@
       "node"
       "nvchad"
       "nixos/productivity"
+      "nixos/rofi-plugins"
       "rofi-launcher-swwwallselect-patch"
       "security"
       "slack"
