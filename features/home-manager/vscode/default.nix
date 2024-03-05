@@ -102,6 +102,11 @@ let
   });
 in
 {
+  home.packages = with pkgs; [
+    rnix-lsp
+    d2
+  ];
+
   programs.vscode = {
     enable = true;
 
@@ -109,7 +114,8 @@ in
     
     extensions = with pkgs.vscode-extensions;
       [
-        bbenoist.nix
+        jnoortheen.nix-ide
+        mkhl.direnv
         (ms-python.python.overrideAttrs (finalAttrs: previousAttrs: {
           postPatch = "";
           separateDebugInfo = true;

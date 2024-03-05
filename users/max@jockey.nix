@@ -28,6 +28,7 @@
       "chroma"
       "cli-nixos"
       "development"
+      "direnv"
       "edge"
       "filemanager"
       "gaming"

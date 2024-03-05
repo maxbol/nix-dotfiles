@@ -33,6 +33,7 @@
     "home-manager"
     "hyprland"
     "locale-se"
+    "nh"
     "openssh"
     #"plymouth" #
     "seahorse"

@@ -43,12 +43,8 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "java.home": "/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home",
     "[javascript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[java]": {
-        "editor.defaultFormatter": "redhat.java"
     },
     "vs-kubernetes": {
         "vscode-kubernetes.helm-path.mac": "/Users/maxbolotin/.vs-kubernetes/tools/helm/darwin-arm64/helm",
@@ -74,5 +70,7 @@
     "vscode-edge-devtools.browserFlavor": "Default",
     "editor.fontFamily": "'JetBrainsMono Nerd Font Mono', Menlo, Monaco, 'Courier New', monospace",
     "editor.fontSize": 14,
-    "window.titleBarStyle": "custom"
+    "window.titleBarStyle": "custom",
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "rnix-lsp"
 }

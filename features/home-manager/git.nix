@@ -9,7 +9,13 @@
       userEmail = "maks.bolotin@gmail.com";
 
       aliases = {
-      adog = "log --all --decorate --oneline --graph";
+        adog = "log --all --decorate --oneline --graph";
+      };
+
+      extraConfig = {
+        push = {
+          autoSetupRemote = true;
+        };
       };
   };
 }

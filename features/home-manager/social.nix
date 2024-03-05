@@ -1,6 +1,7 @@
-{ pkgs, ... }: {
+{ pkgs, maxdots, ... }: {
   home.packages = with pkgs; [
     beeper
+    maxdots.packages.texts
 
     # appimageTools.wrapType2 { # or wrapType1
     #   name = "textsdotcom";
