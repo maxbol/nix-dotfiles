@@ -40,9 +40,20 @@ local plugins = {
   {
     "stevearc/conform.nvim",
     --  for users those who want auto-save conform + lazyloading!
-    -- event = "BufWritePre"
+    event = "BufWritePre",
     config = function()
       require "custom.configs.conform"
+    end,
+  },
+
+  {
+    "mfussenegger/nvim-lint",
+    event = {
+      "BufReadPre",
+      "BufWritePre",
+    },
+    config = function()
+      require "custom.configs.nvim-lint"
     end,
   },
 

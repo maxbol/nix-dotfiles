@@ -3,5 +3,6 @@
     nodejs
     yarn
     yarn2nix
+    vscode-langservers-extracted
   ];
 }

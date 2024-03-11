@@ -32,8 +32,10 @@ M.mason = {
     "html-lsp",
     "typescript-language-server",
     "deno",
+    "nvim-lint",
     "prettier",
     "buf-language-server",
+    "eslint_d",
     -- c/cpp stuff
     "clangd",
     "clang-format",

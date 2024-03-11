@@ -5,12 +5,19 @@ local options = {
 	formatters_by_ft = {
 		lua = { "stylua" },
 
-		javascript = { "prettier" },
+    typescript = { "eslint_d" },
+		javascript = { "eslint_d" },
 		css = { "prettier" },
 		html = { "prettier" },
 
 		sh = { "shfmt" },
 	},
+
+  format_on_save = {
+    lsp_fallback = true,
+    async = false,
+    timeout_ms = 500
+  },
 
   -- adding same formatter for multiple filetypes can look too much work for some
   -- instead of the above code you could just use a loop! the config is just a table after all!
