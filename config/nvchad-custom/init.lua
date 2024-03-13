@@ -7,3 +7,5 @@
 -- })
 --
 vim.lsp.set_log_level("debug")
+
+vim.g.markdown_recommended_style = 0

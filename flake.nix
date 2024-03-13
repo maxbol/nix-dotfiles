@@ -26,6 +26,11 @@
       url = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tmux-sessionx = {
+      url = "github:omerxx/tmux-sessionx";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
