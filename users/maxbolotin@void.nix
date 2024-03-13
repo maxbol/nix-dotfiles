@@ -8,8 +8,10 @@
 
     maxdots.features = [
       "nvchad"
-      "cli"
+      "cli-hm"
       "productivity"
+      "direnv"
+      "sops"
     ];
 
     nixpkgs.config.permittedInsecurePackages = [
