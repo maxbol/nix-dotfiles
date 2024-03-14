@@ -1,4 +1,4 @@
-{ config, maxdots, pkgs, lib, ... }: let
+{ origin, config, maxdots, pkgs, lib, ... }: let
   inherit (builtins) foldl';
   nvimDir = "${config.xdg.configHome}/nvim";
 
@@ -19,5 +19,5 @@
 in {
   home.file = fileBindings;
   copper.file.config."nvim/lua/custom" = "config/nvchad-custom";
-  home.packages = [pkgs.neovim];
+  home.packages = [pkgs.neovim origin.inputs.nixd.packages.${pkgs.system}.nixd pkgs.stylua];
 }
