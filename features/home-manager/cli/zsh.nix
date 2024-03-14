@@ -39,9 +39,10 @@
       zstyle ':completion:*' verbose true
       _comp_options+=(globdots)
 
-      if [ "$TMUX" = "" ]; then tmux; fi
+      #if [ "$TMUX" = "" ]; then tmux; fi
 
-      export NPM_TOKEN=$(cat ${config.xdg.configHome}/.github_packages_token)
+      token_file="${config.xdg.configHome}/.github_packages_token"
+      if [ -f "$token_file" ]; then export NPM_TOKEN=$(cat "$token_file"); fi
     '';
 
     plugins = [
