@@ -1,5 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }: let
+  nvAliasScript = pkgs.writeShellScriptBin "nv" ''
+    nvbin="${pkgs.neovim}/bin/nvim"
 
+    if [[ -d "$1" && "1" -eq "$#" ]]; then
+      cd "$1" && $nvbin "$1"
+    else
+      $nvbin "$@"
+    fi
+  '';
+in
 {
   programs.eza.enable = true;
 
@@ -14,6 +23,7 @@
       la = "eza --icons -la";
       tree = "eza --tree";
       rg = "source ranger";
+      nv = "${nvAliasScript}/bin/nv";
     };
     history = {
       # path = "${config.home.homeDirectory}/.zshistory";
