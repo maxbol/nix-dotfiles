@@ -1,12 +1,14 @@
-{ origin, pkgs, ... }: with pkgs; let
+{ origin, copper, pkgs, ... }: with pkgs; let
   tmux-sessionx = origin.inputs.tmux-sessionx.packages.${pkgs.system}.default;
 in {
+  copper.file.config."tmux/overrides.conf" = "config/tmux/overrides.conf";
+
   programs.tmux = {
     enable = true;
     mouse = true;
     shell = "${pkgs.zsh}/bin/zsh";
-    terminal = "tmux-256color";
-    historyLimit = 1000000;
+    terminal = "screen-256color";
+    historyLimit = 50000;
 
     resizeAmount = 30;
     baseIndex = 1;
@@ -15,20 +17,7 @@ in {
     sensibleOnTop = true;
 
     extraConfig = ''
-      set -g renumber-windows on
-      set -g detach-on-destroy off
-      set -g set-clipboard on
-      set -g status-position top
-      set -g default-terminal "screen-256color"
-      setw -g mode-keys vi
-      set -g pane-active-border-style 'fg=magenta,bg=default'
-      set -g pane-border-style 'fg=brightblack,bg=default'
-
-      bind-key z resize-pane -Z
-      bind h select-pane -L
-      bind j select-pane -D
-      bind k select-pane -U
-      bind l select-pane -R
+      source-file ~/.config/tmux/overrides.conf
     '';
 
     plugins = with pkgs; [
