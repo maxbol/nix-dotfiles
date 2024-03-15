@@ -39,6 +39,7 @@
       "nvchad"
       "nixos/productivity"
       "nixos/rofi-plugins"
+      "postman"
       "rofi-launcher-swwwallselect-patch"
       "security"
       "slack"

@@ -7,5 +7,6 @@
     gcc
     gnumake
     openssl
+    sqlcmd
   ];
 }

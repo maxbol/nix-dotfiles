@@ -19,5 +19,10 @@
 in {
   home.file = fileBindings;
   copper.file.config."nvim/lua/custom" = "config/nvchad-custom";
-  home.packages = [pkgs.neovim origin.inputs.nixd.packages.${pkgs.system}.nixd pkgs.stylua];
+  home.packages = with pkgs; [
+    neovim
+    origin.inputs.nixd.packages.${pkgs.system}.nixd
+    stylua
+    lua-language-server
+  ];
 }
