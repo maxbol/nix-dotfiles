@@ -7,6 +7,7 @@
     ];
 
     maxdots.features = [
+      "development"
       "nvchad"
       "cli-hm"
       "productivity"
