@@ -31,7 +31,10 @@
     "yellow" = "yellow";
   };
 
-  luminance = if variant == "latte" then "light" else "dark";
+  luminance =
+    if variant == "latte"
+    then "light"
+    else "dark";
 
   Variant = capitalize variant;
   Accent = capitalize accent;
@@ -42,11 +45,11 @@
       url = "https://raw.githubusercontent.com/catppuccin/palette/823bd0179d491facf8ca368451dddb713926bc0e/palette.json";
       sha256 = "1q1x4j35km0k1nlvsip4hzbjdg306vfjig92nnsnz7kqp9bxb202";
     };
-    palette = pkgs.runCommand "catppuccin-${variant}-palette" { inherit variant; } ''
+    palette = pkgs.runCommand "catppuccin-${variant}-palette" {inherit variant;} ''
       ${lib.getExe pkgs.jq} ".$variant.colors | map_values(.hex[1:])" ${source} > $out
     '';
-  in builtins.fromJSON (builtins.readFile palette);
-
+  in
+    builtins.fromJSON (builtins.readFile palette);
 in rec {
   palette = {
     semantic = {
@@ -94,7 +97,12 @@ in rec {
   };
 
   gtk = {
-    theme.package = (pkgs.catppuccin-gtk.override {inherit variant; accents = [accent];}).overrideAttrs (prev: { propagatedUserEnvPkgs = prev.propagatedUserEnvPkgs ++ [ pkgs.gnome.gnome-themes-extra ];});
+    theme.package =
+      (pkgs.catppuccin-gtk.override {
+        inherit variant;
+        accents = [accent];
+      })
+      .overrideAttrs (prev: {propagatedUserEnvPkgs = prev.propagatedUserEnvPkgs ++ [pkgs.gnome.gnome-themes-extra];});
     theme.name = "Catppuccin-${Variant}-Standard-${Accent}-${Luminance}";
     documentFont = desktop.font;
     colorScheme = "prefer-${luminance}";
@@ -129,13 +137,14 @@ in rec {
   };
 
   starship.palette = {
-    file = pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "starship";
-      rev = "3e3e54410c3189053f4da7a7043261361a1ed1bc";
-      hash = "sha256-soEBVlq3ULeiZFAdQYMRFuswIIhI9bclIU8WXjxd7oY=";
-    }
-    + /palettes/${variant}.toml;
+    file =
+      pkgs.fetchFromGitHub {
+        owner = "catppuccin";
+        repo = "starship";
+        rev = "3e3e54410c3189053f4da7a7043261361a1ed1bc";
+        hash = "sha256-soEBVlq3ULeiZFAdQYMRFuswIIhI9bclIU8WXjxd7oY=";
+      }
+      + /palettes/${variant}.toml;
     name = "catppuccin_${variant}";
   };
 

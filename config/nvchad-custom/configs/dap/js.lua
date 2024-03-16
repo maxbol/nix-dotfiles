@@ -8,21 +8,6 @@ local js_based_languages = {
 
 local dap = require("dap")
 
--- local Config = require("lazyvim.config")
-vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
-vim.fn.sign_define(
-	"DapBreakpoint",
-	{ text = "🔴", texthl = "DapBreakpoint", linehl = "DapBreakpoint", numhl = "DapBreakpoint" }
-)
-
--- for name, sign in pairs(Config.icons.dap) do
---   sign = type(sign) == "table" and sign or { sign }
---   vim.fn.sign_define(
---     "Dap" .. name,
---     { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
---   )
--- end
-
 dap.adapters["pwa-node"] = {
 	type = "server",
 	host = "localhost",

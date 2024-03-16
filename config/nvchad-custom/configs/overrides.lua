@@ -15,6 +15,8 @@ M.treesitter = {
 		"graphql",
 		"json",
 		"jsonc",
+		"go",
+		"gomod",
 	},
 	indent = {
 		enable = true,
@@ -27,8 +29,8 @@ M.treesitter = {
 M.mason = {
 	ensure_installed = {
 		-- lua stuff
-    -- "lua-language-server",
-	  -- "stylua",
+		-- "lua-language-server",
+		-- "stylua",
 
 		-- web dev stuff
 		"css-lsp",
@@ -41,10 +43,12 @@ M.mason = {
 		-- c/cpp stuff
 		"clangd",
 		"clang-format",
+		-- go
+		"golangci-lint",
+		-- "gopls", --Install globally
 
 		-- shell stuff
 		"shfmt",
-		"nil",
 	},
 }
 

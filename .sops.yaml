@@ -6,7 +6,7 @@ keys:
   - &admin_max age1z5qy8fnarchqsvzeuppq8xmalweknnmhfu2t5kkqfken6p72n4sqf4tqy2
   - &server_jockey age1d805x7m7hhygaa2uq4c49jpraugq82sm3r4dx7hpv3ajqmlwkgrqsn6dna
 creation_rules:
-  - path_regex: secrets/users/max/[^/]+\.(yaml|json|env|ini)$
+  - path_regex: secrets/users/max(?:bolotin)?/[^/]+\.(yaml|json|env|ini)$
     key_groups:
     - age:
       - *admin_max

@@ -119,17 +119,7 @@ local plugins = {
 				dependencies = "mason.nvim",
 				cmd = { "DapInstall", "DapUninstall" },
 				opts = {
-					-- Makes a best effort to setup the various debuggers with
-					-- reasonable debug configurations
 					automatic_installation = true,
-
-					-- You can provide additional configuration to the handlers,
-					-- see mason-nvim-dap README for more information
-					-- handlers = {
-					-- },
-
-					-- You'll need to check that you have the required things installed
-					-- online, please don't ask me how to install them :)
 					ensure_installed = {
 						-- Update this to ensure that you have the debuggers for the langs you want
 						"python",
@@ -140,25 +130,7 @@ local plugins = {
 					},
 				},
 			},
-			-- {
-			-- 	"mxsdev/nvim-dap-vscode-js",
-			-- 	config = function()
-			-- 		---@diagnostic disable-next-line: missing-fields
-			-- 		require("dap-vscode-js").setup({
-			-- 			debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
-			-- 			node_path = os.getenv("HOME") .. "/.nix-profile/bin/node",
-			-- 			adapters = {
-			-- 				"chrome",
-			-- 				"pwa-node",
-			-- 				"pwa-chrome",
-			-- 				"pwa-msedge",
-			-- 				"pwa-extensionHost",
-			-- 				"node-terminal",
-			-- 				"node",
-			-- 			},
-			-- 		})
-			-- 	end,
-			-- },
+			"leoluz/nvim-dap-go",
 		},
 
     -- stylua: ignore
@@ -198,128 +170,11 @@ local plugins = {
       { "<leader>dw", function() require("dap.ui.widgets").hover() end, desc = "Widgets" },
     },
 		config = function()
-			require("custom.configs.nvim-dap")
+			require("custom.configs.dap.init")
+			require("custom.configs.dap.js")
+			require("custom.configs.dap.go")
 		end,
 	},
-	-- {
-	-- 	"rcarriga/nvim-dap-ui",
-	--    -- stylua: ignore
-	--    keys = {
-	--      { "<leader>du", function() require("dapui").toggle({ }) end, desc = "Dap UI" },
-	--      { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = {"n", "v"} },
-	--    },
-	-- 	opts = {},
-	-- 	config = function(_, opts)
-	-- 		-- setup dap config by VsCode launch.json file
-	-- 		-- require("dap.ext.vscode").load_launchjs()
-	-- 		local dap = require("dap")
-	-- 		local dapui = require("dapui")
-	-- 		dapui.setup(opts)
-	-- 		dap.listeners.after.event_initialized["dapui_config"] = function()
-	-- 			dapui.open({})
-	-- 		end
-	-- 		dap.listeners.before.event_terminated["dapui_config"] = function()
-	-- 			dapui.close({})
-	-- 		end
-	-- 		dap.listeners.before.event_exited["dapui_config"] = function()
-	-- 			dapui.close({})
-	-- 		end
-	-- 	end,
-	-- },
-	-- {
-	-- 	"mfussenegger/nvim-dap",
-	-- 	config = function()
-	-- 		require("custom.configs.nvim-dap")
-	-- 	end,
-	-- 	keys = {
-	-- 		{
-	-- 			"<leader>B",
-	-- 			function()
-	-- 				require("dap").toggle_breakpoint()
-	-- 			end,
-	-- 		},
-	-- 		{
-	-- 			"<leader>dO",
-	-- 			function()
-	-- 				require("dap").step_out()
-	-- 			end,
-	-- 			desc = "Step Out",
-	-- 		},
-	-- 		{
-	-- 			"<leader>do",
-	-- 			function()
-	-- 				require("dap").step_over()
-	-- 			end,
-	-- 			desc = "Step Over",
-	-- 		},
-	-- 		{
-	-- 			"<leader>da",
-	-- 			function()
-	-- 				if vim.fn.filereadable(".vscode/launch.json") then
-	-- 					local dap_vscode = require("dap.ext.vscode")
-	-- 					dap_vscode.load_launchjs(nil, {
-	-- 						["node"] = js_based_languages,
-	-- 						["pwa-node"] = js_based_languages,
-	-- 						["chrome"] = js_based_languages,
-	-- 						["pwa-chrome"] = js_based_languages,
-	-- 					})
-	-- 				end
-	-- 				require("dap").continue()
-	-- 			end,
-	-- 			desc = "Run with Args",
-	-- 		},
-	-- 	},
-	-- 	ft = debuggable_fts,
-	-- 	dependencies = {
-	-- 		-- Install the vscode-js-debug adapter
-	-- 		{
-	-- 			"microsoft/vscode-js-debug",
-	-- 			-- After install, build it and rename the dist directory to out
-	-- 			build = "npm install --legacy-peer-deps --no-save && npx gulp vsDebugServerBundle && rm -rf out && mv dist out",
-	-- 			version = "1.*",
-	-- 		},
-	-- 		{
-	-- 			"mxsdev/nvim-dap-vscode-js",
-	-- 			config = function()
-	-- 				---@diagnostic disable-next-line: missing-fields
-	-- 				require("dap-vscode-js").setup({
-	-- 					-- Path of node executable. Defaults to $NODE_PATH, and then "node"
-	-- 					-- node_path = "/home/max/.nix-profile/bin/node",
-	--
-	-- 					-- Path to vscode-js-debug installation.
-	-- 					debugger_path = vim.fn.resolve(vim.fn.stdpath("data") .. "/lazy/vscode-js-debug"),
-	--
-	-- 					-- Command to use to launch the debug server. Takes precedence over "node_path" and "debugger_path"
-	-- 					-- debugger_cmd = { "js-debug-adapter" },
-	--
-	-- 					-- which adapters to register in nvim-dap
-	-- 					adapters = {
-	-- 						"chrome",
-	-- 						"pwa-node",
-	-- 						"pwa-chrome",
-	-- 						"pwa-msedge",
-	-- 						"pwa-extensionHost",
-	-- 						"node-terminal",
-	-- 						"node",
-	-- 					},
-	--
-	-- 					-- Path for file logging
-	-- 					log_file_path = "~/.cache/nvim/dap_vscode_js.log",
-	--
-	-- 					-- Logging level for output to file. Set to false to disable logging.
-	-- 					-- log_file_level = vim.log.levels.DEBUG,
-	--
-	-- 					-- Logging level for output to console. Set to false to disable console output.
-	-- 					log_console_level = vim.log.levels.DEBUG,
-	-- 				})
-	-- 			end,
-	-- 		},
-	-- 		{
-	-- 			"Joakker/lua-json5",
-	-- 			build = "./install.sh",
-	-- 		},
-	-- 	},
-	-- },
 	{
 		"iamcco/markdown-preview.nvim",
 		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop " },
@@ -337,19 +192,19 @@ local plugins = {
 		},
 		cmd = { "DBUI", "DBUIFindBuffer" },
 	},
-	-- To make a plugin not be loaded
-	-- {
-	--   "NvChad/nvim-colorizer.lua",
-	--   enabled = false
-	-- },
-
-	-- All NvChad plugins are lazy-loaded by default
-	-- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-	-- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-	-- {
-	--   "mg979/vim-visual-multi",
-	--   lazy = false,
-	-- }
+	{
+		"folke/trouble.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{ "<leader>xx", "<cmd>TroubleToggle<CR>" },
+		},
+		cmd = { "TroubleToggle" },
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+	},
 }
 
 return plugins
