@@ -1,6 +1,8 @@
 {
+  config,
   origin,
   copper,
+  maxdots,
   pkgs,
   ...
 }:
@@ -8,8 +10,9 @@ with pkgs; let
   tmux-sessionx = origin.inputs.tmux-sessionx.packages.${pkgs.system}.default;
 
   clockify-cli = lib.getExe maxdots.packages.clockify-cli;
+  runcached = lib.getExe maxdots.packages.runcached;
 
-  clockify_sh = pkgs.writeShellScriptBin "clockify.sh" ''
+  catppuccin-module-clockify-bin = writeShellScript "catppuccin-module-clockify-bin" ''
     function display_current_project() {
       ${clockify-cli} show current -f '{{ .Project.ClientName }} > {{ .Project.Name }}'
     }
@@ -24,30 +27,61 @@ with pkgs; let
 
     function display_statusline() {
       project=$(display_current_project)
+
+      if [ -z "$project" ]; then
+        echo -n "Idle"
+        return
+      fi
+
       duration=$(display_current_duration)
       tags=$(display_current_tags)
 
       echo -n "$project | $duration"
     }
 
-    show_clockify() {
-      local index=$1
-      local icon=$(get_tmux_option "@catppuccin_application_icon" "󰥔")
-      local color=$(get_tmux_option "@catppuccin_application_color" "$thm_pink")
-      local text=$(display_statusline)
-
-      local module=$( build_status_module "$index" "$icon" "$color" "$text" )
-
-      echo "$module"
-    }
+    display_statusline
   '';
+  cached-catppuccin-module-clockify-bin = "${runcached} --ttl 1 --ignore-pwd --ignore-env --cache-dir ${config.xdg.cacheHome}/runcached ${catppuccin-module-clockify-bin}";
 
-  catppuccin-custom-plugins = pkgs.symlinkJoin {
+  # Clockify statusline module for catppuccin
+  catppuccin-module-clockify = writeTextFile {
+    name = "catppuccin-module-clockify";
+    text = ''
+      show_clockify() {
+        local index=$1
+        local icon=$(get_tmux_option "@catppuccin_application_icon" "󰥔")
+        local color=$(get_tmux_option "@catppuccin_application_color" "$thm_pink")
+        local text="#( ${cached-catppuccin-module-clockify-bin} )"
+
+        local module=$( build_status_module "$index" "$icon" "$color" "$text" )
+
+        echo "$module"
+      }
+    '';
+    destination = "/clockify.sh";
+    executable = true;
+  };
+
+  catppuccin-tmuxplugin = tmuxPlugins.mkTmuxPlugin {
+    pluginName = "catppuccin";
+    version = "unstable-2024-03-18";
+    src = fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "tmux";
+      rev = "c0861b786123d5b375074e3649a2a8575694504e";
+      hash = "sha256-pddbfaqkqXSQd0V7bEHEp4CT7ZgqKW6R9aNlT4d3tAw=";
+    };
+    postInstall = ''
+      sed -i -e 's|''${PLUGIN_DIR}/catppuccin-selected-theme.tmuxtheme|''${TMUX_TMPDIR}/catppuccin-selected-theme.tmuxtheme|g' $target/catppuccin.tmux
+    '';
+  };
+
+  catppuccin-custom-plugins = lib.traceVal (symlinkJoin {
     name = "catppuccin-custom-plugins";
     paths = [
-      clockify_sh
+      catppuccin-module-clockify
     ];
-  };
+  });
 in {
   copper.file.config."tmux/overrides.conf" = "config/tmux/overrides.conf";
 
@@ -70,7 +104,7 @@ in {
 
     plugins = with pkgs; [
       {
-        plugin = tmuxPlugins.catppuccin;
+        plugin = lib.traceVal catppuccin-tmuxplugin;
         extraConfig = ''
           set -g @catppuccin_flavour 'mocha'
           set -g @catppuccin_window_tabs_enabled on
@@ -91,10 +125,10 @@ in {
           set -g @catppuccin_status_fill "icon"
           set -g @catppuccin_status_connect_separator "no"
           set -g @catppuccin_directory_text "#{b:pane_current_path}"
-          set -g @catppuccin_meetings_text "#($HOME/.config/tmux/scripts/cal.sh)"
+          # set -g @catppuccin_meetings_text "#($HOME/.config/tmux/scripts/cal.sh)"
           set -g @catppuccin_date_time_text "%H:%M"
 
-          set -g @catppuccin_custom_plugin_dir "${catppuccin-custom-plugins}/bin"
+          set -g @catppuccin_custom_plugin_dir "${catppuccin-custom-plugins}"
         '';
       }
       {
@@ -140,6 +174,9 @@ in {
           set -g @sessionx-preview-enabled 'true'
           set -g @sessionx-bind-kill-session 'ctrl-y'
         '';
+      }
+      {
+        plugin = maxdots.packages.clockify-tmux;
       }
     ];
   };

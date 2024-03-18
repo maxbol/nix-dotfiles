@@ -2,6 +2,7 @@
   pkgs,
   origin,
   copper,
+  maxdots,
   ...
 }: {
   imports = [
@@ -56,5 +57,6 @@
     tealdeer
     tree
     tokei
+    maxdots.packages.clockify-cli
   ];
 }
