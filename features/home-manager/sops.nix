@@ -1,4 +1,13 @@
-{ config, origin, pkgs, ... }: let inherit (origin.config.gleaming) basepath; secretPath = basepath + "/secrets/users/${config.home.username}"; in {
+{
+  config,
+  origin,
+  pkgs,
+  lib,
+  ...
+}: let
+  inherit (origin.config.gleaming) basepath;
+  secretPath = basepath + "/secrets/users/${config.home.username}";
+in {
   imports = [
     origin.inputs.sops-nix.homeManagerModules.sops
   ];
@@ -8,7 +17,7 @@
     accountSops = secretPath + "/accounts.yaml";
     vdirSecretDir = "${config.xdg.configHome}/vdirsyncer/secrets";
   in {
-    age.keyFile = "/home/${config.home.username}/.config/sops/age/keys.txt";
+    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
     defaultSopsFile = defaultSops;
 
     secrets.github_token = {};

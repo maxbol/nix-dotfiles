@@ -12,6 +12,8 @@ local options = {
 		css = { "prettier" },
 		html = { "prettier" },
 
+		json = { "fixjson" },
+
 		sh = { "shfmt" },
 
 		go = {

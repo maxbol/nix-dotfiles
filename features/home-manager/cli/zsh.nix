@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: let
+{
+  config,
+  lib,
+  pkgs,
+  maxdots,
+  ...
+}: let
   nvAliasScript = pkgs.writeShellScriptBin "nv" ''
     nvbin="${pkgs.neovim}/bin/nvim"
 
@@ -8,8 +14,7 @@
       $nvbin "$@"
     fi
   '';
-in
-{
+in {
   programs.eza.enable = true;
 
   programs.zsh = {
@@ -34,8 +39,8 @@ in
     };
     historySubstringSearch = {
       enable = true;
-      searchUpKey = [ "^[OA" ];
-      searchDownKey = [ "^[OB" ];
+      searchUpKey = ["^[OA"];
+      searchDownKey = ["^[OB"];
     };
 
     initExtra = ''
@@ -53,6 +58,8 @@ in
 
       token_file="${config.xdg.configHome}/.github_packages_token"
       if [ -f "$token_file" ]; then export NPM_TOKEN=$(cat "$token_file"); fi
+
+      source <(${lib.getExe maxdots.packages.clockify-cli} completion zsh)
     '';
 
     plugins = [
@@ -69,11 +76,10 @@ in
     ];
   };
 
-
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
-    options = [ "--cmd cd" ];
+    options = ["--cmd cd"];
   };
 
   programs.skim = {

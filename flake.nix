@@ -38,6 +38,7 @@
     };
   };
 
-  outputs = inputs: inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
-  });
+  outputs = inputs:
+    inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
+    });
 }

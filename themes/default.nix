@@ -1,58 +1,64 @@
-{pkgs, extraArgs, ...}: {
-  Catppuccin-Latte = pkgs.callPackage ./catppuccin.nix (extraArgs // {
-    copper = extraArgs.inputs.copper.packages;
-    
-    variant = "latte";
-    accent = "rosewater";
+{
+  pkgs,
+  extraArgs,
+  ...
+}: {
+  Catppuccin-Latte = pkgs.callPackage ./catppuccin.nix (extraArgs
+    // {
+      copper = extraArgs.inputs.copper.packages;
 
-    hyprlandOverrides = palette: {
-      active1 = palette.accents.rosewater;
-      active2 = palette.accents.mauve;
-      inactive1 = palette.accents.lavender;
-      inactive2 = palette.accents.teal;
-    };
+      variant = "latte";
+      accent = "rosewater";
 
-    rofiOverrides = palette: {
-      main-background = palette.all.crust;
-      highlight = palette.accents.flamingo;
-      highlight-text = palette.all.base;
-    };
+      hyprlandOverrides = palette: {
+        active1 = palette.accents.rosewater;
+        active2 = palette.accents.mauve;
+        inactive1 = palette.accents.lavender;
+        inactive2 = palette.accents.teal;
+      };
 
-    waybarOverrides = palette: {
-      active-text = palette.all.crust;
-      hover-highlight = palette.accents.rosewater;
-      hover-text = palette.all.crust;
-    };
-  });
+      rofiOverrides = palette: {
+        main-background = palette.all.crust;
+        highlight = palette.accents.flamingo;
+        highlight-text = palette.all.base;
+      };
 
-  Catppuccin-Mocha = pkgs.callPackage ./catppuccin.nix (extraArgs // {
-    copper = extraArgs.inputs.copper.packages;
+      waybarOverrides = palette: {
+        active-text = palette.all.crust;
+        hover-highlight = palette.accents.rosewater;
+        hover-text = palette.all.crust;
+      };
+    });
 
-    variant = "mocha";
+  Catppuccin-Mocha = pkgs.callPackage ./catppuccin.nix (extraArgs
+    // {
+      copper = extraArgs.inputs.copper.packages;
 
-    hyprlandOverrides = palette: {
-      # This isn't the same as upstream Hyprdots. It actually uses colors from the Frappe palette.
-      active1 = palette.accents.mauve;
-      active2 = palette.accents.rosewater;
-      inactive1 = palette.accents.lavender;
-      inactive2 = "6c7086";
-    };
+      variant = "mocha";
 
-    rofiOverrides = palette: {
-      main-background = palette.all.crust;
-      text = "cdd6f4";
-      border = palette.accents.mauve;
-      highlight = palette.accents.lavender;
-      highlight-text = palette.all.crust;
-    };
+      hyprlandOverrides = palette: {
+        # This isn't the same as upstream Hyprdots. It actually uses colors from the Frappe palette.
+        active1 = palette.accents.mauve;
+        active2 = palette.accents.rosewater;
+        inactive1 = palette.accents.lavender;
+        inactive2 = "6c7086";
+      };
 
-    waybarOverrides = palette: {
-      main-background = palette.all.crust;
-      text = "cddt6f4";
-      active-highlight = "a6adc8";
-      active-text = "313244";
-      hover-highlight = palette.accents.pink;
-      hover-text = "313244";
-    };
-  });
+      rofiOverrides = palette: {
+        main-background = palette.all.crust;
+        text = "cdd6f4";
+        border = palette.accents.mauve;
+        highlight = palette.accents.lavender;
+        highlight-text = palette.all.crust;
+      };
+
+      waybarOverrides = palette: {
+        main-background = palette.all.crust;
+        text = "cddt6f4";
+        active-highlight = "a6adc8";
+        active-text = "313244";
+        hover-highlight = palette.accents.pink;
+        hover-text = "313244";
+      };
+    });
 }

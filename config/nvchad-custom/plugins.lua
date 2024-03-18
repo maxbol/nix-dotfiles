@@ -20,6 +20,11 @@ local plugins = {
 		end, -- Override to setup mason-lspconfig
 	},
 
+	{
+		"hrsh7th/nvim-cmp",
+		opts = overrides.cmp,
+	},
+
 	-- override plugin configs
 	{
 		"williamboman/mason.nvim",
@@ -204,6 +209,10 @@ local plugins = {
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
 		},
+	},
+	{
+		"github/copilot.vim",
+		lazy = false,
 	},
 }
 
