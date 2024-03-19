@@ -76,10 +76,10 @@ in
         }
 
         # Start a new interactive timer in a popup
-        tmux bind-key $(tmux_option_or_fallback "@clockify-bind-start" "C-i") display-popup -E -w 50% -h 50% "${interactive_start_timer}"
+        tmux bind-key $(tmux_option_or_fallback "@clockify-bind-start" "C-v") display-popup -E -w 50% -h 50% "${interactive_start_timer}"
 
         # Start/stop timer
-        tmux bind-key $(tmux_option_or_fallback "@clockify-bind-start" "C-o") display-popup -E -w 50% -h 50% "${toggle_timer}"
+        tmux bind-key $(tmux_option_or_fallback "@clockify-bind-start" "v") display-popup -E -w 50% -h 50% "${toggle_timer}"
       '';
       executable = true;
       destination = "/clockify.tmux";

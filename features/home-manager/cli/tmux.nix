@@ -165,7 +165,7 @@ in {
       {
         plugin = tmux-sessionx;
         extraConfig = ''
-          set -g @sessionx-bind 'o'
+          set -g @sessionx-bind 'C-o'
           set -g @sessionx-x-path '~/dotfiles'
           set -g @sessionx-window-height '85%'
           set -g @sessionx-window-width '75%'
