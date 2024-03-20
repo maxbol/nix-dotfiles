@@ -147,15 +147,15 @@ local plugins = {
       {
 				"<leader>da",
 				function()
-					if vim.fn.filereadable(".vscode/launch.json") then
-						local dap_vscode = require("dap.ext.vscode")
-						dap_vscode.load_launchjs(nil, {
-							["node"] = js_based_languages,
-							["pwa-node"] = js_based_languages,
-							["chrome"] = js_based_languages,
-							["pwa-chrome"] = js_based_languages,
-						})
-					end
+					-- if vim.fn.filereadable(".vscode/launch.json") then
+					-- 	local dap_vscode = require("dap.ext.vscode")
+					-- 	dap_vscode.load_launchjs(nil, {
+					-- 		["node"] = js_based_languages,
+					-- 		["pwa-node"] = js_based_languages,
+					-- 		["chrome"] = js_based_languages,
+					-- 		["pwa-chrome"] = js_based_languages,
+					-- 	})
+					-- end
 					require("dap").continue()
 				end,
 				desc = "Run with Args",
@@ -237,6 +237,123 @@ local plugins = {
 					require("spectre").open_file_search({ select_word = true })
 				end,
 				desc = "Search on current file",
+			},
+		},
+	},
+	-- lazy.nvim
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			lsp = {
+				-- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+				},
+			},
+			-- you can enable a preset for easier configuration
+			presets = {
+				bottom_search = true, -- use a classic bottom cmdline for search
+				command_palette = true, -- position the cmdline and popupmenu together
+				long_message_to_split = true, -- long messages will be sent to a split
+				inc_rename = false, -- enables an input dialog for inc-rename.nvim
+				lsp_doc_border = false, -- add a border to hover docs and signature help
+			},
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		config = function()
+			require("telescope").load_extension("frecency")
+			vim.keymap.set("n", "<leader><leader>", "<Cmd>Telescope frecency workspace=CWD<CR>")
+		end,
+		lazy = false,
+	},
+	{
+		"jvgrootveld/telescope-zoxide",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/popup.nvim",
+			"nvim-lua/plenary.nvim",
+		},
+		lazy = false,
+	},
+	{
+		"nvim-telescope/telescope-dap.nvim",
+		config = function()
+			require("telescope").load_extension("dap")
+		end,
+		-- lazy = false,
+	},
+	{
+		"David-Kunz/jester",
+		keys = {
+			{
+				"<leader>Tr",
+				function()
+					require("jester").run()
+				end,
+			},
+			{
+				"<leader>TR",
+				function()
+					require("jester").run_file()
+				end,
+			},
+			{
+				"<leader>Tl",
+				function()
+					require("jester").run_last()
+				end,
+			},
+			{
+				"<leader>Td",
+				function()
+					require("jester").debug()
+				end,
+			},
+			{
+				"<leader>TD",
+				function()
+					require("jester").debug_file()
+				end,
+			},
+			{
+				"<leader>TL",
+				function()
+					require("jester").debug_last()
+				end,
+			},
+		},
+		lazy = true,
+		opts = {
+			dap = { -- debug adapter configuration
+				type = "pwa-node",
+				request = "launch",
+				cwd = vim.fn.getcwd(),
+				runtimeExecutable = "ts-node",
+				runtimeArgs = { "--inspect-brk", "$path_to_jest", "--no-coverage", "-t", "$result", "--", "$file" },
+				args = { "--no-cache" },
+				sourceMaps = true,
+				protocol = "inspector",
+				skipFiles = { "<node_internals>/**/*.js" },
+				console = "integratedTerminal",
+				port = 9229,
+				disableOptimisticBPs = true,
+				resolveSourceMapLocations = {
+					"${workspaceFolder}/**",
+					"!**/node_modules/**",
+				},
 			},
 		},
 	},

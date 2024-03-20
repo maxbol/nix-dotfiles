@@ -8,6 +8,21 @@ local js_based_languages = {
 
 local dap = require("dap")
 
+local function debugJest(testName, filename)
+	print("starting " .. testName .. " in " .. filename)
+	dap.run({
+		type = "node2",
+		request = "launch",
+		cwd = vim.fn.getcwd(),
+		runtimeArgs = { "--inspect-brk", "/usr/local/bin/jest", "--no-coverage", "-t", testName, "--", filename },
+		sourceMaps = true,
+		protocol = "inspector",
+		skipFiles = { "<node_internals>/**/*.js" },
+		console = "integratedTerminal",
+		port = 9229,
+	})
+end
+
 dap.adapters["pwa-node"] = {
 	type = "server",
 	host = "localhost",
@@ -101,11 +116,10 @@ for _, language in ipairs(js_based_languages) do
 			cwd = "${workspaceFolder}",
 			console = "integratedTerminal",
 			internalConsoleOptions = "neverOpen",
+			resolveSourceMapLocations = {
+				"${workspaceFolder}/**",
+				"!**/node_modules/**",
+			},
 		}, -- Divider for the launch.json derived configs
-		{
-			name = "----- ↓ launch.json configs ↓ -----",
-			type = "",
-			request = "launch",
-		},
 	}
 end
