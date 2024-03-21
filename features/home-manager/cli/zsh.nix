@@ -14,7 +14,13 @@
       $nvbin "$@"
     fi
   '';
+
+  ta = pkgs.writeShellScriptBin "ta" ''
+    if [ "$TMUX" = "" ]; then tmux attach; fi
+  '';
 in {
+  home.packages = [ta];
+
   programs.eza.enable = true;
 
   programs.zsh = {
@@ -29,6 +35,8 @@ in {
       tree = "eza --tree";
       rg = "source ranger";
       nv = "${nvAliasScript}/bin/nv";
+      vim = "${nvAliasScript}/bin/nv";
+      vi = "${nvAliasScript}/bin/nv";
     };
     history = {
       # path = "${config.home.homeDirectory}/.zshistory";

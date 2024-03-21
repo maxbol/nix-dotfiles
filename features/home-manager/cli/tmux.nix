@@ -9,39 +9,11 @@
 with pkgs; let
   tmux-sessionx = origin.inputs.tmux-sessionx.packages.${pkgs.system}.default;
 
-  clockify-cli = lib.getExe maxdots.packages.clockify-cli;
-  runcached = lib.getExe maxdots.packages.runcached;
+  clockify-read-status = "${maxdots.packages.clockify-watch}/bin/clockify-read-status";
 
-  catppuccin-module-clockify-bin = writeShellScript "catppuccin-module-clockify-bin" ''
-    function display_current_project() {
-      ${clockify-cli} show current -f '{{ .Project.ClientName }} > {{ .Project.Name }}'
-    }
-
-    function display_current_duration() {
-      ${clockify-cli} show current -D
-    }
-
-    function display_current_tags() {
-      ${clockify-cli} show current -f '{{ .Tags }}'
-    }
-
-    function display_statusline() {
-      project=$(display_current_project)
-
-      if [ -z "$project" ]; then
-        echo -n "Idle"
-        return
-      fi
-
-      duration=$(display_current_duration)
-      tags=$(display_current_tags)
-
-      echo -n "$project | $duration"
-    }
-
-    display_statusline
+  clockify-read-status-wrapped = writeShellScript "clockify-read-status-wrapped" ''
+    ${clockify-read-status} ${config.home.homeDirectory}/.clockify-cli.yaml ${config.xdg.cacheHome}
   '';
-  cached-catppuccin-module-clockify-bin = "${runcached} --ttl 1 --ignore-pwd --ignore-env --cache-dir ${config.xdg.cacheHome}/runcached ${catppuccin-module-clockify-bin}";
 
   # Clockify statusline module for catppuccin
   catppuccin-module-clockify = writeTextFile {
@@ -51,7 +23,7 @@ with pkgs; let
         local index=$1
         local icon=$(get_tmux_option "@catppuccin_application_icon" "󰥔")
         local color=$(get_tmux_option "@catppuccin_application_color" "$thm_pink")
-        local text="#( ${cached-catppuccin-module-clockify-bin} )"
+        local text="#( ${clockify-read-status-wrapped} )"
 
         local module=$( build_status_module "$index" "$icon" "$color" "$text" )
 
