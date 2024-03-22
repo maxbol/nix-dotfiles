@@ -31,12 +31,14 @@
         "azure"
         "chrome"
         "chroma"
+        "nixos/clockify"
         "cli-nixos"
         "nixos/clockify-watch"
         "development"
         "direnv"
         "edge"
         "filemanager"
+        "floorp"
         "gaming"
         "git"
         "hyprland"
@@ -60,6 +62,7 @@
       nixpkgs.config.permittedInsecurePackages = [
         "electron-25.9.0"
         "freeimage-unstable-2021-11-01"
+        "electron-24.8.6"
       ];
     }
   ];

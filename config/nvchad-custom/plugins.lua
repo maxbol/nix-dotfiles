@@ -92,12 +92,12 @@ local plugins = {
 					dap.listeners.after.event_initialized["dapui_config"] = function()
 						dapui.open({})
 					end
-					dap.listeners.before.event_terminated["dapui_config"] = function()
-						dapui.close({})
-					end
-					dap.listeners.before.event_exited["dapui_config"] = function()
-						dapui.close({})
-					end
+					-- dap.listeners.before.event_terminated["dapui_config"] = function()
+					-- 	dapui.close({})
+					-- end
+					-- dap.listeners.before.event_exited["dapui_config"] = function()
+					-- 	dapui.close({})
+					-- end
 				end,
 			},
 
@@ -356,6 +356,16 @@ local plugins = {
 				},
 			},
 		},
+	},
+	{
+		"Dronakurl/injectme.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+		},
+		-- This is for lazy load and more performance on startup only
+		cmd = { "InjectmeToggle", "InjectmeSave", "InjectmeInfo", "InjectmeLeave" },
 	},
 }
 
