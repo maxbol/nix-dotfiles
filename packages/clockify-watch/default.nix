@@ -76,7 +76,7 @@
 
     ## Temp solution: On Mac OS, simply run clockify-get-status in runcached mode
     if [ $(uname | grep -w Darwin) ]; then
-      ${runcached} --ttl 5 --ignore-pwd --ignore-env --cache-dir $RUNCACHED_CACHE_DIR ${clockify-get-status} "$CONFIG_FILE" "$TEMPLATE_STR"
+      ${runcached} --ttl 5 --ignore-pwd --ignore-env --cache-dir $RUNCACHED_CACHE_DIR ${clockify-get-status}/bin/clockify-get-status "$CONFIG_FILE" "$TEMPLATE_STR"
       exit 0
     else
       ## On Linux, we can safely rely on systemd
