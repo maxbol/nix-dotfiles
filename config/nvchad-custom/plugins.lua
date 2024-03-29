@@ -367,6 +367,10 @@ local plugins = {
 		-- This is for lazy load and more performance on startup only
 		cmd = { "InjectmeToggle", "InjectmeSave", "InjectmeInfo", "InjectmeLeave" },
 	},
+	{
+		"tpope/vim-surround",
+		lazy = false,
+	},
 }
 
 return plugins

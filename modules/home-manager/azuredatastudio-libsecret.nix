@@ -1,14 +1,14 @@
-{ ... }: {
+{...}: {
   nixpkgs.overlays = [
     (final: prev: {
-      azuredatastudio = prev.azuredatastudio.overrideAttrs(old: rec {
+      azuredatastudio = prev.azuredatastudio.overrideAttrs (old: rec {
         extraPackages = [
           final.libsecret
         ];
-        rpath = prev.lib.traceVal(prev.lib.concatStringsSep ":" [
+        rpath = prev.lib.concatStringsSep ":" [
           old.rpath
           (final.lib.makeLibraryPath [final.libsecret])
-        ]);
+        ];
 
         fixupPhase = ''
             fix_sqltoolsservice()

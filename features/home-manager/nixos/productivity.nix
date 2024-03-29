@@ -6,5 +6,7 @@
     calibre
     gvfs
     krita
+    gimp
+    pinta
   ];
 }

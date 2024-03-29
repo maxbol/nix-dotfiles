@@ -48,12 +48,12 @@ with pkgs; let
     '';
   };
 
-  catppuccin-custom-plugins = lib.traceVal (symlinkJoin {
+  catppuccin-custom-plugins = symlinkJoin {
     name = "catppuccin-custom-plugins";
     paths = [
       catppuccin-module-clockify
     ];
-  });
+  };
 in {
   copper.file.config."tmux/overrides.conf" = "config/tmux/overrides.conf";
 
@@ -76,7 +76,7 @@ in {
 
     plugins = with pkgs; [
       {
-        plugin = lib.traceVal catppuccin-tmuxplugin;
+        plugin = catppuccin-tmuxplugin;
         extraConfig = ''
           set -g @catppuccin_flavour 'mocha'
           set -g @catppuccin_window_tabs_enabled on

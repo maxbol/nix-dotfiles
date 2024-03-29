@@ -24,9 +24,9 @@
       };
 
       waybarOverrides = palette: {
-        active-text = palette.all.crust;
-        hover-highlight = palette.accents.rosewater;
-        hover-text = palette.all.crust;
+        # active-text = palette.all.crust;
+        # hover-highlight = palette.accents.rosewater;
+        # hover-text = palette.all.crust;
       };
     });
 
@@ -53,12 +53,13 @@
       };
 
       waybarOverrides = palette: {
-        main-background = palette.all.crust;
-        text = "cddt6f4";
-        active-highlight = "a6adc8";
-        active-text = "313244";
-        hover-highlight = palette.accents.pink;
-        hover-text = "313244";
+        # main-background = palette.all.crust;
+        overlay = palette.all.base;
+        # text = "cddt6f4";
+        # active-highlight = "a6adc8";
+        # active-text = "313244";
+        # hover-highlight = palette.accents.pink;
+        # hover-text = "313244";
       };
     });
 }

@@ -1,14 +1,13 @@
-{ pkgs
-, origin
-, config
-, ...
-}:
-let
-  spicePkgs = origin.inputs.spicetify-nix.packages.${pkgs.system}.default;
-in
 {
+  pkgs,
+  origin,
+  config,
+  ...
+}: let
+  spicePkgs = origin.inputs.spicetify-nix.packages.${pkgs.system}.default;
+in {
   # import the flake's module for your system
-  imports = [ origin.inputs.spicetify-nix.homeManagerModule ];
+  imports = [origin.inputs.spicetify-nix.homeManagerModule];
 
   home.packages = with pkgs; [
     # audio control
@@ -24,16 +23,15 @@ in
   ];
 
   # configure spicetify :)
-  programs.spicetify =
-    {
-      enable = true;
-      theme = spicePkgs.themes.Sleek;
-      colorScheme = "deep";
+  programs.spicetify = {
+    enable = true;
+    theme = spicePkgs.themes.catppuccin;
+    colorScheme = "deep";
 
-      enabledExtensions = with spicePkgs.extensions; [
-        fullAppDisplay
-        shuffle
-        hidePodcasts
-      ];
-    };
+    enabledExtensions = with spicePkgs.extensions; [
+      fullAppDisplay
+      shuffle
+      hidePodcasts
+    ];
+  };
 }
