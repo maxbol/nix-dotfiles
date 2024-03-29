@@ -59,6 +59,13 @@
         "vscode"
       ];
 
+      maxdots.feature.tmux = {
+        enable = true;
+        theme = "/home/max/.config/tmux/theme.tmuxtheme";
+      };
+
+      copper.file.config."tmux/theme.tmuxtheme" = "config/tmux/theme.tmuxtheme";
+
       nixpkgs.config.permittedInsecurePackages = [
         "electron-25.9.0"
         "freeimage-unstable-2021-11-01"
