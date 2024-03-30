@@ -14,7 +14,7 @@ pkgs.tmuxPlugins.mkTmuxPlugin {
     mv catppuccin.tmux theme_base.tmux
     mv *.tmuxtheme themes/
 
-    sed -i -e 's|@catppuccin|@theme_base|g' theme_base.tmux
+    sed -i -e 's|@catppuccin|@theme_base|g' theme_base.tmux **/*.sh
 
     find . -type f -exec sed -i -e 's|thm_gray|thm_surface|g' {} \;
     find . -type f -exec sed -i -e 's|thm_black4|thm_overlay|g' {} \;

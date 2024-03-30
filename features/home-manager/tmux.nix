@@ -22,7 +22,7 @@ with pkgs; let
       show_clockify() {
         local index=$1
         local icon=$(get_tmux_option "@theme_base_application_icon" "󰥔")
-        local color=$(get_tmux_option "@theme_base_application_color" "$thm_pink")
+        local color=$(get_tmux_option "@theme_base_application_color" "$thm_accent3")
         local text="#( ${clockify-read-status-wrapped} )"
 
         local module=$( build_status_module "$index" "$icon" "$color" "$text" )
