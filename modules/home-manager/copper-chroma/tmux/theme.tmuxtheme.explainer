@@ -1,0 +1,13 @@
+thm_bg="#<bg:hex>" # thm_bg, palette.base, semantic.background
+thm_fg="#<fg:hex>" # thm_fg, palette.text, semantic.text
+thm_surface="#<surface:hex>" # thm_gray, palette.surface0, semantic.surface
+thm_overlay="#<overlay:hex>" # thm_black4, palette.surface2
+thm_accent1="#<accent1:hex>" # thm_cyan, palette.sky
+thm_accent2="#<accent2:hex>" # thm_magenta, palette.mauve
+thm_accent3="#<accent3:hex>" # thm_pink, palette.pink
+
+thm_red="#<red:hex>"
+thm_green="#<green:hex>"
+thm_blue="#<blue:hex>"
+thm_yellow="#<yellow:hex>"
+thm_orange="#<orange:hex>"

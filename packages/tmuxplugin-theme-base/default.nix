@@ -16,6 +16,14 @@ pkgs.tmuxPlugins.mkTmuxPlugin {
 
     sed -i -e 's|@catppuccin|@theme_base|g' theme_base.tmux
 
+    find . -type f -exec sed -i -e 's|thm_gray|thm_surface|g' {} \;
+    find . -type f -exec sed -i -e 's|thm_black4|thm_overlay|g' {} \;
+    find . -type f -exec sed -i -e 's|thm_cyan|thm_accent1|g' {} \;
+    find . -type f -exec sed -i -e 's|thm_magenta|thm_accent2|g' {} \;
+    find . -type f -exec sed -i -e 's|thm_pink|thm_accent3|g' {} \;
+
+    sed -i -e 's|thm_gray|thm_surface|g' theme_base.tmux **/*.sh
+
     sed -i -e 's|theme="$(get_tmux_option "@theme_base_flavour" "mocha")"|theme="$(get_tmux_option "@theme_base_theme" "''${PLUGIN_DIR}/themes/catppuccin-mocha.tmuxtheme")"|g' theme_base.tmux
 
     sed -i -e 's|''${PLUGIN_DIR}/catppuccin-''${theme}.tmuxtheme|''${theme}|g' theme_base.tmux

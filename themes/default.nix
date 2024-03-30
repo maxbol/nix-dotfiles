@@ -28,6 +28,13 @@
         # hover-highlight = palette.accents.rosewater;
         # hover-text = palette.all.crust;
       };
+
+      tmuxOverrides = palette: {
+        accent1 = palette.accents.sky;
+        accent2 = palette.accents.mauve;
+        accent3 = palette.accents.pink;
+        orange = palette.accents.peach;
+      };
     });
 
   Catppuccin-Mocha = pkgs.callPackage ./catppuccin.nix (extraArgs
@@ -60,6 +67,13 @@
         # active-text = "313244";
         # hover-highlight = palette.accents.pink;
         # hover-text = "313244";
+      };
+
+      tmuxOverrides = palette: {
+        accent1 = palette.accents.sky;
+        accent2 = palette.accents.mauve;
+        accent3 = palette.accents.pink;
+        orange = palette.accents.peach;
       };
     });
 }

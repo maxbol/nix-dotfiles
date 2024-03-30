@@ -2,26 +2,20 @@
   modules = [
     {
       copper.features = [
-        "chroma"
         "link-config"
         "wezterm"
       ];
 
       maxdots.features = [
+        "chroma-darwin"
         "development"
         "nvchad"
         "cli-hm"
         "productivity"
         "direnv"
         "sops"
+        "tmux"
       ];
-
-      maxdots.feature.tmux = {
-        enable = true;
-        theme = "/Users/maxbolotin/.config/tmux/theme.tmuxtheme";
-      };
-
-      copper.file.config."tmux/theme.tmuxtheme" = "config/tmux/theme.tmuxtheme";
 
       nixpkgs.config.permittedInsecurePackages = [
         "electron-25.9.0"

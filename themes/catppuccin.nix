@@ -10,6 +10,7 @@
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
+  tmuxOverrides ? p: {},
   ...
 }: let
   capitalize = str: "${pkgs.lib.toUpper (builtins.substring 0 1 str)}${builtins.substring 1 (builtins.stringLength str) str}";
@@ -80,6 +81,8 @@ in rec {
   waybar.colorOverrides = waybarOverrides palette;
 
   rofi.colorOverrides = rofiOverrides palette;
+
+  tmux.colorOverrides = lib.traceVal (tmuxOverrides palette);
 
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs
