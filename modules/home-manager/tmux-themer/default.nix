@@ -45,7 +45,7 @@ in {
           set -g @theme_base_status_connect_separator "no"
           set -g @theme_base_directory_text "#{b:pane_current_path}"
           # set -g @theme_base_meetings_text "#($home/.config/tmux/scripts/cal.sh)"
-          set -g @theme_base_date_time_text "%h:%m"
+          set -g @theme_base_date_time_text "%H:%M"
 
           set -g @theme_base_custom_plugin_dir "${cfg.customPluginDir}"
         '';

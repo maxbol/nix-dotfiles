@@ -23,4 +23,5 @@
   # TODO: this doesn't belong here
   copper.chroma.themes.Catppuccin-Latte.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/latte";
   copper.chroma.themes.Catppuccin-Mocha.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/mocha";
+  copper.chroma.themes.Gruvbox-Dark.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/gruvbox-dark";
 }

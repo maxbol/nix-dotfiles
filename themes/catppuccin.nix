@@ -82,7 +82,7 @@ in rec {
 
   rofi.colorOverrides = rofiOverrides palette;
 
-  tmux.colorOverrides = lib.traceVal (tmuxOverrides palette);
+  tmux.colorOverrides = tmuxOverrides palette;
 
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs
