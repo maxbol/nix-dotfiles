@@ -80,10 +80,10 @@
   Gruvbox-Dark = pkgs.callPackage ./gruvbox.nix (extraArgs
     // {
       hyprlandOverrides = palette: {
-        active1 = "#90ceaa";
-        active2 = "#ecd3a0";
-        inactive1 = "#1e8b50";
-        inactive2 = "#50b050";
+        active1 = "90ceaa"; # "#90ceaa";
+        active2 = "ecd3a0"; # "#ecd3a0";
+        inactive1 = "1e8b50"; # "#1e8b50";
+        inactive2 = "50b050"; # "#50b050";
       };
 
       rofiOverrides = palette: {

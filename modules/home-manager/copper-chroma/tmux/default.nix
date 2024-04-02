@@ -55,6 +55,8 @@ in {
           });
         };
       };
+
+      reloadCommand = "tmux source ~/.config/tmux/tmux.conf";
     };
   };
 

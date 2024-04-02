@@ -14,7 +14,7 @@ in
       owner = "theglitchh";
       repo = "Gruvbox-Kvantum";
       rev = "be75efd4d4a13589fb411e679498943b2dd2380f";
-      sha256 = "sha256-gruvbox-kvantum";
+      sha256 = "sha256-2pUvvZeCa51zA+cZJWGo62Zo21tER+cCcaFA5HUNtjM=";
     };
 
     installPhase = ''
