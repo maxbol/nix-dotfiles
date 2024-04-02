@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   marketplaceExtensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     {
       name = "tokyo-night";
@@ -86,24 +89,24 @@ let
       version = "10.39.1";
       sha256 = "sha256-lwarnLMCjEBTeWaJdNjVKvUaLwK6nDVx39HQjO1Mz3k=";
     }
-    /*{
+    /*
+      {
       name = "mssql";
       publisher = "ms-mssql";
       version = "1.22.1";
       sha256 = "sha256-eD0O/xwjElZhn/Y88CcFygd16EOXhuEPPkL5xbt7ZKg=";
-    }*/
+    }
+    */
   ];
-  vscode-insiders = (pkgs.vscode.override{ isInsiders = true; }).overrideAttrs (oldAttrs: rec {
-    src = (builtins.fetchTarball {
+  vscode-insiders = (pkgs.vscode.override {isInsiders = true;}).overrideAttrs (oldAttrs: rec {
+    src = builtins.fetchTarball {
       url = "https://update.code.visualstudio.com/latest/linux-x64/insider";
       sha256 = "03r0xqd94h13v25whnxhkq9pvhak26lvxz287c0247r0aymgfbik";
-    });
+    };
     version = "latest";
   });
-in
-{
+in {
   home.packages = with pkgs; [
-    rnix-lsp
     d2
   ];
 
@@ -111,7 +114,7 @@ in
     enable = true;
 
     package = vscode-insiders;
-    
+
     extensions = with pkgs.vscode-extensions;
       [
         jnoortheen.nix-ide
@@ -142,8 +145,9 @@ in
         zxh404.vscode-proto3
         catppuccin.catppuccin-vsc
         catppuccin.catppuccin-vsc-icons
-      ] ++ marketplaceExtensions;
+      ]
+      ++ marketplaceExtensions;
 
-     userSettings = builtins.fromJSON ( builtins.readFile ./vscode-user-settings.json );
+    userSettings = builtins.fromJSON (builtins.readFile ./vscode-user-settings.json);
   };
 }

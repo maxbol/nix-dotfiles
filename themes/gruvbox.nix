@@ -183,13 +183,13 @@ in rec {
 
   qt = {
     kvantum = {
-      package = self.gruvbox-kvantum;
-      name = "gruvbox-kvantum";
+      package = self.hyprdots-kvantum;
+      name = "Gruvbox-Retro";
     };
 
     qtct = {
-      package = self.gruvbox-qt5ct;
-      name = "gruvbox";
+      package = self.hyprdots-qt5ct;
+      name = "Gruvbox-Retro";
     };
   };
 

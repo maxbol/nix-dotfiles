@@ -5,13 +5,13 @@
   ...
 }: let
   name = "tableplus";
-  version = "0.1.246";
+  version = "0.1.248";
   tableplus = pkgs.stdenv.mkDerivation {
     inherit name;
 
     src = pkgs.fetchurl {
       url = "https://deb.tableplus.com/debian/22/pool/main/t/${name}/${name}_${version}_amd64.deb";
-      sha256 = "05565a830ee2ce367eadb560e9d8c6ca68f9874f25208204213618651c6566d9";
+      sha256 = "sha256-+qVBip0ADyYb2Xnv2ohrn1jPZ1UGJv2chhl3XnoEvEE=";
     };
     sourceRoot = "opt/tableplus";
 
