@@ -56,7 +56,7 @@ in {
         };
       };
 
-      reloadCommand = "tmux source ~/.config/tmux/tmux.conf";
+      reloadCommand = "${lib.getExe pkgs.tmux} source ~/.config/tmux/tmux.conf";
     };
   };
 

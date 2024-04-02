@@ -26,8 +26,6 @@
     return function(highlights)
       local M = {
         theme = "gruvchad",
-        theme_toggle = { "gruvchad", "gruvbox_light" },
-
         hl_override = highlights.override,
         hl_add = highlights.add,
       }
@@ -48,7 +46,7 @@ in {
         default = false;
       };
       uiLua = mkOption {
-        type = types.path;
+        type = types.str;
         default = defaultUiLua;
       };
     };
@@ -58,12 +56,11 @@ in {
     finalFileBindings =
       fileBindings
       // {
-        "${nvimDir}/lua/ui.lua".source = cfg.uiLua;
+        "${nvimDir}/lua/ui.lua".source = config.lib.file.mkOutOfStoreSymlink "${cfg.uiLua}";
       };
   in {
     home.file = finalFileBindings;
     copper.file.config."nvim/lua/custom" = "config/nvchad-custom";
-
     home.packages = with pkgs; [
       neovim
       origin.inputs.nixd.packages.${pkgs.system}.nixd

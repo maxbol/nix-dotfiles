@@ -222,4 +222,6 @@ in rec {
     };
     file = "gruvbox-${luminance}.tmTheme";
   };
+
+  nvchad.theme = "gruvchad";
 }

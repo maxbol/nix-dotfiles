@@ -160,4 +160,6 @@ in rec {
     };
     file = "Catppuccin-${variant}.tmTheme";
   };
+
+  nvchad.theme = "catppuccin";
 }
