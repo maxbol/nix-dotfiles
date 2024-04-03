@@ -176,7 +176,7 @@ in rec {
       pkgs
       .gruvbox-gtk-theme
       .overrideAttrs (prev: {propagatedUserEnvPkgs = prev.propagatedUserEnvPkgs ++ [pkgs.gnome.gnome-themes-extra];});
-    theme.name = "GruvBox-${Luminance}-BL";
+    theme.name = "Gruvbox-${Luminance}-BL";
     documentFont = desktop.font;
     colorScheme = "prefer-${luminance}";
   };

@@ -13,9 +13,23 @@ M.general = {
 			"formatting",
 		},
 		["gp"] = { "`[v`]", "select pasted text" },
+		["<C-d>"] = { "<C-d>zz" },
+		["<C-u>"] = { "<C-u>zz" },
+		["J"] = { "mzJ`z", "join lines" },
+		["N"] = { "Nzzzv", "search previous" },
+		["n"] = { "nzzzv", "search next" },
+	},
+	i = {
+		["<PageUp>"] = { "<Esc>" },
 	},
 	v = {
 		[">"] = { ">gv", "indent" },
+		["J"] = { ":m '>+1<CR>gv=gv", "move line down" },
+		["K"] = { ":m '<-2<CR>gv=gv", "move line up" },
+		["<PageUp>"] = { "<Esc>" },
+	},
+	x = {
+		["<leader>p"] = { '"_dP' },
 	},
 }
 

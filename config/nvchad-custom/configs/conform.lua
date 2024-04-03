@@ -7,8 +7,8 @@ local options = {
 
 		lua = { "stylua" },
 
-		typescript = { "eslint_d" },
-		javascript = { "eslint_d" },
+		-- typescript = { "prettier" },
+		-- javascript = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
 
@@ -24,8 +24,8 @@ local options = {
 
 	format_on_save = {
 		lsp_fallback = true,
-		async = false,
-		timeout_ms = 500,
+		async = true,
+		timeout_ms = 1000,
 	},
 	-- adding same formatter for multiple filetypes can look too much work for some
 	-- instead of the above code you could just use a loop! the config is just a table after all!

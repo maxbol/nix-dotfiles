@@ -371,6 +371,23 @@ local plugins = {
 		"tpope/vim-surround",
 		lazy = false,
 	},
+	{
+		"christoomey/vim-tmux-navigator",
+		cmd = {
+			"TmuxNavigateLeft",
+			"TmuxNavigateDown",
+			"TmuxNavigateUp",
+			"TmuxNavigateRight",
+			"TmuxNavigatePrevious",
+		},
+		keys = {
+			{ "<C-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "Tmux Navigate Left" },
+			{ "<C-j>", "<cmd>TmuxNavigateDown<CR>", desc = "Tmux Navigate Down" },
+			{ "<C-k>", "<cmd>TmuxNavigateUp<CR>", desc = "Tmux Navigate Up" },
+			{ "<C-l>", "<cmd>TmuxNavigateRight<CR>", desc = "Tmux Navigate Right" },
+			{ "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", desc = "Tmux Navigate Previous" },
+		},
+	},
 }
 
 return plugins
