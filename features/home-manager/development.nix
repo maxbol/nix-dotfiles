@@ -35,6 +35,11 @@ in {
 
     # Nix
     alejandra
+    origin.inputs.nixd.packages.${pkgs.system}.nixd
+
+    # Lua
+    stylua
+    lua-language-server
 
     # Global libs/tooling
     openssl

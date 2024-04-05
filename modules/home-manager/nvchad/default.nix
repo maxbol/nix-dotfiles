@@ -52,20 +52,22 @@ in {
     };
   };
 
-  config = let
+  imports = let
     finalFileBindings =
       fileBindings
       // {
         "${nvimDir}/lua/ui.lua".source = config.lib.file.mkOutOfStoreSymlink "${cfg.uiLua}";
       };
-  in {
-    home.file = finalFileBindings;
-    copper.file.config."nvim/lua/custom" = "config/nvchad-custom";
-    home.packages = with pkgs; [
-      neovim
-      origin.inputs.nixd.packages.${pkgs.system}.nixd
-      stylua
-      lua-language-server
-    ];
-  };
+  in [
+    (lib.mkIf cfg.enable {
+      home.file = finalFileBindings;
+      copper.file.config."nvim/lua/custom" = "config/nvchad-custom";
+      home.packages = with pkgs; [
+        neovim
+        origin.inputs.nixd.packages.${pkgs.system}.nixd
+        stylua
+        lua-language-server
+      ];
+    })
+  ];
 }

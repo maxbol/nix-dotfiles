@@ -40,7 +40,8 @@ in {
   # configure spicetify :)
   programs.spicetify = {
     enable = true;
-    theme = gruvboxTheme;
+    # theme = gruvboxTheme;
+    theme = spicePkgs.themes.Orchis;
     # theme = spicePkgs.themes.RetroBlur;
     colorScheme = "dark";
 

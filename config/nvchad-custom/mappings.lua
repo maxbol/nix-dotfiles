@@ -33,6 +33,15 @@ M.general = {
 	},
 }
 
+M.disabled = {
+	n = {
+		["<C-h>"] = { "<C-h>", "move to the left window" },
+		["<C-j>"] = { "<C-j>", "move to the bottom window" },
+		["<C-k>"] = { "<C-k>", "move to the top window" },
+		["<C-l>"] = { "<C-l>", "move to the right window" },
+	},
+}
+
 -- more keybinds!
 
 return M

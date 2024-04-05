@@ -15,7 +15,7 @@ local plugins = {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			require("plugins.configs.lspconfig")
+			require("nvchad.configs.lspconfig")
 			require("custom.configs.lspconfig")
 		end, -- Override to setup mason-lspconfig
 	},
@@ -381,11 +381,11 @@ local plugins = {
 			"TmuxNavigatePrevious",
 		},
 		keys = {
-			{ "<C-h>", "<cmd>TmuxNavigateLeft<CR>", desc = "Tmux Navigate Left" },
-			{ "<C-j>", "<cmd>TmuxNavigateDown<CR>", desc = "Tmux Navigate Down" },
-			{ "<C-k>", "<cmd>TmuxNavigateUp<CR>", desc = "Tmux Navigate Up" },
-			{ "<C-l>", "<cmd>TmuxNavigateRight<CR>", desc = "Tmux Navigate Right" },
-			{ "<C-\\>", "<cmd>TmuxNavigatePrevious<CR>", desc = "Tmux Navigate Previous" },
+			{ "<C-H>", "<Cmd>TmuxNavigateLeft<CR>", desc = "Tmux Navigate Left" },
+			{ "<C-J>", "<Cmd>TmuxNavigateDown<CR>", desc = "Tmux Navigate Down" },
+			{ "<C-K>", "<Cmd>TmuxNavigateUp<CR>", desc = "Tmux Navigate Up" },
+			{ "<C-L>", "<Cmd>TmuxNavigateRight<CR>", desc = "Tmux Navigate Right" },
+			{ "<C-\\>", "<Cmd>TmuxNavigatePrevious<CR>", desc = "Tmux Navigate Previous" },
 		},
 	},
 }

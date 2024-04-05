@@ -10,7 +10,7 @@
         Common
         */
         "link-config"
-        #"neovim"
+        "neovim"
 
         /*
         NixOS specific
@@ -47,7 +47,7 @@
         "nixos/swim"
         "nixos/tableplus"
         "node"
-        "nvchad"
+        # "nvchad"
         "postman"
         "rofi-launcher-swwwallselect-patch"
         "security"

@@ -1,15 +1,17 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ origin, config, pkgs, lib, ... }:
-
 {
-  imports =
-    [
-      # Incluse results of the hardware scan
-      ./hardware-configuration.nix
-    ];
+  origin,
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
+    # Incluse results of the hardware scan
+    ./hardware-configuration.nix
+  ];
 
   # Manually turn of bluetooth - USB adapter
   config.hardware.bluetooth.enable = true;
@@ -49,7 +51,7 @@
   config.users.users.max = {
     isNormalUser = true;
     description = "Max Bolotin";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };
@@ -68,5 +70,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   config.system.stateVersion = lib.mkForce "23.11"; # Did you read the comment?
 }
-
-

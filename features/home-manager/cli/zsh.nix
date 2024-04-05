@@ -5,16 +5,6 @@
   maxdots,
   ...
 }: let
-  nvAliasScript = pkgs.writeShellScriptBin "nv" ''
-    nvbin="${pkgs.neovim}/bin/nvim"
-
-    if [[ -d "$1" && "1" -eq "$#" ]]; then
-      cd "$1" && $nvbin "$1"
-    else
-      $nvbin "$@"
-    fi
-  '';
-
   ta = pkgs.writeShellScriptBin "ta" ''
     if [ "$TMUX" = "" ]; then tmux attach; fi
   '';
@@ -34,9 +24,8 @@ in {
       la = "eza --icons -la";
       tree = "eza --tree";
       rg = "source ranger";
-      nv = "${nvAliasScript}/bin/nv";
-      vim = "${nvAliasScript}/bin/nv";
-      vi = "${nvAliasScript}/bin/nv";
+      vim = "nv";
+      vi = "nv";
     };
     history = {
       # path = "${config.home.homeDirectory}/.zshistory";
