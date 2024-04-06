@@ -4,12 +4,12 @@
       copper.features = [
         "link-config"
         "wezterm"
+        "neovim"
       ];
 
       maxdots.features = [
         "chroma-darwin"
         "development"
-        "nvchad"
         "cli-hm"
         "productivity"
         "direnv"
