@@ -1,5 +1,7 @@
     "hyprland/language": {
-        "format": "{short} {variant}",
+        "format": "{short}",
+        "format-us": "us",
+        "format-se": "se",
         "on-click": "keyboardswitch.sh",
     },
 

@@ -7,6 +7,7 @@ local nomap = vim.keymap.del
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+map("i", "kk", "<ESC>")
 
 map("n", "<leader>fm", function()
 	require("conform").format()
@@ -22,6 +23,7 @@ map("n", "n", "nzzzv", { desc = "search next" })
 map("i", "<PageUp>", "<Esc>")
 
 map("v", ">", ">gv", { desc = "indent" })
+map("v", "<", "<gv", { desc = "indent" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 map("v", "<PageUp>", "<Esc>")

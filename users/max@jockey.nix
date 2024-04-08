@@ -10,7 +10,6 @@
         Common
         */
         "link-config"
-        "neovim"
 
         /*
         NixOS specific
@@ -40,6 +39,7 @@
         "git"
         "hyprland"
         "media"
+        "neovim"
         "nixos/clockify"
         "nixos/clockify-watch"
         "nixos/productivity"

@@ -34,17 +34,17 @@ map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Lsp diagnostic loclis
 -- tabufline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer New" })
 
-map("n", "<tab>", function()
-  require("nvchad.tabufline").next()
-end, { desc = "Buffer Goto next" })
+-- map("n", "<tab>", function()
+--   require("nvchad.tabufline").next()
+-- end, { desc = "Buffer Goto next" })
 
-map("n", "<S-tab>", function()
-  require("nvchad.tabufline").prev()
-end, { desc = "Buffer Goto prev" })
+-- map("n", "<S-tab>", function()
+--   require("nvchad.tabufline").prev()
+-- end, { desc = "Buffer Goto prev" })
 
-map("n", "<leader>x", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Buffer Close" })
+-- map("n", "<leader>x", function()
+--   require("nvchad.tabufline").close_buffer()
+-- end, { desc = "Buffer Close" })
 
 -- Comment
 map("n", "<leader>/", function()
@@ -72,7 +72,7 @@ map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = 
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "Telescope Pick hidden term" })
-map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope Nvchad themes" })
+-- map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope Nvchad themes" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
 map(
   "n",
@@ -85,26 +85,26 @@ map(
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 
 -- new terminals
-map("n", "<leader>h", function()
-  require("nvchad.term").new { pos = "sp", size = 0.3 }
-end, { desc = "Terminal New horizontal term" })
+-- map("n", "<leader>h", function()
+--   require("nvchad.term").new { pos = "sp", size = 0.3 }
+-- end, { desc = "Terminal New horizontal term" })
 
-map("n", "<leader>v", function()
-  require("nvchad.term").new { pos = "vsp", size = 0.3 }
-end, { desc = "Terminal New vertical window" })
+-- map("n", "<leader>v", function()
+--   require("nvchad.term").new { pos = "vsp", size = 0.3 }
+-- end, { desc = "Terminal New vertical window" })
 
 -- toggleable
-map({ "n", "t" }, "<A-v>", function()
-  require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
-end, { desc = "Terminal Toggleable vertical term" })
+-- map({ "n", "t" }, "<A-v>", function()
+--   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
+-- end, { desc = "Terminal Toggleable vertical term" })
 
-map({ "n", "t" }, "<A-h>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
-end, { desc = "Terminal New horizontal term" })
+-- map({ "n", "t" }, "<A-h>", function()
+--   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
+-- end, { desc = "Terminal New horizontal term" })
 
-map({ "n", "t" }, "<A-i>", function()
-  require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
-end, { desc = "Terminal Toggle Floating term" })
+-- map({ "n", "t" }, "<A-i>", function()
+--   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
+-- end, { desc = "Terminal Toggle Floating term" })
 
 map("t", "<ESC>", function()
   local win = vim.api.nvim_get_current_win()

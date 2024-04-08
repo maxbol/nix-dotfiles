@@ -1,6 +1,22 @@
 local options = {
 	formatters_by_ft = {
+		nix = { "alejandra" },
+
 		lua = { "stylua" },
+
+		-- typescript = { "prettier" },
+		-- javascript = { "prettier" },
+		css = { "prettier" },
+		html = { "prettier" },
+
+		json = { "fixjson" },
+
+		sh = { "shfmt" },
+
+		go = {
+			"gofmt",
+			"goimports",
+		},
 		-- css = { "prettier" },
 		-- html = { "prettier" },
 	},
