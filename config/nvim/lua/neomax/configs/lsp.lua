@@ -1,8 +1,9 @@
+local map = vim.keymap.set
+
 local on_attach = function(client, bufnr)
 	local function opts(desc)
 		return { buffer = bufnr, desc = desc }
 	end
-
 	map("n", "gD", vim.lsp.buf.declaration, opts("Lsp Go to declaration"))
 	map("n", "gd", vim.lsp.buf.definition, opts("Lsp Go to definition"))
 	map("n", "K", vim.lsp.buf.hover, opts("Lsp hover information"))
@@ -23,6 +24,22 @@ local on_attach = function(client, bufnr)
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Lsp Code action"))
 	map("n", "gr", vim.lsp.buf.references, opts("Lsp Show references"))
+
+	if client.name == "eslint" then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			command = "EslintFixAll",
+		})
+	end
+
+	if client.name == "tsserver" then
+		client.server_capabilities.documentFormattingProvider = false
+		client.server_capabilities.DocumentRangeFormattingProvider = false
+	end
+
+	-- if client.server_capabilities.signatureHelpProvider then
+	-- 	require("neomax.modules.lsp.signature")
+	-- end
 end
 
 local on_init = function(client, _)
@@ -59,23 +76,11 @@ local servers = {
 	"cssls",
 	"clangd",
 	"bufls",
-	"tsserver",
+	-- "tsserver",
 	"eslint",
 	"nixd",
 	"gopls",
 }
-
--- lspconfig["eslint"].setup({
--- 	on_init = on_init,
--- 	on_attach = function(client, bufnr)
--- 		on_attach(client, bufnr)
--- 		vim.api.nvim_create_autocmd("BufWritePre", {
--- 			buffer = bufnr,
--- 			command = "EslintFixAll",
--- 		})
--- 	end,
--- 	capabilities = capabilities,
--- })
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
@@ -85,13 +90,54 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
+-- lspconfig["eslint"].setup({
+-- 	on_init = on_init,
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	settings = {
+-- 		eslint = {
+-- 			autoFixOnSave = true,
+-- 		},
+-- 	},
+-- })
+
+lspconfig["tsserver"].setup({
+	on_init = on_init,
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		typescript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "literal",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayFunctionParameterTypeHints = false,
+				includeInlayVariableTypeHints = false,
+				includeInlayPropertyDeclarationTypeHints = false,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+		javascript = {
+			inlayHints = {
+				includeInlayParameterNameHints = "all",
+				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+	},
+})
+
 vim.lsp.set_log_level("ERROR")
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-	callback = function()
-		vim.lsp.buf.format()
-	end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+-- 	callback = function()
+-- 		vim.lsp.buf.format()
+-- 	end,
+-- })
 -- -- lspconfig["gopls"].setup({
 -- 	on_attach = on_attach,
 -- 	capabilities = capabilities,

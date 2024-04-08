@@ -15,6 +15,7 @@ return {
 			"prettier",
 			"buf-language-server",
 			"eslint-lsp",
+			"eslint_d",
 			-- c/cpp stuff
 			"clangd",
 			"clang-format",
