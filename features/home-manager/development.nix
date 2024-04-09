@@ -44,5 +44,6 @@ in {
     # Global libs/tooling
     openssl
     sqlcmdWrapper
+    silicon
   ];
 }

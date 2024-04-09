@@ -3,6 +3,7 @@
     # productivity
     obsidian
     notion-app-enhanced
+    font-manager
     calibre
     gvfs
     krita

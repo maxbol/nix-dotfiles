@@ -18,9 +18,9 @@ local on_attach = function(client, bufnr)
 
 	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Lsp Go to type definition"))
 
-	-- map("n", "<leader>ra", function()
-	--   require "nvchad.lsp.renamer"()
-	-- end, opts "Lsp NvRenamer")
+	map("n", "<leader>ra", function()
+		require("neomax.modules.lsp.renamer")()
+	end, opts("Lsp NvRenamer"))
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Lsp Code action"))
 	map("n", "gr", vim.lsp.buf.references, opts("Lsp Show references"))

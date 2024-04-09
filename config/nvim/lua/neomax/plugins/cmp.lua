@@ -42,6 +42,9 @@ return {
 		local cmp = require("cmp")
 
 		cmp.setup({
+			completion = {
+				completeopt = "menu,menuone",
+			},
 			mapping = cmp.mapping.preset.insert({
 				["<Tab>"] = vim.NIL,
 				["<S-Tab>"] = vim.NIL,
