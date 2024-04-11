@@ -9,6 +9,9 @@ return {
 			keys = require("neomax.configs.debugging.keys.dap-ui"),
 			opts = {},
 			config = require("neomax.configs.debugging.dap-ui"),
+			dependencies = {
+				"nvim-neotest/nvim-nio",
+			},
 		},
 
 		-- virtual text for the debugger

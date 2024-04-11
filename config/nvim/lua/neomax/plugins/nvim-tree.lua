@@ -6,7 +6,9 @@ return {
 			enable = true,
 			ignore = false,
 		},
-
+		update_focused_file = {
+			enable = true,
+		},
 		renderer = {
 			highlight_git = true,
 			icons = {
