@@ -4,14 +4,18 @@
   pkgs,
   options,
   copper,
-  maxdots,
+  origin,
   ...
 } @ opts: {
-  copper.file.config = lib.genAttrs ["hypr/animations.conf" "hypr/entry.conf" "hypr/keybindings.conf" "hypr/nvidia.conf" "hypr/windowrules.conf"] (n: "config/${n}");
+  copper.file.config = lib.genAttrs ["hypr/animations.conf" "hypr/entry.conf" "hypr/keybindings.conf" "hypr/nvidia.conf" "hypr/plugins.conf" "hypr/windowrules.conf"] (n: "config/${n}");
   wayland.windowManager.hyprland = {
     enable = true;
     # TODO: this also installs a hyprland package, how does this conflict with the global install
-    package = copper.inputs.hyprland;
+    package = origin.inputs.hyprland.packages.${pkgs.system}.default;
+    plugins = [
+      origin.inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # ...
+    ];
     systemd.enable = true;
     # Needed so that waybar, etc. have a complete environment
     systemd.variables =

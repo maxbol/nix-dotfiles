@@ -10,6 +10,7 @@
     # Replace the upstream's nixpkgs with our own, so we don't unnecessarily
     # duplicate dependencies.
     copper.inputs.nixpkgs.follows = "nixpkgs";
+    copper.inputs.systems.follows = "systems";
 
     # Spicetify flake for Nix integration
     spicetify-nix = {
@@ -35,6 +36,27 @@
     nixd = {
       url = "github:nix-community/nixd/release/1.2";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # The Window Manager I use
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
+    };
+
+    hypr-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    systems = {
+      url = "github:nix-systems/default";
     };
   };
 

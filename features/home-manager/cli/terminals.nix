@@ -11,9 +11,10 @@ in {
     enable = true;
     font.name = lib.mkForce font;
     settings = {
+      background_blur = 0;
       window_padding_width = 5;
-      background_opacity = "0.85";
-      font_size = 12;
+      background_opacity = "0.2";
+      font_size = 13;
       confirm_os_window_close = 0;
       placement_strategy = "top-left";
       text_composition_strategy = "legacy";

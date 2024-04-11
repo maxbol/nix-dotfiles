@@ -4,10 +4,13 @@ return {
 	lazy = false,
 	config = function(_, opts)
 		vim.opt.background = "dark" -- dark, light
-		vim.g.gruvbox_material_background = "hard" -- hard, medium, soft
+		vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
 		vim.g.gruvbox_material_transparent_background = 1
 
-		-- require("gruvbox-material").setup(opts)
 		vim.cmd([[colorscheme gruvbox-material]])
+
+		vim.cmd([[hi CursorLine guibg=#427b58]])
+		vim.cmd([[hi Visual guibg=#427b58]])
+		vim.cmd([[hi TelescopeSelection guibg=#427b58]])
 	end,
 }

@@ -15,7 +15,7 @@ opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = false
 opt.cursorline = true
-opt.cursorlineopt = "both"
+-- opt.cursorlineopt = "both"
 
 g.db_ui_use_nerd_fonts = 1
 g.db_ui_execute_on_save = 1
