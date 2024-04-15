@@ -1,9 +1,14 @@
+local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+vim.fn.mkdir(parser_install_dir, "p")
+vim.opt.runtimepath:append(parser_install_dir)
+
 return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPost", "BufNewFile" },
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 	build = ":TSUpdate",
 	opts = {
+		parser_install_dir = parser_install_dir,
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -14,7 +19,7 @@ return {
 			},
 		},
 		-- We do not want to install anything here, all parsers are installed with nix
-		ensure_installed = {},
+		ensure_installed = "all",
 		highlight = {
 			enable = true,
 			use_languagetree = true,

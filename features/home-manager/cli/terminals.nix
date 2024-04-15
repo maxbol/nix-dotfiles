@@ -12,6 +12,7 @@ in {
     font.name = lib.mkForce font;
     settings = {
       background_blur = 0;
+      hide_window_decorations = "yes";
       window_padding_width = 5;
       background_opacity = "0.2";
       font_size = 13;

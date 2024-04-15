@@ -13,16 +13,17 @@ in {
   # TODO: checkout dropbar.nvim
   # TODO: git blame in nvim?
   home.sessionVariables.EDITOR = "nv";
-  programs.neovim.enable = true;
-  programs.neovim.extraPackages = with pkgs; [
-    # Needed by our configuration
-    fd
-    ripgrep
-
-    luajit # Used by some neovim packages
-  ];
+  # programs.neovim.enable = true;
+  # programs.neovim.extraPackages = with pkgs; [
+  #   # Needed by our configuration
+  #   fd
+  #   ripgrep
+  #
+  #   luajit # Used by some neovim packages
+  # ];
 
   home.packages = with pkgs; [
+    neovim
     # Scipt to treat a directory argument as the working directory
     (writeShellScriptBin "nv" ''
       if test -d $1; then
@@ -44,30 +45,7 @@ in {
     '')
   ];
 
-  home.file.".config/nvim/parser".source = "${pkgs.symlinkJoin {
-    name = "treesitter-parsers";
-    paths =
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins (plugins:
-        with plugins; [
-          c
-          css
-          go
-          gomod
-          graphql
-          html
-          javascript
-          json
-          jsonc
-          lua
-          markdown
-          markdown_inline
-          query
-          tsx
-          typescript
-          vim
-        ]))
-      .dependencies;
-  }}/parser";
+  # home.file.".config/nvim/parser".source = "${treesitter-parsers}/parser";
   copper.file.config."nvim-pure" = "config/nvim";
   xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/nvim-pure/lua";
   xdg.configFile."nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/nvim-pure/init.lua";

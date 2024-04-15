@@ -22,14 +22,14 @@ map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle NvCheatsheet" })
 
 map("n", "<leader>fm", function()
-  require("conform").format { lsp_fallback = true }
+	require("conform").format({ lsp_fallback = true })
 end, { desc = "Format Files" })
 
 -- global lsp mappings
-map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Lsp floating diagnostics" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Lsp prev diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Lsp next diagnostic" })
-map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Lsp diagnostic loclist" })
+-- map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Lsp floating diagnostics" })
+-- map("n", "[d", vim.diagnostic.goto_prev, { desc = "Lsp prev diagnostic" })
+-- map("n", "]d", vim.diagnostic.goto_next, { desc = "Lsp next diagnostic" })
+-- map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Lsp diagnostic loclist" })
 
 -- tabufline
 map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer New" })
@@ -48,14 +48,14 @@ map("n", "<leader>b", "<cmd>enew<CR>", { desc = "Buffer New" })
 
 -- Comment
 map("n", "<leader>/", function()
-  require("Comment.api").toggle.linewise.current()
+	require("Comment.api").toggle.linewise.current()
 end, { desc = "Comment Toggle" })
 
 map(
-  "v",
-  "<leader>/",
-  "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
-  { desc = "Comment Toggle" }
+	"v",
+	"<leader>/",
+	"<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
+	{ desc = "Comment Toggle" }
 )
 
 -- nvimtree
@@ -75,10 +75,10 @@ map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "Telescope Pick hidd
 -- map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "Telescope Nvchad themes" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
 map(
-  "n",
-  "<leader>fa",
-  "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-  { desc = "Telescope Find all files" }
+	"n",
+	"<leader>fa",
+	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
+	{ desc = "Telescope Find all files" }
 )
 
 -- terminal
@@ -107,29 +107,30 @@ map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 -- end, { desc = "Terminal Toggle Floating term" })
 
 map("t", "<ESC>", function()
-  local win = vim.api.nvim_get_current_win()
-  vim.api.nvim_win_close(win, true)
+	local win = vim.api.nvim_get_current_win()
+	vim.api.nvim_win_close(win, true)
 end, { desc = "Terminal Close term in terminal mode" })
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
 
 map("n", "<leader>wk", function()
-  vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
+	vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
 end, { desc = "Whichkey query lookup" })
 
 -- blankline
 map("n", "<leader>cc", function()
-  local config = { scope = {} }
-  config.scope.exclude = { language = {}, node_type = {} }
-  config.scope.include = { node_type = {} }
-  local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
+	local config = { scope = {} }
+	config.scope.exclude = { language = {}, node_type = {} }
+	config.scope.include = { node_type = {} }
+	local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
 
-  if node then
-    local start_row, _, end_row, _ = node:range()
-    if start_row ~= end_row then
-      vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
-      vim.api.nvim_feedkeys("_", "n", true)
-    end
-  end
+	if node then
+		local start_row, _, end_row, _ = node:range()
+		if start_row ~= end_row then
+			vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
+			vim.api.nvim_feedkeys("_", "n", true)
+		end
+	end
 end, { desc = "Blankline Jump to current context" })
+
