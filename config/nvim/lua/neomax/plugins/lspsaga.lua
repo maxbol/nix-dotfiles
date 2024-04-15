@@ -10,20 +10,23 @@ return {
 			},
 			diagnostic = {
 				keys = {
-					quit = { "q", "<ESC>" },
+					quit = { "<ESC>" },
 				},
 			},
 			outline = {
 				keys = {
-					quit = { "q", "<ESC>" },
+					quit = { "<ESC>" },
 					toggle_or_jump = "<CR>",
 				},
+			},
+			lightbulb = {
+				sign_priority = 5,
 			},
 			rename = {
 				auto_save = true,
 				in_select = false,
 				keys = {
-					quit = { "q", "<ESC>" },
+					quit = { "<ESC>" },
 					select = "v",
 				},
 			},

@@ -5,6 +5,11 @@
   ...
 }: let
   hasGit = config.programs.git.enable;
+
+  neovimNoParser = pkgs.neovim-unwrapped.overrideAttrs {
+    # Tree sitter is managed by lazy
+    treesitter-parsers = {};
+  };
 in {
   # TODO: figure out why smartindent is on (at least for nix files)
   # TODO: fix folding (consider nvim-ufo?)
@@ -23,7 +28,7 @@ in {
   # ];
 
   home.packages = with pkgs; [
-    neovim
+    neovimNoParser
     # Scipt to treat a directory argument as the working directory
     (writeShellScriptBin "nv" ''
       if test -d $1; then
