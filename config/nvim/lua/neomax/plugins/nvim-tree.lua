@@ -2,6 +2,9 @@ return {
 	"nvim-tree/nvim-tree.lua",
 	cmd = { "NvimTreeToggle", "NvimTreeFocus" },
 	opts = {
+		view = {
+			side = "right",
+		},
 		git = {
 			enable = true,
 			ignore = false,

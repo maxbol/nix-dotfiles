@@ -98,4 +98,28 @@
         overlay = palette.semantic.background;
       };
     });
+
+  Gruvbox-Light = pkgs.callPackage ./gruvbox.nix (extraArgs
+    // {
+      luminance = "light";
+
+      hyprlandOverrides = palette: {
+        active1 = "90ceaa"; # "#90ceaa";
+        active2 = "ecd3a0"; # "#ecd3a0";
+        inactive1 = "1e8b50"; # "#1e8b50";
+        inactive2 = "50b050"; # "#50b050";
+      };
+
+      rofiOverrides = palette: {
+        main-background = palette.semantic.background;
+        text = palette.semantic.text1;
+        border = palette.semantic.surface;
+        highlight = palette.accents.neutralblue;
+        highlight-text = palette.semantic.text1;
+      };
+
+      waybarOverrides = palette: {
+        overlay = palette.semantic.background;
+      };
+    });
 }

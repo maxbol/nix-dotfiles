@@ -68,3 +68,12 @@ g["loaded_ruby_provider"] = 0
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
+
+-- automatically start telescope frecency when entering a workspace
+vim.api.nvim_create_autocmd("VimEnter", {
+	callback = function()
+		if vim.fn.argv(0) == "" or vim.fn.argv(0) == "." then
+			require("telescope").extensions.frecency.frecency({ workspace = "CWD" })
+		end
+	end,
+})

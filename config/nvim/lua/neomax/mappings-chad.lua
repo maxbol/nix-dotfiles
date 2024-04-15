@@ -19,7 +19,6 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
-map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle NvCheatsheet" })
 
 map("n", "<leader>fm", function()
 	require("conform").format({ lsp_fallback = true })
@@ -60,10 +59,27 @@ map(
 
 -- nvimtree
 map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle window" })
-map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
+map("n", "<leader>t", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
 
 -- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
+local telescope = require("telescope.builtin")
+local telescope_state = require("telescope.state")
+
+local last_search = nil
+
+function search_with_cache()
+	if last_search == nil then
+		telescope.live_grep()
+
+		local cached_pickers = telescope_state.get_global_key("cached_pickers") or {}
+		last_search = cached_pickers[1]
+	else
+		telescope.resume({ picker = last_search })
+	end
+end
+
+map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
+-- map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
 
@@ -124,6 +140,7 @@ map("n", "<leader>cc", function()
 	config.scope.exclude = { language = {}, node_type = {} }
 	config.scope.include = { node_type = {} }
 	local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
+<<<<<<< HEAD
 
 	if node then
 		local start_row, _, end_row, _ = node:range()
@@ -134,3 +151,14 @@ map("n", "<leader>cc", function()
 	end
 end, { desc = "Blankline Jump to current context" })
 
+=======
+
+	if node then
+		local start_row, _, end_row, _ = node:range()
+		if start_row ~= end_row then
+			vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
+			vim.api.nvim_feedkeys("_", "n", true)
+		end
+	end
+end, { desc = "Blankline Jump to current context" })
+>>>>>>> 42cec8b (file management stuff)
