@@ -4,7 +4,7 @@
   luminance ? "dark",
   accent ? "orange",
   accent2 ? "blue",
-  accent3 ? "green",
+  accent3 ? "aqua",
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},

@@ -86,7 +86,6 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help 
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current buffer" })
 map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope Find symbol in document" })
 map("n", "<leader>fS", function()
@@ -100,6 +99,14 @@ map(
 	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
 	{ desc = "Telescope Find all files" }
 )
+
+-- Telescope GIT commands
+map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
+map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Switch git branch" })
+map("n", "<leader>gh", "<cmd>AdvancedGitSearch diff_commit_file<CR>", { desc = "Git file history" })
+map("n", "<leader>gH", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
+map("n", "<leader>gB", "<cmd>AdvancedGitSearch diff_branch_file<CR>", { desc = "Git file branch diff" })
+map("n", "<leader>gc", "<cmd>AdvancedGitSearch changed_on_branch<CR>", { desc = "Git changes on current branch" })
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })

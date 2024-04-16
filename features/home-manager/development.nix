@@ -41,9 +41,15 @@ in {
     stylua
     lua-language-server
 
+    # Package management, virtualisation, environments, etc
+    origin.inputs.devenv.packages.${pkg.system}.devenv
+
     # Global libs/tooling
     openssl
     sqlcmdWrapper
     silicon
+
+    # Low level tools
+    lsof
   ];
 }
