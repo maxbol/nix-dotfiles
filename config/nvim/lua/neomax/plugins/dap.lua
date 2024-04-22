@@ -40,7 +40,6 @@ return {
 		},
 		"leoluz/nvim-dap-go",
 	},
-
 	keys = require("neomax.configs.debugging.keys.dap"),
 	config = function()
 		require("neomax.configs.debugging.init")

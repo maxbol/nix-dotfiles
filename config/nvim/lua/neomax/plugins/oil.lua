@@ -1,6 +1,6 @@
 return {
 	"stevearc/oil.nvim",
-	opts = {},
+	lazy = false,
 	cmd = "Oil",
 	keys = {
 		{
@@ -11,11 +11,22 @@ return {
 	},
 	-- Optional dependencies
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function()
+	config = function(opts)
 		require("oil").setup({
+			default_file_explorer = true,
+			lsp_file_methods = {
+				autosave_changes = "unmodified",
+			},
+			win_options = {
+				winbar = "%{v:lua.require('oil').get_current_dir()}",
+			},
 			keymaps = {
 				["<C-v>"] = "actions.select_vsplit",
+				["<C-b>"] = "actions.select_split",
 				["<C-s>"] = false,
+				["<C-l>"] = false,
+				["<C-h>"] = false,
+				["<C-r>"] = "actions.refresh",
 			},
 		})
 	end,

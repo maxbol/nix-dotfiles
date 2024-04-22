@@ -10,6 +10,7 @@ return {
 			opts = { history = true, updateevents = "TextChanged,TextChangedI" },
 			config = function(_, opts)
 				require("luasnip").config.set_config(opts)
+				require("luasnip.loaders.from_vscode").load()
 			end,
 		},
 
@@ -41,16 +42,52 @@ return {
 	},
 	config = function(_, opts)
 		local cmp = require("cmp")
+		local luasnip = require("luasnip")
 
 		cmp.setup({
+			snippet = {
+				expand = function(args)
+					luasnip.lsp_expand(args.body)
+				end,
+			},
 			completion = {
 				completeopt = "menu,menuone",
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<Tab>"] = vim.NIL,
-				["<S-Tab>"] = vim.NIL,
-				["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-				["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
+				["<Tab>"] = cmp.mapping(function(fallback)
+					if luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<S-Tab>"] = cmp.mapping(function(fallback)
+					if luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-j>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.expand_or_jumpable() then
+						luasnip.expand_or_jump()
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-k>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				-- ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+				-- ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
@@ -68,8 +105,8 @@ return {
 				}),
 			}),
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp" },
 				{ name = "luasnip" },
+				{ name = "nvim_lsp" },
 				{ name = "buffer" },
 				{ name = "nvim_lua" },
 				{ name = "path" },

@@ -57,10 +57,6 @@ map(
 	{ desc = "Comment Toggle" }
 )
 
--- nvimtree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "Nvimtree Toggle window" })
-map("n", "<leader>t", "<cmd>NvimTreeFocus<CR>", { desc = "Nvimtree Focus window" })
-
 -- telescope
 local telescope = require("telescope.builtin")
 local telescope_state = require("telescope.state")

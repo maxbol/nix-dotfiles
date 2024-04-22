@@ -12,5 +12,6 @@ return {
 		vim.cmd([[hi CursorLine guibg=#427b58]])
 		vim.cmd([[hi Visual guibg=#427b58]])
 		vim.cmd([[hi TelescopeSelection guibg=#427b58]])
+		vim.cmd([[hi NotifyBackground guibg=#504945]])
 	end,
 }
