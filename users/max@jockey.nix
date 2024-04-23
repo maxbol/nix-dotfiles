@@ -55,6 +55,7 @@
         "social"
         "sops"
         "swaylock-nosuspend"
+        "sysadmin"
         "tmux"
         "utils"
         "vscode"

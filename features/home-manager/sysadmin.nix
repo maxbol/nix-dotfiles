@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    killlall
+    killall
     nix-info
   ];
 }
