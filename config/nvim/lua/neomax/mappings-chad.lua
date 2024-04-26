@@ -74,8 +74,8 @@ function search_with_cache()
 	end
 end
 
-map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
--- map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
+-- map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
+map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
 

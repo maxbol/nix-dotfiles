@@ -136,6 +136,21 @@
         "type": "github"
       }
     },
+    "custom-udev-rules": {
+      "locked": {
+        "lastModified": 1629206028,
+        "narHash": "sha256-n64MnULU1TPI6kk26jjlUH1MaxEcT5XzJk9etqV1F/o=",
+        "owner": "MalteT",
+        "repo": "custom-udev-rules",
+        "rev": "076820552a02db42a74dd6ee26b912fdff7643e1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "MalteT",
+        "repo": "custom-udev-rules",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -1388,6 +1403,7 @@
     "root": {
       "inputs": {
         "copper": "copper",
+        "custom-udev-rules": "custom-udev-rules",
         "devenv": "devenv",
         "hypr-contrib": "hypr-contrib_2",
         "hyprland": "hyprland_2",

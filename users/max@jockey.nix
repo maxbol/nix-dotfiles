@@ -38,6 +38,7 @@
         "gaming"
         "git"
         "hyprland"
+        "keymapp"
         "media"
         "neovim"
         "nixos/clockify"

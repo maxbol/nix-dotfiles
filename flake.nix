@@ -55,6 +55,8 @@
       inputs.hyprland.follows = "hyprland";
     };
 
+    custom-udev-rules.url = "github:MalteT/custom-udev-rules";
+
     devenv = {
       url = "github:cachix/devenv";
       inputs.nixpkgs.follows = "nixpkgs";

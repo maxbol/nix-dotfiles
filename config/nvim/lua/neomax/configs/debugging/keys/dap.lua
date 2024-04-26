@@ -14,25 +14,15 @@ return {
 		desc = "Toggle Breakpoint",
 	},
 	{
-		"<leader>dc",
+		"<F2>",
 		function()
 			require("dap").continue()
 		end,
 		desc = "Continue",
 	},
-	-- { "<leader>da", function() require("dap").continue({ before = get_args }) end, desc = "Run with Args" },
 	{
-		"<leader>da",
+		"<F1>",
 		function()
-			-- if vim.fn.filereadable(".vscode/launch.json") then
-			-- 	local dap_vscode = require("dap.ext.vscode")
-			-- 	dap_vscode.load_launchjs(nil, {
-			-- 		["node"] = js_based_languages,
-			-- 		["pwa-node"] = js_based_languages,
-			-- 		["chrome"] = js_based_languages,
-			-- 		["pwa-chrome"] = js_based_languages,
-			-- 	})
-			-- end
 			require("dap").continue()
 		end,
 		desc = "Run with Args",
@@ -52,7 +42,7 @@ return {
 		desc = "Go to line (no execute)",
 	},
 	{
-		"<leader>di",
+		"<F4>",
 		function()
 			require("dap").step_into()
 		end,
@@ -80,14 +70,14 @@ return {
 		desc = "Run Last",
 	},
 	{
-		"<leader>do",
+		"<F5>",
 		function()
 			require("dap").step_out()
 		end,
 		desc = "Step Out",
 	},
 	{
-		"<leader>dO",
+		"<F3>",
 		function()
 			require("dap").step_over()
 		end,

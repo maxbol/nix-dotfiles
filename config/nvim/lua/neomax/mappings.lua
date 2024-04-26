@@ -5,9 +5,10 @@ require("neomax.mappings-chad")
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
-map("n", ";", ":", { desc = "CMD enter command mode" })
+-- map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "kk", "<ESC>")
+-- map("i", "<ESC>", "<C-c>")
 
 map("n", "<leader>fm", function()
 	require("conform").format()
@@ -19,14 +20,10 @@ map("n", "J", "mzJ`z", { desc = "join lines" })
 map("n", "N", "Nzzzv", { desc = "search previous" })
 map("n", "n", "nzzzv", { desc = "search next" })
 
--- special rule to make working with antons kinesis a little less stressful ;)
-map("i", "<PageUp>", "<Esc>")
-
 map("v", ">", ">gv", { desc = "indent" })
 map("v", "<", "<gv", { desc = "indent" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
-map("v", "<PageUp>", "<Esc>")
 
 map("x", "<leader>p", '"_dP')
 

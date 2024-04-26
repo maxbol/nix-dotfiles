@@ -37,21 +37,25 @@
     "locale-se"
     "nh"
     "openssh"
-    #"plymouth" #
+    "qmk-firmware-udev"
     "seahorse"
     "sops"
     "syncthing"
     "tailscale"
     "wayland"
     "xserver-misc"
+    #"plymouth" #
   ];
 
   config.networking.hostName = "jockey"; # Change your hostname.
 
+  config.users.groups.docker = {};
+  config.users.groups.plugdev = {};
+
   config.users.users.max = {
     isNormalUser = true;
     description = "Max Bolotin";
-    extraGroups = ["networkmanager" "wheel" "docker"];
+    extraGroups = ["networkmanager" "wheel" "docker" "plugdev"];
     packages = with pkgs; [];
     shell = pkgs.zsh;
   };

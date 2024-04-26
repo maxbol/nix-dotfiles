@@ -93,16 +93,18 @@ return {
 				["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
 				["<C-e>"] = cmp.mapping.abort(), -- close completion window
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
-				["<esc>"] = cmp.mapping({
-					i = cmp.mapping.abort(),
-					c = function()
-						if cmp.visible() then
-							cmp.close()
-						else
-							vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-C>", true, true, true), "n", true)
-						end
-					end,
-				}),
+				-- ["<esc>"] = cmp.mapping({
+				-- 	i = function()
+				-- 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-C>", true, true, true), "n", true)
+				-- 	end,
+				-- 	c = function()
+				-- 		--[[ if cmp.visible() then
+				-- 			cmp.close()
+				-- 		else ]]
+				-- 		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-C>", true, true, true), "n", true)
+				-- 		-- end
+				-- 	end,
+				-- }),
 			}),
 			sources = cmp.config.sources({
 				{ name = "luasnip" },
