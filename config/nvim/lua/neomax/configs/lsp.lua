@@ -6,6 +6,11 @@ local on_attach = function(client, bufnr)
 	end
 	map("n", "gD", vim.lsp.buf.declaration, opts("Lsp Go to declaration"))
 	map("n", "gd", vim.lsp.buf.definition, opts("Lsp Go to definition"))
+	map("n", "gwd", ":vsplit | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new vertical split"))
+	map("n", "gwD", ":vsplit | lua vim.lsp.buf.declaration()<CR>", opts("Lsp Go to declaration in new vertical split"))
+	map("n", "gWd", ":split | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new horizontal split"))
+	map("n", "gWD", ":split | lua vim.lsp.buf.declaration()<CR>", opts("Lsp Go to declaration in new horizontal split"))
+
 	--map("n", "K", vim.lsp.buf.hover, opts("Lsp hover information"))
 	map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 

@@ -52,6 +52,9 @@ for _, language in ipairs(js_based_languages) do
 				"${workspaceFolder}/**",
 				"!**/node_modules/**",
 			},
+			env = {
+				VSCODE_DEBUG_MODE = true,
+			},
 		},
 		-- Debug nodejs processes (make sure to add --inspect when you run the process)
 		{
