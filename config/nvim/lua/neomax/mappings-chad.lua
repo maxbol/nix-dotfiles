@@ -99,10 +99,24 @@ map(
 -- Telescope GIT commands
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Switch git branch" })
-map("n", "<leader>gh", "<cmd>AdvancedGitSearch diff_commit_file<CR>", { desc = "Git file history" })
-map("n", "<leader>gH", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
+map("n", "<leader>gHf", "<cmd>AdvancedGitSearch diff_commit_file<CR>", { desc = "Git file history" })
+map("n", "<leader>gHl", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
 map("n", "<leader>gB", "<cmd>AdvancedGitSearch diff_branch_file<CR>", { desc = "Git file branch diff" })
-map("n", "<leader>gc", "<cmd>AdvancedGitSearch changed_on_branch<CR>", { desc = "Git changes on current branch" })
+map("n", "<leader>gC", "<cmd>AdvancedGitSearch changed_on_branch<CR>", { desc = "Git changes on current branch" })
+
+-- Other Git stuff
+map("n", "<leader>gc", "<cmd>Git commit<CR>", { desc = "Git commit" })
+map("n", "<leader>gP", "<cmd>Git push<CR>", { desc = "Git push" })
+map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
+
+map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
+map("n", "<leader>ghd", "<cmd>Octo pr diff<CR>", { desc = "Show PR diff" })
+map("n", "<leader>ghw", "<cmd>Octo pr checks<CR>", { desc = "Watch PR checks" })
+map("n", "<leader>ghm", "<cmd>Octo pr merge<CR>", { desc = "Merge PR" })
+map("n", "<leader>ghs", "<cmd>Octo pr merge squash<CR>", { desc = "Squash and merge PR" })
+map("n", "<leader>ghl", "<cmd>Octo pr list<CR>", { desc = "List PRs" })
+map("n", "<leader>fO", "<cmd>Octo actions<CR>", { desc = "Find Octo actions" })
+map("n", "<leader>fh", "<cmd>Octo search<CR>", { desc = "Search on Octo" })
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })

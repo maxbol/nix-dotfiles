@@ -34,7 +34,7 @@
     };
 
     nixd = {
-      url = "github:nix-community/nixd/release/1.2";
+      url = "github:nix-community/nixd/release/2.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

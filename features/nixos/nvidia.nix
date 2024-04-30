@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   # Nvidia drivers are unfree software, if we want to use them, we must allow unfree
   nixpkgs.config.allowUnfree = true;
 
@@ -21,6 +21,7 @@
   services.xserver = {
     enable = true;
     exportConfiguration = true;
-    videoDrivers = [ "nvidia" ];
+    videoDrivers = ["nvidia"];
   };
 }
+

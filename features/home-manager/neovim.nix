@@ -51,8 +51,5 @@ in {
   ];
 
   # home.file.".config/nvim/parser".source = "${treesitter-parsers}/parser";
-  copper.file.config."nvim-pure" = "config/nvim";
-  xdg.configFile."nvim/lua".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/nvim-pure/lua";
-  xdg.configFile."nvim/init.lua".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/nvim-pure/init.lua";
-  xdg.configFile."nvim/lazy-lock.json".source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/nvim-pure/lazy-lock.json";
+  copper.file.config."nvim" = "config/nvim";
 }

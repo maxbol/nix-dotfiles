@@ -5,7 +5,7 @@
 }:
 with pkgs; let
   pname = "clockify-cli";
-  version = "0.48.2";
+  version = "0.49.0";
 in
   buildGoModule {
     inherit pname;
