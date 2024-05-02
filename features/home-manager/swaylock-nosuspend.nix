@@ -1,7 +1,12 @@
-{config, lib, pkgs, ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.swaylock = {
     enable = true;
-    package = pkgs.swaylock-effects;
+    package = pkgs.swaylock;
     settings = {
       effect-blur = "7x5";
       clock = true;
@@ -16,7 +21,10 @@
     enable = true;
     systemdTarget = "hyprland-session.target";
     timeouts = [
-      { timeout = 600; command = "${pkgs.systemd}/bin/loginctl lock-session"; }
+      {
+        timeout = 600;
+        command = "${pkgs.systemd}/bin/loginctl lock-session";
+      }
       {
         timeout = 1200;
         command = "${config.wayland.windowManager.hyprland.finalPackage}/bin/hyprctl dispatch dpms off";
@@ -24,8 +32,14 @@
       }
     ];
     events = [
-      { event = "before-sleep"; command = "${pkgs.systemd}/bin/loginctl lock-session";}
-      { event = "lock"; command = "${lib.getExe config.programs.swaylock.package}"; }
+      {
+        event = "before-sleep";
+        command = "${pkgs.systemd}/bin/loginctl lock-session";
+      }
+      {
+        event = "lock";
+        command = "${lib.getExe config.programs.swaylock.package}";
+      }
     ];
   };
 }
