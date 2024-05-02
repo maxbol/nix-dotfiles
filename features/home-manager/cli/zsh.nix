@@ -57,6 +57,7 @@ in {
       if [ -f "$token_file" ]; then export NPM_TOKEN=$(cat "$token_file"); fi
 
       source <(${lib.getExe maxdots.packages.clockify-cli} completion zsh)
+      source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
     '';
 
     plugins = [

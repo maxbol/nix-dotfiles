@@ -17,6 +17,10 @@ map("n", "<C-k>", "<C-w>k", { desc = "Switch Window up" }) ]]
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 
+map("n", "<C-Q>q", "<cmd>:qa<CR>", { desc = "Quit Neovim" })
+map("n", "<C-Q>t", "<cmd>:tabc <CR>", { desc = "Close tab" })
+map("n", "<C-Q>o", "<cmd>:tabonly <CR>", { desc = "Close all other tabs" })
+
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 
@@ -107,6 +111,7 @@ map("n", "<leader>gC", "<cmd>AdvancedGitSearch changed_on_branch<CR>", { desc = 
 -- Other Git stuff
 map("n", "<leader>gc", "<cmd>Git commit<CR>", { desc = "Git commit" })
 map("n", "<leader>gP", "<cmd>Git push<CR>", { desc = "Git push" })
+map("n", "<leader>gp", "<cmd>Git pull<CR>", { desc = "Git pull" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
 
 map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
