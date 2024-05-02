@@ -47,7 +47,8 @@ in {
     };
 
     Service = {
-      Type = "forking";
+      Type = "oneshot";
+      RemainAfterExit = "yes";
       User = "${config.home.username}";
       ExecStart = "${pkgs.tmux}/bin/tmux new-session -A -s scratch -d";
       ExecStop = "${pkgs.tmux}/bin/tmux kill-server";

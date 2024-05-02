@@ -7,7 +7,16 @@
   origin,
   ...
 } @ opts: {
-  copper.file.config = lib.genAttrs ["hypr/animations.conf" "hypr/entry.conf" "hypr/keybindings.conf" "hypr/nvidia.conf" "hypr/plugins.conf" "hypr/windowrules.conf"] (n: "config/${n}");
+  copper.file.config = lib.genAttrs [
+    "hypr/hypridle.conf"
+    "hypr/hyprlock.conf"
+    "hypr/animations.conf"
+    "hypr/entry.conf"
+    "hypr/keybindings.conf"
+    "hypr/nvidia.conf"
+    "hypr/plugins.conf"
+    "hypr/windowrules.conf"
+  ] (n: "config/${n}");
   wayland.windowManager.hyprland = {
     enable = true;
     # TODO: this also installs a hyprland package, how does this conflict with the global install
@@ -36,6 +45,9 @@
     procps
     wl-clipboard
     wl-clipboard-x11
+    hyprlock
+    hypridle
+    brightnessctl
   ];
 
   systemd.user.services.polkit-authentication-agent = {

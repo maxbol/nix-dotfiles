@@ -55,7 +55,7 @@
         "slack"
         "social"
         "sops"
-        "swaylock-nosuspend"
+        # "swaylock-nosuspend"
         "sysadmin"
         "tmux"
         "utils"
