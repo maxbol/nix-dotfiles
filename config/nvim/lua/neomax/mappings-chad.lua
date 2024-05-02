@@ -114,6 +114,7 @@ map("n", "<leader>gP", "<cmd>Git push<CR>", { desc = "Git push" })
 map("n", "<leader>gp", "<cmd>Git pull<CR>", { desc = "Git pull" })
 map("n", "<leader>gs", "<cmd>Git status<CR>", { desc = "Git status" })
 map("n", "<leader>gS", "<cmd>Git stash<CR>", { desc = "Git stash" })
+map("n", "<leader>gx", "<cmd>Git stash pop<CR>", { desc = "Git stash pop" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
 
 map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
