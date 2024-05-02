@@ -2,8 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
-  origin,
-  config,
   pkgs,
   lib,
   ...
@@ -47,7 +45,12 @@
     #"plymouth" #
   ];
 
-  config.networking.hostName = "jockey"; # Change your hostname.
+  config.maxdots.feature.autologin = {
+    enable = true;
+    defaultUser = "max";
+  };
+
+  config.networking.hostName = "jockey";
 
   config.users.groups.docker = {};
   config.users.groups.plugdev = {};
