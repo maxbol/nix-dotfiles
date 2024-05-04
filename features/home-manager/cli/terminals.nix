@@ -20,5 +20,9 @@ in {
       placement_strategy = "top-left";
       text_composition_strategy = "legacy";
     };
+    keybindings = {
+      "cmd+h" = "";
+      "cmd+k" = "";
+    };
   };
 }
