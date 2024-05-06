@@ -20,6 +20,7 @@ return {
 			win_options = {
 				winbar = "%{v:lua.require('oil').get_current_dir()}",
 			},
+			experimental_watch_for_changes = true,
 			keymaps = {
 				["<C-v>"] = "actions.select_vsplit",
 				["<C-b>"] = "actions.select_split",

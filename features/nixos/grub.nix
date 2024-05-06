@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{lib, ...}: {
   # Bootloader
   boot.loader = lib.mkForce {
     efi.canTouchEfiVariables = true;
@@ -7,6 +7,8 @@
     systemd-boot.enable = false;
     grub = {
       enable = true;
+      gfxmodeEfi = "5120x1440";
+      gfxmodeBios = "5120x1440";
       device = "nodev";
       efiSupport = true;
       useOSProber = false;
