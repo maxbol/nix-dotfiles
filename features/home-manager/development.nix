@@ -48,6 +48,7 @@ in {
     openssl
     sqlcmdWrapper
     silicon
+    mdcat
 
     # Low level tools
     lsof
