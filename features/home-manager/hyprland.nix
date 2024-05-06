@@ -21,10 +21,10 @@
     enable = true;
     # TODO: this also installs a hyprland package, how does this conflict with the global install
     package = origin.inputs.hyprland.packages.${pkgs.system}.default;
-    plugins = [
-      origin.inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
-      # ...
-    ];
+    # plugins = [
+    #   origin.inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    #   # ...
+    # ];
     systemd.enable = true;
     # Needed so that waybar, etc. have a complete environment
     systemd.variables =

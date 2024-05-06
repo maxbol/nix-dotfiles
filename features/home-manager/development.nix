@@ -41,6 +41,9 @@ in {
     stylua
     lua-language-server
 
+    # python
+    pipx
+
     # Package management, virtualisation, environments, etc
     origin.inputs.devenv.packages.${pkg.system}.devenv
 

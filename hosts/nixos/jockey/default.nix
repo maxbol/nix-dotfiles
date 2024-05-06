@@ -17,6 +17,7 @@
   config.copper.features = [
     "_1password"
     "nvidia"
+    "hyprland"
     "quiet-boot"
   ];
 
@@ -31,7 +32,6 @@
     "grub"
     "hid-apple"
     "home-manager"
-    "hyprland"
     "locale-se"
     "nh"
     "openssh"

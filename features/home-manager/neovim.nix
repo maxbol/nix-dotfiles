@@ -18,17 +18,18 @@ in {
   # TODO: checkout dropbar.nvim
   # TODO: git blame in nvim?
   home.sessionVariables.EDITOR = "nv";
-  # programs.neovim.enable = true;
-  # programs.neovim.extraPackages = with pkgs; [
-  #   # Needed by our configuration
-  #   fd
-  #   ripgrep
-  #
-  #   luajit # Used by some neovim packages
-  # ];
+  programs.neovim.enable = true;
+  programs.neovim.package = neovimNoParser;
+  programs.neovim.extraPackages = with pkgs; [
+    imagemagick
+    # Needed by our configuration
+    fd
+    ripgrep
+    luajit # Used by some neovim packages
+  ];
+  programs.neovim.extraLuaPackages = ps: [ps.magick];
 
   home.packages = with pkgs; [
-    neovimNoParser
     # Scipt to treat a directory argument as the working directory
     (writeShellScriptBin "nv" ''
       if test -d $1; then
