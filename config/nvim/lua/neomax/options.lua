@@ -50,6 +50,11 @@ o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
 
+-- Copilot settings
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_fallback = ""
+
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
 
@@ -79,3 +84,15 @@ vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or 
 -- 		end
 -- 	end,
 -- })
+--
+--
+
+-- https://github.com/olimorris/persisted.nvim/issues/84#issuecomment-1700996731
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+	callback = function()
+		vim.cmd("!notify-send ''")
+		vim.cmd("sleep 10m")
+	end,
+})
+
+g["surround_no_mappings"] = 1

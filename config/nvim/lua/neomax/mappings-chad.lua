@@ -19,6 +19,8 @@ map("n", "<C-Q>o", "<cmd>:tabonly <CR>", { desc = "Close all other tabs" })
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 
+map("n", "<leader>gq", "<cmd>cope<CR>", { desc = "Open quickfix list" })
+
 map("n", "<leader>fm", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "Format Files" })
@@ -156,3 +158,16 @@ map("n", "<leader>cc", function()
 		end
 	end
 end, { desc = "Blankline Jump to current context" })
+
+-- custom surround mappings, so that we can have both s and S dedicated to leap in
+-- all modes
+map("n", "ds", "<Plug>Dsurround", { desc = "Delete Surround" })
+map("n", "cs", "<Plug>Csurround", { desc = "Change Surround" })
+map("n", "cS", "<Plug>CSurround", { desc = "Change and indent Surround" })
+map("n", "yS", "<Plug>YSurround", { desc = "Surround on newline and indent" })
+map("n", "ys", "<Plug>Ysurround", { desc = "Surround (with vim motion)" })
+map("n", "yss", "<Plug>Yssurround", { desc = "Surround entire line" })
+map("n", "ySs", "<Plug>YSsurround", { desc = "Surround on newline" })
+map("n", "ySS", "<Plug>YSsurround", { desc = "Surround entire line on newline" })
+map("x", "O", "<Plug>VSurround", { desc = "Visual Surround" })
+map("x", "gO", "<Plug>VSurround", { desc = "Visual indent Surround" })

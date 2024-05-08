@@ -8,10 +8,10 @@
     enable = true;
     package = pkgs.swaylock;
     settings = {
-      effect-blur = "7x5";
-      clock = true;
+      # effect-blur = "7x5";
+      # clock = true;
       indicator = true;
-      grace = 5;
+      # grace = 5;
       image = lib.mkIf config.copper.swim.enable "${config.xdg.stateHome}/swim/active/wallpaper";
       daemonize = true;
     };

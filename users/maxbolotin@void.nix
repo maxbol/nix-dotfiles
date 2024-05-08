@@ -8,11 +8,11 @@
 
       maxdots.features = [
         "chroma-darwin"
-        "development"
         "cli-hm"
+        "development"
+        "direnv"
         "neovim"
         "productivity"
-        "direnv"
         "sops"
         "tmux"
       ];

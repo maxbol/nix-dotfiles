@@ -100,14 +100,29 @@ return {
 	{
 		"<leader>ds",
 		function()
-			require("dap").session()
+			local w = require("dap.ui.widgets")
+			w.sidebar(w.sessions, {}, "5 sp").toggle()
 		end,
 		desc = "Session",
 	},
 	{
 		"<leader>dt",
 		function()
-			require("dap").terminate()
+			local dap = require("dap")
+
+			local session_to_activate = nil
+			local sessions = dap.sessions()
+
+			for _, s in pairs(sessions) do
+				session_to_activate = s
+				break
+			end
+
+			if session_to_activate ~= nil then
+				dap.set_session(session)
+			end
+
+			dap.terminate()
 		end,
 		desc = "Terminate",
 	},

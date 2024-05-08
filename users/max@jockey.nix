@@ -27,8 +27,8 @@
       maxdots.features = [
         "accounts"
         "azure"
+        "browsers"
         "chroma"
-        "chrome"
         "cli-nixos"
         "development"
         "direnv"
@@ -48,18 +48,18 @@
         "nixos/swim"
         "nixos/tableplus"
         "node"
-        # "nvchad"
         "postman"
         "rofi-launcher-swwwallselect-patch"
         "security"
         "slack"
         "social"
         "sops"
-        # "swaylock-nosuspend"
+        "swaylock-nosuspend"
         "sysadmin"
         "tmux"
         "utils"
         "vscode"
+        # "nvchad"
       ];
 
       nixpkgs.config.permittedInsecurePackages = [

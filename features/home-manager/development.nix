@@ -23,9 +23,6 @@ in {
     golangci-lint
     gotools
 
-    # Python
-    python3
-
     # Rust
     cargo
 
@@ -41,7 +38,12 @@ in {
     stylua
     lua-language-server
 
-    # python
+    # Python
+    (python3.withPackages
+      (ps: [
+        ps.pyyaml
+        ps.pip
+      ]))
     pipx
 
     # Package management, virtualisation, environments, etc

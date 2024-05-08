@@ -6,8 +6,7 @@
     font-manager
     calibre
     gvfs
-    krita
-    gimp
     pinta
+    remmina
   ];
 }
