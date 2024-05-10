@@ -1,7 +1,7 @@
 return {
 	"pwntester/octo.nvim",
 	cmd = "Octo",
-	requires = {
+	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope.nvim",
 		-- OR 'ibhagwan/fzf-lua',

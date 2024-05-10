@@ -59,7 +59,7 @@ for _, language in ipairs(js_based_languages) do
 				"!**/node_modules/**",
 			},
 			env = {
-				VSCODE_DEBUG_MODE = true,
+				VSCODE_DEBUG_MODE = "true",
 			},
 			console = "integratedTerminal",
 			killBehavior = "polite",
@@ -85,7 +85,7 @@ for _, language in ipairs(js_based_languages) do
 				"!**/node_modules/**",
 			},
 			env = {
-				VSCODE_DEBUG_MODE = true,
+				VSCODE_DEBUG_MODE = "true",
 			},
 			console = "integratedTerminal",
 			killBehavior = "polite",

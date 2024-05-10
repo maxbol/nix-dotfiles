@@ -89,12 +89,12 @@ map("n", "<leader>gB", "<cmd>AdvancedGitSearch diff_branch_file<CR>", { desc = "
 map("n", "<leader>gC", "<cmd>AdvancedGitSearch changed_on_branch<CR>", { desc = "Git changes on current branch" })
 
 -- Other Git stuff
-map("n", "<leader>gc", "<cmd>Git commit<CR>", { desc = "Git commit" })
-map("n", "<leader>gP", "<cmd>Git push<CR>", { desc = "Git push" })
-map("n", "<leader>gp", "<cmd>Git pull<CR>", { desc = "Git pull" })
-map("n", "<leader>gs", "<cmd>Git status<CR>", { desc = "Git status" })
-map("n", "<leader>gS", "<cmd>Git stash<CR>", { desc = "Git stash" })
-map("n", "<leader>gx", "<cmd>Git stash pop<CR>", { desc = "Git stash pop" })
+map("n", "<leader>gc", "<cmd>G commit<CR>", { desc = "Git commit" })
+map("n", "<leader>gP", "<cmd>G push<CR>", { desc = "Git push" })
+map("n", "<leader>gp", "<cmd>G pull<CR>", { desc = "Git pull" })
+map("n", "<leader>gs", "<cmd>G<CR>", { desc = "Git status" })
+map("n", "<leader>gS", "<cmd>G stash<CR>", { desc = "Git stash" })
+map("n", "<leader>gx", "<cmd>G stash pop<CR>", { desc = "Git stash pop" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
 
 map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
