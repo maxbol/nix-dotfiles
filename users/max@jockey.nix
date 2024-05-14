@@ -26,10 +26,10 @@
 
       maxdots.features = [
         "accounts"
-        "azure"
         "browsers"
         "chroma"
         "cli-nixos"
+        "cloud-tools"
         "development"
         "direnv"
         "edge"
@@ -46,7 +46,7 @@
         "nixos/productivity"
         "nixos/rofi-plugins"
         "nixos/swim"
-        "nixos/tableplus"
+        "nixos/database-tools"
         "node"
         "postman"
         "rofi-launcher-swwwallselect-patch"

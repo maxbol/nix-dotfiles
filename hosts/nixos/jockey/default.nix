@@ -35,11 +35,12 @@
     "locale-se"
     "nh"
     "openssh"
-    "qmk-firmware-udev"
     "seahorse"
     "sops"
     "syncthing"
+    "tablet-support"
     "tailscale"
+    "udev"
     "wayland"
     "xserver-misc"
     #"plymouth" #

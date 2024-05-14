@@ -22,6 +22,7 @@ in {
     gopls
     golangci-lint
     gotools
+    maxdots.packages.nancy
 
     # Rust
     cargo
@@ -48,6 +49,9 @@ in {
 
     # Package management, virtualisation, environments, etc
     origin.inputs.devenv.packages.${pkg.system}.devenv
+
+    # Vulnerability scanning
+    grype
 
     # Global libs/tooling
     openssl
