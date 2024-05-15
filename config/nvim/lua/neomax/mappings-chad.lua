@@ -98,16 +98,22 @@ map("n", "<leader>gx", "<cmd>G stash pop<CR>", { desc = "Git stash pop" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
 
 map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
-map("n", "<leader>ghd", "<cmd>Octo pr diff<CR>", { desc = "Show PR diff" })
 map("n", "<leader>ghw", "<cmd>Octo pr checks<CR>", { desc = "Watch PR checks" })
-map("n", "<leader>ghm", "<cmd>Octo pr merge<CR>", { desc = "Merge PR" })
-map("n", "<leader>ghs", "<cmd>Octo pr merge squash<CR>", { desc = "Squash and merge PR" })
 map("n", "<leader>ghl", "<cmd>Octo pr list<CR>", { desc = "List PRs" })
 map("n", "<leader>fO", "<cmd>Octo actions<CR>", { desc = "Find Octo actions" })
 map("n", "<leader>fh", "<cmd>Octo search<CR>", { desc = "Search on Octo" })
+map("n", "<leader>ghW", '<cmd>!tmux display-popup -E "gh run watch"<CR>', { desc = "Watch workflow run" })
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
+
+-- some cool quickfix list experiments
+map(
+	"n",
+	"<leader>yl",
+	[[:cope<CR>:cexpr []<CR>:cexpr system("yarn lint 2>/dev/null \| awk '/^(\\/.+)$/ { file=$1; } /^\\s*[0-9]+:[0-9]+/ { print file \":\" $1 }'")<CR>]],
+	{ desc = "Yarn lint" }
+)
 
 -- new terminals
 -- map("n", "<leader>h", function()
