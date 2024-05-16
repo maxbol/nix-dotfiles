@@ -1,4 +1,6 @@
 local map = vim.keymap.set
+local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
+local autocmd = vim.api.nvim_create_autocmd
 
 map("i", "<C-b>", "<ESC>^i", { desc = "Move Beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "Move End of line" })
@@ -12,14 +14,17 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General Clear highlights" })
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 
-map("n", "<C-Q>q", "<cmd>:qa<CR>", { desc = "Quit Neovim" })
-map("n", "<C-Q>t", "<cmd>:tabc <CR>", { desc = "Close tab" })
-map("n", "<C-Q>o", "<cmd>:tabonly <CR>", { desc = "Close all other tabs" })
+map("n", "<C-Q>q", "<cmd>qa<CR>", { desc = "Quit Neovim" })
+map("n", "<C-Q>t", "<cmd>tabc <CR>", { desc = "Close tab" })
+map("n", "<C-Q>o", "<cmd>tabonly <CR>", { desc = "Close all other tabs" })
+
+map("n", "<C-W>t", "<cmd>vsplit<CR><cmd>term<CR>", { desc = "Open terminal in vertical split" })
 
 map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 
-map("n", "<leader>gq", "<cmd>cope<CR>", { desc = "Open quickfix list" })
+map("n", "<leader>qq", "<cmd>cope<CR>", { desc = "Open quickfix list" })
+map("n", "<leader>qc", "<cmd>cexpr []<CR>", { desc = "Clear quickfix list" })
 
 map("n", "<leader>fm", function()
 	require("conform").format({ lsp_fallback = true })
@@ -44,19 +49,6 @@ map("n", "<M-x>", "<C-x>", { noremap = true, silent = true })
 -- telescope
 local telescope = require("telescope.builtin")
 local telescope_state = require("telescope.state")
-
-local last_search = nil
-
-function search_with_cache()
-	if last_search == nil then
-		telescope.live_grep()
-
-		local cached_pickers = telescope_state.get_global_key("cached_pickers") or {}
-		last_search = cached_pickers[1]
-	else
-		telescope.resume({ picker = last_search })
-	end
-end
 
 -- map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
@@ -106,41 +98,29 @@ map("n", "<leader>ghW", '<cmd>!tmux display-popup -E "gh run watch"<CR>', { desc
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
+map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 
 -- some cool quickfix list experiments
-map(
-	"n",
-	"<leader>yl",
-	[[:cope<CR>:cexpr []<CR>:cexpr system("yarn lint 2>/dev/null \| awk '/^(\\/.+)$/ { file=$1; } /^\\s*[0-9]+:[0-9]+/ { print file \":\" $1 }'")<CR>]],
-	{ desc = "Yarn lint" }
-)
+augroup("WorkspaceQuickfix", { clear = true })
+autocmd("Filetype", {
+	group = "WorkspaceQuickfix",
+	pattern = { "javascript", "typescript" },
+	callback = function()
+		map(
+			"n",
+			"<leader>yl",
+			[[:cope<CR>:cexpr []<CR>:cexpr system("yarn lint 2>/dev/null \| awk '/^(\\/.+)$/ { file=$1; } /^\\s*[0-9]+:[0-9]+/ {  errorMsg=\"\"; for (i=3;i<=NF;++i) errorMsg=errorMsg \" \" $i; print file \":\" $1 \" \" $2 \" \" errorMsg }'")<CR>]],
+			{ desc = "Yarn lint" }
+		)
 
--- new terminals
--- map("n", "<leader>h", function()
---   require("nvchad.term").new { pos = "sp", size = 0.3 }
--- end, { desc = "Terminal New horizontal term" })
-
--- map("n", "<leader>v", function()
---   require("nvchad.term").new { pos = "vsp", size = 0.3 }
--- end, { desc = "Terminal New vertical window" })
-
--- toggleable
--- map({ "n", "t" }, "<A-v>", function()
---   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm", size = 0.3 }
--- end, { desc = "Terminal Toggleable vertical term" })
-
--- map({ "n", "t" }, "<A-h>", function()
---   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm", size = 0.3 }
--- end, { desc = "Terminal New horizontal term" })
-
--- map({ "n", "t" }, "<A-i>", function()
---   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
--- end, { desc = "Terminal Toggle Floating term" })
-
-map("t", "<ESC>", function()
-	local win = vim.api.nvim_get_current_win()
-	vim.api.nvim_win_close(win, true)
-end, { desc = "Terminal Close term in terminal mode" })
+		map(
+			"n",
+			"<leader>yb",
+			[[:cope<CR>:cexpr []<CR>:cexpr system("yarn build 2>/dev/null | grep -E '^.+\\([0-9]+,[0-9]+\\)' | sed -E 's/^(.+)\\(([0-9]+),([0-9]+)\\):(.*)/\\1:\\2:\\3 \\4/g'")<CR>]],
+			{ desc = "Yarn build" }
+		)
+	end,
+})
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
@@ -148,22 +128,6 @@ map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
 map("n", "<leader>wk", function()
 	vim.cmd("WhichKey " .. vim.fn.input("WhichKey: "))
 end, { desc = "Whichkey query lookup" })
-
--- blankline
-map("n", "<leader>cc", function()
-	local config = { scope = {} }
-	config.scope.exclude = { language = {}, node_type = {} }
-	config.scope.include = { node_type = {} }
-	local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
-
-	if node then
-		local start_row, _, end_row, _ = node:range()
-		if start_row ~= end_row then
-			vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
-			vim.api.nvim_feedkeys("_", "n", true)
-		end
-	end
-end, { desc = "Blankline Jump to current context" })
 
 -- custom surround mappings, so that we can have both s and S dedicated to leap in
 -- all modes

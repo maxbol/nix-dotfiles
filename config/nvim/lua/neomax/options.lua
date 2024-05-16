@@ -72,6 +72,11 @@ g["loaded_python3_provider"] = 0
 g["loaded_perl_provider"] = 0
 g["loaded_ruby_provider"] = 0
 
+-- try to add to efm
+-- vim.opt.errorformat:prepend("%f\\:%l\\:%c\\ %m")
+-- vim.cmd("let &efm .= ',%f:%l:%c\\ %t\\ %m'")
+-- vim.cmd([[let &efm .= ',%*[^"]"%f"%*\D%l:%c %t %m']])
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
