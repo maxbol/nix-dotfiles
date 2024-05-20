@@ -1,3 +1,4 @@
+local lspconfig = require("lspconfig")
 local map = vim.keymap.set
 
 local on_attach = function(client, bufnr)
@@ -11,7 +12,6 @@ local on_attach = function(client, bufnr)
 	map("n", "gWd", ":split | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new horizontal split"))
 	map("n", "gWD", ":split | lua vim.lsp.buf.declaration()<CR>", opts("Lsp Go to declaration in new horizontal split"))
 
-	--map("n", "K", vim.lsp.buf.hover, opts("Lsp hover information"))
 	map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 
 	map("n", "gi", vim.lsp.buf.implementation, opts("Lsp Go to implementation"))
@@ -25,13 +25,9 @@ local on_attach = function(client, bufnr)
 
 	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Lsp Go to type definition"))
 
-	-- map("n", "<leader>ra", function()
-	-- 	require("neomax.modules.lsp.renamer")()
-	-- end, opts("Lsp NvRenamer"))
 	map("n", "<leader>ra", "<cmd>Lspsaga rename ++project<CR>", opts("Rename code symbol"))
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Lsp Code action"))
-	-- map("n", "gr", vim.lsp.buf.references, opts("Lsp Show references"))
 	map("n", "gr", "<cmd>Lspsaga finder<CR>")
 
 	map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Lsp floating diagnostics" })
@@ -50,10 +46,6 @@ local on_attach = function(client, bufnr)
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.DocumentRangeFormattingProvider = false
 	end
-
-	-- if client.server_capabilities.signatureHelpProvider then
-	-- 	require("neomax.modules.lsp.signature")
-	-- end
 end
 
 local on_init = function(client, _)
@@ -82,8 +74,6 @@ capabilities.textDocument.completion.completionItem = {
 	},
 }
 
-local lspconfig = require("lspconfig")
-
 -- if you just want default config for the servers then put them in a table
 local servers = {
 	"html",
@@ -94,6 +84,8 @@ local servers = {
 	"eslint",
 	"nixd",
 	"gopls",
+	"lua_ls",
+	"zls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -104,16 +96,18 @@ for _, lsp in ipairs(servers) do
 	})
 end
 
--- lspconfig["eslint"].setup({
--- 	on_init = on_init,
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- 	settings = {
--- 		eslint = {
--- 			autoFixOnSave = true,
--- 		},
--- 	},
--- })
+lspconfig.lua_ls.setup({
+	on_init = on_init,
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
 
 lspconfig["tsserver"].setup({
 	on_init = on_init,
@@ -145,17 +139,28 @@ lspconfig["tsserver"].setup({
 	},
 })
 
+--[[ if not configs.golangcilsp then
+	configs.golangcilsp = {
+		default_config = {
+			cmd = { "golangci-lint-langserver" },
+			root_dir = lspconfig.util.root_pattern(".git", "go.mod"),
+			init_options = {
+				command = {
+					"golangci-lint",
+					"run",
+					"--enable-all",
+					"--disable",
+					"lll",
+					"--out-format",
+					"json",
+					"--issues-exit-code=1",
+				},
+			},
+		},
+	}
+end
+lspconfig.golangci_lint_ls.setup({
+	filetypes = { "go", "gomod" },
+}) ]]
+
 vim.lsp.set_log_level("ERROR")
-
--- vim.api.nvim_create_autocmd("BufWritePre", {
--- 	callback = function()
--- 		vim.lsp.buf.format()
--- 	end,
--- })
--- -- lspconfig["gopls"].setup({
--- 	on_attach = on_attach,
--- 	capabilities = capabilities,
--- })
-
---
--- lspconfig.pyright.setup { blabla}

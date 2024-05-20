@@ -20,7 +20,7 @@ return {
 			"clangd",
 			"clang-format",
 			-- go
-			"golangci-lint",
+			-- "golangci-lint",
 			-- "gopls", --Install globally
 
 			-- shell stuff
