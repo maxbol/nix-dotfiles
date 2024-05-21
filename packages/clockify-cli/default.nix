@@ -15,7 +15,7 @@ in
       owner = "lucassabreu";
       repo = "${pname}";
       rev = "v${version}";
-      sha256 = "sha256-6DU8rYtrGmaLvCFKQ6Z7BBEdl5AlIRcWKf8Dnvo3R2o=";
+      sha256 = "sha256-YsHFu0yq/EGhkSYoeMJMvLx0CbdGupGhgc+lCZWMeZ4=";
     };
 
     vendorHash = "sha256-TlWQwrMRnRDiKo9JSIAiLiwCQSPj1J7DeWHexXIwvRM=";

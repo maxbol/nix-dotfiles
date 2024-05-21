@@ -149,6 +149,7 @@ lspconfig.omnisharp.setup({
 	on_init = on_init,
 	on_attach = on_attach,
 	capabilities = capabilities,
+	cmd = { "/home/max/.nix-profile/bin/OmniSharp" },
 	settings = {
 		FormattingOptions = {
 			OrganizeImports = true,
