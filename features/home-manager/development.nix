@@ -21,7 +21,6 @@
   nancy = maxdots.packages.nancy;
   zig = origin.inputs.zig-overlay.packages.${pkgs.system}.master;
   zls = origin.inputs.zls.packages.${pkgs.system}.default;
-  devenv = origin.inputs.devenv.packages.${pkgs.system}.devenv;
   nixd = origin.inputs.nixd.packages.${pkgs.system}.nixd;
 in {
   home.packages =
@@ -46,6 +45,14 @@ in {
       # C/C++
       gcc
       gnumake
+      vscode-extensions.vadimcn.vscode-lldb
+      clang-tools_18
+
+      # CSharp
+      dotnet-sdk_8
+      omnisharp-roslyn
+      csharpier
+      netcoredbg
 
       # Nix
       alejandra
@@ -62,8 +69,15 @@ in {
         ]))
       pipx
 
-      # Vulnerability scanning
+      # Docker
+      hadolint
+      dockerfile-language-server-nodejs
+      docker-compose-language-service
       grype
+
+      # Package management, virtualisation, environments, etc
+      # origin.inputs.devenv.packages.${pkg.system}.devenv
+      devenv
 
       # Global libs/tooling
       openssl
@@ -79,7 +93,6 @@ in {
       swag
       zig
       zls
-      devenv
       nixd
     ];
 }
