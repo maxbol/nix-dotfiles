@@ -32,22 +32,23 @@
     },
     "ags": {
       "inputs": {
+        "gtk-layer-shell": "gtk-layer-shell",
         "nixpkgs": [
           "copper",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1715632593,
-        "narHash": "sha256-wAO7t9N/ibx9MbRJdqEQ0UyqsDBEcXYBTGJYB3tcfBk=",
+        "lastModified": 1711093764,
+        "narHash": "sha256-eNjky1aPiOeo1qgI3PZ2WJ1BecTnU7+DCGls9z5v7xQ=",
         "owner": "Cu3PO42",
         "repo": "ags",
-        "rev": "94531b075455492efdb67e5672541716e0e78634",
+        "rev": "d2502ab6bf0b6365f6825df30943200cb056b18a",
         "type": "github"
       },
       "original": {
         "owner": "Cu3PO42",
-        "ref": "new-polkit",
+        "ref": "polkit",
         "repo": "ags",
         "type": "github"
       }
@@ -92,10 +93,7 @@
           "copper",
           "hyprland"
         ],
-        "hyprland-hyprspace": [
-          "copper",
-          "hyprspace"
-        ],
+        "hyprland-hyprspace": "hyprland-hyprspace",
         "hyprland-plugins": [
           "copper",
           "hyprland-plugins"
@@ -105,10 +103,7 @@
           "copper",
           "matugen"
         ],
-        "nix-darwin": [
-          "copper",
-          "nix-darwin"
-        ],
+        "nix-darwin": "nix-darwin",
         "nixpkgs": [
           "copper",
           "nixpkgs"
@@ -201,7 +196,7 @@
         "impermanence": "impermanence",
         "lanzaboote": "lanzaboote",
         "matugen": "matugen",
-        "nix-darwin": "nix-darwin",
+        "nix-darwin": "nix-darwin_2",
         "nix-homebrew": "nix-homebrew",
         "nix-index-database": "nix-index-database",
         "nix-ld-rs": "nix-ld-rs",
@@ -211,25 +206,24 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rust-overlay": "rust-overlay",
+        "stm": "stm",
         "systems": [
           "systems"
         ],
-        "systems-linux": "systems-linux",
-        "wezterm": "wezterm"
+        "systems-linux": "systems-linux"
       },
       "locked": {
-        "lastModified": 1716274117,
-        "narHash": "sha256-gNtUa3ZsamzFD6Y0ImUd2/Oc9JCl+tgxjfJ29wRRkOM=",
+        "lastModified": 1714206809,
+        "narHash": "sha256-qMaTKPOin0oe+gtbkUsTWTUSmicemt38if/kQpO/sJ4=",
         "owner": "Cu3PO42",
         "repo": "gleaming-glacier",
-        "rev": "e9788db950bab6c89c334c48c547fcb06966d6ae",
+        "rev": "155534a36371584332a56da99f0c207da3e26310",
         "type": "github"
       },
       "original": {
         "owner": "Cu3PO42",
-        "ref": "next",
         "repo": "gleaming-glacier",
+        "rev": "155534a36371584332a56da99f0c207da3e26310",
         "type": "github"
       }
     },
@@ -625,23 +619,6 @@
         "type": "github"
       }
     },
-    "freetype2": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1687587065,
-        "narHash": "sha256-+Fh+/k+NWL5Ow9sDLtp8Cv/8rLNA1oByQQCIQS/bysY=",
-        "owner": "wez",
-        "repo": "freetype2",
-        "rev": "e4586d960f339cf75e2e0b34aee30a0ed8353c0d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "wez",
-        "repo": "freetype2",
-        "rev": "e4586d960f339cf75e2e0b34aee30a0ed8353c0d",
-        "type": "github"
-      }
-    },
     "gitignore": {
       "inputs": {
         "nixpkgs": [
@@ -735,6 +712,28 @@
         "type": "github"
       }
     },
+    "gtk-layer-shell": {
+      "inputs": {
+        "nixpkgs": [
+          "copper",
+          "ags",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1713713322,
+        "narHash": "sha256-A9U/BnzdypE1rt53uhw5X4JQkayR8CkD2Qhn/vhmUSU=",
+        "ref": "refs/heads/master",
+        "rev": "b9ddb2792b613d14622acada73c64f16a2635b40",
+        "revCount": 525,
+        "type": "git",
+        "url": "ssh://git@github.com/Cu3PO42/gtk-lock-shell.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/Cu3PO42/gtk-lock-shell.git"
+      }
+    },
     "gtk-session-lock": {
       "inputs": {
         "nixpkgs": [
@@ -753,23 +752,6 @@
       "original": {
         "owner": "Cu3PO42",
         "repo": "gtk-session-lock",
-        "type": "github"
-      }
-    },
-    "harfbuzz": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1711722720,
-        "narHash": "sha256-GdxcAPx5QyniSHPAN1ih28AD9JLUPR0ItqW9JEsl3pU=",
-        "owner": "harfbuzz",
-        "repo": "harfbuzz",
-        "rev": "63973005bc07aba599b47fdd4cf788647b601ccd",
-        "type": "github"
-      },
-      "original": {
-        "owner": "harfbuzz",
-        "ref": "8.4.0",
-        "repo": "harfbuzz",
         "type": "github"
       }
     },
@@ -971,7 +953,6 @@
           "copper",
           "hyprcursor"
         ],
-        "hyprland-protocols": "hyprland-protocols",
         "hyprlang": [
           "copper",
           "hyprlang"
@@ -985,24 +966,42 @@
           "copper",
           "systems-linux"
         ],
-        "wlroots": "wlroots",
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1714837352,
-        "narHash": "sha256-UxpPPS5uiyE4FDO3trfJObOm6sE7jnkVguHH6IdkQqs=",
-        "ref": "refs/tags/v0.40.0",
-        "rev": "cba1ade848feac44b2eda677503900639581c3f4",
-        "revCount": 4606,
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/hyprwm/Hyprland"
+        "lastModified": 1716365376,
+        "narHash": "sha256-/NLTdnkfeFRa+9El1TY7Acnssy5hk8uGwCwcSGWw5k0=",
+        "owner": "hyprwm",
+        "repo": "Hyprland",
+        "rev": "93fea890433ec11d7a915f5e0466b2e8b513e895",
+        "type": "github"
       },
       "original": {
-        "ref": "refs/tags/v0.40.0",
-        "submodules": true,
-        "type": "git",
-        "url": "https://github.com/hyprwm/Hyprland"
+        "owner": "hyprwm",
+        "repo": "Hyprland",
+        "type": "github"
+      }
+    },
+    "hyprland-hyprspace": {
+      "inputs": {
+        "hyprland": [
+          "copper",
+          "asztal",
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1715376791,
+        "narHash": "sha256-QKecFhWAB7sagSE+FXztINDqYqLro2nYp94f+ZtE/f4=",
+        "owner": "KZDKM",
+        "repo": "Hyprspace",
+        "rev": "8049b2794ca19d49320093426677d8c2911e7327",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KZDKM",
+        "repo": "Hyprspace",
+        "type": "github"
       }
     },
     "hyprland-plugins": {
@@ -1060,20 +1059,22 @@
         "nixpkgs": [
           "copper",
           "hyprland",
+          "xdph",
           "nixpkgs"
         ],
         "systems": [
           "copper",
           "hyprland",
+          "xdph",
           "systems"
         ]
       },
       "locked": {
-        "lastModified": 1691753796,
-        "narHash": "sha256-zOEwiWoXk3j3+EoF3ySUJmberFewWlagvewDRuWYAso=",
+        "lastModified": 1714869498,
+        "narHash": "sha256-vbLVOWvQqo4n1yvkg/Q70VTlPbMmTiCQfNTgcWDCfJM=",
         "owner": "hyprwm",
         "repo": "hyprland-protocols",
-        "rev": "0c2ce70625cb30aef199cb388f99e19a61a6ce03",
+        "rev": "e06482e0e611130cd1929f75e8c1cf679e57d161",
         "type": "github"
       },
       "original": {
@@ -1337,10 +1338,7 @@
           "nixpkgs"
         ],
         "pre-commit-hooks-nix": "pre-commit-hooks-nix",
-        "rust-overlay": [
-          "copper",
-          "rust-overlay"
-        ]
+        "rust-overlay": "rust-overlay"
       },
       "locked": {
         "lastModified": 1713192402,
@@ -1369,23 +1367,6 @@
       "original": {
         "owner": "gokcehan",
         "repo": "lf",
-        "type": "github"
-      }
-    },
-    "libpng": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1549245649,
-        "narHash": "sha256-1+cRp0Ungme/OGfc9kGJbklYIWAFxk8Il1M+NV4KSgw=",
-        "owner": "glennrp",
-        "repo": "libpng",
-        "rev": "8439534daa1d3a5705ba92e653eda9251246dd61",
-        "type": "github"
-      },
-      "original": {
-        "owner": "glennrp",
-        "repo": "libpng",
-        "rev": "8439534daa1d3a5705ba92e653eda9251246dd61",
         "type": "github"
       }
     },
@@ -1457,6 +1438,28 @@
       }
     },
     "nix-darwin": {
+      "inputs": {
+        "nixpkgs": [
+          "copper",
+          "asztal",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1716329735,
+        "narHash": "sha256-ap51w+VqG21vuzyQ04WrhI2YbWHd3UGz0e7dc/QQmoA=",
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "rev": "eac4f25028c1975a939c8f8fba95c12f8a25e01c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "LnL7",
+        "repo": "nix-darwin",
+        "type": "github"
+      }
+    },
+    "nix-darwin_2": {
       "inputs": {
         "nixpkgs": [
           "copper",
@@ -2057,19 +2060,21 @@
       "inputs": {
         "flake-utils": [
           "copper",
+          "lanzaboote",
           "flake-utils"
         ],
         "nixpkgs": [
           "copper",
+          "lanzaboote",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1714788771,
-        "narHash": "sha256-UxFPoIskGHp1lFetK55jsuCvagqLXVE9pD+IjWQUWiY=",
+        "lastModified": 1716344225,
+        "narHash": "sha256-e4tYIu1BOcq2DiGSQqynyREXCnKohjdcMS9wvLVxT38=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "b37d96b614c38922674fd8d81ebc2fe807667a5b",
+        "rev": "e8239080c897174a646c36a88789c9cbf53b7951",
         "type": "github"
       },
       "original": {
@@ -2117,6 +2122,27 @@
       "original": {
         "owner": "the-argus",
         "repo": "spicetify-nix",
+        "type": "github"
+      }
+    },
+    "stm": {
+      "inputs": {
+        "nixpkgs": [
+          "copper",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1707430886,
+        "narHash": "sha256-d4LaWnGLtDD03c0nZQyVB8hZCXli/t7m2u0BkU2s9Ew=",
+        "owner": "Aylur",
+        "repo": "stm",
+        "rev": "c09a6ff29800f840daede9436fc57b1f2090da79",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Aylur",
+        "repo": "stm",
         "type": "github"
       }
     },
@@ -2269,65 +2295,9 @@
         "url": "https://gitlab.gnome.org/philippun1/turtle"
       }
     },
-    "wezterm": {
-      "inputs": {
-        "flake-utils": [
-          "copper",
-          "flake-utils"
-        ],
-        "freetype2": "freetype2",
-        "harfbuzz": "harfbuzz",
-        "libpng": "libpng",
-        "nixpkgs": [
-          "copper",
-          "nixpkgs"
-        ],
-        "rust-overlay": [
-          "copper",
-          "rust-overlay"
-        ],
-        "zlib": "zlib"
-      },
-      "locked": {
-        "dir": "nix",
-        "lastModified": 1715638188,
-        "narHash": "sha256-EpD/2Y/MMIfsiwYJlWtoTw2owOZ6DmJlnevOkN46Y5o=",
-        "owner": "wez",
-        "repo": "wezterm",
-        "rev": "6b493ecd187dbbcefe96bb559d9eb243e1109313",
-        "type": "github"
-      },
-      "original": {
-        "dir": "nix",
-        "owner": "wez",
-        "repo": "wezterm",
-        "type": "github"
-      }
-    },
-    "wlroots": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1713731601,
-        "narHash": "sha256-bdcKdtLkusvv85DNuJsajZLFeq7bXp+x5AGP1Sd4wD8=",
-        "owner": "hyprwm",
-        "repo": "wlroots-hyprland",
-        "rev": "5c1d51c5a2793480f5b6c4341ad0797052aec2ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hyprwm",
-        "repo": "wlroots-hyprland",
-        "rev": "5c1d51c5a2793480f5b6c4341ad0797052aec2ea",
-        "type": "github"
-      }
-    },
     "xdph": {
       "inputs": {
-        "hyprland-protocols": [
-          "copper",
-          "hyprland",
-          "hyprland-protocols"
-        ],
+        "hyprland-protocols": "hyprland-protocols",
         "hyprlang": [
           "copper",
           "hyprland",
@@ -2407,23 +2377,6 @@
       "original": {
         "owner": "mitchellh",
         "repo": "zig-overlay",
-        "type": "github"
-      }
-    },
-    "zlib": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1484501380,
-        "narHash": "sha256-j5b6aki1ztrzfCqu8y729sPar8GpyQWIrajdzpJC+ww=",
-        "owner": "madler",
-        "repo": "zlib",
-        "rev": "cacf7f1d4e3d44d871b605da3b647f07d718623f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "madler",
-        "ref": "v1.2.11",
-        "repo": "zlib",
         "type": "github"
       }
     },

@@ -14,14 +14,8 @@
   # Manually turn of bluetooth - USB adapter
   config.hardware.bluetooth.enable = true;
 
-  config.copper.features = [
-    "_1password"
-    "nvidia"
-    "hyprland"
-    "quiet-boot"
-  ];
-
   config.maxdots.features = [
+    "_1password"
     "audio"
     "basics"
     "bluetooth"
@@ -32,9 +26,12 @@
     "grub"
     "hid-apple"
     "home-manager"
+    "hyprland"
     "locale-se"
     "nh"
+    "nvidia"
     "openssh"
+    "quiet-boot"
     "seahorse"
     "sops"
     "syncthing"

@@ -6,7 +6,9 @@
     # nixpkgs-bleeding.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Reference Copper's dotfiles for configuration re-use
+    #copper.url = "github:Cu3PO42/gleaming-glacier/155534a36371584332a56da99f0c207da3e26310";
     copper.url = "github:Cu3PO42/gleaming-glacier/next";
+
     # Replace the upstream's nixpkgs with our own, so we don't unnecessarily
     # duplicate dependencies.
     copper.inputs.nixpkgs.follows = "nixpkgs";
