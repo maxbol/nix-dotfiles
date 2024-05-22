@@ -21,6 +21,7 @@ in {
   programs.neovim.enable = true;
   programs.neovim.package = neovimNoParser;
   programs.neovim.extraPackages = with pkgs; [
+    tree-sitter
     imagemagick
     # Needed by our configuration
     fd

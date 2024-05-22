@@ -18,7 +18,7 @@
       enable = true;
     };
     wallpaperDirectory = "${config.home.homeDirectory}/wallpapers";
-    extraSwwwArgs = lib.mkIf config.copper.feature.nixos.hyprland.enable [''--transition-pos'' ''"$( hyprctl cursorpos )"''];
+    extraSwwwArgs = lib.mkIf config.maxdots.feature.hyprland.enable [''--transition-pos'' ''"$( hyprctl cursorpos )"''];
   };
   # TODO: this doesn't belong here
   copper.chroma.themes.Catppuccin-Latte.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/latte";

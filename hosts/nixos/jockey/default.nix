@@ -14,6 +14,10 @@
   # Manually turn of bluetooth - USB adapter
   config.hardware.bluetooth.enable = true;
 
+  config.copper.features = [];
+
+  config.copper.feature.hyprland.enable = false;
+
   config.maxdots.features = [
     "_1password"
     "audio"

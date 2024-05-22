@@ -35,7 +35,7 @@
         "PATH"
       ];
     # TODO: nvidia patches are no longer needed, but does that extend to the nvidia conf file?
-    settings.source = lib.mkMerge [(lib.mkIf false ["${config.xdg.configHome}/hypr/nvidia.conf"]) ["${config.xdg.configHome}/hypr/entry.conf"]];
+    settings.source = lib.mkMerge [(lib.mkIf true ["${config.xdg.configHome}/hypr/nvidia.conf"]) ["${config.xdg.configHome}/hypr/entry.conf"]];
   };
 
   home.packages = with pkgs; [

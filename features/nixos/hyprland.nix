@@ -12,6 +12,8 @@
 
   programs.hyprland = {
     enable = true;
+    package = origin.inputs.hyprland.packages.${pkgs.system}.default;
+    portalPackage = origin.inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   };
   # xdg-desktop-portal-hyprland is implicitly included by the Hyprland module
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
@@ -29,7 +31,8 @@
   security.pam.services.hyprlock = {};
 
   # Required by end-4's AGS config. I'm not sure what for.
-  users.users.${config.maxdots.feature.default-user.user}.extraGroups = ["video" "input"];
+  users.users.max.extraGroups = ["video" "input"];
+
   # To control backlight via DDC.
   hardware.i2c.enable = true;
 
