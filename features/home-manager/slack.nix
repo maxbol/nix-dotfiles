@@ -1,7 +1,7 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
-    (slack.overrideAttrs
+    /*
+       (slack.overrideAttrs
       (default: {
         installPhase = default.installPhase + ''
           rm $out/bin/slack
@@ -13,5 +13,7 @@
         '';
       })
     )
-  ]; 
+    */
+    slack
+  ];
 }
