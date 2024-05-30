@@ -1,6 +1,6 @@
-local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
+--[[ local parser_install_dir = vim.fn.stdpath("cache") .. "/treesitters"
 vim.fn.mkdir(parser_install_dir, "p")
-vim.opt.runtimepath:append(parser_install_dir)
+vim.opt.runtimepath:append(parser_install_dir) ]]
 
 return {
 	"nvim-treesitter/nvim-treesitter",
@@ -8,7 +8,7 @@ return {
 	cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
 	build = ":TSUpdate",
 	opts = {
-		parser_install_dir = parser_install_dir,
+		-- parser_install_dir = parser_install_dir,
 		incremental_selection = {
 			enable = true,
 			keymaps = {
@@ -18,8 +18,25 @@ return {
 				node_decremental = "<leader>.",
 			},
 		},
-		-- We do not want to install anything here, all parsers are installed with nix
-		ensure_installed = "all",
+		--[[ ensure_installed = {
+			"zig",
+			"typescript",
+			"javascript",
+			"go",
+			"html",
+			"lua",
+			"nix",
+			"markdown",
+			"dockerfile",
+			"c_sharp",
+			"json",
+			"gomod",
+			"gosum",
+		}, ]]
+		auto_install = true,
+		folds = {
+			enable = false,
+		},
 		highlight = {
 			enable = true,
 			use_languagetree = true,
@@ -33,6 +50,11 @@ return {
 		textobjects = {
 			select = {
 				enable = true,
+
+				disable = {
+					"typescript",
+					"zig",
+				},
 
 				-- Automatically jump forward to textobj, similar to targets.vim
 				lookahead = true,
@@ -76,6 +98,7 @@ return {
 			},
 			swap = {
 				enable = true,
+
 				swap_next = {
 					["<leader>a"] = "@parameter.inner",
 				},
@@ -85,6 +108,7 @@ return {
 			},
 			move = {
 				enable = true,
+
 				goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
 				goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer" },
 				goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
@@ -97,7 +121,7 @@ return {
 			"nvim-treesitter/nvim-treesitter-context",
 			config = function()
 				require("treesitter-context").setup({
-					enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+					enable = false, -- Enable this plugin (Can be enabled/disabled later via commands)
 					max_lines = 6, -- How many lines the window should span. Values <= 0 mean no limit.
 					min_window_height = 35, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
 					line_numbers = true,

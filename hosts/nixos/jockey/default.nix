@@ -23,6 +23,7 @@
     "audio"
     "basics"
     "bluetooth"
+    "desktop"
     "docker"
     "flatpak"
     "fonts"

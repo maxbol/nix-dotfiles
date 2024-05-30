@@ -1,6 +1,7 @@
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
+local autocmd = vim.api.nvim_create_autocmd
 
 -- add yours here!
 
@@ -11,14 +12,22 @@ opt.clipboard = "unnamedplus"
 -- o.cursorlineopt ='both' -- to enable cursorline!
 g.markdown_recommended_style = 0
 
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
 opt.foldenable = false
 opt.cursorline = true
 -- opt.cursorlineopt = "both"
+-- some cool quickfix list experiments
+autocmd("Filetype", {
+	pattern = "*",
+	callback = function()
+		if vim.bo.filetype == "zig" then
+			opt.foldmethod = "manual"
+		else
+			opt.foldmethod = "expr"
+			opt.foldexpr = "nvim_treesitter#foldexpr()"
+		end
+	end,
+})
 
-g.db_ui_use_nerd_fonts = 1
-g.db_ui_execute_on_save = 1
 g.completion_matching_strategy_list = { "exact", "substring" }
 g.completion_matching_ignore_case = 1
 

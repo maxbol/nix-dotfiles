@@ -9,7 +9,12 @@
     if [ "$TMUX" = "" ]; then tmux attach; fi
   '';
 in {
-  home.packages = [ta];
+  home.packages = [
+    ta
+    pkgs.ripgrep
+    pkgs.ripgrep-all
+    pkgs.tealdeer
+  ];
 
   programs.eza.enable = true;
 
@@ -23,9 +28,10 @@ in {
       ll = "eza --icons -l";
       la = "eza --icons -la";
       tree = "eza --tree";
-      rg = "source ranger";
       vim = "nv";
       vi = "nv";
+      zb = "zig build";
+      zbr = "zig build run";
     };
     history = {
       # path = "${config.home.homeDirectory}/.zshistory";

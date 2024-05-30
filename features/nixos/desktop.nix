@@ -23,5 +23,8 @@
   environment.sessionVariables = {
     # Enable Wayland support for Electron apps.
     NIXOS_OZONE_WL = "1";
+
+    # Nicer fonts in Java apps
+    _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=lcd";
   };
 }

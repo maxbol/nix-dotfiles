@@ -1,17 +1,18 @@
 {
   stdenv,
-  lib,
   fetchurl,
-  jre,
+  temurin-jre-bin-17,
   makeWrapper,
   ...
 }:
-stdenv.mkDerivation {
-  name = "dbvisualizer-11.0.4";
+stdenv.mkDerivation rec {
+  name = "dbvisualizer";
+
+  version = "24.1.5";
 
   src = fetchurl {
-    url = "https://www.dbvis.com/product_download/dbvis-11.0.4/media/dbvis_unix_11_0_4.tar.gz";
-    hash = "sha256:1q1ha3vidi15nx0jvf4d81d43i6szdf4bqi3zw098vilkasiijxs";
+    url = "https://www.dbvis.com/product_download/dbvis-${version}/media/dbvis_linux_24_1_5.tar.gz";
+    hash = "sha256-zrvR5YiEoFtmUbG01ntWvOT0Xd7NGvlVpeVnxrIt6oQ=";
   };
 
   buildInputs = [makeWrapper];
@@ -19,8 +20,8 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/bin
     cp -a . $out
+    wrapProgram $out/dbvis --set INSTALL4J_JAVA_HOME ${temurin-jre-bin-17}
     ln -sf $out/dbvis $out/bin
-    wrapProgram $out/bin/dbvis --set INSTALL4J_JAVA_HOME ${jre}
   '';
 
   meta = {

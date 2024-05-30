@@ -10,5 +10,7 @@
     maxdots.packages.tableplus
     maxdots.packages.dbvisualizer
     pkgs.azuredatastudio
+    pkgs.beekeeper-studio
+    pkgs.dbeaver-bin
   ];
 }
