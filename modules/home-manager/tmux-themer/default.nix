@@ -17,6 +17,14 @@ in {
       customPluginDir = mkOption {
         type = types.str;
       };
+      modulesRight = mkOption {
+        type = types.str;
+        default = "directory date_time";
+      };
+      modulesLeft = mkOption {
+        type = types.str;
+        default = "session";
+      };
     };
   };
 
@@ -37,8 +45,8 @@ in {
             set -g @theme_base_window_default_text "#{b:pane_current_path}"
             set -g @theme_base_window_current_fill "number"
             set -g @theme_base_window_current_text "#{b:pane_current_path}#{?window_zoomed_flag,(),}"
-            set -g @theme_base_status_modules_right "clockify directory date_time"
-            set -g @theme_base_status_modules_left "session"
+            set -g @theme_base_status_modules_right "${cfg.modulesRight}"
+            set -g @theme_base_status_modules_left "${cfg.modulesLeft}"
             set -g @theme_base_status_left_separator  " "
             set -g @theme_base_status_right_separator " "
             set -g @theme_base_status_right_separator_inverse "no"

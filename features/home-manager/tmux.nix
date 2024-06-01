@@ -13,6 +13,31 @@
     ${clockify-read-status} ${config.home.homeDirectory}/.clockify-cli.yaml ${config.xdg.cacheHome}
   '';
 
+  kube-tmux = pkgs.fetchFromGitHub {
+    owner = "jonmosco";
+    repo = "kube-tmux";
+    rev = "c127fc2181722c93a389534549a217aef12db288";
+    sha256 = "sha256-PnPj2942Y+K4PF+GH6A6SJC0fkWU8/VjZdLuPlEYY7A=";
+  };
+
+  theme-base-module-kube = pkgs.writeTextFile {
+    name = "theme-base-module-kube";
+    text = ''
+      show_kube() {
+        local index=$1
+        local icon=$(get_tmux_option "@theme_base_application_icon" "󱃾")
+        local color=$(get_tmux_option "@theme_base_application_color" "$thm_accent1")
+        local text="#( KUBE_TMUX_NS_ENABLE=false KUBE_TMUX_SYMBOL_ENABLE=false ${kube-tmux}/kube.tmux )"
+
+        local module=$( build_status_module "$index" "$icon" "$color" "$text" )
+
+        echo "$module"
+      }
+    '';
+    destination = "/kube.sh";
+    executable = true;
+  };
+
   # Clockify statusline module for theme_base
   theme-base-module-clockify = pkgs.writeTextFile {
     name = "theme-base-module-clockify";
@@ -36,6 +61,7 @@
     name = "theme-base-custom-plugins";
     paths = [
       theme-base-module-clockify
+      theme-base-module-kube
     ];
   };
 in {
@@ -61,6 +87,7 @@ in {
   programs.tmux-themer = {
     enable = true;
     customPluginDir = "${theme-base-custom-plugins}";
+    modulesRight = "kube clockify date_time";
   };
 
   programs.tmux = {

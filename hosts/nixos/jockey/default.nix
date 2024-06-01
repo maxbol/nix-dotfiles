@@ -36,6 +36,7 @@
     "nh"
     "nvidia"
     "openssh"
+    "pritunl"
     "quiet-boot"
     "seahorse"
     "sops"

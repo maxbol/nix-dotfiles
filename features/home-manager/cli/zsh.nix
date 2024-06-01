@@ -42,8 +42,8 @@ in {
     };
     historySubstringSearch = {
       enable = true;
-      searchUpKey = ["^[OA"];
-      searchDownKey = ["^[OB"];
+      searchUpKey = ["^[[A"];
+      searchDownKey = ["^[[B"];
     };
 
     initExtra = ''
@@ -64,6 +64,11 @@ in {
 
       source <(${lib.getExe maxdots.packages.clockify-cli} completion zsh)
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
+      bindkey "^[[A" history-beginning-search-backward
+      bindkey "^[[B" history-beginning-search-forward
+
+      export PATH="$PATH:$HOME/bin:$HOME/go/bin"
     '';
 
     plugins = [

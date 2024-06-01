@@ -31,6 +31,8 @@ in {
       yarn2nix
       vscode-langservers-extracted
       nodePackages.fixjson
+      asdf
+      asdf-vm
 
       # Golang
       go
