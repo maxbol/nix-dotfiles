@@ -3,7 +3,6 @@
     {
       copper.features = [
         "link-config"
-        "wezterm"
       ];
 
       maxdots.features = [
