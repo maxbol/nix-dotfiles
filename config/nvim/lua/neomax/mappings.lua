@@ -5,15 +5,15 @@ require("neomax.mappings-chad")
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
--- map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "kk", "<ESC>")
--- map("i", "<ESC>", "<C-c>")
 
 map("n", "<leader>fm", function()
 	require("conform").format()
 end, { desc = "formatting" })
 map("n", "gp", "`[v`]", { desc = "select pasted text" })
+map("n", "<D-d>", "<C-d>zz", { desc = "scroll down" })
+map("n", "<D-u>", "<C-u>zz", { desc = "scroll up" })
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
 map("n", "J", "mzJ`z", { desc = "join lines" })
