@@ -13,7 +13,6 @@
         "neovim"
         "neovide"
         "productivity"
-        "pritunl"
         "sops"
         "tmux"
       ];

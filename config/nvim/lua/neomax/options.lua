@@ -110,3 +110,8 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 })
 
 g["surround_no_mappings"] = 1
+
+-- Neovide settings
+if vim.g.neovide then
+	require("neomax.neovide")
+end
