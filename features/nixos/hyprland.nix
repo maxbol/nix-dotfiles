@@ -16,6 +16,7 @@
     portalPackage = origin.inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
   };
   # xdg-desktop-portal-hyprland is implicitly included by the Hyprland module
+  xdg.portal.enable = true;
   xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   programs.dconf.enable = true;

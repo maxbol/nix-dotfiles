@@ -12,5 +12,6 @@
     pkgs.azuredatastudio
     pkgs.beekeeper-studio
     pkgs.dbeaver-bin
+    pkgs.jetbrains.datagrip
   ];
 }
