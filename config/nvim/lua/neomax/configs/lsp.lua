@@ -31,7 +31,7 @@ local on_attach = function(client, bufnr)
 	map("n", "gr", "<cmd>Lspsaga finder<CR>")
 
 	map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Lsp floating diagnostics" })
-	map("n", "[d", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Lsp prev diagnostic" })
+	map("n", "]d", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Lsp prev diagnostic" })
 	map("n", "]d", "<Cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Lsp next diagnostic" })
 	map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Lsp diagnostic loclist" })
 
@@ -138,6 +138,7 @@ lspconfig.clangd.setup({
 		"--function-arg-placeholders",
 		"--fallback-style=llvm",
 	},
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	init_options = {
 		usePlaceholders = true,
 		completeUnimported = true,

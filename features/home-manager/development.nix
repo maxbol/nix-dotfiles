@@ -31,6 +31,7 @@ in {
       yarn2nix
       vscode-langservers-extracted
       nodePackages.fixjson
+      nodePackages.ts-node
       asdf
       asdf-vm
 
@@ -40,6 +41,9 @@ in {
       golangci-lint
       golangci-lint-langserver
       gotools
+
+      # Protobuffers
+      buf-language-server
 
       # Rust
       cargo

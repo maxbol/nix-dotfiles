@@ -13,7 +13,6 @@ return {
 			"typescript-language-server",
 			"deno",
 			"prettier",
-			"buf-language-server",
 			"eslint-lsp",
 			"eslint_d",
 			-- c/cpp stuff
