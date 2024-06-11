@@ -64,25 +64,46 @@
       theme-base-module-kube
     ];
   };
+
+  usr = config.home.username;
+  resurrectDirPath = "~/.tmux/resurrect/";
 in {
   copper.file.config."tmux/overrides.conf" = "config/tmux/overrides.conf";
 
-  systemd.user.services."tmux-preload" = {
-    Unit = {
-      Description = "Tmux server";
-    };
-
-    Service = {
-      Type = "oneshot";
-      RemainAfterExit = "yes";
-      ExecStart = "${pkgs.tmux}/bin/tmux new-session -A -s scratch -d";
-      ExecStop = "${pkgs.tmux}/bin/tmux kill-server";
-    };
-
-    Install = {
-      WantedBy = ["multi-user.target"];
-    };
-  };
+  # systemd.user.services."tmux-master" = {
+  #   Unit = {
+  #     Description = "Tmux master service";
+  #   };
+  #
+  #   Service = {
+  #     Type = "forking";
+  #     ExecStart = "${pkgs.tmux}/bin/tmux new-session -s master -d";
+  #     ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t master";
+  #   };
+  #
+  #   Install = {
+  #     WantedBy = ["multi-user.target"];
+  #   };
+  # };
+  #
+  # systemd.user.services."tmux-scratch" = {
+  #   Unit = {
+  #     Description = "Tmux scratchpad service";
+  #     PartOf = "tmux-master.service";
+  #     After = "tmux-master.service";
+  #   };
+  #
+  #   Service = {
+  #     Type = "oneshot";
+  #     RemainAfterExit = "yes";
+  #     ExecStart = "${pkgs.tmux}/bin/tmux new-session -s scratch -d";
+  #     ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t scratch";
+  #   };
+  #
+  #   Install = {
+  #     WantedBy = ["multi-user.target"];
+  #   };
+  # };
 
   programs.tmux-themer = {
     enable = true;
@@ -115,13 +136,25 @@ in {
         {
           plugin = tmuxPlugins.resurrect;
           extraConfig = ''
+            set -g @allow-passthrough on
+            set -g @resurrect-strategy-vim 'session'
             set -g @resurrect-strategy-nvim 'session'
+
+            set -g @resurrect-capture-pane-contents 'on'
+
+            set -g @resurrect-dir ${resurrectDirPath}
+            # set -g @resurrect-hook-post-save-all 'sed "s| --cmd .*-vim-pack-dir||g; s|/etc/profiles/per-user/${usr}/bin/||g; s|/home/${usr}/.nix-profile/bin/||g" ${resurrectDirPath}/last | sponge ${resurrectDirPath}/last'
+            set -g @resurrect-hook-post-save-all "sed 's/--cmd[^ ]* [^ ]* [^ ]*//g; s|' $resurrect_dir/last | sponge $resurrect_dir/last"
+            set -g @resurrect-processes '"~htop->htop" "~nv->nvim" "~ranger->ranger" "~less->less" "~bat->bat"'
           '';
         }
         {
           plugin = tmuxPlugins.continuum;
           extraConfig = ''
             set -g @continuum-restore 'on'
+            set -g @continuum-boot 'on'
+            set -g @continuum-boot-options 'kitty'
+            set -g @continuum-save-interval '5'
           '';
         }
         {

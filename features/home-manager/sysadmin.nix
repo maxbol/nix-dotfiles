@@ -3,5 +3,6 @@
     killall
     nix-info
     usbutils
+    moreutils
   ];
 }

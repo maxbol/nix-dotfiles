@@ -69,6 +69,8 @@ in {
       bindkey "^[[B" history-beginning-search-forward
 
       export PATH="$PATH:$HOME/bin:$HOME/go/bin"
+
+      setopt PUSHDSILENT
     '';
 
     plugins = [

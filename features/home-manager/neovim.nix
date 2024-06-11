@@ -33,22 +33,47 @@ in {
   home.packages = with pkgs; [
     # Scipt to treat a directory argument as the working directory
     (writeShellScriptBin "nv" ''
-      if test -d $1; then
-          pushd $1
-          nvim .
-      else
-          file=$(realpath $1)
-          pushd $(dirname $1)
-          ${
+      pushd () {
+          command pushd "$@" > /dev/null
+      }
+
+      popd () {
+          command popd "$@" > /dev/null
+      }
+
+      git_dir() {
+        ${
         if hasGit
-        then ''          if git rev-parse --show-toplevel; then
-                      cd $(git rev-parse --show-toplevel)
-                  fi''
+        then ''          if git rev-parse --show-toplevel > /dev/null; then
+                    cd $(git rev-parse --show-toplevel)
+                fi''
         else ""
       }
-          nvim $file
+      }
+
+      arg_len=$(($#-1))
+
+      if [ "$arg_len" -gt "-1" ]; then
+        last_arg="''${@:-1}"
+        other_args="''${@:1:$length}"
+
+        if test -d $last_arg; then
+          pushd $1
+          nvim $other_args .
+          popd
+        elif test -f $last_arg; then
+          file=$(realpath $last_arg)
+          pushd $(dirname $last_arg)
+          git_dir
+          nvim $other_args $last_arg
+          popd
+        else
+          nvim $@
+        fi
+      else
+        git_dir
+        nvim .
       fi
-      popd
     '')
   ];
 
