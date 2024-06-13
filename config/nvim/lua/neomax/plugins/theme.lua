@@ -25,12 +25,27 @@ if vim.fn.has("macunix") == 1 then
 		},
 		{
 			"nvim-lualine/lualine.nvim",
-			dependencies = { "nvim-tree/nvim-web-devicons" },
+			dependencies = { "nvim-tree/nvim-web-devicons", { "dokwork/lualine-ex" }, "nvim-lua/lsp-status.nvim" },
 			lazy = false,
 			config = function()
 				require("lualine").setup({
 					options = {
 						theme = "catppuccin",
+					},
+					sections = {
+						lualine_a = { "mode" },
+						lualine_b = { "branch", "diff", "diagnostics" },
+						lualine_c = { "filename" },
+						lualine_x = {
+							"encoding",
+							-- "fileformat",
+							"filetype",
+							"require'lsp-status'.status()",
+
+							-- "ex.lsp.all",
+						},
+						lualine_y = { "progress" },
+						lualine_z = { "location" },
 					},
 				})
 			end,
@@ -43,7 +58,7 @@ return {
 		"sainnhe/gruvbox-material",
 		priority = 1000,
 		lazy = false,
-		config = function(_, opts)
+		config = function()
 			vim.opt.background = "dark" -- dark, light
 			vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
 			vim.g.gruvbox_material_transparent_background = 1

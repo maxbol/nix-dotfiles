@@ -1,5 +1,8 @@
 return {
 	"github/copilot.vim",
 	cmd = "Copilot",
-	event = "InsertEnter",
+	lazy = false,
+	config = function()
+		vim.cmd([[Copilot enable]])
+	end,
 }

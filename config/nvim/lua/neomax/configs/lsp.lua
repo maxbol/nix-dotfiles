@@ -1,10 +1,15 @@
 local lspconfig = require("lspconfig")
+local lsp_status = require("lsp-status")
 local map = vim.keymap.set
+
+lsp_status.register_progress()
 
 local on_attach = function(client, bufnr)
 	local function opts(desc)
 		return { buffer = bufnr, desc = desc }
 	end
+	lsp_status.on_attach(client)
+
 	map("n", "gD", vim.lsp.buf.declaration, opts("Lsp Go to declaration"))
 	map("n", "gd", vim.lsp.buf.definition, opts("Lsp Go to definition"))
 	map("n", "gwd", ":vsplit | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new vertical split"))
@@ -55,6 +60,7 @@ local on_init = function(client, _)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
 
 capabilities.textDocument.completion.completionItem = {
 	documentationFormat = { "markdown", "plaintext" },
@@ -78,7 +84,7 @@ capabilities.textDocument.completion.completionItem = {
 local servers = {
 	"html",
 	"cssls",
-	"clangd",
+	-- "clangd",
 	"bufls",
 	-- "tsserver",
 	"eslint",
@@ -113,9 +119,9 @@ lspconfig.lua_ls.setup({
 lspconfig.clangd.setup({
 	on_init = on_init,
 	on_attach = on_attach,
-	capabilities = {
+	capabilities = vim.tbl_extend("keep", capabilities, {
 		offsetEncoding = { "utf-16" },
-	},
+	}),
 	root_dir = function(fname)
 		return require("lspconfig.util").root_pattern(
 			"Makefile",

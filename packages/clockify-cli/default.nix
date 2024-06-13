@@ -2,16 +2,16 @@
   pkgs,
   lib,
   ...
-}:
-with pkgs; let
+}: let
   pname = "clockify-cli";
   version = "0.49.0";
+  license = lib.licenses.asl20;
 in
-  buildGoModule {
+  pkgs.buildGoModule {
     inherit pname;
     inherit version;
 
-    src = fetchFromGitHub {
+    src = pkgs.fetchFromGitHub {
       owner = "lucassabreu";
       repo = "${pname}";
       rev = "v${version}";
@@ -20,9 +20,9 @@ in
 
     vendorHash = "sha256-TlWQwrMRnRDiKo9JSIAiLiwCQSPj1J7DeWHexXIwvRM=";
 
-    meta = with lib; {
+    meta = {
+      inherit license;
       description = "A command line interface for Clockify";
-      license = licenses.asl20;
       homepage = "https://clockify-cli.netlify.app/";
     };
   }

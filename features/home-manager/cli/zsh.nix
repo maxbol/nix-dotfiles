@@ -76,6 +76,12 @@ in {
 
       export PATH="$PATH:$HOME/bin:$HOME/go/bin"
 
+      if command -v brew &> /dev/null
+      then
+        export CPPFLAGS="-I$(brew --prefix)/include"
+        export LDFLAGS="-L$(brew --prefix)/lib"
+      fi
+
       setopt PUSHDSILENT
     '';
 
