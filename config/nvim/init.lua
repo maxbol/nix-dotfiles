@@ -1,3 +1,5 @@
+require("neomax.modules.lazy-obsession")
+
 -- Profiling
 local should_profile = os.getenv("NVIM_PROFILE")
 if should_profile then
