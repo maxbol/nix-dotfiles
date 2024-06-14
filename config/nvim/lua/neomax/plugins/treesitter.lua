@@ -52,7 +52,7 @@ return {
 				enable = true,
 
 				disable = {
-					"typescript",
+					-- "typescript",
 					"zig",
 				},
 
