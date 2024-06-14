@@ -46,6 +46,12 @@ in {
       searchDownKey = ["^[[B"];
     };
 
+    profileExtra = ''
+      echo "Importing \$PATH into systemd: $PATH" > /tmp/systemdpathimport-$(date +%s)
+
+      systemctl --user import-environment PATH
+    '';
+
     initExtra = ''
       # case insensitive tab completion in a menu
       zstyle ':completion:*' completer _complete _ignored _approximate

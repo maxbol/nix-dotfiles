@@ -1,9 +1,9 @@
-if vim.fn.has("macunix") then
+if vim.fn.has("macunix") == 1 then
 	return {
 		{
 			"catppuccin/nvim",
 			name = "catppuccin",
-			priority = 1000,
+			priority = 2000,
 			lazy = false,
 			config = function()
 				vim.cmd([[colorscheme catppuccin]])
