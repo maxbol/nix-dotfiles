@@ -40,7 +40,7 @@ if vim.fn.has("macunix") == 1 then
 							"encoding",
 							-- "fileformat",
 							"filetype",
-							"require'lsp-status'.status()",
+							-- "require'lsp-status'.status()",
 
 							-- "ex.lsp.all",
 						},

@@ -2,6 +2,11 @@ return {
 	defaults = { lazy = true },
 	install = { colorscheme = { "nvchad" } },
 
+	change_detection = {
+		enabled = true,
+		notify = false,
+	},
+
 	ui = {
 		icons = {
 			ft = "",
