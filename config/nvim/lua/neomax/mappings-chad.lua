@@ -17,6 +17,7 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 map("n", "<C-Q>q", "<cmd>qa<CR>", { desc = "Quit Neovim" })
 map("n", "<C-Q>t", "<cmd>tabc <CR>", { desc = "Close tab" })
 map("n", "<C-Q>o", "<cmd>tabonly <CR>", { desc = "Close all other tabs" })
+map("n", "<C-Q>b", "<cmd>bd <CR>", { desc = "Close buffer" })
 
 map("n", "<C-W>t", "<cmd>vsplit<CR><cmd>term<CR>", { desc = "Open terminal in vertical split" })
 
@@ -57,7 +58,7 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help 
 
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current buffer" })
-map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
+map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope Find symbol in document" })
 map("n", "<leader>fS", function()

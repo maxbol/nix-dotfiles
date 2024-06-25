@@ -6,7 +6,7 @@
   ...
 }: let
   # Wrap sqlcmd to make output legible in dadbod
-  sqlcmdWrapper = pkgs.writeShellScriptBin "sqlcmd" ''
+  sqlcmd = pkgs.writeShellScriptBin "sqlcmd" ''
     ${pkgs.sqlcmd}/bin/sqlcmd -w 200 -Y 36 "$@"
   '';
 
@@ -81,6 +81,9 @@ in {
       docker-compose-language-service
       grype
 
+      # Version management tooling
+      lazygit
+
       # Package management, virtualisation, environments, etc
       # origin.inputs.devenv.packages.${pkg.system}.devenv
       devenv
@@ -94,7 +97,7 @@ in {
       lsof
     ])
     ++ [
-      sqlcmdWrapper
+      sqlcmd
       nancy
       swag
       zig
