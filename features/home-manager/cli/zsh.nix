@@ -47,9 +47,9 @@ in {
     };
 
     profileExtra = ''
-      echo "Importing \$PATH into systemd: $PATH" > /tmp/systemdpathimport-$(date +%s)
-
-      systemctl --user import-environment PATH
+      if command -v systemctl &> /dev/null; then
+        systemctl --user import-environment PATH
+      fi
     '';
 
     initExtra = ''
