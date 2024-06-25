@@ -22,4 +22,27 @@
       ];
     };
   };
+
+  programs.dconf.enable = true;
+
+  services.blueman.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    nerdfonts
+  ];
+
+  hardware.i2c.enable = true;
+
+  services = {
+    gvfs.enable = true;
+    devmon.enable = true;
+    udisks2.enable = true;
+    upower.enable = true;
+    power-profiles-daemon.enable = true;
+    accounts-daemon.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+      glib-networking.enable = true;
+    };
+  };
 }

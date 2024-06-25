@@ -31,13 +31,14 @@
     "grub"
     "hid-apple"
     "home-manager"
-    "hyprland"
+    "i3"
     "locale-se"
     "nh"
     "nvidia"
     "openssh"
     "pritunl"
     "quiet-boot"
+    "sddm"
     "seahorse"
     "sops"
     "syncthing"
@@ -46,13 +47,14 @@
     "udev"
     "wayland"
     "xserver-misc"
+    "hyprland"
     #"plymouth" #
   ];
 
-  config.maxdots.feature.autologin = {
-    enable = true;
-    defaultUser = "max";
-  };
+  # config.maxdots.feature.autologin = {
+  #   enable = true;
+  #   defaultUser = "max";
+  # };
 
   config.networking.hostName = "jockey";
 

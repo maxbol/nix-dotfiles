@@ -17,6 +17,7 @@
     "hypr/plugins.conf"
     "hypr/windowrules.conf"
   ] (n: "config/${n}");
+
   wayland.windowManager.hyprland = {
     enable = true;
     # TODO: this also installs a hyprland package, how does this conflict with the global install

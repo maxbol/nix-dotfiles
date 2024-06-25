@@ -109,6 +109,7 @@ in {
     enable = true;
     customPluginDir = "${theme-base-custom-plugins}";
     modulesRight = "kube clockify date_time";
+    # modulesRight = "kube date_time";
   };
 
   programs.tmux = {
