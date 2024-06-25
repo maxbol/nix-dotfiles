@@ -89,7 +89,9 @@ map("n", "<leader>gs", "<cmd>G<CR>", { desc = "Git status" })
 map("n", "<leader>gS", "<cmd>G stash<CR>", { desc = "Git stash" })
 map("n", "<leader>gx", "<cmd>G stash pop<CR>", { desc = "Git stash pop" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
+map("n", "<leader>gg", "<cmd>!tmux popup -w 90\\% -h 90\\% lazygit<CR>", { desc = "Open lazygit" })
 
+-- Github
 map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
 map("n", "<leader>ghw", "<cmd>Octo pr checks<CR>", { desc = "Watch PR checks" })
 map("n", "<leader>ghl", "<cmd>Octo pr list<CR>", { desc = "List PRs" })
