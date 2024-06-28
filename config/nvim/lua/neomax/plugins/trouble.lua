@@ -4,7 +4,6 @@ return {
 	keys = {
 		{ "<leader>xx", "<cmd>TroubleToggle<CR>" },
 	},
-	branch = "dev",
 	cmd = { "Trouble" },
 	keys = {
 		{

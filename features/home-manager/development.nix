@@ -54,6 +54,9 @@ in {
       vscode-extensions.vadimcn.vscode-lldb
       clang-tools_18
 
+      # Swift
+      sourcekit-lsp
+
       # CSharp
       dotnet-sdk_8
       omnisharp-roslyn
@@ -83,6 +86,7 @@ in {
 
       # Version management tooling
       lazygit
+      gh
 
       # Package management, virtualisation, environments, etc
       # origin.inputs.devenv.packages.${pkg.system}.devenv

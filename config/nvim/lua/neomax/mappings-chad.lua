@@ -1,6 +1,4 @@
 local map = vim.keymap.set
-local augroup = vim.api.nvim_create_augroup -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd
 
 map("i", "<C-b>", "<ESC>^i", { desc = "Move Beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "Move End of line" })
@@ -91,7 +89,6 @@ map("n", "<leader>gx", "<cmd>G stash pop<CR>", { desc = "Git stash pop" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
 map("n", "<leader>gg", "<cmd>!tmux popup -w 90\\% -h 90\\% lazygit<CR>", { desc = "Open lazygit" })
 
--- Github
 map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
 map("n", "<leader>ghw", "<cmd>Octo pr checks<CR>", { desc = "Watch PR checks" })
 map("n", "<leader>ghl", "<cmd>Octo pr list<CR>", { desc = "List PRs" })
@@ -102,40 +99,6 @@ map("n", "<leader>ghW", '<cmd>!tmux display-popup -E "gh run watch"<CR>', { desc
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
-
--- some cool quickfix list experiments
-augroup("WorkspaceQuickfix", { clear = true })
-autocmd("Filetype", {
-	group = "WorkspaceQuickfix",
-	pattern = { "javascript", "typescript" },
-	callback = function()
-		map(
-			"n",
-			"<leader>yl",
-			[[:cope<CR>:cexpr []<CR>:cexpr system("yarn lint 2>/dev/null \| awk '/^(\\/.+)$/ { file=$1; } /^\\s*[0-9]+:[0-9]+/ {  errorMsg=\"\"; for (i=3;i<=NF;++i) errorMsg=errorMsg \" \" $i; print file \":\" $1 \" \" $2 \" \" errorMsg }'")<CR>]],
-			{ desc = "Yarn lint" }
-		)
-		map(
-			"n",
-			"<leader>yb",
-			[[:cope<CR>:cexpr []<CR>:cexpr system("yarn build 2>/dev/null | grep -E '^.+\\([0-9]+,[0-9]+\\)' | sed -E 's/^(.+)\\(([0-9]+),([0-9]+)\\):(.*)/\\1:\\2:\\3 \\4/g'")<CR>]],
-			{ desc = "Yarn build" }
-		)
-	end,
-})
-
-autocmd("Filetype", {
-	group = "WorkspaceQuickfix",
-	pattern = { "go" },
-	callback = function()
-		map(
-			"n",
-			"<leader>yl",
-			[[:cope<CR>:cexpr []<CR>:cexpr system("golangci-lint run --timeout 300s --config .golangci.yml ./... 2>/dev/null | grep -E '^.+:[0-9]+:[0-9]+'")<CR>]],
-			{ desc = "Golangci lint" }
-		)
-	end,
-})
 
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })

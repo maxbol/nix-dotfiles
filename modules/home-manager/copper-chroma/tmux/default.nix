@@ -51,7 +51,7 @@ in {
 
           source = mkDefault (opts.palette.generateDynamic {
             template = ./theme.tmuxtheme.dyn;
-            paletteOverrides = lib.traceVal config.colorOverrides;
+            paletteOverrides = config.colorOverrides;
           });
         };
       };

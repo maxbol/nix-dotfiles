@@ -1,9 +1,11 @@
 local opt = vim.opt
 local o = vim.o
 local g = vim.g
-local autocmd = vim.api.nvim_create_autocmd
 
 -- add yours here!
+
+opt.wrap = false
+opt.colorcolumn = "120"
 
 opt.termguicolors = true
 opt.clipboard = "unnamedplus"
@@ -14,19 +16,9 @@ g.markdown_recommended_style = 0
 
 opt.foldenable = false
 opt.cursorline = true
--- opt.cursorlineopt = "both"
--- some cool quickfix list experiments
-autocmd("Filetype", {
-	pattern = "*",
-	callback = function()
-		if vim.bo.filetype == "zig" then
-			opt.foldmethod = "manual"
-		else
-			opt.foldmethod = "expr"
-			opt.foldexpr = "nvim_treesitter#foldexpr()"
-		end
-	end,
-})
+
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 g.completion_matching_strategy_list = { "exact", "substring" }
 g.completion_matching_ignore_case = 1
@@ -90,17 +82,6 @@ g["loaded_ruby_provider"] = 0
 local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
 
--- automatically start telescope frecency when entering a workspace
--- vim.api.nvim_create_autocmd("VimEnter", {
--- 	callback = function()
--- 		if vim.fn.argv(0) == "" or vim.fn.argv(0) == "." then
--- 			require("telescope").extensions.frecency.frecency({ workspace = "CWD" })
--- 		end
--- 	end,
--- })
---
---
-
 -- https://github.com/olimorris/persisted.nvim/issues/84#issuecomment-1700996731
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
 	callback = function()
@@ -109,9 +90,14 @@ vim.api.nvim_create_autocmd({ "VimLeave" }, {
 	end,
 })
 
+-- vim.api.nvim_command("filetype on")
+-- vim.api.nvim_command("filetype plugin indent on")
+
 g["surround_no_mappings"] = 1
 
 -- Neovide settings
 if vim.g.neovide then
 	require("neomax.neovide")
 end
+
+require("neomax.configs.make")

@@ -168,6 +168,21 @@ lspconfig.omnisharp.setup({
 	},
 })
 
+local sourcekit_capabilities = vim.tbl_extend("keep", capabilities or {}, {
+	workspace = {
+		didChangeWatchedFiles = {
+			dynamicRegistration = true,
+		},
+	},
+})
+
+lspconfig.sourcekit.setup({
+	on_init = on_init,
+	on_attach = on_attach,
+	capabilities = sourcekit_capabilities,
+	filetypes = { "swift" },
+})
+
 lspconfig["tsserver"].setup({
 	on_init = on_init,
 	on_attach = on_attach,

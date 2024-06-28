@@ -8,5 +8,6 @@
     gvfs
     pinta
     remmina
+    thunderbird
   ];
 }

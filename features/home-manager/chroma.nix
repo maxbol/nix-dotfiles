@@ -9,7 +9,7 @@
     enable = true;
     initialTheme = "Catppuccin-Mocha";
   };
-  copper.chroma.themes = lib.traceVal maxdots.chromaThemes;
+  copper.chroma.themes = maxdots.chromaThemes;
 
   copper.chroma.gtk = {
     enable = true;
