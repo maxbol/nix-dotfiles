@@ -99,6 +99,8 @@ in {
 
       # Low level tools
       lsof
+      # netcat-openbsd
+      procps
     ])
     ++ [
       sqlcmd

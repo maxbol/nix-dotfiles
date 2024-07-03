@@ -6,12 +6,7 @@
   ...
 }: let
   tmux-sessionx = origin.inputs.tmux-sessionx.packages.${pkgs.system}.default;
-
-  clockify-read-status = "${maxdots.packages.clockify-watch}/bin/clockify-read-status";
-
-  clockify-read-status-wrapped = pkgs.writeShellScript "clockify-read-status-wrapped" ''
-    ${clockify-read-status} ${config.home.homeDirectory}/.clockify-cli.yaml ${config.xdg.cacheHome}
-  '';
+  clockifyd = origin.inputs.clockifyd.packages.${pkgs.system}.default;
 
   kube-tmux = pkgs.fetchFromGitHub {
     owner = "jonmosco";
@@ -46,7 +41,7 @@
         local index=$1
         local icon=$(get_tmux_option "@theme_base_application_icon" "󰥔")
         local color=$(get_tmux_option "@theme_base_application_color" "$thm_accent3")
-        local text="#( ${clockify-read-status-wrapped} )"
+        local text="#( ${clockifyd}/bin/clockifyd-get-current )"
 
         local module=$( build_status_module "$index" "$icon" "$color" "$text" )
 

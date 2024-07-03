@@ -6,7 +6,7 @@ return {
 		priority = 2000,
 		lazy = false,
 		config = function()
-			vim.cmd([[colorscheme catppuccin]])
+			vim.cmd([[colorscheme catppuccin-mocha]])
 			require("catppuccin").setup({
 				flavour = "mocha",
 				integrations = {
