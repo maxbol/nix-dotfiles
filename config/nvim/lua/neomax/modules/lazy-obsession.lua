@@ -39,5 +39,7 @@ local load_session = function()
 end
 
 vim.api.nvim_create_autocmd("VimEnter", {
+	group = vim.api.nvim_create_augroup("restore_session", { clear = true }),
 	callback = load_session,
+	nested = true,
 })
