@@ -119,3 +119,13 @@ map("n", "ySs", "<Plug>YSsurround", { desc = "Surround on newline" })
 map("n", "ySS", "<Plug>YSsurround", { desc = "Surround entire line on newline" })
 map("x", "O", "<Plug>VSurround", { desc = "Visual Surround" })
 map("x", "gO", "<Plug>VSurround", { desc = "Visual indent Surround" })
+
+-- toggle conceallevel for buffer
+map("n", "<leader>-", function()
+	local current = vim.wo.conceallevel
+	if current == 0 then
+		vim.wo.conceallevel = 2
+	else
+		vim.wo.conceallevel = 0
+	end
+end, { desc = "Toggle conceallevel" })
