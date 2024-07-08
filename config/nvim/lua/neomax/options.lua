@@ -101,3 +101,4 @@ if vim.g.neovide then
 end
 
 require("neomax.configs.make")
+require("neomax.modules.obsidian")

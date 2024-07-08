@@ -122,4 +122,19 @@
         overlay = palette.semantic.background;
       };
     });
+
+  Rose-Pine = pkgs.callPackage ./rosepine.nix (extraArgs
+    // {
+      variant = "pine";
+    });
+
+  Rose-Pine-Moon = pkgs.callPackage ./rosepine.nix (extraArgs
+    // {
+      variant = "moon";
+    });
+
+  Rose-Pine-Dawn = pkgs.callPackage ./rosepine.nix (extraArgs
+    // {
+      variant = "dawn";
+    });
 }

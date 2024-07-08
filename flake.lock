@@ -151,11 +151,11 @@
         "zig2nix": "zig2nix"
       },
       "locked": {
-        "lastModified": 1719992126,
-        "narHash": "sha256-CKhAqfU1UeSzMEUeZOAQczUFgSu+ILiCZa8n0ShGbRA=",
+        "lastModified": 1720425615,
+        "narHash": "sha256-2jJVtadiw1qmR3+4uzTHyuty8FpxemtNL/IkY6FGUAM=",
         "owner": "maxbol",
         "repo": "clockifyd",
-        "rev": "3f2e79acce2758cde324fe75b33938a97bac2953",
+        "rev": "d474712a5374ca7254c5e1c98040f892c4616679",
         "type": "github"
       },
       "original": {

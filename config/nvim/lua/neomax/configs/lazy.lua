@@ -1,6 +1,6 @@
 return {
 	defaults = { lazy = true },
-	install = { colorscheme = { "nvchad" } },
+	install = { colorscheme = { "rose-pine" } },
 
 	change_detection = {
 		enabled = true,

@@ -19,7 +19,7 @@ map("n", "<C-Q>b", "<cmd>bd <CR>", { desc = "Close buffer" })
 
 map("n", "<C-W>t", "<cmd>vsplit<CR><cmd>term<CR>", { desc = "Open terminal in vertical split" })
 
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
+map("n", "<leader>N", "<cmd>set nu!<CR>", { desc = "Toggle Line number" })
 map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 
 map("n", "<leader>qq", "<cmd>cope<CR>", { desc = "Open quickfix list" })
@@ -71,6 +71,11 @@ map(
 	{ desc = "Telescope Find all files" }
 )
 
+-- Telescope Obsidian commands
+map("n", "<leader>fn", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Find notes" })
+map("n", "<leader>fN", "<cmd>ObsidianSearch<CR>", { desc = "Find word in notes" })
+map("n", "<leader>fD", "<cmd>ObsidianDailies<CR>", { desc = "Find daily notes" })
+
 -- Telescope GIT commands
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Switch git branch" })
@@ -119,6 +124,12 @@ map("n", "ySs", "<Plug>YSsurround", { desc = "Surround on newline" })
 map("n", "ySS", "<Plug>YSsurround", { desc = "Surround entire line on newline" })
 map("x", "O", "<Plug>VSurround", { desc = "Visual Surround" })
 map("x", "gO", "<Plug>VSurround", { desc = "Visual indent Surround" })
+
+-- Notetaking
+map("n", "<leader>nn", "<cmd>ObsidianNew<CR>", { desc = "New note" })
+map("n", "<leader>nd", "<cmd>ObisidanToday<CR>", { desc = "Today's daily note" })
+map("n", "<leader>ny", "<cmd>ObisidanYesterday<CR>", { desc = "Yesterday's daily note" })
+map("n", "<leader>nt", "<cmd>ObisidanTomorrow<CR>", { desc = "Tomorrow's daily note" })
 
 -- toggle conceallevel for buffer
 map("n", "<leader>-", function()

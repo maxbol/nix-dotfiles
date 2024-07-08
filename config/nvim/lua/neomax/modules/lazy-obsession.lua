@@ -19,6 +19,13 @@ local load_session = function()
 			-- so there should be no need for us to intervene
 			return
 		end
+
+		if v == "-c" then
+			-- Neovim is started with a special command, probably
+			-- to do something very specific. This should not be auto-
+			-- handled by obsession
+			return
+		end
 	end
 
 	local session_directory = g.sessions_root .. "/" .. vim.fn.getcwd()
