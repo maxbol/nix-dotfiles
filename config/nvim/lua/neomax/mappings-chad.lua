@@ -16,6 +16,7 @@ map("n", "<C-Q>q", "<cmd>qa<CR>", { desc = "Quit Neovim" })
 map("n", "<C-Q>t", "<cmd>tabc <CR>", { desc = "Close tab" })
 map("n", "<C-Q>o", "<cmd>tabonly <CR>", { desc = "Close all other tabs" })
 map("n", "<C-Q>b", "<cmd>bd <CR>", { desc = "Close buffer" })
+map("n", "<C-T>", "<cmd>tabnew<CR>", { desc = "New tab" })
 
 map("n", "<C-W>t", "<cmd>vsplit<CR><cmd>term<CR>", { desc = "Open terminal in vertical split" })
 
@@ -127,9 +128,10 @@ map("x", "gO", "<Plug>VSurround", { desc = "Visual indent Surround" })
 
 -- Notetaking
 map("n", "<leader>nn", "<cmd>ObsidianNew<CR>", { desc = "New note" })
-map("n", "<leader>nd", "<cmd>ObisidanToday<CR>", { desc = "Today's daily note" })
-map("n", "<leader>ny", "<cmd>ObisidanYesterday<CR>", { desc = "Yesterday's daily note" })
-map("n", "<leader>nt", "<cmd>ObisidanTomorrow<CR>", { desc = "Tomorrow's daily note" })
+map("n", "<leader>nd", "<cmd>ObsidianToday<CR>", { desc = "Today's daily note" })
+map("n", "<leader>ny", "<cmd>ObsidianYesterday<CR>", { desc = "Yesterday's daily note" })
+map("n", "<leader>nt", "<cmd>ObsidianTomorrow<CR>", { desc = "Tomorrow's daily note" })
+map("n", "<leader>=", "<cmd>NoNeckPain<CR>", { desc = "Toggle no neck pain mode" })
 
 -- toggle conceallevel for buffer
 map("n", "<leader>-", function()

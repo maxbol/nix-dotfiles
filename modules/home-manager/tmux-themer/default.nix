@@ -42,7 +42,7 @@ in {
             set -g @theme_base_window_middle_separator " █"
             set -g @theme_base_window_number_position "right"
             set -g @theme_base_window_default_fill "number"
-            set -g @theme_base_window_default_text "#{b:pane_current_path}"
+            set -g @theme_base_window_default_text "#{b}"
             set -g @theme_base_window_current_fill "number"
             set -g @theme_base_window_current_text "#{b:pane_current_path}#{?window_zoomed_flag,(),}"
             set -g @theme_base_status_modules_right "${cfg.modulesRight}"

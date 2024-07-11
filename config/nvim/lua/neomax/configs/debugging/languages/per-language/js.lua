@@ -68,6 +68,48 @@ for _, language in ipairs(js_based_languages) do
 		{
 			type = "pwa-node",
 			request = "launch",
+			name = "Launch Current File With Args (pwa-node with ts-node)",
+			cwd = vim.fn.getcwd(),
+			runtimeExecutable = "ts-node",
+			args = function()
+				local args = {
+					"${file}",
+				}
+				local input = vim.fn.input("Arguments:")
+				for word in input:gmatch("%S+") do
+					table.insert(args, word)
+				end
+				return args
+			end,
+			-- args = promptForValue("Arguments? ", "", function(val)
+			-- 	local args = {
+			-- 		"${file}",
+			-- 	}
+			-- 	for word in val:gmatch("%w+") do
+			-- 		table.insert(args, word)
+			-- 	end
+			-- 	return args
+			-- end),
+			sourceMaps = true,
+			protocol = "inspector",
+			skipFiles = {
+				"<node_internals>/**",
+				"node_modules/**",
+			},
+			resolveSourceMapLocations = {
+				"${workspaceFolder}/**",
+				"!**/node_modules/**",
+			},
+			env = {
+				VSCODE_DEBUG_MODE = "true",
+			},
+			console = "integratedTerminal",
+			killBehavior = "polite",
+			disableOptimisticBPs = true,
+		},
+		{
+			type = "pwa-node",
+			request = "launch",
 			name = "Launch File (pwa-node with ts-node)",
 			cwd = vim.fn.getcwd(),
 			runtimeExecutable = "ts-node",
