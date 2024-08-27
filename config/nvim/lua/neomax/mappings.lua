@@ -5,8 +5,8 @@ require("neomax.mappings-chad")
 local map = vim.keymap.set
 local nomap = vim.keymap.del
 
-map("i", "jk", "<ESC>")
-map("i", "kk", "<ESC>")
+-- map("i", "jk", "<ESC>")
+-- map("i", "kk", "<ESC>")
 
 map("n", "<leader>fm", function()
 	require("conform").format()

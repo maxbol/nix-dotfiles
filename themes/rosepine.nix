@@ -9,6 +9,8 @@
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
+  neovimColorscheme ? "rose-pine",
+  neovimBackground ? "dark",
   ...
 }: let
   luminance =
@@ -151,6 +153,9 @@ in rec {
   rofi.colorOverrides = rofiOverrides palette;
 
   tmux.colorOverrides = tmuxOverrides palette;
+
+  neovim.colorscheme = neovimColorscheme;
+  neovim.background = neovimBackground;
 
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs

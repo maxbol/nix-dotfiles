@@ -71,12 +71,12 @@ in {
       lua-language-server
 
       # Python
-      (python3.withPackages
-        (ps: [
-          ps.pyyaml
-          ps.pip
-        ]))
-      pipx
+      # (python3.withPackages
+      #   (ps: [
+      #     ps.pyyaml
+      #     ps.pip
+      #   ]))
+      # pipx
 
       # Docker
       hadolint

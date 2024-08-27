@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local lsp_signature = require("lsp_signature")
 -- local lsp_status = require("lsp-status")
 local map = vim.keymap.set
 
@@ -93,6 +94,7 @@ local servers = {
 	"zls",
 	"dockerls",
 	"docker_compose_language_service",
+	"pyright",
 }
 
 for _, lsp in ipairs(servers) do
@@ -213,28 +215,20 @@ lspconfig["tsserver"].setup({
 	},
 })
 
---[[ if not configs.golangcilsp then
-	configs.golangcilsp = {
-		default_config = {
-			cmd = { "golangci-lint-langserver" },
-			root_dir = lspconfig.util.root_pattern(".git", "go.mod"),
-			init_options = {
-				command = {
-					"golangci-lint",
-					"run",
-					"--enable-all",
-					"--disable",
-					"lll",
-					"--out-format",
-					"json",
-					"--issues-exit-code=1",
-				},
+vim.api.nvim_create_autocmd("LspAttach", {
+	callback = function(args)
+		local bufnr = args.buf
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		if vim.tbl_contains({ "null-ls" }, client.name) then -- blacklist lsp
+			return
+		end
+		require("lsp_signature").on_attach({
+			bind = true,
+			handler_opts = {
+				border = "rounded",
 			},
-		},
-	}
-end
-lspconfig.golangci_lint_ls.setup({
-	filetypes = { "go", "gomod" },
-}) ]]
+		}, bufnr)
+	end,
+})
 
 vim.lsp.set_log_level("ERROR")

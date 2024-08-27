@@ -35,6 +35,9 @@
         accent3 = palette.accents.pink;
         orange = palette.accents.peach;
       };
+
+      neovimColorscheme = "catppuccin-latte";
+      neovimBackground = "light";
     });
 
   Catppuccin-Mocha = pkgs.callPackage ./catppuccin.nix (extraArgs
@@ -75,6 +78,9 @@
         accent3 = palette.accents.pink;
         orange = palette.accents.peach;
       };
+
+      neovimColorscheme = "catppuccin-macchiato";
+      neovimBackground = "dark";
     });
 
   Gruvbox-Dark = pkgs.callPackage ./gruvbox.nix (extraArgs
@@ -97,6 +103,9 @@
       waybarOverrides = palette: {
         overlay = palette.semantic.background;
       };
+
+      neovimColorscheme = "gruvbox-material";
+      neovimBackground = "dark";
     });
 
   Gruvbox-Light = pkgs.callPackage ./gruvbox.nix (extraArgs
@@ -121,20 +130,35 @@
       waybarOverrides = palette: {
         overlay = palette.semantic.background;
       };
+
+      neovimColorscheme = "gruvbox-material";
+      neovimBackground = "light";
     });
 
   Rose-Pine = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
       variant = "pine";
+      neovimColorscheme = "rose-pine-main";
+      neovimBackground = "dark";
     });
 
   Rose-Pine-Moon = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
       variant = "moon";
+      neovimColorscheme = "rose-pine-moon";
+      neovimBackground = "dark";
     });
 
   Rose-Pine-Dawn = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
       variant = "dawn";
+      neovimColorscheme = "rose-pine-dawn";
+      neovimBackground = "light";
+    });
+
+  Tsoding-Mode = pkgs.callPackage ./tsoding-mode.nix (extraArgs
+    // {
+      neovimColorscheme = "gruber-darker";
+      neovimBackground = "dark";
     });
 }

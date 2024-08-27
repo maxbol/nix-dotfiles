@@ -1,5 +1,23 @@
 return {
 	{
+		"nvim-telescope/telescope.nvim",
+		lazy = false,
+		config = function()
+			require("telescope").setup({
+				extensions = {
+					frecency = {
+						auto_validate = true,
+						db_safe_mode = false,
+						db_validate_treshold = 1,
+						hide_current_buffer = true,
+						matcher = "fuzzy",
+					},
+				},
+			})
+			-- code
+		end,
+	},
+	{
 		"jvgrootveld/telescope-zoxide",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",

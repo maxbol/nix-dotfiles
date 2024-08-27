@@ -82,7 +82,7 @@ autocmd("Filetype", {
 		map("n", "<leader>yl", function()
 			M.make(
 				"Running linter...",
-				"golangci-lint run --timeout 300s --config .golangci.yml ./... 2>/dev/null | grep -E '^.+:[0-9]+:[0-9+'"
+				"golangci-lint run --timeout 300s --config .golangci.yml ./... 2>/dev/null | grep -E '^.+:[0-9]+:[0-9]+'"
 			)
 		end, { desc = "Golangci lint" })
 		map("n", "<leader>yb", function()
@@ -96,7 +96,10 @@ autocmd("Filetype", {
 	pattern = { "zig" },
 	callback = function()
 		map("n", "<leader>yb", function()
-			M.make("Building project...", "zig build 2>&1 | grep -E '^.+:[0-9]+:[0-9+'")
+			M.make("Building project...", "zig build 2>&1 | grep -E '^.+:[0-9]+:[0-9]+'")
 		end, { desc = "Zig build" })
+		map("n", "<leader>yr", function()
+			M.make("Building and running project...", "zig build run 2>&1 | grep -E '^.+:[0-9]+:[0-9]+'")
+		end, { desc = "Zig build & run" })
 	end,
 })

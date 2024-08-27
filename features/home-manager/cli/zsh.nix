@@ -75,7 +75,7 @@ in {
       bindkey "^[[A" history-beginning-search-backward
       bindkey "^[[B" history-beginning-search-forward
 
-      export PATH="$PATH:$HOME/bin:$HOME/go/bin"
+      export PATH="$PATH:$HOME/bin:$HOME/go/bin:/opt/homebrew/bin:$HOME/.local/bin'"
 
       setopt PUSHDSILENT
     '';

@@ -16,7 +16,7 @@ g.markdown_recommended_style = 0
 
 opt.foldenable = false
 opt.cursorline = true
-
+opt.guicursor = "n-v-c-i:block"
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
 

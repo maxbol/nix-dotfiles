@@ -121,11 +121,8 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
-    clockifyd = {
-      url = "github:maxbol/clockifyd";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
+    clockifyd.url = "github:maxbol/clockifyd";
+    nvim-colorctl.url = "github:maxbol/nvim-colorctl";
   };
 
   outputs = inputs:

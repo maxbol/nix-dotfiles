@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  origin,
   ...
 }: let
   hasGit = config.programs.git.enable;
@@ -10,6 +11,8 @@
     # Tree sitter is managed by lazy
     treesitter-parsers = {};
   };
+
+  nvim-colorctl = origin.inputs.nvim-colorctl.packages.${pkgs.system}.default;
 in {
   # TODO: figure out why smartindent is on (at least for nix files)
   # TODO: fix folding (consider nvim-ufo?)
@@ -32,6 +35,8 @@ in {
 
   home.packages = with pkgs; [
     # Scipt to treat a directory argument as the working directory
+    pkgs.neovim-remote
+    nvim-colorctl
     (writeShellScriptBin "nv" ''
       pushd () {
           command pushd "$@" > /dev/null

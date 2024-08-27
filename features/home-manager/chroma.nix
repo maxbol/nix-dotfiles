@@ -17,5 +17,8 @@
     gtk4.libadwaitaSupport = "patch-binary";
   };
 
+  copper.chroma.kitty.enable = false;
+  copper.chroma.kitty-procpsfix.enable = true;
+
   copper.chroma.qt.enable = true;
 }

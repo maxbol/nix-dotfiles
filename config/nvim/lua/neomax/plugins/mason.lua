@@ -21,10 +21,14 @@ return {
 			-- go
 			-- "golangci-lint",
 			-- "gopls", --Install globally
+			"pyright",
 
 			-- shell stuff
 			"shfmt",
 			-- "nil",
+			--
+			"sqlfluff",
+			"sqlfmt",
 		},
 	},
 	config = function(_, opts)

@@ -8,6 +8,7 @@ local options = {
 		-- javascript = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
+		graphql = { "prettier" },
 
 		json = { "fixjson" },
 
@@ -21,6 +22,10 @@ local options = {
 		cs = {
 			"csharpier",
 		},
+
+		-- sql = {
+		-- 	"sqlfluff",
+		-- },
 		-- css = { "prettier" },
 		-- html = { "prettier" },
 	},
@@ -31,6 +36,17 @@ local options = {
 			args = {
 				"--write-stdout",
 			},
+		},
+		sqlfluff = {
+			command = "sqlfluff",
+			args = {
+				"fix",
+				"--disable-progress-bar",
+				"-f",
+				"-n",
+				"-",
+			},
+			stdin = true,
 		},
 	},
 
