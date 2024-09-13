@@ -43,9 +43,9 @@ return {
 		},
 		indent = {
 			enable = true,
-			-- disable = {
-			--   "python"
-			-- },
+			disable = {
+				"zig",
+			},
 		},
 		textobjects = {
 			select = {

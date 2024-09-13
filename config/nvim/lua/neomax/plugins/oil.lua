@@ -14,13 +14,20 @@ return {
 	config = function(opts)
 		require("oil").setup({
 			default_file_explorer = true,
+			prompt_save_on_select_new_entry = false,
 			lsp_file_methods = {
 				autosave_changes = "unmodified",
+			},
+			columns = {
+				"icon",
+				"size",
+				"permissions",
+				"mtime",
 			},
 			win_options = {
 				winbar = "%{v:lua.require('oil').get_current_dir()}",
 			},
-			experimental_watch_for_changes = true,
+			watch_for_changes = true,
 			keymaps = {
 				["<C-v>"] = "actions.select_vsplit",
 				["<C-b>"] = "actions.select_split",

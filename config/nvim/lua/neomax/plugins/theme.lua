@@ -40,7 +40,13 @@ return {
 
 			-- Themes
 			--
-			{ "blazkowolf/gruber-darker.nvim" },
+			{
+				"blazkowolf/gruber-darker.nvim",
+				opts = {
+					undercurl = true,
+					underline = true,
+				},
+			},
 			{
 				"kvrohit/rasmus.nvim",
 				config = function()

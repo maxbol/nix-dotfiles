@@ -13,6 +13,8 @@
   tmuxOverrides ? p: {},
   neovimColorscheme ? "catppuccin",
   neovimBackground ? "dark",
+  neovimHlGroupsBg ? {},
+  neovimHlGroupsFg ? {},
   ...
 }: let
   capitalize = str: "${pkgs.lib.toUpper (builtins.substring 0 1 str)}${builtins.substring 1 (builtins.stringLength str) str}";
@@ -86,8 +88,12 @@ in rec {
 
   tmux.colorOverrides = tmuxOverrides palette;
 
-  neovim.colorscheme = neovimColorscheme;
-  neovim.background = neovimBackground;
+  neovim = {
+    colorscheme = neovimColorscheme;
+    background = neovimBackground;
+    hlGroupsBg = neovimHlGroupsBg;
+    hlGroupsFg = neovimHlGroupsFg;
+  };
 
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs
@@ -130,8 +136,24 @@ in rec {
     };
   };
 
-  kitty = {
-    file."theme.conf".source = "${pkgs.kitty-themes}/share/kitty-themes/themes/Catppuccin-${Variant}.conf";
+  kitty = let
+    themeFile = "${pkgs.kitty-themes}/share/kitty-themes/themes/Catppuccin-${Variant}.conf";
+    themeConf = builtins.readFile themeFile;
+
+    themeSource = pkgs.writeText "theme.conf" ''
+      ${themeConf}
+
+      ${
+        if variant == "latte"
+        then ''
+          background_opacity 1
+          macos_thicken_font 1
+        ''
+        else ""
+      }
+    '';
+  in {
+    file."theme.conf".source = themeSource;
   };
 
   fish.theme = {

@@ -11,6 +11,8 @@
   tmuxOverrides ? p: {},
   neovimColorscheme ? "gruvbox",
   neovimBackground ? "dark",
+  neovimHlGroupsBg ? {},
+  neovimHlGroupsFg ? {},
   ...
 }: let
   capitalize = str: "${pkgs.lib.toUpper (builtins.substring 0 1 str)}${builtins.substring 1 (builtins.stringLength str) str}";
@@ -159,8 +161,12 @@ in rec {
 
   tmux.colorOverrides = tmuxOverrides palette;
 
-  neovim.colorscheme = neovimColorscheme;
-  neovim.background = neovimBackground;
+  neovim = {
+    colorscheme = neovimColorscheme;
+    background = neovimBackground;
+    hlGroupsBg = neovimHlGroupsBg;
+    hlGroupsFg = neovimHlGroupsFg;
+  };
 
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs

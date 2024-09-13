@@ -40,20 +40,41 @@ in {
             The background to use.
           '';
         };
+        hlGroupsBg = mkOption {
+          type = types.attrs;
+          example = {
+            Normal = "#282c34";
+            CursorLine = "#3b4048";
+          };
+          default = {};
+          description = ''
+            A mapping of highlight groups to their background color.
+          '';
+        };
+        hlGroupsFg = mkOption {
+          type = types.attrs;
+          example = {
+            Normal = "#282c34";
+            CursorLine = "#3b4048";
+          };
+          default = {};
+          description = ''
+            A mapping of highlight groups to their foreground color.
+          '';
+        };
       };
 
-      themeConfig = {config, ...}: {
-        file."colorscheme" = {
+      themeConfig = {config, ...}: let
+        fgGroups = lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "--hi-fg ${name},${value}") config.hlGroupsFg);
+        bgGroups = lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "--hi-bg ${name},${value}") config.hlGroupsBg);
+      in {
+        file."colorctl" = {
           required = true;
-          source = mkDefault (pkgs.writeText "colorscheme" "${config.colorscheme}");
-        };
-        file."background" = {
-          required = true;
-          source = mkDefault (pkgs.writeText "background" "${config.background}");
+          source = mkDefault (pkgs.writeShellScriptBin "colorctl" ''${lib.getExe nvim-colorctl} --emit-lua ~/.config/nvim/lua/neomax/color/init.lua -s ${config.colorscheme} -b ${config.background} ${fgGroups} ${bgGroups}'');
         };
       };
 
-      reloadCommand = "${lib.getExe nvim-colorctl} --emit-lua ~/.config/nvim/lua/neomax/color/init.lua -s $(cat ~/.config/chroma/active/neovim/colorscheme) -b $(cat ~/.config/chroma/active/neovim/background)";
+      reloadCommand = "~/.config/chroma/active/neovim/colorctl/bin/colorctl";
     };
   };
 }

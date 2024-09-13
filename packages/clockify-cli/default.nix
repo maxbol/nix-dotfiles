@@ -24,5 +24,6 @@ in
       inherit license;
       description = "A command line interface for Clockify";
       homepage = "https://clockify-cli.netlify.app/";
+      mainProgram = "clockify-cli";
     };
   }

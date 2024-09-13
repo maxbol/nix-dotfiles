@@ -1463,11 +1463,11 @@
         "zig2nix": "zig2nix_2"
       },
       "locked": {
-        "lastModified": 1723228666,
-        "narHash": "sha256-PwHbSMP9ogROsmcsGCoiH2U7M+/5W0yZZANv92vaLq4=",
+        "lastModified": 1726241916,
+        "narHash": "sha256-Ilf0cCTr4FywHTdfqaRpaIiu89e3umSeGMz5BYmY4PM=",
         "owner": "maxbol",
         "repo": "nvim-colorctl",
-        "rev": "549444c389e0b15d70f6fdaaba023854d3309d3a",
+        "rev": "dadc8a881b3501b3fd90c7e2d32d68e36026362a",
         "type": "github"
       },
       "original": {

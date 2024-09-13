@@ -11,6 +11,8 @@
   tmuxOverrides ? p: {},
   neovimColorscheme ? "rose-pine",
   neovimBackground ? "dark",
+  neovimHlGroupsBg ? {},
+  neovimHlGroupsFg ? {},
   ...
 }: let
   luminance =
@@ -154,8 +156,12 @@ in rec {
 
   tmux.colorOverrides = tmuxOverrides palette;
 
-  neovim.colorscheme = neovimColorscheme;
-  neovim.background = neovimBackground;
+  neovim = {
+    colorscheme = neovimColorscheme;
+    background = neovimBackground;
+    hlGroupsBg = neovimHlGroupsBg;
+    hlGroupsFg = neovimHlGroupsFg;
+  };
 
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs

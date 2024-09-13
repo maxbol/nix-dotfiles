@@ -1,6 +1,5 @@
 local lspconfig = require("lspconfig")
-local lsp_signature = require("lsp_signature")
--- local lsp_status = require("lsp-status")
+local telescope_builtin = require("telescope.builtin")
 local map = vim.keymap.set
 
 -- lsp_status.register_progress()
@@ -12,15 +11,16 @@ local on_attach = function(client, bufnr)
 	-- lsp_status.on_attach(client)
 
 	map("n", "gD", vim.lsp.buf.declaration, opts("Lsp Go to declaration"))
-	map("n", "gd", vim.lsp.buf.definition, opts("Lsp Go to definition"))
+	map("n", "gd", telescope_builtin.lsp_definitions, opts("Lsp Go to definition"))
 	map("n", "gwd", ":vsplit | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new vertical split"))
 	map("n", "gwD", ":vsplit | lua vim.lsp.buf.declaration()<CR>", opts("Lsp Go to declaration in new vertical split"))
 	map("n", "gWd", ":split | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new horizontal split"))
 	map("n", "gWD", ":split | lua vim.lsp.buf.declaration()<CR>", opts("Lsp Go to declaration in new horizontal split"))
+	map("n", "gr", telescope_builtin.lsp_references, opts("Lsp References"))
+	map("n", "gi", telescope_builtin.lsp_implementations, opts("Lsp Go to implementation"))
 
 	map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 
-	map("n", "gi", vim.lsp.buf.implementation, opts("Lsp Go to implementation"))
 	map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Lsp Show signature help"))
 	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Lsp Add workspace folder"))
 	map("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, opts("Lsp Remove workspace folder"))
@@ -34,7 +34,7 @@ local on_attach = function(client, bufnr)
 	map("n", "<leader>ra", "<cmd>Lspsaga rename ++project<CR>", opts("Rename code symbol"))
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Lsp Code action"))
-	map("n", "gr", "<cmd>Lspsaga finder<CR>")
+	-- map("n", "gr", "<cmd>Lspsaga finder<CR>")
 
 	map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Lsp floating diagnostics" })
 	map("n", "]d", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Lsp prev diagnostic" })
@@ -48,7 +48,7 @@ local on_attach = function(client, bufnr)
 		})
 	end
 
-	if client.name == "tsserver" then
+	if client.name == "ts_ls" then
 		client.server_capabilities.documentFormattingProvider = false
 		client.server_capabilities.DocumentRangeFormattingProvider = false
 	end
@@ -185,7 +185,7 @@ lspconfig.sourcekit.setup({
 	filetypes = { "swift" },
 })
 
-lspconfig["tsserver"].setup({
+lspconfig["ts_ls"].setup({
 	on_init = on_init,
 	on_attach = on_attach,
 	capabilities = capabilities,
