@@ -13,7 +13,7 @@ end
 local load_session = function()
 	local argv = vim.v.argv
 
-	for _, v in ipairs(argv) do
+	for i, v in ipairs(argv) do
 		if v == "-S" then
 			-- Neovim was already started with the -S flag,
 			-- so there should be no need for us to intervene
@@ -26,13 +26,16 @@ local load_session = function()
 			-- handled by obsession
 			return
 		end
+
+		if i > 1 and vim.fn.filereadable(v) == 1 then
+			-- Neovim was started with a file, so we should not load or start a session
+			return
+		end
 	end
 
 	local session_directory = g.sessions_root .. "/" .. vim.fn.getcwd()
 	local session_filename = "Session.vim"
 	local session_path = session_directory .. "/" .. session_filename
-
-	print("Session path: " .. session_path)
 
 	if vim.fn.isdirectory(session_directory) == 0 then
 		vim.fn.mkdir(session_directory, "p")

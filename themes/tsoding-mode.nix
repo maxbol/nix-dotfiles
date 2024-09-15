@@ -155,7 +155,7 @@ in rec {
       ${themeConf}
 
       background_opacity 1.0
-      font_family Iosevka Nerd Font Mono
+      # font_family Iosevka Nerd Font Mono
     '';
   in {
     file."theme.conf".source = themeSource;

@@ -82,17 +82,6 @@ g["loaded_ruby_provider"] = 0
 local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
 
--- https://github.com/olimorris/persisted.nvim/issues/84#issuecomment-1700996731
-vim.api.nvim_create_autocmd({ "VimLeave" }, {
-	callback = function()
-		vim.cmd("!notify-send ''")
-		vim.cmd("sleep 10m")
-	end,
-})
-
--- vim.api.nvim_command("filetype on")
--- vim.api.nvim_command("filetype plugin indent on")
-
 g["surround_no_mappings"] = 1
 
 -- Neovide settings

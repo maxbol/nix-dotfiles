@@ -49,7 +49,7 @@ in {
       git_dir() {
         ${
         if hasGit
-        then ''          if git rev-parse --show-toplevel > /dev/null; then
+        then ''          if git rev-parse --show-toplevel > /dev/null 2>&1; then
                     cd $(git rev-parse --show-toplevel)
                 fi''
         else ""
@@ -70,7 +70,7 @@ in {
           file=$(realpath $last_arg)
           pushd $(dirname $last_arg)
           git_dir
-          nvim $other_args $last_arg
+          nvim $other_args $file
           popd
         else
           nvim $@
