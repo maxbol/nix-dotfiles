@@ -202,7 +202,7 @@ in {
             set -g @sessionx-zoxide-mode 'on'
             set -g @sessionx-filter-current 'false'
             set -g @sessionx-preview-enabled 'true'
-            set -g @sessionx-bind-kill-session 'ctrl-y'
+            set -g @sessionx-bind-kill-session 'ctrl-q'
           '';
         }
         {

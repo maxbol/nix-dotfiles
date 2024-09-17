@@ -26,9 +26,22 @@ map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 map("n", "<leader>qq", "<cmd>cope<CR>", { desc = "Open quickfix list" })
 map("n", "<leader>qc", "<cmd>cexpr []<CR>", { desc = "Clear quickfix list" })
 
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
+
 map("n", "<leader>fm", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "Format Files" })
+
+-- Copilot
+vim.keymap.set("i", "<C-l>", function()
+	local copilot_keys = vim.fn["copilot#Accept"]()
+	if copilot_keys ~= "" then
+		vim.api.nvim_feedkeys(copilot_keys, "i", true)
+	else
+		local keys = vim.api.nvim_replace_termcodes("<Right>", true, true, true)
+		vim.api.nvim_feedkeys(keys, "i", false)
+	end
+end, { expr = true, silent = true })
 
 -- Comment
 map("n", "<leader>/", function()
@@ -142,3 +155,29 @@ map("n", "<leader>-", function()
 		vim.wo.conceallevel = 0
 	end
 end, { desc = "Toggle conceallevel" })
+
+-- Live preview of qflist buffers
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function(event)
+		local opts = { buffer = event.buf, silent = true }
+		local init_bufnr = vim.fn.bufnr("#")
+
+		vim.keymap.set("n", "j", function()
+			vim.cmd("wincmd p") -- jump to current displayed file
+			if vim.fn.bufnr("%") ~= init_bufnr then
+				vim.cmd('bd | wincmd p | cn | execute "normal! zz" | wincmd p')
+			else
+				vim.cmd('cn | execute "normal! zz" | wincmd p')
+			end
+		end, opts)
+		vim.keymap.set("n", "k", function()
+			vim.cmd("wincmd p") -- jump to current displayed file
+			if vim.fn.bufnr("%") ~= init_bufnr then
+				vim.cmd('bd | wincmd p | cN | execute "normal! zz" | wincmd p')
+			else
+				vim.cmd('cN | execute "normal! zz" | wincmd p')
+			end
+		end, opts)
+	end,
+})

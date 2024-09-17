@@ -51,8 +51,10 @@ in {
       # C/C++
       gcc
       gnumake
-      vscode-extensions.vadimcn.vscode-lldb
       clang-tools_18
+      # vscode-extensions.llvm-org.lldb-vscode
+      llvm_18
+      lldb_18
 
       # Swift
       sourcekit-lsp

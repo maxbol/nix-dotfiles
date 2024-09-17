@@ -55,19 +55,20 @@ return {
 				completeopt = "menu,menuone",
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<Tab>"] = cmp.mapping(function(fallback)
-					local copilot_keys = vim.fn["copilot#Accept"]()
-					if copilot_keys ~= "" then
-						vim.api.nvim_feedkeys(copilot_keys, "i", true)
-					else
-						fallback()
-					end
-					-- if luasnip.expand_or_jumpable() then
-					-- 	luasnip.expand_or_jump()
-					-- else
-					-- 	fallback()
-					-- end
-				end, { "i", "s" }),
+				["<Tab>"] = vim.NIL,
+				--     cmp.mapping(function(fallback)
+				-- 	local copilot_keys = vim.fn["copilot#Accept"]()
+				-- 	if copilot_keys ~= "" then
+				-- 		vim.api.nvim_feedkeys(copilot_keys, "i", true)
+				-- 	else
+				-- 		fallback()
+				-- 	end
+				-- 	-- if luasnip.expand_or_jumpable() then
+				-- 	-- 	luasnip.expand_or_jump()
+				-- 	-- else
+				-- 	-- 	fallback()
+				-- 	-- end
+				-- end, { "i", "s" }),
 				["<S-Tab>"] = vim.NIL,
 				-- ["<S-Tab>"] = cmp.mapping(function(fallback)
 				-- 	if luasnip.jumpable(-1) then

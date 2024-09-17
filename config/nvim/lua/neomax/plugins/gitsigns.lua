@@ -20,11 +20,11 @@ return {
 			},
 			auto_attach = true,
 			attach_to_untracked = false,
-			on_attach = function(bufnr)
-				if vim.api.nvim_buf_get_name(bufnr):match(".*%.zig") then
-					return false
-				end
-			end,
+			-- on_attach = function(bufnr)
+			-- 	if vim.api.nvim_buf_get_name(bufnr):match(".*%.zig") then
+			-- 		return false
+			-- 	end
+			-- end,
 			current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
 			current_line_blame_opts = {
 				virt_text = true,
