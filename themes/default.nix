@@ -36,8 +36,14 @@
         orange = palette.accents.peach;
       };
 
-      neovimColorscheme = "catppuccin-latte";
-      neovimBackground = "light";
+      neovimOverrides = palette: {
+        colorscheme = "catppuccin-latte";
+        background = "light";
+        hlGroupsFg = {
+          HLChunk1 = "#" + palette.semantic.accent2;
+          HLLineNum1 = "#" + palette.semantic.accent2;
+        };
+      };
     });
 
   Catppuccin-Mocha = pkgs.callPackage ./catppuccin.nix (extraArgs
@@ -79,8 +85,14 @@
         orange = palette.accents.peach;
       };
 
-      neovimColorscheme = "catppuccin-macchiato";
-      neovimBackground = "dark";
+      neovimOverrides = palette: {
+        colorscheme = "catppuccin-macchiato";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#" + palette.semantic.accent2;
+          HLLineNum1 = "#" + palette.semantic.accent2;
+        };
+      };
     });
 
   Gruvbox-Dark = pkgs.callPackage ./gruvbox.nix (extraArgs
@@ -104,11 +116,13 @@
         overlay = palette.semantic.background;
       };
 
-      neovimColorscheme = "gruvbox-material";
-      neovimBackground = "dark";
-      neovimHlGroupsFg = {
-        HLChunk1 = "#8ec07c";
-        HLLineNum1 = "#8ec07c";
+      neovimOverrides = palette: {
+        colorscheme = "gruvbox-material";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#8ec07c";
+          HLLineNum1 = "#8ec07c";
+        };
       };
     });
 
@@ -135,54 +149,90 @@
         overlay = palette.semantic.background;
       };
 
-      neovimColorscheme = "gruvbox-material";
-      neovimBackground = "light";
-      neovimHlGroupsFg = {
-        HLChunk1 = "#427b58";
-        HLLineNum1 = "#427b58";
+      neovimOverrides = palette: {
+        colorscheme = "gruvbox-material";
+        background = "light";
+        hlGroupsFg = {
+          HLChunk1 = "#427b58";
+          HLLineNum1 = "#427b58";
+        };
       };
     });
 
   Rose-Pine = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
       variant = "pine";
-      neovimColorscheme = "rose-pine-main";
-      neovimBackground = "dark";
-      neovimHlGroupsFg = {
-        HLChunk1 = "#c4a7e7";
-        HLLineNum1 = "#c4a7e7";
+      neovimOverrides = palette: {
+        colorscheme = "rose-pine-main";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#c4a7e7";
+          HLLineNum1 = "#c4a7e7";
+        };
       };
     });
 
   Rose-Pine-Moon = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
       variant = "moon";
-      neovimColorscheme = "rose-pine-moon";
-      neovimBackground = "dark";
-      neovimHlGroupsFg = {
-        HLChunk1 = "#c4a7e7";
-        HLLineNum1 = "#c4a7e7";
+      neovimOverrides = palette: {
+        colorscheme = "rose-pine-moon";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#c4a7e7";
+          HLLineNum1 = "#c4a7e7";
+        };
       };
     });
 
   Rose-Pine-Dawn = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
       variant = "dawn";
-      neovimColorscheme = "rose-pine-dawn";
-      neovimBackground = "light";
-      neovimHlGroupsFg = {
-        HLChunk1 = "#907aa9";
-        HLLineNum1 = "#907aa9";
+      neovimOverrides = palette: {
+        colorscheme = "rose-pine-dawn";
+        background = "light";
+        hlGroupsFg = {
+          HLChunk1 = "#907aa9";
+          HLLineNum1 = "#907aa9";
+        };
       };
     });
 
   Tsoding-Mode = pkgs.callPackage ./tsoding-mode.nix (extraArgs
     // {
-      neovimColorscheme = "gruber-darker";
-      neovimBackground = "dark";
-      neovimHlGroupsFg = {
-        HLChunk1 = "#ffdd33";
-        HLLineNum1 = "#ffdd33";
+      neovimOverrides = palette: {
+        colorscheme = "gruber-darker";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#ffdd33";
+          HLLineNum1 = "#ffdd33";
+        };
+      };
+    });
+
+  Bluloco-Dark = pkgs.callPackage ./bluloco.nix (extraArgs
+    // {
+      luminance = "dark";
+      neovimOverrides = palette: {
+        colorscheme = "bluloco-dark";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#" + palette.semantic.accent1;
+          HLLineNum1 = "#" + palette.semantic.accent1;
+        };
+      };
+    });
+
+  Bluloco-Light = pkgs.callPackage ./bluloco.nix (extraArgs
+    // {
+      luminance = "light";
+      neovimOverrides = palette: {
+        colorscheme = "bluloco-light";
+        background = "light";
+        hlGroupsFg = {
+          HLChunk1 = "#" + palette.semantic.accent1;
+          HLLineNum1 = "#" + palette.semantic.accent1;
+        };
       };
     });
 }

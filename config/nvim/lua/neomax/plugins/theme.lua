@@ -238,6 +238,25 @@ return {
 					})
 				end,
 			},
+			{
+				"sho-87/kanagawa-paper.nvim",
+				lazy = false,
+				priority = 1000,
+				opts = {},
+			},
+			{
+				"baliestri/aura-theme",
+				lazy = false,
+				priority = 1000,
+				config = function(plugin)
+					vim.opt.rtp:append(plugin.dir .. "/packages/neovim")
+				end,
+			},
+			"sainnhe/everforest",
+			{
+				"shaunsingh/nord.nvim",
+				lazy = false,
+			},
 		},
 	},
 }

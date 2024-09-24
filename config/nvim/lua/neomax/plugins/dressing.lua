@@ -4,6 +4,7 @@ return {
 	config = function()
 		require("dressing").setup({
 			input = {
+				start_in_insert = false,
 				mappings = {
 					n = {
 						["<Esc>"] = "Close",

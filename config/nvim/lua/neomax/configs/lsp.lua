@@ -19,7 +19,7 @@ local on_attach = function(client, bufnr)
 	map("n", "gr", telescope_builtin.lsp_references, opts("Lsp References"))
 	map("n", "gi", telescope_builtin.lsp_implementations, opts("Lsp Go to implementation"))
 
-	map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+	-- map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 
 	map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Lsp Show signature help"))
 	map("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, opts("Lsp Add workspace folder"))
@@ -30,15 +30,16 @@ local on_attach = function(client, bufnr)
 	end, opts("Lsp List workspace folders"))
 
 	map("n", "<leader>D", vim.lsp.buf.type_definition, opts("Lsp Go to type definition"))
+	map("n", "<leader>ra", vim.lsp.buf.rename, opts("Lsp Rename"))
 
-	map("n", "<leader>ra", "<cmd>Lspsaga rename ++project<CR>", opts("Rename code symbol"))
+	-- map("n", "<leader>ra", "<cmd>Lspsaga rename ++project<CR>", opts("Rename code symbol"))
 
 	map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Lsp Code action"))
 	-- map("n", "gr", "<cmd>Lspsaga finder<CR>")
 
 	map("n", "<leader>lf", vim.diagnostic.open_float, { desc = "Lsp floating diagnostics" })
-	map("n", "]d", "<Cmd>Lspsaga diagnostic_jump_prev<CR>", { desc = "Lsp prev diagnostic" })
-	map("n", "]d", "<Cmd>Lspsaga diagnostic_jump_next<CR>", { desc = "Lsp next diagnostic" })
+	map("n", "]d", vim.diagnostic.goto_prev, { desc = "Lsp prev diagnostic" })
+	map("n", "]d", vim.diagnostic.goto_next, { desc = "Lsp next diagnostic" })
 	map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Lsp diagnostic loclist" })
 
 	if client.name == "eslint" then

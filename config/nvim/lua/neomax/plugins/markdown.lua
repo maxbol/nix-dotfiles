@@ -1,4 +1,4 @@
 return {
-	"ixru/nvim-markdown",
-	ft = { "markdown" },
+	-- "ixru/nvim-markdown",
+	-- ft = { "markdown" },
 }

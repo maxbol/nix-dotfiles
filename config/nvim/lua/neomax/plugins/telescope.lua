@@ -4,6 +4,11 @@ return {
 		lazy = false,
 		config = function()
 			require("telescope").setup({
+				pickers = {
+					oldfiles = {
+						cwd_only = true,
+					},
+				},
 				extensions = {
 					recent_files = {
 						only_cwd = true,
@@ -36,12 +41,12 @@ return {
 			-- Load extension.
 			require("telescope").load_extension("recent_files")
 			-- Map a shortcut to open the picker.
-			vim.api.nvim_set_keymap(
-				"n",
-				"<Leader><Leader>",
-				[[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
-				{ noremap = true, silent = true }
-			)
+			-- vim.api.nvim_set_keymap(
+			-- 	"n",
+			-- 	"<Leader><Leader>",
+			-- 	[[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
+			-- 	{ noremap = true, silent = true }
+			-- )
 		end,
 	},
 	-- {

@@ -45,6 +45,7 @@ return {
 			enable = true,
 			disable = {
 				"zig",
+				"nix",
 			},
 		},
 		textobjects = {

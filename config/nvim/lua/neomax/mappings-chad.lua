@@ -26,8 +26,6 @@ map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle Relative number" })
 map("n", "<leader>qq", "<cmd>cope<CR>", { desc = "Open quickfix list" })
 map("n", "<leader>qc", "<cmd>cexpr []<CR>", { desc = "Clear quickfix list" })
 
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
-
 map("n", "<leader>fm", function()
 	require("conform").format({ lsp_fallback = true })
 end, { desc = "Format Files" })
@@ -64,10 +62,16 @@ local telescope = require("telescope.builtin")
 local telescope_state = require("telescope.state")
 
 -- map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
+map(
+	"n",
+	"<leader><leader>",
+	"<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
+	{ desc = "Telescope find (based on access time)" }
+)
+map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
 map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
-
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current buffer" })
 map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
@@ -93,6 +97,8 @@ map("n", "<leader>fD", "<cmd>ObsidianDailies<CR>", { desc = "Find daily notes" }
 -- Telescope GIT commands
 map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
 map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Switch git branch" })
+map("n", "<leader>gHb", "<cmd>Telescope git_bcommits<CR>", { desc = "Telescope Git buffer commits" })
+map("n", "<leader>gHc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>gHf", "<cmd>AdvancedGitSearch diff_commit_file<CR>", { desc = "Git file history" })
 map("n", "<leader>gHl", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
 map("n", "<leader>gB", "<cmd>AdvancedGitSearch diff_branch_file<CR>", { desc = "Git file branch diff" })
@@ -156,28 +162,31 @@ map("n", "<leader>-", function()
 	end
 end, { desc = "Toggle conceallevel" })
 
--- Live preview of qflist buffers
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "qf",
-	callback = function(event)
-		local opts = { buffer = event.buf, silent = true }
-		local init_bufnr = vim.fn.bufnr("#")
+-- map("n", "<C-n>", "<cmd>cn<CR>", { desc = "Next quickfix" })
+-- map("n", "<C-p>", "<cmd>cp<CR>", { desc = "Prev quickfix" })
 
-		vim.keymap.set("n", "j", function()
-			vim.cmd("wincmd p") -- jump to current displayed file
-			if vim.fn.bufnr("%") ~= init_bufnr then
-				vim.cmd('bd | wincmd p | cn | execute "normal! zz" | wincmd p')
-			else
-				vim.cmd('cn | execute "normal! zz" | wincmd p')
-			end
-		end, opts)
-		vim.keymap.set("n", "k", function()
-			vim.cmd("wincmd p") -- jump to current displayed file
-			if vim.fn.bufnr("%") ~= init_bufnr then
-				vim.cmd('bd | wincmd p | cN | execute "normal! zz" | wincmd p')
-			else
-				vim.cmd('cN | execute "normal! zz" | wincmd p')
-			end
-		end, opts)
-	end,
-})
+-- Live preview of qflist buffers
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "qf",
+-- 	callback = function(event)
+-- 		local opts = { buffer = event.buf, silent = true }
+-- 		local init_bufnr = vim.fn.bufnr("#")
+--
+-- 		vim.keymap.set("n", "<C-n>", function()
+-- 			vim.cmd("wincmd p") -- jump to current displayed file
+-- 			if vim.fn.bufnr("%") ~= init_bufnr then
+-- 				vim.cmd('bd | wincmd p | cn | execute "normal! zz" | wincmd p')
+-- 			else
+-- 				vim.cmd('cn | execute "normal! zz" | wincmd p')
+-- 			end
+-- 		end, opts)
+-- 		vim.keymap.set("n", "<C-p>", function()
+-- 			vim.cmd("wincmd p") -- jump to current displayed file
+-- 			if vim.fn.bufnr("%") ~= init_bufnr then
+-- 				vim.cmd('bd | wincmd p | cN | execute "normal! zz" | wincmd p')
+-- 			else
+-- 				vim.cmd('cN | execute "normal! zz" | wincmd p')
+-- 			end
+-- 		end, opts)
+-- 	end,
+-- })

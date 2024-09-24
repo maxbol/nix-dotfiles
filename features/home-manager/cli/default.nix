@@ -10,6 +10,7 @@
     ./starship.nix
     ./terminals.nix
     ./zsh.nix
+    ./yazi.nix
   ];
 
   # add environment variables
@@ -56,6 +57,7 @@
     tealdeer
     tree
     tokei
+    yazi
     maxdots.packages.clockify-cli
   ];
 }
