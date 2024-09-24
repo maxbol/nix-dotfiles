@@ -162,8 +162,10 @@ map("n", "<leader>-", function()
 	end
 end, { desc = "Toggle conceallevel" })
 
--- map("n", "<C-n>", "<cmd>cn<CR>", { desc = "Next quickfix" })
--- map("n", "<C-p>", "<cmd>cp<CR>", { desc = "Prev quickfix" })
+vim.api.nvim_create_autocmd("BufReadPost", { pattern = "quickfix", command = "nnoremap <buffer> <CR> <CR>" })
+
+map("n", "<C-n>", "<cmd>cn<CR>", { desc = "Next quickfix" })
+map("n", "<C-p>", "<cmd>cp<CR>", { desc = "Prev quickfix" })
 
 -- Live preview of qflist buffers
 -- vim.api.nvim_create_autocmd("FileType", {
