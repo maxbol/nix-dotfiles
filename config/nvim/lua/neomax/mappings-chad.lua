@@ -54,8 +54,8 @@ map(
 )
 
 -- Extra incremente/decrement mappings to allow me to keep C-A as my tmux leader :)
-map("n", "<M-a>", "<C-a>", { noremap = true, silent = true })
-map("n", "<M-x>", "<C-x>", { noremap = true, silent = true })
+map("x", "<M-a>", "<C-a>", { noremap = true, silent = true })
+map("x", "<M-x>", "<C-x>", { noremap = true, silent = true })
 
 -- telescope
 local telescope = require("telescope.builtin")
@@ -74,7 +74,6 @@ map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find bu
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
 map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Find oldfiles" })
 map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current buffer" })
-map("n", "<leader>fc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope Find symbol in document" })
 map("n", "<leader>fS", function()
@@ -95,12 +94,12 @@ map("n", "<leader>fN", "<cmd>ObsidianSearch<CR>", { desc = "Find word in notes" 
 map("n", "<leader>fD", "<cmd>ObsidianDailies<CR>", { desc = "Find daily notes" })
 
 -- Telescope GIT commands
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "Telescope Git status" })
-map("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", { desc = "Switch git branch" })
-map("n", "<leader>gHb", "<cmd>Telescope git_bcommits<CR>", { desc = "Telescope Git buffer commits" })
-map("n", "<leader>gHc", "<cmd>Telescope git_commits<CR>", { desc = "Telescope Git commits" })
-map("n", "<leader>gHf", "<cmd>AdvancedGitSearch diff_commit_file<CR>", { desc = "Git file history" })
-map("n", "<leader>gHl", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
+map("n", "<leader>fc", "<cmd>Telescope git_commits theme=ivy<CR>", { desc = "Telescope Git commits" })
+map("n", "<leader>gu", "<cmd>Telescope git_bcommits theme=ivy<CR>", { desc = "Telescope Git buffer commits" })
+map("n", "<leader>gf", "<cmd>AdvancedGitSearch diff_commit_file<CR>", { desc = "Git file history" })
+map("n", "<leader>gl", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
+map("n", "<leader>gt", "<cmd>Telescope git_status theme=ivy<CR>", { desc = "Telescope Git status" })
+map("n", "<leader>gb", "<cmd>Telescope git_branches theme=ivy<CR>", { desc = "Switch git branch" })
 map("n", "<leader>gB", "<cmd>AdvancedGitSearch diff_branch_file<CR>", { desc = "Git file branch diff" })
 map("n", "<leader>gC", "<cmd>AdvancedGitSearch changed_on_branch<CR>", { desc = "Git changes on current branch" })
 
@@ -112,7 +111,8 @@ map("n", "<leader>gs", "<cmd>G<CR>", { desc = "Git status" })
 map("n", "<leader>gS", "<cmd>G stash<CR>", { desc = "Git stash" })
 map("n", "<leader>gx", "<cmd>G stash pop<CR>", { desc = "Git stash pop" })
 map("n", "<leader>gd", "<cmd>DiffviewOpen<CR>", { desc = "Open diffview in new tab" })
-map("n", "<leader>gg", "<cmd>!tmux popup -w 90\\% -h 90\\% lazygit<CR>", { desc = "Open lazygit" })
+-- map("n", "<leader>gg", "<cmd>!tmux popup -w 90\\% -h 90\\% lazygit<CR>", { desc = "Open lazygit" })
+map("n", "<leader>gg", "<cmd>Neogit kind=split_below<CR>", { desc = "Open Neogit" })
 
 map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
 map("n", "<leader>ghw", "<cmd>Octo pr checks<CR>", { desc = "Watch PR checks" })

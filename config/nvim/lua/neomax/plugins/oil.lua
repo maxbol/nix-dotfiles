@@ -1,3 +1,6 @@
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
 return {
 	"stevearc/oil.nvim",
 	lazy = false,
@@ -36,6 +39,21 @@ return {
 				["<C-h>"] = false,
 				["<C-r>"] = "actions.refresh",
 			},
+		})
+
+		-- Set the local working directory to the current buffer's directory
+		-- when working with oil buffers so we can execute shell commands directly
+		-- in the oil dir with !cmd
+		augroup("OilLocalCwd", { clear = true })
+		autocmd("BufEnter", {
+			group = "OilLocalCwd",
+			callback = function(o)
+				if o.match:find("^oil://") then
+					vim.cmd("lcd " .. (require("oil").get_current_dir()))
+				else
+					vim.cmd("lcd " .. (vim.fn.getcwd(-1)))
+				end
+			end,
 		})
 	end,
 }

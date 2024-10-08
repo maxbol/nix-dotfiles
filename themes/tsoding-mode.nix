@@ -146,7 +146,7 @@ in rec {
     themeSource = pkgs.writeText "theme.conf" ''
       ${themeConf}
 
-      background_opacity 1.0
+      background_opacity 1
       # font_family Iosevka Nerd Font Mono
     '';
   in {

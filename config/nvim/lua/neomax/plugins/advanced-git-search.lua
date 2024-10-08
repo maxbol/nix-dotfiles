@@ -6,6 +6,12 @@ return {
 			-- move this to the place where you call the telescope setup function
 			extensions = {
 				advanced_git_search = {
+					telescope_theme = {
+						diff_commit_file = "ivy",
+						diff_commit_line = "ivy",
+						diff_branch_file = "ivy",
+						changed_on_branch = "ivy",
+					},
 					-- See Config
 				},
 			},

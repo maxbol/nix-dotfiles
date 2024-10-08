@@ -48,6 +48,12 @@ local load_session = function()
 	end
 end
 
+-- vim.opt.shortmess:append("F")
+-- vim.opt.shortmess:append("O")
+-- vim.opt.shortmess:append("n")
+-- vim.opt.shortmess:append("c")
+-- vim.opt.shortmess:append("i")
+
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = vim.api.nvim_create_augroup("restore_session", { clear = true }),
 	callback = load_session,

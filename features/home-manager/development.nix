@@ -5,19 +5,20 @@
   lib,
   ...
 }: let
-  # Wrap sqlcmd to make output legible in dadbod
-  sqlcmd = pkgs.writeShellScriptBin "sqlcmd" ''
-    ${pkgs.sqlcmd}/bin/sqlcmd -w 200 -Y 36 "$@"
-  '';
-
   withGoRootWrapper = pkg: binName:
     pkgs.writeShellScriptBin binName ''
       export GOROOT=${pkgs.go}
       ${lib.getExe pkg} $*
     '';
 
-  # Non-nixpkgs packages
+  # Wrap sqlcmd to make output legible in dadbod
+  sqlcmd = pkgs.writeShellScriptBin "sqlcmd" ''
+    ${pkgs.sqlcmd}/bin/sqlcmd -w 200 -Y 36 "$@"
+  '';
+
   swag = withGoRootWrapper pkgs.go-swag "swag";
+
+  # Non-nixpkgs packages
   nancy = maxdots.packages.nancy;
   zig = origin.inputs.zig-overlay.packages.${pkgs.system}.default;
   zls = origin.inputs.zls.packages.${pkgs.system}.default;
@@ -55,6 +56,7 @@ in {
       # vscode-extensions.llvm-org.lldb-vscode
       llvm_18
       lldb_18
+      tracy
 
       # Swift
       sourcekit-lsp
@@ -71,6 +73,7 @@ in {
       # Lua
       stylua
       lua-language-server
+      luau
 
       # Python
       # (python3.withPackages
@@ -105,6 +108,7 @@ in {
       procps
     ])
     ++ [
+      # Wrappers, custom and non-nixpkgs packages
       sqlcmd
       nancy
       swag

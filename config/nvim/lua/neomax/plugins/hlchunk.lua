@@ -10,15 +10,15 @@ return {
 				use_treesitter = false,
 				textobject = "ic",
 			},
-			indent = {
-				enable = false,
-			},
 			line_num = {
 				enable = true,
 				style = { vim.api.nvim_get_hl(0, { name = "HLLineNum1" }) },
 			},
+			indent = {
+				enable = false,
+			},
 			blank = {
-				enable = true,
+				enable = false,
 			},
 		})
 	end,

@@ -21,6 +21,12 @@ return {
 			auto_attach = true,
 			attach_to_untracked = false,
 			on_attach = function(bufnr)
+				local ft = vim.api.nvim_get_option_value("filetype", {
+					buf = bufnr,
+				})
+				if ft == "image_nvim" then
+					return false
+				end
 				if vim.api.nvim_buf_get_name(bufnr):match(".*%.zig") then
 					return false
 				end

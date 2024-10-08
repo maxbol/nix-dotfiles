@@ -1,12 +1,7 @@
 require("neomax.mappings-chad")
 
--- add yours here
-
 local map = vim.keymap.set
 local nomap = vim.keymap.del
-
--- map("i", "jk", "<ESC>")
--- map("i", "kk", "<ESC>")
 
 map("n", "<leader>fm", function()
 	require("conform").format()
@@ -27,10 +22,4 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
 map("x", "<leader>p", '"_dP')
 
--- disable some keybinds
--- needed for tmux-navigator to behave properly
--- nomap("n", "<C-h>")
--- nomap("n", "<C-j>")
--- nomap("n", "<C-k>")
--- nomap("n", "<C-l>")
--- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
+map("n", "<C-y>", "mmyyp`mj", { desc = "duplicate line", noremap = true })

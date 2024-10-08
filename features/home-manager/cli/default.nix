@@ -47,6 +47,7 @@
     neofetch
     nil
     copper.inputs.nix-search-cli
+    ncdu
     nnn
     nurl
     copper.packages.plate

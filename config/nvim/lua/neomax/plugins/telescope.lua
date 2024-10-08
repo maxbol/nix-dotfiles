@@ -5,11 +5,23 @@ return {
 		config = function()
 			require("telescope").setup({
 				pickers = {
+					-- Hard set all cwd for telescope pickers to getcwd(-1) to
+					-- avoid lcd taint from oil buffers
 					oldfiles = {
 						cwd_only = true,
+						cwd = vim.fn.getcwd(-1),
+					},
+					find_files = {
+						cwd = vim.fn.getcwd(-1),
+					},
+					live_grep = {
+						cwd = vim.fn.getcwd(-1),
 					},
 				},
 				extensions = {
+					dap = {
+						theme = require("telescope.themes").get_ivy(),
+					},
 					recent_files = {
 						only_cwd = true,
 					},

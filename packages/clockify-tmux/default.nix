@@ -56,6 +56,10 @@ with pkgs; let
       if [[ $project_id != "NONE" ]]; then
         data=$(${clockify} show current -j)
         if [[ $? -eq 1 ]]; then
+          if [[ $explicit_start -eq 0 ]]; then
+            # Let's not start the timer automatically in these circumstances
+            exit 0
+          fi
           noninteractive_start_timer
         elif [[ $(echo "$data" | jq -r '.[0].projectId') != $project_id ]]; then
           noninteractive_start_timer

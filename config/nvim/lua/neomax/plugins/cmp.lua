@@ -1,7 +1,6 @@
 return {
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
-	opts = config,
 	dependencies = {
 		{
 			-- snippet plugin
@@ -10,7 +9,10 @@ return {
 			opts = { history = true, updateevents = "TextChanged,TextChangedI" },
 			config = function(_, opts)
 				require("luasnip").config.set_config(opts)
-				require("luasnip.loaders.from_vscode").load()
+				require("luasnip.loaders.from_vscode").lazy_load()
+				require("luasnip").add_snippets("all", {
+					require("neomax.configs.snippets.todo"),
+				})
 			end,
 		},
 
@@ -43,12 +45,11 @@ return {
 	},
 	config = function(_, opts)
 		local cmp = require("cmp")
-		local luasnip = require("luasnip")
 
 		cmp.setup({
 			snippet = {
 				expand = function(args)
-					luasnip.lsp_expand(args.body)
+					require("luasnip").lsp_expand(args.body)
 				end,
 			},
 			completion = {
@@ -80,6 +81,7 @@ return {
 				-- ["<Tab>"] = vim.NIL,
 				-- ["<S-Tab>"] = vim.NIL,
 				["<C-j>"] = cmp.mapping(function(fallback)
+					local luasnip = require("luasnip")
 					if cmp.visible() then
 						cmp.select_next_item()
 					elseif luasnip.expand_or_jumpable() then
@@ -89,6 +91,7 @@ return {
 					end
 				end, { "i", "s" }),
 				["<C-k>"] = cmp.mapping(function(fallback)
+					local luasnip = require("luasnip")
 					if cmp.visible() then
 						cmp.select_prev_item()
 					elseif luasnip.jumpable(-1) then

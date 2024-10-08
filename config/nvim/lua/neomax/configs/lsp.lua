@@ -11,13 +11,13 @@ local on_attach = function(client, bufnr)
 	-- lsp_status.on_attach(client)
 
 	map("n", "gD", vim.lsp.buf.declaration, opts("Lsp Go to declaration"))
-	map("n", "gd", telescope_builtin.lsp_definitions, opts("Lsp Go to definition"))
+	map("n", "gd", ":Telescope lsp_definitions theme=cursor<CR>", opts("Lsp Go to definition"))
 	map("n", "gwd", ":vsplit | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new vertical split"))
 	map("n", "gwD", ":vsplit | lua vim.lsp.buf.declaration()<CR>", opts("Lsp Go to declaration in new vertical split"))
 	map("n", "gWd", ":split | lua vim.lsp.buf.definition()<CR>", opts("Lsp Go to definition in new horizontal split"))
 	map("n", "gWD", ":split | lua vim.lsp.buf.declaration()<CR>", opts("Lsp Go to declaration in new horizontal split"))
-	map("n", "gr", telescope_builtin.lsp_references, opts("Lsp References"))
-	map("n", "gi", telescope_builtin.lsp_implementations, opts("Lsp Go to implementation"))
+	map("n", "gr", ":Telescope lsp_references theme=cursor<CR>", opts("Lsp References"))
+	map("n", "gi", ":Telescope lsp_implementations theme=cursor<CR>", opts("Lsp Go to implementation"))
 
 	-- map("n", "K", "<cmd>Lspsaga hover_doc<CR>")
 

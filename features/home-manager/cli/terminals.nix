@@ -22,7 +22,7 @@ in {
       window_padding_width = 5;
       background_opacity = "0.9";
       # macos_thicken_font = 1;
-      font_size = 22;
+      font_size = 20;
       # modify_font = "cell_height 110%";
       confirm_os_window_close = 0;
       placement_strategy = "top-left";

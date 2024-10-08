@@ -1,9 +1,7 @@
-{ ... }:
-
-{
+{...}: {
   nixpkgs.overlays = [
     (final: prev: {
-      postman = prev.postman.overrideAttrs(old: rec {
+      postman = prev.postman.overrideAttrs (old: rec {
         version = "10.23.5";
         src = final.fetchurl {
           url = "https://dl.pstmn.io/download/version/${version}/linux64";

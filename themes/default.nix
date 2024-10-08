@@ -123,6 +123,11 @@
           HLChunk1 = "#8ec07c";
           HLLineNum1 = "#8ec07c";
         };
+        hlGroupsBg = {
+          CursorLine = "#427b58";
+          Visual = "#427b58";
+          TelescopeSelection = "#427b58";
+        };
       };
     });
 
@@ -166,8 +171,10 @@
         colorscheme = "rose-pine-main";
         background = "dark";
         hlGroupsFg = {
-          HLChunk1 = "#c4a7e7";
-          HLLineNum1 = "#c4a7e7";
+        };
+        hlGroupsBg = {
+          CursorLine = "#44415a";
+          Cursor = "#6e6a86";
         };
       };
     });
@@ -181,6 +188,10 @@
         hlGroupsFg = {
           HLChunk1 = "#c4a7e7";
           HLLineNum1 = "#c4a7e7";
+        };
+        hlGroupsBg = {
+          CursorLine = "#44415a";
+          Cursor = "#6e6a86";
         };
       };
     });

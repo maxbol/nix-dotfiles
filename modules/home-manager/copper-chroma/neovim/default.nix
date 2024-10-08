@@ -70,7 +70,7 @@ in {
       in {
         file."colorctl" = {
           required = true;
-          source = mkDefault (pkgs.writeShellScriptBin "colorctl" ''${lib.getExe nvim-colorctl} --emit-lua ~/.config/nvim/lua/neomax/color/init.lua -s ${config.colorscheme} -b ${config.background} ${fgGroups} ${bgGroups}'');
+          source = mkDefault (pkgs.writeShellScriptBin "colorctl" ''${lib.getExe nvim-colorctl} --emit-lua ~/.config/nvim/lua/neomax/color/init.lua -s ${config.colorscheme} -b ${config.background} ${fgGroups} ${bgGroups} & disown'');
         };
       };
 

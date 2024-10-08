@@ -16,9 +16,18 @@ g.markdown_recommended_style = 0
 
 opt.foldenable = false
 opt.cursorline = true
-opt.guicursor = "n-v-c-i:block"
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.guicursor = "n-v-c-i:block-Cursor/lCursor"
+-- opt.foldmethod = "expr"
+-- opt.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Cmdline options
+-- opt.cmdheight = 0
+
+-- Session options
+opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
+
+-- Statusline options
+opt.laststatus = 3
 
 g.completion_matching_strategy_list = { "exact", "substring" }
 g.completion_matching_ignore_case = 1
@@ -88,6 +97,15 @@ g["surround_no_mappings"] = 1
 if vim.g.neovide then
 	require("neomax.neovide")
 end
+
+-- Vimgrep options
+vim.cmd([[
+augroup grepqf
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l*    lwindow
+augroup END
+]])
 
 require("neomax.configs.make")
 require("neomax.modules.obsidian")

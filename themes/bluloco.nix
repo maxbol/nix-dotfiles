@@ -167,8 +167,18 @@ in rec {
     monospaceFont.package = pkgs.nerdfonts;
   };
 
-  kitty = {
-    file."theme.conf".source = "${bluloco_pkg}/terminal-themes/kitty/Bluloco${Luminance}.conf";
+  kitty = let
+    themeFile = "${bluloco_pkg}/terminal-themes/kitty/Bluloco${Luminance}.conf";
+    themeConf = builtins.readFile themeFile;
+
+    themeSource = pkgs.writeText "theme.conf" ''
+      ${themeConf}
+
+      background_opacity 0.95
+      # macos_thicken_font 1
+    '';
+  in {
+    file."theme.conf".source = themeSource;
   };
 
   starship.palette = {

@@ -12,7 +12,12 @@ return {
 			"haydenmeade/neotest-jest",
 			"marilari88/neotest-vitest",
 			-- Zig
-			"lawrence-laz/neotest-zig",
+			-- Override with personal fork until PR is merged
+			-- "maxbol/neotest-zig",
+			{
+				dir = "~/Source/neotest-zig",
+			},
+			-- "lawrence-laz/neotest-zig",
 
 			-- Core dependencies
 			"mfussenegger/nvim-dap",

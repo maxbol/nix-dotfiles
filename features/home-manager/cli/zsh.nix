@@ -3,8 +3,11 @@
   lib,
   pkgs,
   maxdots,
+  origin,
   ...
 }: let
+  zig-bleeding-edge = origin.inputs.zig-overlay.packages.${pkgs.system}.master;
+
   ta = pkgs.writeShellScriptBin "ta" ''
     if [ "$TMUX" = "" ]; then tmux attach; fi
   '';
@@ -149,6 +152,8 @@ in {
         export LLDB_DEBUGSERVER_PATH="/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/debugserver"
         # export LLDB_DEBUGSERVER_PATH="${pkgs.lldb_18}/bin/darwin-debug"
       fi
+
+      export ZIG_BLEEDING_EDGE_BIN="${lib.getExe zig-bleeding-edge}"
 
       setopt PUSHDSILENT
     '';
