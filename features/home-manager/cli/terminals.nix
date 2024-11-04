@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  maxdots,
   ...
 }:
 # terminal config
@@ -15,6 +16,7 @@ let
 in {
   programs.kitty = {
     enable = true;
+    package = maxdots.packages.kitty-nightly;
     font.name = lib.mkForce font;
     settings = {
       background_blur = 0;
@@ -27,6 +29,7 @@ in {
       confirm_os_window_close = 0;
       placement_strategy = "top-left";
       # text_composition_strategy = "legacy";
+      cursor_trail = 3;
     };
     keybindings = {
       "cmd+h" = "";

@@ -57,6 +57,7 @@ in {
       llvm_18
       lldb_18
       tracy
+      # gdb ## Only available on linux
 
       # Swift
       sourcekit-lsp
@@ -73,7 +74,12 @@ in {
       # Lua
       stylua
       lua-language-server
+      lua5_1
       luau
+      luarocks
+
+      # Gleam
+      gleam
 
       # Python
       # (python3.withPackages

@@ -60,5 +60,6 @@
     tokei
     yazi
     maxdots.packages.clockify-cli
+    m-cli
   ];
 }

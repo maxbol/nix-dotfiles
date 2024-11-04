@@ -217,4 +217,8 @@ in rec {
     };
     file = "dist/themes/${normalizedThemeName}.tmTheme";
   };
+
+  macoswallpaper = {
+    wallpaper = "$HOME/wallpapers/rosepine-default.png";
+  };
 }

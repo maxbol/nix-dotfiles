@@ -1,7 +1,7 @@
 return {
 	{
-		lazy = false,
 		"nvim-neotest/neotest",
+		lazy = true,
 		dependencies = {
 			-- Language support
 			-- Dotnet
@@ -12,12 +12,7 @@ return {
 			"haydenmeade/neotest-jest",
 			"marilari88/neotest-vitest",
 			-- Zig
-			-- Override with personal fork until PR is merged
-			-- "maxbol/neotest-zig",
-			{
-				dir = "~/Source/neotest-zig",
-			},
-			-- "lawrence-laz/neotest-zig",
+			"lawrence-laz/neotest-zig",
 
 			-- Core dependencies
 			"mfussenegger/nvim-dap",

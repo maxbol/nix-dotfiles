@@ -4,7 +4,8 @@ local g = vim.g
 
 -- add yours here!
 
-opt.wrap = false
+opt.wrap = true
+opt.linebreak = true
 opt.colorcolumn = "120"
 
 opt.termguicolors = true
@@ -14,11 +15,10 @@ opt.clipboard = "unnamedplus"
 -- o.cursorlineopt ='both' -- to enable cursorline!
 g.markdown_recommended_style = 0
 
-opt.foldenable = false
+opt.foldenable = true
+opt.foldmethod = "syntax"
 opt.cursorline = true
 opt.guicursor = "n-v-c-i:block-Cursor/lCursor"
--- opt.foldmethod = "expr"
--- opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 -- Cmdline options
 -- opt.cmdheight = 0
@@ -41,7 +41,8 @@ o.smartindent = true
 o.tabstop = 2
 o.softtabstop = 2
 
-opt.fillchars = { eob = " " }
+-- opt.fillchars = { eob = " " }
+opt.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 o.ignorecase = true
 o.smartcase = true
 o.mouse = "a"
@@ -99,6 +100,8 @@ if vim.g.neovide then
 end
 
 -- Vimgrep options
+opt.grepprg = "rg --vimgrep"
+opt.grepformat = "%f:%l:%c:%m"
 vim.cmd([[
 augroup grepqf
   autocmd!

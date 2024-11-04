@@ -196,8 +196,16 @@ in rec {
     };
   };
 
-  kitty = {
-    file."theme.conf".source = "${pkgs.kitty-themes}/share/kitty-themes/themes/gruvbox-${luminance}.conf";
+  kitty = let
+    themeFile = "${pkgs.kitty-themes}/share/kitty-themes/themes/gruvbox-${luminance}.conf";
+    themeConf = builtins.readFile themeFile;
+
+    themeSource = pkgs.writeText "theme.conf" ''
+      ${themeConf}
+      # background_blur 10
+    '';
+  in {
+    file."theme.conf".source = themeSource;
   };
 
   # TODO: replace with actual gruvbox theme
@@ -226,5 +234,7 @@ in rec {
     file = "gruvbox-${luminance}.tmTheme";
   };
 
-  nvchad.theme = "gruvchad";
+  macoswallpaper = {
+    wallpaper = "$HOME/wallpapers/gruvbox-default.png";
+  };
 }

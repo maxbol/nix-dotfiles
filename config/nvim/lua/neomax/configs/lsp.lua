@@ -2,7 +2,23 @@ local lspconfig = require("lspconfig")
 local telescope_builtin = require("telescope.builtin")
 local map = vim.keymap.set
 
--- lsp_status.register_progress()
+-- Add borders to floating windows
+local lsp_float_border = {
+	{ "🭽", "FloatBorder" },
+	{ "▔", "FloatBorder" },
+	{ "🭾", "FloatBorder" },
+	{ "▕", "FloatBorder" },
+	{ "🭿", "FloatBorder" },
+	{ "▁", "FloatBorder" },
+	{ "🭼", "FloatBorder" },
+	{ "▏", "FloatBorder" },
+}
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+	opts = opts or {}
+	opts.border = opts.border or lsp_float_border
+	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
 
 local on_attach = function(client, bufnr)
 	local function opts(desc)
@@ -82,6 +98,11 @@ capabilities.textDocument.completion.completionItem = {
 	},
 }
 
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
+
 -- if you just want default config for the servers then put them in a table
 local servers = {
 	"html",
@@ -96,6 +117,7 @@ local servers = {
 	"dockerls",
 	"docker_compose_language_service",
 	"pyright",
+	"gleam",
 }
 
 for _, lsp in ipairs(servers) do
@@ -233,3 +255,4 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 vim.lsp.set_log_level("ERROR")
+require("ufo").setup()

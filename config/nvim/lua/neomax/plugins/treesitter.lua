@@ -54,7 +54,7 @@ return {
 
 				disable = {
 					-- "typescript",
-					"zig",
+					-- "zig",
 				},
 
 				-- Automatically jump forward to textobj, similar to targets.vim

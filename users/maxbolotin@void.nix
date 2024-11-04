@@ -1,6 +1,8 @@
 {
   modules = [
-    {
+    ({lib, ...}: {
+      nix.settings.experimental-features = lib.mkForce ["nix-command" "flakes"];
+
       copper.features = [
         "link-config"
       ];
@@ -23,7 +25,7 @@
       ];
 
       # programs.ssh.enable = false;
-    }
+    })
     #
     #
     # # The module below makes sure desktop apps are correctly copied into ~/Applications

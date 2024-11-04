@@ -1,99 +1,89 @@
 {
   pkgs,
-  accent ? "blue",
+  accent ? "red",
   accent2 ? "green",
-  accent3 ? "red",
+  accent3 ? "blue",
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
   neovimOverrides ? p: {},
-  luminance ? "dark",
   ...
 }: let
-  bluloco_pkg = pkgs.fetchFromGitHub {
-    owner = "uloco";
-    repo = "bluloco.nvim";
+  pkg = pkgs.fetchFromGitHub {
+    owner = "yazeed1s";
+    repo = "oh-lucy.nvim";
     rev = "main";
-    hash = "sha256-z2kRBlggu0g9qblr2yT18SV+mGNUxekDXs49scZDKf0=";
+    hash = "sha256-Iu1W/bsHChJ2ADw1MLqKmJ5CLP66K5+xDUsIFkbrlKQ=";
   };
 
-  capitalize = str: "${pkgs.lib.toUpper (builtins.substring 0 1 str)}${builtins.substring 1 (builtins.stringLength str) str}";
-
+  # The original palette from yazeed1s/oh-lucy.nvim
   palette_ = {
-    fg = "b9c0cb";
-    bg = "282c34";
-    bg_float = "21242D";
-    cursor = "ffcc00";
-    cursor_text = "282c34";
-    black = "41444d";
-    red = "fc2f52";
-    green = "25a45c";
-    yellow = "ff936a";
-    blue = "3476ff";
-    magenta = "7a82da";
-    cyan = "4483aa";
-    white = "cdd4e0";
-    bright_black = "8f9aae";
-    bright_red = "ff637f";
-    bright_green = "3fc56a";
-    bright_yellow = "f9c858";
-    bright_blue = "10b0fe";
-    bright_magenta = "ff78f8";
-    bright_cyan = "5fb9bc";
-    bright_white = "ffffff";
+    fg = "d7d7d7"; # #D7D7D7
+    bg = "1b1d26"; # #1B1D26
+    none = "1b1d26"; # #1B1D26
+    dark = "14161d"; # #14161D
+    comment = "5e6173"; # #5E6173
+    popup_back = "515761"; # #515761
+    cursor_fg = "d7d7d7"; # #D7D7D7
+    context = "515761"; # #515761
+    cursor_bg = "aeafad"; # #AEAFAD
+    accent = "bbbbbb"; # #BBBBBB
+    diff_add = "8cd881"; # #8CD881
+    diff_change = "6caec0"; # #6CAEC0
+    cl_bg = "707891"; # #707891
+    diff_text = "568bb4"; # #568BB4
+    line_fg = "555b6c"; # #555B6C
+    line_bg = "1b1d26"; # #1B1D26
+    gutter_bg = "1b1d26"; # #1B1D26
+    non_text = "606978"; # #606978
+    selection_bg = "5e697e"; # #5E697E
+    selection_fg = "495163"; # #495163
+    vsplit_fg = "cccccc"; # #cccccc
+    vsplit_bg = "21252d"; # #21252D
+    visual_select_bg = "272932"; # #272932
+    red_key_w = "fb7da7"; # #FB7DA7
+    red_err = "d95555"; # #D95555
+    green_func = "74c7a4"; # #74C7A4
+    green = "76c5a4"; # #76C5A4
+    blue_type = "8dbbd3"; # #8DBBD3
+    black1 = "272932"; # #272932
+    black = "14161d"; # #14161D
+    white1 = "d7d7d7"; # #D7D7D7
+    white = "e9e9e9"; # #E9E9E9
+    gray_punc = "7c7e8c"; # #7C7E8C
+    gray2 = "6e7380"; # #6E7380
+    gray1 = "343842"; # #343842
+    gray = "21252d"; # #21252D
+    orange = "e0828d"; # #E0828D
+    boolean = "af98e6"; # #AF98E6
+    orange_wr = "e39a65"; # #E39A65
+    pink = "bda9d4"; # #BDA9D4
+    yellow = "e3cf65"; # #E3CF65
   };
 
-  palette_dark = rec {
+  palette = rec {
     colors = {
-      red = palette_.bright_red;
-      green = palette_.bright_green;
-      yellow = palette_.bright_yellow;
-      blue = palette_.bright_blue;
+      red = palette_.red_key_w;
+      green = palette_.green;
+      yellow = palette_.yellow;
+      blue = palette_.blue_type;
     };
 
     accents = {
       inherit (colors) red green yellow blue;
-      magenta = palette_.bright_magenta;
-      cyan = palette_.bright_cyan;
-      orange = palette_.yellow;
+      magenta = palette_.pink;
+      cyan = palette_.diff_change;
+      orange = palette_.orange_wr;
     };
 
     semantic = {
       text = palette_.fg;
       text1 = palette_.white;
-      text2 = palette_.bright_white;
+      text2 = palette_.white1;
       overlay = palette_.black;
-      surface = palette_.bg_float;
+      surface = palette_.black1;
       background = palette_.bg;
-      accent1 = accents.${accent};
-      accent2 = accents.${accent2};
-      accent3 = accents.${accent3};
-    };
-  };
-
-  palette_light = rec {
-    colors = {
-      red = palette_.red;
-      green = palette_.green;
-      yellow = palette_.yellow;
-      blue = palette_.blue;
-    };
-
-    accents = {
-      inherit (colors) red green yellow blue;
-      magenta = palette_.magenta;
-      cyan = palette_.cyan;
-      orange = palette_.yellow;
-    };
-
-    semantic = {
-      text = palette_.bg;
-      text1 = palette_.bright_black;
-      text2 = palette_.black;
-      overlay = palette_.white;
-      surface = palette_.bright_white;
-      background = palette_.fg;
       accent1 = accents.${accent};
       accent2 = accents.${accent2};
       accent3 = accents.${accent3};
@@ -131,16 +121,10 @@
   '';
 
   starshipPalettes = pkgs.writeText "starship-palettes.toml" ''
-    ${mkStarshipPalette "bluloco-dark" palette_dark}
-    ${mkStarshipPalette "bluloco-light" palette_light}
+    ${mkStarshipPalette "oh-lucy" palette}
   '';
-
-  Luminance = capitalize luminance;
 in rec {
-  palette =
-    if luminance == "dark"
-    then palette_dark
-    else palette_light;
+  inherit palette;
 
   hyprland.colorOverrides = hyprlandOverrides palette;
 
@@ -168,14 +152,14 @@ in rec {
   };
 
   kitty = let
-    themeFile = "${bluloco_pkg}/terminal-themes/kitty/Bluloco${Luminance}.conf";
+    themeFile = "${pkg}/terminal/kitty/ohlucy.conf";
+
     themeConf = builtins.readFile themeFile;
 
     themeSource = pkgs.writeText "theme.conf" ''
       ${themeConf}
 
-      background_opacity 0.95
-      # background_opacity 1.0
+      background_opacity 0.9
       # background_blur 10
       # macos_thicken_font 1
     '';
@@ -185,12 +169,17 @@ in rec {
 
   starship.palette = {
     file = starshipPalettes;
-    name = "bluloco-${luminance}";
+    name = "oh-lucy";
   };
 
   bat.theme = {
-    src = bluloco_pkg;
-    file = "extra/bat/.config/bat/themes/bluloco-${luminance}/bluloco-${luminance}.tmTheme";
+    src = pkgs.fetchFromGitHub {
+      owner = "rose-pine";
+      repo = "tm-theme";
+      rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
+      hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
+    };
+    file = "dist/themes/rose-pine.tmTheme";
   };
 
   # TODO: replace with actual-pine theme
@@ -205,6 +194,6 @@ in rec {
   };
 
   macoswallpaper = {
-    wallpaper = "$HOME/wallpapers/bluloco-default.jpg";
+    wallpaper = "$HOME/wallpapers/bluloco-default.png";
   };
 }

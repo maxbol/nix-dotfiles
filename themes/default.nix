@@ -171,10 +171,13 @@
         colorscheme = "rose-pine-main";
         background = "dark";
         hlGroupsFg = {
+          HLChunk1 = "#c4a7e7";
+          HLLineNum1 = "#c4a7e7";
         };
         hlGroupsBg = {
           CursorLine = "#44415a";
           Cursor = "#6e6a86";
+          Folded = "#44415a";
         };
       };
     });
@@ -192,6 +195,7 @@
         hlGroupsBg = {
           CursorLine = "#44415a";
           Cursor = "#6e6a86";
+          Folded = "#44415a";
         };
       };
     });
@@ -217,6 +221,10 @@
         hlGroupsFg = {
           HLChunk1 = "#ffdd33";
           HLLineNum1 = "#ffdd33";
+          "@property" = "#" + palette.accents.darkbrown;
+        };
+        hlGroupsBg = {
+          FoldColumn = "#181818";
         };
       };
     });
@@ -243,6 +251,18 @@
         hlGroupsFg = {
           HLChunk1 = "#" + palette.semantic.accent1;
           HLLineNum1 = "#" + palette.semantic.accent1;
+        };
+      };
+    });
+
+  Oh-Lucy = pkgs.callPackage ./ohlucy.nix (extraArgs
+    // {
+      neovimOverrides = palette: {
+        colorscheme = "oh-lucy";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#" + palette.semantic.accent2;
+          HLLineNum1 = "#" + palette.semantic.accent2;
         };
       };
     });

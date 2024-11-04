@@ -46,21 +46,21 @@ return {
 		},
 		lazy = false,
 	},
-	{
-		"smartpde/telescope-recent-files",
-		lazy = false,
-		config = function()
-			-- Load extension.
-			require("telescope").load_extension("recent_files")
-			-- Map a shortcut to open the picker.
-			-- vim.api.nvim_set_keymap(
-			-- 	"n",
-			-- 	"<Leader><Leader>",
-			-- 	[[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
-			-- 	{ noremap = true, silent = true }
-			-- )
-		end,
-	},
+	-- {
+	-- 	"smartpde/telescope-recent-files",
+	-- 	lazy = false,
+	-- 	config = function()
+	-- 		-- Load extension.
+	-- 		require("telescope").load_extension("recent_files")
+	-- 		Map a shortcut to open the picker.
+	-- 		vim.api.nvim_set_keymap(
+	-- 			"n",
+	-- 			"<Leader><Leader>",
+	-- 			[[<cmd>lua require('telescope').extensions.recent_files.pick()<CR>]],
+	-- 			{ noremap = true, silent = true }
+	-- 		)
+	-- 	end,
+	-- },
 	-- {
 	-- 	"nvim-telescope/telescope-frecency.nvim",
 	-- 	config = function()

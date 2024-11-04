@@ -181,4 +181,8 @@ in rec {
   };
 
   nvchad.theme = "catppuccin";
+
+  macoswallpaper = {
+    wallpaper = "$HOME/wallpapers/catppuccin-default.png";
+  };
 }

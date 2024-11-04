@@ -178,4 +178,8 @@ in rec {
     };
     file = "dist/themes/rose-pine.tmTheme";
   };
+
+  macoswallpaper = {
+    wallpaper = "$HOME/wallpapers/tsodingmode-default.jpg";
+  };
 }

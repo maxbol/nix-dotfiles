@@ -13,10 +13,11 @@ map("n", "<C-s>", "<cmd>w<CR>", { desc = "File Save" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "File Copy whole" })
 
 map("n", "<C-Q>q", "<cmd>qa<CR>", { desc = "Quit Neovim" })
-map("n", "<C-Q>t", "<cmd>tabc <CR>", { desc = "Close tab" })
-map("n", "<C-Q>o", "<cmd>tabonly <CR>", { desc = "Close all other tabs" })
-map("n", "<C-Q>b", "<cmd>bd <CR>", { desc = "Close buffer" })
+map("n", "<C-Q>t", "<cmd>tabc<CR>", { desc = "Close tab" })
+map("n", "<C-Q>o", "<cmd>tabonly<CR>", { desc = "Close all other tabs" })
 map("n", "<C-T>", "<cmd>tabnew<CR>", { desc = "New tab" })
+map("n", "<C-E>q", "<cmd>bd<CR>", { desc = "Close buffer" })
+map("n", "<C-E>o", "<cmd>%bd|e#<CR>", { desc = "Close all other buffers" })
 
 map("n", "<C-W>t", "<cmd>vsplit<CR><cmd>term<CR>", { desc = "Open terminal in vertical split" })
 
@@ -56,10 +57,6 @@ map(
 -- Extra incremente/decrement mappings to allow me to keep C-A as my tmux leader :)
 map("x", "<M-a>", "<C-a>", { noremap = true, silent = true })
 map("x", "<M-x>", "<C-x>", { noremap = true, silent = true })
-
--- telescope
-local telescope = require("telescope.builtin")
-local telescope_state = require("telescope.state")
 
 -- map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
 map(

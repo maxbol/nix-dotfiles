@@ -4,6 +4,7 @@
       #copper.feature.standaloneBase.enable = false;
       #copper.feature.nixosBase.enable = true;
       nix.settings.netrc-file = "/home/max/.netrc";
+      nix.settings.experimental-features = "nix-command flakes";
 
       copper.features = [
         /*

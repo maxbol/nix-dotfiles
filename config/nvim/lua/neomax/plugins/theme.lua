@@ -14,6 +14,7 @@ return {
 				"nvim-lualine/lualine.nvim",
 				config = function()
 					require("lualine").setup({
+						theme = "auto",
 						sections = {
 							lualine_a = { "mode" },
 							lualine_b = {
@@ -39,7 +40,23 @@ return {
 			},
 
 			-- Themes
-			--
+			{
+				"scottmckendry/cyberdream.nvim",
+			},
+			{
+				"Yazeed1s/oh-lucy.nvim",
+			},
+			{ "savq/melange-nvim" },
+			{
+				"olivercederborg/poimandres.nvim",
+				config = function()
+					require("poimandres").setup({
+						-- leave this setup function empty for default config
+						-- or refer to the configuration section
+						-- for configuration options
+					})
+				end,
+			},
 			{
 				"blazkowolf/gruber-darker.nvim",
 				opts = {
@@ -89,6 +106,7 @@ return {
 					require("bluloco").setup({
 						style = "auto", -- "auto" | "dark" | "light"
 						transparent = true,
+						-- transparent = true,
 						italics = false,
 						terminal = vim.fn.has("gui_running") == 1, -- bluoco colors are enabled in gui terminals per default.
 						guicursor = true,
