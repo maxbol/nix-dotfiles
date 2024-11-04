@@ -1,4 +1,5 @@
 {
+  username = "maxbolotin";
   modules = [
     ({lib, ...}: {
       nix.settings.experimental-features = lib.mkForce ["nix-command" "flakes"];

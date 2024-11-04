@@ -126,7 +126,20 @@
     nvim-colorctl.url = "github:maxbol/nvim-colorctl";
   };
 
-  outputs = inputs:
-    inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
-    });
+  outputs = inputs @ {flake-parts, ...}:
+    flake-parts.lib.mkFlake {
+      systems = [
+        "x86_64-linux"
+        "aarch64-darwin"
+      ];
+      flake = {
+        homeConfigurations = import ./users/default.nix;
+      };
+      perSystem = {config, ...}: {
+      };
+    };
+
+  # outputs = inputs:
+  #   inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
+  #   });
 }
