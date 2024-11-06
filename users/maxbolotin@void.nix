@@ -1,6 +1,7 @@
 {
   modules = [
     ({lib, ...}: {
+      home.stateVersion = "24.05";
       nix.settings.experimental-features = lib.mkForce ["nix-command" "flakes"];
 
       copper.features = [

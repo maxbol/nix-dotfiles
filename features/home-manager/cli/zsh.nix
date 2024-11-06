@@ -91,7 +91,7 @@ in {
   programs.zsh = {
     enable = true;
     # dotDir = ".config/zsh";
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
     enableCompletion = true;
     shellAliases = {
       l = "eza --icons";
@@ -153,7 +153,7 @@ in {
         # export LLDB_DEBUGSERVER_PATH="${pkgs.lldb_18}/bin/darwin-debug"
       fi
 
-      export ZIG_BLEEDING_EDGE_BIN="${lib.getExe zig-bleeding-edge}"
+      export ZIG_BLEEDING_EDGE_BIN="${zig-bleeding-edge}/bin/zig"
 
       setopt PUSHDSILENT
     '';
