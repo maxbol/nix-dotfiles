@@ -13,7 +13,7 @@
         "development"
         "direnv"
         "neovim"
-        "neovide"
+        # "neovide"
         "productivity"
         "sops"
         "tmux"
