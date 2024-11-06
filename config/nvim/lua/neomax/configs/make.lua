@@ -116,7 +116,7 @@ function M.make(statusmsg, makecmd, grepcmd, on_success, on_failure)
 				on_success()
 			end
 		end
-		vim.api.nvim_command("doautocmd QuickFixCmdPost")
+		-- vim.api.nvim_command("doautocmd QuickFixCmdPost")
 	end
 
 	vim.fn.jobstart(cmd, {
