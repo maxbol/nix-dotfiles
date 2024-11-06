@@ -20,7 +20,8 @@
 
   # Non-nixpkgs packages
   nancy = maxdots.packages.nancy;
-  zig = origin.inputs.zig-overlay.packages.${pkgs.system}.default;
+  zig = pkgs.zig;
+  # zig = origin.inputs.zig-overlay.packages.${pkgs.system}.default;
   zls = origin.inputs.zls.packages.${pkgs.system}.default;
   nixd = origin.inputs.nixd.packages.${pkgs.system}.nixd;
 in {

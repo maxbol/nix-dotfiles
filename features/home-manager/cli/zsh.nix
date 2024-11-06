@@ -3,10 +3,11 @@
   lib,
   pkgs,
   maxdots,
-  origin,
+  # origin,
   ...
 }: let
-  zig-bleeding-edge = origin.inputs.zig-overlay.packages.${pkgs.system}.master;
+  zig-bleeding-edge = pkgs.zig;
+  # zig-bleeding-edge = origin.inputs.zig-overlay.packages.${pkgs.system}.master;
 
   ta = pkgs.writeShellScriptBin "ta" ''
     if [ "$TMUX" = "" ]; then tmux attach; fi

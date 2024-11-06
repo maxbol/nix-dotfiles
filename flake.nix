@@ -108,22 +108,27 @@
 
     zig-overlay = {
       url = "github:mitchellh/zig-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.flake-compat.follows = "flake-compat";
+      # inputs.flake-utils.follows = "flake-utils";
     };
 
     zls = {
       # Lock to 0.13 revision for now
-      url = "github:zigtools/zls?rev=a26718049a8657d4da04c331aeced1697bc7652b";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.zig-overlay.follows = "zig-overlay";
-      inputs.gitignore.follows = "gitignore";
-      inputs.flake-utils.follows = "flake-utils";
+      # url = "github:zigtools/zls?rev=a26718049a8657d4da04c331aeced1697bc7652b";
+      url = "github:zigtools/zls";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.zig-overlay.follows = "zig-overlay";
+      # inputs.gitignore.follows = "gitignore";
+      # inputs.flake-utils.follows = "flake-utils";
     };
 
+    zig2nix.url = "github:Cloudef/zig2nix";
+
     clockifyd.url = "github:maxbol/clockifyd";
+    # clockifyd.inputs.zig2nix.follows = "zig2nix";
     nvim-colorctl.url = "github:maxbol/nvim-colorctl";
+    # nvim-colorctl.inputs.zig2nix.follows = "zig2nix";
   };
 
   outputs = inputs:
