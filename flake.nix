@@ -116,10 +116,10 @@
     zls = {
       # Lock to 0.13 revision for now
       url = "github:zigtools/zls?rev=a26718049a8657d4da04c331aeced1697bc7652b";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.zig-overlay.follows = "zig-overlay";
-      inputs.gitignore.follows = "gitignore";
-      inputs.flake-utils.follows = "flake-utils";
+      # inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.zig-overlay.follows = "zig-overlay";
+      # inputs.gitignore.follows = "gitignore";
+      # inputs.flake-utils.follows = "flake-utils";
     };
 
     clockifyd.url = "github:maxbol/clockifyd";

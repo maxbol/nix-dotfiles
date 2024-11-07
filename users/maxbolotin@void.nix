@@ -1,8 +1,21 @@
 {
   modules = [
-    ({lib, ...}: {
+    ({
+      lib,
+      origin,
+      ...
+    }: {
       home.stateVersion = "24.05";
       nix.settings.experimental-features = lib.mkForce ["nix-command" "flakes"];
+
+      nix.registry = {
+        zig-overlay = {
+          flake = origin.inputs.zig-overlay;
+        };
+        zls = {
+          flake = origin.inputs.zls;
+        };
+      };
 
       copper.features = [
         "link-config"
@@ -14,7 +27,7 @@
         "development"
         "direnv"
         "neovim"
-        "neovide"
+        # "neovide"
         "productivity"
         "sops"
         "tmux"
