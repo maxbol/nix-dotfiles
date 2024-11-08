@@ -1,7 +1,6 @@
 require("neomax.mappings-chad")
 
 local map = vim.keymap.set
-local nomap = vim.keymap.del
 
 map("n", "<leader>fm", function()
 	require("conform").format()
@@ -14,7 +13,7 @@ map("n", "<C-u>", "<C-u>zz")
 map("n", "J", "mzJ`z", { desc = "join lines" })
 map("n", "N", "Nzzzv", { desc = "search previous" })
 map("n", "n", "nzzzv", { desc = "search next" })
-map("i", "kk", "<Esc>", { desc = "exit insert mode" })
+-- map("i", "kk", "")
 
 map("v", ">", ">gv", { desc = "indent" })
 map("v", "<", "<gv", { desc = "indent" })
@@ -24,4 +23,4 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 map("x", "<leader>p", '"_dP')
 
 map("n", "<C-y>", "mmyyp`mj", { desc = "duplicate line", noremap = true })
-map("v", "<C-y>", "y`>p", { desc = "duplicate selection", noremap = true })
+map("v", "<C-y>", "y`>p`[V`]", { desc = "duplicate selection", noremap = true })

@@ -110,7 +110,7 @@ in {
   programs.tmux = {
     enable = true;
     mouse = true;
-    shell = "${pkgs.zsh}/bin/zsh";
+    # shell = "${pkgs.zsh}/bin/zsh";
     terminal = "screen-256color";
     historyLimit = 50000;
 
@@ -121,11 +121,31 @@ in {
     sensibleOnTop = true;
 
     extraConfig = ''
+      # https://github.com/nix-community/home-manager/issues/5952
+      # set -gu default-command
+      # set -g default-shell "$SHELL"
       source-file ~/.config/tmux/overrides.conf
     '';
 
     plugins =
       (with pkgs; [
+        {
+          # https://github.com/nix-community/home-manager/issues/5952
+          plugin = tmuxPlugins.mkTmuxPlugin {
+            pluginName = "nix-shellfix";
+            version = "1";
+            src = writeTextFile {
+              name = "nix-shellfix-plugin";
+              destination = "/nix_shellfix.tmux";
+              executable = true;
+              text = '''';
+            };
+          };
+          extraConfig = ''
+            set -gu default-command
+            set -g default-shell "$SHELL"
+          '';
+        }
         {
           plugin = tmuxPlugins.yank;
         }
@@ -167,29 +187,49 @@ in {
           plugin = tmuxPlugins.tmux-thumbs;
         }
         {
-          plugin = tmuxPlugins.vim-tmux-navigator;
+          plugin = tmuxPlugins.mkTmuxPlugin {
+            pluginName = "vim-tmux-navigator";
+            rtpFilePath = "vim-tmux-navigator.tmux";
+            version = "unstable-2022-08-21";
+            src = fetchFromGitHub {
+              owner = "maxbol";
+              repo = "vim-tmux-navigator";
+              rev = "8cc0ac7cf9f2d28aa9a696a93cee8e70c0395b15";
+              hash = "sha256-WoKS+aHcJL03IwVbDJtBEqPa9kNbccg01bkYTSq0B1U=";
+            };
+          };
           extraConfig = ''
-            # Smart pane switching with awareness of Vim splits.
-            # See: https://github.com/christoomey/vim-tmux-navigator
-            is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-                | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
-            bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
-            bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
-            bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-            bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
-            tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
-            if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
-                "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
-            if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
-                "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
-
-            bind-key -T copy-mode-vi 'C-h' select-pane -L
-            bind-key -T copy-mode-vi 'C-j' select-pane -D
-            bind-key -T copy-mode-vi 'C-k' select-pane -U
-            bind-key -T copy-mode-vi 'C-l' select-pane -R
-            bind-key -T copy-mode-vi 'C-\' select-pane -l
+            set -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
+            set -g @vim_navigator_mapping_right "C-Right C-l"
+            set -g @vim_navigator_mapping_up "C-k"
+            set -g @vim_navigator_mapping_down "C-j"
+            set -g @vim_navigator_mapping_prev ""  # removes the C-\ binding
           '';
         }
+        # {
+        #   plugin = tmuxPlugins.vim-tmux-navigator;
+        #   extraConfig = ''
+        #     # Smart pane switching with awareness of Vim splits.
+        #     # See: https://github.com/christoomey/vim-tmux-navigator
+        #     is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+        #         | grep -iqE '(view|l?n?vim?x?|fzf)(diff)?'"
+        #     bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+        #     bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+        #     bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+        #     bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+        #     tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+        #     if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+        #         "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+        #     if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+        #         "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+        #
+        #     bind-key -T copy-mode-vi 'C-h' select-pane -L
+        #     bind-key -T copy-mode-vi 'C-j' select-pane -D
+        #     bind-key -T copy-mode-vi 'C-k' select-pane -U
+        #     bind-key -T copy-mode-vi 'C-l' select-pane -R
+        #     bind-key -T copy-mode-vi 'C-\' select-pane -l
+        #   '';
+        # }
       ])
       ++ [
         {

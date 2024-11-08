@@ -4,18 +4,24 @@
       lib,
       origin,
       ...
-    }: {
+    }: let
+      inputsToRegistry = lib.attrsets.mapAttrs (_: input: {
+        flake = input;
+      });
+    in {
       home.stateVersion = "24.05";
       nix.settings.experimental-features = lib.mkForce ["nix-command" "flakes"];
 
-      nix.registry = {
-        zig-overlay = {
-          flake = origin.inputs.zig-overlay;
-        };
-        zls = {
-          flake = origin.inputs.zls;
-        };
-      };
+      nix.registry = inputsToRegistry origin.inputs;
+
+      # nix.registry = {
+      #   zig-overlay = {
+      #     flake = origin.inputs.zig-overlay;
+      #   };
+      #   zls = {
+      #     flake = origin.inputs.zls;
+      #   };
+      # };
 
       copper.features = [
         "link-config"

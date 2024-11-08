@@ -87,7 +87,6 @@ in {
   ];
 
   programs.eza.enable = true;
-
   programs.zsh = {
     enable = true;
     # dotDir = ".config/zsh";
@@ -154,6 +153,9 @@ in {
       fi
 
       export ZIG_BLEEDING_EDGE_BIN="${zig-bleeding-edge}/bin/zig"
+
+      eval "$(${lib.getExe pkgs.bat-extras.batman} --export-env)"
+      # export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
       setopt PUSHDSILENT
     '';
