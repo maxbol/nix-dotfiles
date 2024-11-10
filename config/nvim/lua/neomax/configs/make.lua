@@ -83,9 +83,8 @@ end
 
 function M.make(statusmsg, makecmd, grepcmd, on_success, on_failure)
 	local lines = {}
+	local grep_lines = {}
 	print(statusmsg .. ": " .. makecmd)
-
-	local cmd = string.format("%s %s", makecmd, grepcmd)
 
 	local function on_output(_, data, _)
 		if data then
@@ -97,29 +96,75 @@ function M.make(statusmsg, makecmd, grepcmd, on_success, on_failure)
 		end
 	end
 
-	local function on_exit(_, _, _)
-		vim.fn.setqflist({}, " ", {
-			title = cmd,
-			lines = lines,
-			-- efm = vim.api.nvim_buf_get_option(bufnr, "errorformat"),
-		})
+	local function on_exit(_, exit_code)
 		if #lines > 0 then
-			vim.api.nvim_command("copen")
-			print("Encountered " .. #lines .. " errors, opening quickfix list")
+			local grep_pipe_cmd = "cat <<EOF " .. grepcmd .. "\n" .. table.concat(lines, "\n") .. "\nEOF"
+			local grep_io = assert(io.popen(grep_pipe_cmd, "r"))
+			local grep_output = grep_io:read("*a")
+			grep_io:close()
+			if grep_output ~= nil then
+				grep_output = grep_output:gsub("\n$", "")
+				if grep_output ~= "" then
+					grep_lines = vim.split(grep_output, "\n")
+				end
+			end
+		end
+
+		vim.fn.setqflist({}, " ", {
+			title = makecmd,
+			lines = grep_lines,
+		})
+
+		if #grep_lines > 0 then
+			vim.cmd("copen")
+			print("Encountered " .. #grep_lines .. " errors, opening quickfix list")
+			if on_failure then
+				on_failure()
+			end
+		elseif exit_code ~= 0 then
+			-- No greppable error lines, so we can't create a quickfix list. Instead, let's
+			-- open a split with a temporary buffer showing the entire cmd output.
+			--
+			local out_lines = {
+				"Make error: " .. makecmd .. " failed with exit code " .. exit_code,
+				"Command output:",
+				"",
+			}
+
+			if #lines == 0 then
+				lines = { "The command exited with a non-zero exit code but provided no output" }
+			end
+
+			for _, line in ipairs(lines) do
+				table.insert(out_lines, line)
+			end
+
+			table.insert(out_lines, "")
+			table.insert(out_lines, "(Press <CR> to close this buffer...)")
+
+			vim.cmd("10sp")
+			vim.cmd("enew")
+			vim.cmd("setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap")
+			vim.keymap.set("n", "<CR>", ":q<CR>", { buffer = vim.api.nvim_win_get_buf(0) })
+			vim.api.nvim_buf_set_lines(0, 0, -1, false, out_lines)
+			vim.cmd("cclose")
+
+			print("Encountered non-line enumerated error, opening error buffer")
+
 			if on_failure then
 				on_failure()
 			end
 		else
-			vim.api.nvim_command("cclose")
+			vim.cmd("cclose")
 			print("OK!")
 			if on_success then
 				on_success()
 			end
 		end
-		-- vim.api.nvim_command("doautocmd QuickFixCmdPost")
+		vim.cmd("doautocmd QuickFixCmdPost")
 	end
 
-	vim.fn.jobstart(cmd, {
+	vim.fn.jobstart(makecmd, {
 		on_stderr = on_output,
 		on_stdout = on_output,
 		on_exit = on_exit,
