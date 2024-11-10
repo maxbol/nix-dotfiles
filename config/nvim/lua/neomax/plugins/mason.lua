@@ -16,8 +16,8 @@ return {
 			"eslint-lsp",
 			"eslint_d",
 			-- c/cpp stuff
-			"clangd",
-			"clang-format",
+			-- "clangd",
+			-- "clang-format",
 			-- go
 			-- "golangci-lint",
 			-- "gopls", --Install globally

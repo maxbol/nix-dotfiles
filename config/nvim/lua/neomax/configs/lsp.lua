@@ -141,6 +141,10 @@ lspconfig.lua_ls.setup({
 	},
 })
 
+-- https://github.com/NixOS/nixpkgs/issues/354768
+-- local clangd_path = vim.fn.system("uname -s") == "Darwin\n" and "/usr/bin/clangd" or "clangd"
+local clangd_path = "clangd"
+
 lspconfig.clangd.setup({
 	on_init = on_init,
 	on_attach = on_attach,
@@ -161,7 +165,8 @@ lspconfig.clangd.setup({
 		).find_git_ancestor(fname)
 	end,
 	cmd = {
-		"clangd",
+		clangd_path,
+		-- "clangd",
 		"--background-index",
 		"--clang-tidy",
 		"--header-insertion=iwyu",

@@ -48,6 +48,7 @@
     nil
     copper.inputs.nix-search-cli
     # ncdu
+    nix-info
     nnn
     nurl
     copper.packages.plate

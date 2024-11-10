@@ -52,8 +52,6 @@ in {
       # C/C++
       gcc
       gnumake
-      clang-tools_18
-      # vscode-extensions.llvm-org.lldb-vscode
       llvm_18
       lldb_18
       tracy
