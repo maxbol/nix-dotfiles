@@ -14,6 +14,12 @@
 
       nix.registry = inputsToRegistry origin.inputs;
 
+      nix.gc = {
+        automatic = true;
+        frequency = "daily";
+        options = "--delete-older-than 30d";
+      };
+
       # nix.registry = {
       #   zig-overlay = {
       #     flake = origin.inputs.zig-overlay;

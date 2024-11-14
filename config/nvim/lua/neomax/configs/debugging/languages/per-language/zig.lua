@@ -1,3 +1,4 @@
+local cache = require("neomax.configs.debugging.cache")
 local dap = require("dap")
 
 local env = function()
@@ -8,12 +9,12 @@ local env = function()
 	return variables
 end
 
-local listExecutables = function()
+local listZigOutExecutables = function()
 	return vim.split(vim.fn.glob(vim.fn.getcwd() .. "/zig-out/bin/*"), "\n", { trimempty = true })
 end
 
 local function getLastModifiedExecutable()
-	local files = listExecutables()
+	local files = listZigOutExecutables()
 	local lastModified = 0
 	local lastModifiedFile = nil
 
@@ -28,17 +29,8 @@ local function getLastModifiedExecutable()
 	return lastModifiedFile
 end
 
-local function selectExecutable(callback)
-	local files = listExecutables()
-	if #files == 0 then
-		print("No executables found, can't debug")
-		callback(nil)
-	end
-
-	vim.ui.select(files, {
-		prompt = "Select executable",
-	}, callback)
-end
+local selectExecutable = cache.makeProgramSelector("zig", 15)
+local selectZigOutExecutable = cache.makeProgramSelector("zig", 15, listZigOutExecutables)
 
 dap.configurations.zig = {
 	{
@@ -55,7 +47,7 @@ dap.configurations.zig = {
 			-- Fallback to selection mode
 			local co = coroutine.running()
 			return coroutine.create(function()
-				selectExecutable(function(val)
+				selectZigOutExecutable(function(val)
 					print("Selected file: " .. val)
 					coroutine.resume(co, val)
 				end)
@@ -70,7 +62,27 @@ dap.configurations.zig = {
 		env = env,
 	},
 	{
-		name = "Debug selected executable",
+		name = "Debug zig-out executable",
+		type = "lldb",
+		request = "launch",
+		program = function()
+			local co = coroutine.running()
+			return coroutine.create(function()
+				selectZigOutExecutable(function(val)
+					coroutine.resume(co, val)
+				end)
+			end)
+		end,
+		cwd = "${workspaceFolder}",
+		stopOnEntry = false,
+		args = {},
+		console = "integratedTerminal",
+		killBehavior = "polite",
+		disableOptimisticBPs = true,
+		env = env,
+	},
+	{
+		name = "Debug executable",
 		type = "lldb",
 		request = "launch",
 		program = function()

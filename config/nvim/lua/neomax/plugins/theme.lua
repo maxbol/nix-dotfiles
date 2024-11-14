@@ -41,6 +41,14 @@ return {
 
 			-- Themes
 			{
+				"Shatur/neovim-ayu",
+				config = function()
+					require("ayu").setup({
+						terminal = false,
+					})
+				end,
+			},
+			{
 				"scottmckendry/cyberdream.nvim",
 			},
 			{

@@ -8,8 +8,7 @@
 with lib; let
   cfg = config.copper.chroma;
   nvim-colorctl = origin.inputs.nvim-colorctl.packages.${pkgs.system}.default;
-
-  inherit (import ../../../../lib/types.nix {inherit lib;}) colorType;
+  # inherit (import ../../../../lib/types.nix {inherit lib;}) colorType;
 in {
   options = {
     copper.chroma.neovim.enable = mkOption {
@@ -26,14 +25,14 @@ in {
     copper.chroma.programs.neovim = {
       themeOptions = {
         colorscheme = mkOption {
-          type = types.string;
+          type = types.str;
           example = "nord";
           description = ''
             The neovim theme to use.
           '';
         };
         background = mkOption {
-          type = types.string;
+          type = types.str;
           example = "dark";
           default = "dark";
           description = ''

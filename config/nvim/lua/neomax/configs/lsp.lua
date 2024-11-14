@@ -108,7 +108,7 @@ local servers = {
 	"html",
 	"cssls",
 	-- "clangd",
-	"bufls",
+	"buf_ls",
 	-- "tsserver",
 	"eslint",
 	"nixd",

@@ -12,6 +12,21 @@ end
 
 local M = {}
 
+M.max_history = 15
+
+function M.insertCmdInList(cmds, cmd)
+	local new_cmds = { cmd }
+	for i, c in ipairs(cmds) do
+		if i >= M.max_history then
+			break
+		end
+		if c ~= cmd then
+			table.insert(new_cmds, c)
+		end
+	end
+	return new_cmds
+end
+
 function M.getProjectFiles(cwd)
 	local dir = g.makefile_root .. "/" .. cwd
 
@@ -27,51 +42,58 @@ end
 
 function M.getLastCmds(defaults, cwd)
 	local files = M.getProjectFiles(cwd)
-	local makecmd
-	local runcmd
-	local lintcmd
+	local makecmd = {}
+	local runcmd = {}
+	local lintcmd = {}
 
-	if vim.fn.filereadable(files.makefile) == 0 then
-		makecmd = defaults.makecmd
-	else
-		makecmd = vim.fn.readfile(files.makefile)[1]
+	if vim.fn.filereadable(files.makefile) == 1 then
+		makecmd = vim.fn.readfile(files.makefile)
 	end
 
-	if vim.fn.filereadable(files.runfile) == 0 then
-		runcmd = defaults.runcmd
-	else
-		runcmd = vim.fn.readfile(files.runfile)[1]
+	if vim.fn.filereadable(files.runfile) == 1 then
+		runcmd = vim.fn.readfile(files.runfile)
 	end
 
-	if vim.fn.filereadable(files.lintfile) == 0 then
-		lintcmd = defaults.lintcmd
-	else
-		lintcmd = vim.fn.readfile(files.lintfile)[1]
+	if vim.fn.filereadable(files.lintfile) == 1 then
+		lintcmd = vim.fn.readfile(files.lintfile)
+	end
+
+	if #makecmd == 0 then
+		makecmd = { defaults.makecmd }
+	end
+
+	if #runcmd == 0 then
+		runcmd = { defaults.runcmd }
+	end
+
+	if #lintcmd == 0 then
+		lintcmd = { defaults.lintcmd }
 	end
 
 	return { makecmd = makecmd, runcmd = runcmd, lintcmd = lintcmd }
 end
 
-function M.storeLintCmd(cmd, cwd)
+function M.storeLintCmds(cmds, cwd)
 	local files = M.getProjectFiles(cwd)
-	vim.fn.writefile({ cmd }, files.lintfile)
+	vim.fn.writefile(cmds, files.lintfile)
 end
 
-function M.storeMakeCmd(cmd, cwd)
+function M.storeMakeCmds(cmds, cwd)
 	local files = M.getProjectFiles(cwd)
-	vim.fn.writefile({ cmd }, files.makefile)
+	vim.fn.writefile(cmds, files.makefile)
 end
 
-function M.storeRunCmd(cmd, cwd)
+function M.storeRunCmds(cmds, cwd)
 	local files = M.getProjectFiles(cwd)
-	vim.fn.writefile({ cmd }, files.runfile)
+	vim.fn.writefile(cmds, files.runfile)
 end
 
-function M.getCmdWithArgs(cmd, cb)
-	vim.ui.input({
-		prompt = "Arguments:",
-		completion = "shellcmd",
-		default = cmd,
+function M.getCustomCmd(cmds, cb)
+	local default = #cmds == 1 and cmds[1] or nil
+	vim.ui.select(cmds, {
+		prompt = "Enter command:",
+		default = default,
+		include_prompt_in_entries = true,
 	}, function(cmd_with_args)
 		if not cmd_with_args then
 			return
@@ -79,6 +101,11 @@ function M.getCmdWithArgs(cmd, cb)
 
 		cb(cmd_with_args)
 	end)
+	-- vim.ui.input({
+	-- 	prompt = "Arguments:",
+	-- 	completion = "shellcmd",
+	-- 	default = cmd,
+	-- }, function(cmd_with_args) end)
 end
 
 function M.make(statusmsg, makecmd, grepcmd, on_success, on_failure)
@@ -161,7 +188,7 @@ function M.make(statusmsg, makecmd, grepcmd, on_success, on_failure)
 				on_success()
 			end
 		end
-		vim.cmd("doautocmd QuickFixCmdPost")
+		-- vim.cmd("doautocmd QuickFixCmdPost")
 	end
 
 	vim.fn.jobstart(makecmd, {
@@ -198,28 +225,35 @@ function M.run(runcmd, on_success, on_failure)
 	end
 end
 
+-- TODO(2024-11-10, Max Bolotin): We have managed to set up dressing.nvim to handle a more lazy select,
+-- now let's finish our masterpiece by storing a list of up to N historical cmds being run for each type of cmd
+-- and feed them into the vim.ui.select
 function M.mapMake(o)
 	map("n", o.mappingDefault, function()
-		M.make(o.label, o.getCmd(), o.grepcmd)
+		M.make(o.label, o.getCmds()[1], o.grepcmd)
 	end, { desc = o.descDefault, buffer = o.buffer })
 	map("n", o.mappingCustom, function()
-		M.getCmdWithArgs(o.getCmd(), function(cmd)
-			M.make(o.label, cmd, o.grepcmd, o.setCmd(cmd))
+		local cmds = o.getCmds()
+		M.getCustomCmd(cmds, function(cmd)
+			M.make(o.label, cmd, o.grepcmd, o.setCmds(M.insertCmdInList(cmds, cmd)))
 		end)
 	end, { desc = o.descCustom, buffer = o.buffer })
 end
 
 function M.mapMakeRun(o)
 	map("n", o.mappingDefault, function()
-		M.make(o.label, o.getMakeCmd(), o.grepcmd, function()
-			print("Running project: " .. o.getCmd())
-			M.run(o.getCmd())
+		M.make(o.label, o.getMakeCmds()[1], o.grepcmd, function()
+			local cmd = o.getCmds()[1]
+			print("Running project: " .. cmd)
+			M.run(cmd)
 		end)
 	end, { desc = o.descDefault, buffer = o.buffer })
 	map("n", o.mappingCustom, function()
-		M.getCmdWithArgs(o.getCmd(), function(cmd)
-			M.make(o.label, o.getMakeCmd(), o.grepcmd, function()
-				M.run(cmd, o.setCmd(cmd))
+		local cmds = o.getCmds()
+		M.getCustomCmd(cmds, function(cmd)
+			M.make(o.label, o.getMakeCmds()[1], o.grepcmd, function()
+				print("Running project: " .. cmd)
+				M.run(cmd, o.setCmds(M.insertCmdInList(cmds, cmd)))
 			end)
 		end)
 	end, { desc = o.descCustom, buffer = o.buffer })
@@ -248,40 +282,39 @@ function M.makeLanguage(opts)
 		return cmds_per_cwd[cwd]
 	end
 
-	local function getMakeCmd()
+	local function getMakeCmds()
 		return getCmdsByCwd(vim.fn.getcwd()).makecmd
 	end
 
-	local function getRunCmd()
+	local function getRunCmds()
 		return getCmdsByCwd(vim.fn.getcwd()).runcmd
 	end
 
-	local function getLintCmd()
+	local function getLintCmds()
 		return getCmdsByCwd(vim.fn.getcwd()).lintcmd
 	end
 
-	local function setMakeCmd(cmd)
+	local function setMakeCmds(cmds)
 		local cwd = vim.fn.getcwd()
-		cmds_per_cwd[cwd].makecmd = cmd
-		print("Setting make cmd to " .. cmd)
+		cmds_per_cwd[cwd].makecmd = cmds
 		return function()
-			M.storeMakeCmd(cmd, cwd)
+			M.storeMakeCmds(cmds, cwd)
 		end
 	end
 
-	local function setRunCmd(cmd)
+	local function setRunCmds(cmds)
 		local cwd = vim.fn.getcwd()
-		cmds_per_cwd[cwd].runcmd = cmd
+		cmds_per_cwd[cwd].runcmd = cmds
 		return function()
-			M.storeRunCmd(cmd, cwd)
+			M.storeRunCmds(cmds, cwd)
 		end
 	end
 
-	local function setLintCmd(cmd)
+	local function setLintCmds(cmds)
 		local cwd = vim.fn.getcwd()
-		cmds_per_cwd[cwd].lintcmd = cmd
+		cmds_per_cwd[cwd].lintcmd = cmds
 		return function()
-			M.storeLintCmd(cmd, cwd)
+			M.storeLintCmd(cmds, cwd)
 		end
 	end
 
@@ -293,8 +326,8 @@ function M.makeLanguage(opts)
 		callback = function(o)
 			if lintcmd ~= nil then
 				M.mapMake({
-					getCmd = getLintCmd,
-					setCmd = setLintCmd,
+					getCmds = getLintCmds,
+					setCmds = setLintCmds,
 					grepcmd = grepcmds.lint,
 					buffer = o.buf,
 					descDefault = "Lint project",
@@ -307,8 +340,8 @@ function M.makeLanguage(opts)
 
 			if makecmd ~= nil then
 				M.mapMake({
-					getCmd = getMakeCmd,
-					setCmd = setMakeCmd,
+					getCmds = getMakeCmds,
+					setCmds = setMakeCmds,
 					grepcmd = grepcmds.make,
 					buffer = o.buf,
 					descDefault = "Build project",
@@ -320,9 +353,9 @@ function M.makeLanguage(opts)
 
 				if runcmd ~= nil then
 					M.mapMakeRun({
-						getCmd = getRunCmd,
-						getMakeCmd = getMakeCmd,
-						setCmd = setRunCmd,
+						getCmds = getRunCmds,
+						getMakeCmds = getMakeCmds,
+						setCmds = setRunCmds,
 						grepcmd = grepcmds.make,
 						buffer = o.buf,
 						descDefault = "Run project",

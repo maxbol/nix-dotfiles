@@ -52,6 +52,7 @@ in {
       # C/C++
       gcc
       gnumake
+      checkmake
       llvm_18
       lldb_18
       tracy
@@ -109,7 +110,7 @@ in {
       # Low level tools
       lsof
       # netcat-openbsd
-      procps
+      # procps
     ])
     ++ [
       # Wrappers, custom and non-nixpkgs packages

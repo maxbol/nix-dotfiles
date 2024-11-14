@@ -1,23 +1,8 @@
 local cache = require("neomax.configs.debugging.cache")
+local env = require("neomax.configs.debugging.env")
 local dap = require("dap")
 
-local env = function()
-	local variables = {}
-	for k, v in pairs(vim.fn.environ()) do
-		table.insert(variables, string.format("%s=%s", k, v))
-	end
-	return variables
-end
-
-local function selectExecutable(callback)
-	local default = cache.getLastDebugCmd("c", vim.fn.getcwd(-1))
-	vim.ui.input({ prompt = "Select executable to debug", completion = "file", default = default }, function(cmd)
-		if cmd ~= nil then
-			cache.storeDebugCmd("c", vim.fn.getcwd(-1), cmd)
-		end
-		callback(cmd)
-	end)
-end
+local selectExecutable = cache.makeProgramSelector("c", 15)
 
 dap.configurations.c = {
 	{
@@ -41,6 +26,6 @@ dap.configurations.c = {
 		console = "integratedTerminal",
 		killBehavior = "polite",
 		disableOptimisticBPs = true,
-		env = env,
+		env = env.default(),
 	},
 }

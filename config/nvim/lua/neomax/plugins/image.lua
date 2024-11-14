@@ -12,6 +12,7 @@ return {
 		-- branch = "master",
 		dependencies = { "luarocks.nvim" },
 		lazy = false,
+		filetypes = { "markdown", "vimwiki", "nofile", "image", "jpg", "png", "gif", "webp" },
 		config = function()
 			local image = require("image")
 			image.setup({
@@ -49,9 +50,9 @@ return {
 				hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
 			})
 
-			augroup("ImageResizeKeymap", { clear = true })
+			local image_resize_keymap = augroup("ImageResizeKeymap", { clear = true })
 			autocmd("BufRead", {
-				group = "image.nvim",
+				group = image_resize_keymap,
 				callback = function(o)
 					local bufnr = o.buf
 					local images = image.get_images({ buffer = bufnr })

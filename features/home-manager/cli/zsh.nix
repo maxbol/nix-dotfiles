@@ -133,8 +133,11 @@ in {
       _comp_options+=(globdots)
 
       token_file="${config.xdg.configHome}/.github_packages_token"
-      if [ -f "$token_file" ]; then export NPM_TOKEN=$(cat "$token_file"); fi
-      if [ -f "$token_file" ]; then export GOTOKEN=$(cat "$token_file"); fi
+      if [ -f "$token_file" ]; then
+        export NPM_TOKEN=$(cat "$token_file");
+        export GOTOKEN=$(cat "$token_file");
+        export NIX_CONFIG="access-tokens = github.com=$(cat "$token_file")"
+      fi
 
       source <(${lib.getExe maxdots.packages.clockify-cli} completion zsh)
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
