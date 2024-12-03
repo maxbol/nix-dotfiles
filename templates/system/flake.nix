@@ -10,7 +10,8 @@
     copper.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs: inputs.copper.lib.mkGleamingFlake inputs ./. "myprefix" (flakeModules: {
-    # Your custom flake attrributes go here!
-  });
+  outputs = inputs:
+    inputs.copper.lib.mkGleamingFlake inputs ./. "myprefix" (flakeModules: {
+      # Your custom flake attrributes go here!
+    });
 }

@@ -19,12 +19,17 @@ in {
     package = maxdots.packages.kitty-nightly;
     font.name = lib.mkForce font;
     settings = {
-      background_blur = 0;
-      hide_window_decorations = "yes";
+      background_blur = 10;
+      dynamic_background_opacity = "yes";
+      hide_window_decorations =
+        if pkgs.stdenv.hostPlatform.isDarwin
+        then "titlebar-only"
+        else "yes";
+      window_margin_width = 5;
       window_padding_width = 5;
       background_opacity = "0.9";
       # macos_thicken_font = 1;
-      font_size = 20;
+      font_size = 22;
       # modify_font = "cell_height 110%";
       confirm_os_window_close = 0;
       placement_strategy = "top-left";

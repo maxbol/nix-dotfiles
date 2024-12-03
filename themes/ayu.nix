@@ -1,208 +1,128 @@
 {
   pkgs,
+  self,
   variant ? "dark",
-  accent ? "blue",
-  accent2 ? "green",
-  accent3 ? "red",
+  accent ? "yellow",
+  accent2 ? "blue",
+  accent3 ? "orange",
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
+  sketchybarOverrides ? p: {},
   neovimOverrides ? p: {},
-  luminance ? "dark",
   ...
 }: let
-  ayuColors = pkgs.buildNpmPackage {
-    pname = "ayu";
-    version = "8.0.1";
-    src = pkgs.fetchFromGitHub {
-      owner = "ayu-theme";
-      repo = "ayu-colors";
-      rev = "60fdf5d39c5ef36c081b081c1fb90b5e7cc24f4d";
-      sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-    };
+  variants = [
+    "dark"
+    "mirage"
+    "light"
+  ];
+
+  ayuTmTheme = pkgs.fetchFromGitHub {
+    owner = "dempfi";
+    repo = "ayu";
+    rev = "3.2.2";
+    sha256 = "sha256-BDkZ7RsUx8t20n7i6htCQM/vPOR89guWfAOaCXi1oC0=";
   };
 
-  ayuPaletteJson = pkgs.mkDerivation {
-    src = pkgs.writeText {
-      name = "ayuPaletteToJson.js";
-      executable = true;
-      destination = "/ayuPaletteToJson.js";
-      text = ''
-        #!/usr/bin/env nix-shell
-        #!nix-shell -i node -p nodejs
-        const colors = require("${ayuColors}");
-        const theme = colors.${variant};
-
-        const paletteJson = {};
-
-        for (const groupKey in theme) {
-          if (paletteJson[groupKey] === undefined) {
-            paletteJson[groupKey] = {};
-          }
-
-          for (const colorKey in theme[groupKey]) {
-            paletteJson[groupKey][colorKey] = theme[groupKey][colorKey].hex("rgb");
-          }
-        }
-
-        console.log(JSON.stringify(paletteJson));
-      '';
-    };
+  ayuFishTheme = pkgs.fetchFromGitHub {
+    owner = "edouard-lopez";
+    repo = "ayu-theme.fish";
+    rev = "v2.0.0";
+    sha256 = "sha256-rx9izD2pc3hLObOehuiMwFB4Ta5G1lWVv9Jdb+JHIz0=";
   };
 
-  ayuPaletteToJson = pkgs.writeText {
-    name = "ayuPaletteToJson.js";
-    executable = true;
-    destination = "/ayuPaletteToJson.js";
-    text = ''
-      #!/usr/bin/env nix-shell
-      #!nix-shell -i node -p nodejs
-      const colors = require("${ayuColors}");
-      const theme = colors.${variant};
+  ayuYaziFlavor = pkgs.fetchFromGitHub {
+    owner = "kmlupreti";
+    repo = "ayu-dark.yazi";
+    rev = "441a38d56123e8670dd4962ab126f6d9f1942f40";
+    sha256 = "sha256-AaTCYzZe90Wri/jnku8pO2hXTFhqBPlAGBo5U9gwfSs=";
+  };
 
-      const paletteJson = {};
-
-      for (const groupKey in theme) {
-        if (paletteJson[groupKey] === undefined) {
-          paletteJson[groupKey] = {};
-        }
-
-        for (const colorKey in theme[groupKey]) {
-          paletteJson[groupKey][colorKey] = theme[groupKey][colorKey].hex("rgb");
-        }
-      }
-
-      console.log(JSON.stringify(paletteJson));
+  ayuPaletteToJson = pkgs.buildNpmPackage {
+    pname = "ayu-palette-to-json";
+    version = "1.0.0";
+    src = ./resources/ayu/ayuPalette2Json;
+    npmDepsHash = "sha256-RHOOeJ9jpBF5SwKFcGUPBJK8E/u9XmpSKR4MJzz+Tv8=";
+    postInstall = ''
+      cp $out/lib/node_modules/ayupalette2json/dist/palette.json $out/palette.json
     '';
-  }
-  
-
-  capitalize = str: "${pkgs.lib.toUpper (builtins.substring 0 1 str)}${builtins.substring 1 (builtins.stringLength str) str}";
-
-  palette_ = builtins.toJSON (ayuPaletteToJson)
-
-  palette_ = {
-    fg = "b9c0cb";
-    bg = "282c34";
-    bg_float = "21242D";
-    cursor = "ffcc00";
-    cursor_text = "282c34";
-    black = "41444d";
-    red = "fc2f52";
-    green = "25a45c";
-    yellow = "ff936a";
-    blue = "3476ff";
-    magenta = "7a82da";
-    cyan = "4483aa";
-    white = "cdd4e0";
-    bright_black = "8f9aae";
-    bright_red = "ff637f";
-    bright_green = "3fc56a";
-    bright_yellow = "f9c858";
-    bright_blue = "10b0fe";
-    bright_magenta = "ff78f8";
-    bright_cyan = "5fb9bc";
-    bright_white = "ffffff";
   };
 
-  palette_dark = rec {
+  ayuPaletteJson = pkgs.lib.pipe "${ayuPaletteToJson}/palette.json" [
+    builtins.readFile
+    builtins.fromJSON
+  ];
+
+  toChromaPalette = jsonPalette: rec {
     colors = {
-      red = palette_.bright_red;
-      green = palette_.bright_green;
-      yellow = palette_.bright_yellow;
-      blue = palette_.bright_blue;
+      red = jsonPalette.syntax.markup;
+      green = jsonPalette.syntax.string;
+      yellow = jsonPalette.common.accent;
+      blue = jsonPalette.syntax.entity;
     };
 
     accents = {
       inherit (colors) red green yellow blue;
-      magenta = palette_.bright_magenta;
-      cyan = palette_.bright_cyan;
-      orange = palette_.yellow;
+      lightblue = jsonPalette.syntax.tag;
+      teal = jsonPalette.syntax.regexp;
+      orange = jsonPalette.syntax.keyword;
+      grey = jsonPalette.syntax.comment;
+      mauve = jsonPalette.syntax.constant;
+      peach = jsonPalette.syntax.operator;
     };
 
     semantic = {
-      text = palette_.fg;
-      text1 = palette_.white;
-      text2 = palette_.bright_white;
-      overlay = palette_.black;
-      surface = palette_.bg_float;
-      background = palette_.bg;
+      text = jsonPalette.editor.fg;
+      text1 = jsonPalette.ui.fg;
+      text2 = jsonPalette.ui.selection.active;
+      overlay = jsonPalette.editor.bg;
+      surface = jsonPalette.ui.panel.bg;
+      background = jsonPalette.ui.bg;
       accent1 = accents.${accent};
       accent2 = accents.${accent2};
       accent3 = accents.${accent3};
     };
   };
 
-  palette_light = rec {
-    colors = {
-      red = palette_.red;
-      green = palette_.green;
-      yellow = palette_.yellow;
-      blue = palette_.blue;
-    };
-
-    accents = {
-      inherit (colors) red green yellow blue;
-      magenta = palette_.magenta;
-      cyan = palette_.cyan;
-      orange = palette_.yellow;
-    };
-
-    semantic = {
-      text = palette_.bg;
-      text1 = palette_.bright_black;
-      text2 = palette_.black;
-      overlay = palette_.white;
-      surface = palette_.bright_white;
-      background = palette_.fg;
-      accent1 = accents.${accent};
-      accent2 = accents.${accent2};
-      accent3 = accents.${accent3};
-    };
-  };
+  allPalettes = builtins.foldl' (all: v: all // {${v} = toChromaPalette (ayuPaletteJson.${v});}) {} variants;
 
   telaMap = {
     "red" = "red";
     "green" = "green";
     "yellow" = "yellow";
-    "blue" = "niagara";
-    "purple" = "wisteria";
-    "aqua" = "niagara";
-    "orange" = "darkbrown";
+    "blue" = "blue";
+    "purple" = "mauve";
+    "aqua" = "teal";
+    "orange" = "orange";
   };
 
-  mkStarshipPalette = name: palette: ''
-    [palettes.${name}]
-    text = "#${palette.semantic.text}"
-    subtext0 = "#${palette.semantic.text1}"
-    subtext1 = "#${palette.semantic.text2}"
-    surface0 = "#${palette.semantic.background}"
-    surface1 = "#${palette.semantic.surface}"
-    surface2 = "#${palette.semantic.surface}"
-    overlay0 = "#${palette.semantic.overlay}"
-    overlay1 = "#${palette.semantic.overlay}"
-    overlay2 = "#${palette.semantic.overlay}"
-    red = "#${palette.colors.red}"
-    green = "#${palette.colors.green}"
-    yellow = "#${palette.colors.yellow}"
-    blue = "#${palette.colors.blue}"
-    purple = "#${palette.accents.magenta}"
-    aqua = "#${palette.accents.cyan}"
-    orange = "#${palette.accents.yellow}"
+  mkStarshipPalette = v: let
+    p = allPalettes.${v};
+  in ''
+    [palettes.ayu_${v}]
+    text = "#${p.semantic.text}"
+    subtext0 = "#${p.semantic.text1}"
+    subtext1 = "#${p.semantic.text2}"
+    surface0 = "#${p.semantic.background}"
+    surface1 = "#${p.semantic.surface}"
+    surface2 = "#${p.semantic.surface}"
+    overlay0 = "#${p.semantic.overlay}"
+    overlay1 = "#${p.semantic.overlay}"
+    overlay2 = "#${p.semantic.overlay}"
+    red = "#${p.colors.red}"
+    green = "#${p.colors.green}"
+    yellow = "#${p.colors.yellow}"
+    blue = "#${p.colors.blue}"
+    purple = "#${p.accents.mauve}"
+    aqua = "#${p.accents.teal}"
+    orange = "#${p.accents.yellow}"
   '';
 
-  starshipPalettes = pkgs.writeText "starship-palettes.toml" ''
-    ${mkStarshipPalette "bluloco-dark" palette_dark}
-    ${mkStarshipPalette "bluloco-light" palette_light}
-  '';
-
-  Luminance = capitalize luminance;
+  starshipPalettes = pkgs.writeText "starship-palettes.toml" (pkgs.lib.concatStringsSep "\n\n" (map mkStarshipPalette variants));
 in rec {
-  palette =
-    if luminance == "dark"
-    then palette_dark
-    else palette_light;
+  palette = allPalettes.${variant};
 
   hyprland.colorOverrides = hyprlandOverrides palette;
 
@@ -211,6 +131,11 @@ in rec {
   rofi.colorOverrides = rofiOverrides palette;
 
   tmux.colorOverrides = tmuxOverrides palette;
+
+  sketchybar.colorOverrides = sketchybarOverrides palette;
+
+  yazi.flavor = ayuYaziFlavor;
+  yazi.generateThemeTomlFromPalette = false;
 
   neovim = neovimOverrides palette;
 
@@ -230,16 +155,25 @@ in rec {
   };
 
   kitty = let
-    themeFile = "${bluloco_pkg}/terminal-themes/kitty/Bluloco${Luminance}.conf";
+    confName =
+      if variant == "dark"
+      then "ayu.conf"
+      else "ayu_${variant}.conf";
+    themeFile = "${pkgs.kitty-themes}/share/kitty-themes/themes/${confName}";
     themeConf = builtins.readFile themeFile;
 
     themeSource = pkgs.writeText "theme.conf" ''
       ${themeConf}
+      # background_opacity 1
 
-      background_opacity 0.95
-      # background_opacity 1.0
-      # background_blur 10
-      # macos_thicken_font 1
+      ${
+        if variant == "latte"
+        then ''
+          background_opacity 1
+          macos_thicken_font 1
+        ''
+        else ""
+      }
     '';
   in {
     file."theme.conf".source = themeSource;
@@ -247,26 +181,25 @@ in rec {
 
   starship.palette = {
     file = starshipPalettes;
-    name = "bluloco-${luminance}";
+    name = "ayu_${variant}";
   };
 
   bat.theme = {
-    src = bluloco_pkg;
-    file = "extra/bat/.config/bat/themes/bluloco-${luminance}/bluloco-${luminance}.tmTheme";
+    src = ayuTmTheme;
+    file = "ayu-${variant}.tmTheme";
   };
 
   # TODO: replace with actual-pine theme
   fish.theme = {
-    file = "${pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "fish";
-      rev = "91e6d6721362be05a5c62e235ed8517d90c567c9";
-      hash = "sha256-l9V7YMfJWhKDL65dNbxaddhaM6GJ0CFZ6z+4R6MJwBA=";
-    }}/themes/Catppuccin Mocha.theme";
-    name = "Catppuccin Mocha";
+    file = "${ayuFishTheme}/conf.d/ayu-${variant}.fish";
+    name = "ayu_${variant}";
   };
 
   macoswallpaper = {
-    wallpaper = "$HOME/wallpapers/bluloco-default.jpg";
+    wallpaper = "$HOME/wallpapers/ayu-${
+      if variant == "mirage"
+      then "mirage-default.png"
+      else "dark-default.jpg"
+    }";
   };
 }

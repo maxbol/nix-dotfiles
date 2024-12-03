@@ -11,6 +11,9 @@ return {
 		},
 	},
 	opts = {
+		ui = {
+			max_height = 5,
+		},
 		sort = "last",
 	},
 }

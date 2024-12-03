@@ -61,11 +61,6 @@ o.splitright = true
 o.timeoutlen = 400
 o.undofile = true
 
--- Copilot settings
-vim.g.copilot_no_tab_map = true
-vim.g.copilot_assume_mapped = true
-vim.g.copilot_tab_fallback = ""
-
 -- interval for writing swap file to disk, also used by gitsigns
 o.updatetime = 250
 
@@ -88,11 +83,12 @@ g["loaded_ruby_provider"] = 0
 -- vim.cmd("let &efm .= ',%f:%l:%c\\ %t\\ %m'")
 -- vim.cmd([[let &efm .= ',%*[^"]"%f"%*\D%l:%c %t %m']])
 
+-- c headers are c, not cpp lol
+g["c_syntax_for_h"] = 1
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
-
-g["surround_no_mappings"] = 1
 
 -- Neovide settings
 if vim.g.neovide then

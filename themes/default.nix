@@ -3,6 +3,57 @@
   extraArgs,
   ...
 }: {
+  Ayu-Dark = pkgs.callPackage ./ayu.nix (extraArgs
+    // {
+      copper = extraArgs.inputs.copper.packages;
+      variant = "dark";
+
+      tmuxOverrides = palette: {
+        status_window_active_fg = palette.semantic.surface;
+        status_modules_inner_bg = palette.semantic.overlay;
+        status_modules_inner_fg = palette.semantic.text2;
+        status_modules_outer_bg = palette.accents.lightblue;
+        status_modules_outer_fg = palette.semantic.surface;
+      };
+
+      neovimOverrides = palette: {
+        colorscheme = "ayu-dark";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#" + palette.semantic.accent1;
+          HLLineNum1 = "#" + palette.semantic.accent1;
+          LineNr = "#" + palette.semantic.text2;
+          IncSearch = "#" + palette.semantic.background;
+        };
+        hlGroupsBg = {
+          Visual = "#" + palette.semantic.text2;
+          IncSearch = "#" + palette.accents.mauve;
+        };
+      };
+    });
+
+  Ayu-Mirage = pkgs.callPackage ./ayu.nix (extraArgs
+    // {
+      copper = extraArgs.inputs.copper.packages;
+      variant = "mirage";
+
+      tmuxOverrides = palette: {
+        status_window_active_fg = palette.semantic.surface;
+      };
+
+      neovimOverrides = palette: {
+        colorscheme = "ayu-mirage";
+        background = "dark";
+        hlGroupsFg = {
+          HLChunk1 = "#" + palette.semantic.accent1;
+          HLLineNum1 = "#" + palette.semantic.accent1;
+        };
+        hlGroupsBg = {
+          Visual = "#" + palette.semantic.text2;
+        };
+      };
+    });
+
   Catppuccin-Latte = pkgs.callPackage ./catppuccin.nix (extraArgs
     // {
       copper = extraArgs.inputs.copper.packages;
@@ -30,10 +81,7 @@
       };
 
       tmuxOverrides = palette: {
-        accent1 = palette.accents.sky;
-        accent2 = palette.accents.mauve;
-        accent3 = palette.accents.pink;
-        orange = palette.accents.peach;
+        status_window_active_fg = palette.semantic.surface;
       };
 
       neovimOverrides = palette: {
@@ -79,10 +127,12 @@
       };
 
       tmuxOverrides = palette: {
-        accent1 = palette.accents.sky;
-        accent2 = palette.accents.mauve;
-        accent3 = palette.accents.pink;
-        orange = palette.accents.peach;
+        status_window_active_fg = palette.semantic.surface;
+        status_window_active_bg = palette.accents.rosewater;
+      };
+
+      sketchybarOverrides = palette: {
+        focused_space = palette.accents.rosewater;
       };
 
       neovimOverrides = palette: {
@@ -124,45 +174,57 @@
           HLLineNum1 = "#8ec07c";
         };
         hlGroupsBg = {
-          CursorLine = "#427b58";
-          Visual = "#427b58";
+          # CursorLine = "#" + palette.semantic.overlay;
+          # Visual = "#427b58";
           TelescopeSelection = "#427b58";
         };
       };
-    });
 
-  Gruvbox-Light = pkgs.callPackage ./gruvbox.nix (extraArgs
-    // {
-      luminance = "light";
-
-      hyprlandOverrides = palette: {
-        active1 = "90ceaa"; # "#90ceaa";
-        active2 = "ecd3a0"; # "#ecd3a0";
-        inactive1 = "1e8b50"; # "#1e8b50";
-        inactive2 = "50b050"; # "#50b050";
+      tmuxOverrides = palette: {
+        status_window_active_fg = palette.semantic.surface;
+        status_window_active_bg = palette.accents.aqua;
+        status_modules_inner_bg = palette.accents.orange;
+        status_modules_outer_bg = palette.semantic.overlay;
+        status_modules_outer_fg = palette.semantic.text1;
       };
 
-      rofiOverrides = palette: {
-        main-background = palette.semantic.background;
-        text = palette.semantic.text1;
-        border = palette.semantic.surface;
-        highlight = palette.accents.neutralblue;
-        highlight-text = palette.semantic.text1;
-      };
-
-      waybarOverrides = palette: {
-        overlay = palette.semantic.background;
-      };
-
-      neovimOverrides = palette: {
-        colorscheme = "gruvbox-material";
-        background = "light";
-        hlGroupsFg = {
-          HLChunk1 = "#427b58";
-          HLLineNum1 = "#427b58";
-        };
+      sketchybarOverrides = palette: {
+        focused_space = palette.accents.aqua;
       };
     });
+
+  # Gruvbox-Light = pkgs.callPackage ./gruvbox.nix (extraArgs
+  # // {
+  #   luminance = "light";
+  #
+  #   hyprlandOverrides = palette: {
+  #     active1 = "90ceaa"; # "#90ceaa";
+  #     active2 = "ecd3a0"; # "#ecd3a0";
+  #     inactive1 = "1e8b50"; # "#1e8b50";
+  #     inactive2 = "50b050"; # "#50b050";
+  #   };
+  #
+  #   rofiOverrides = palette: {
+  #     main-background = palette.semantic.background;
+  #     text = palette.semantic.text1;
+  #     border = palette.semantic.surface;
+  #     highlight = palette.accents.neutralblue;
+  #     highlight-text = palette.semantic.text1;
+  #   };
+  #
+  #   waybarOverrides = palette: {
+  #     overlay = palette.semantic.background;
+  #   };
+  #
+  #   neovimOverrides = palette: {
+  #     colorscheme = "gruvbox-material";
+  #     background = "light";
+  #     hlGroupsFg = {
+  #       HLChunk1 = "#427b58";
+  #       HLLineNum1 = "#427b58";
+  #     };
+  #   };
+  # });
 
   Rose-Pine = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
@@ -179,6 +241,9 @@
           Cursor = "#6e6a86";
           Folded = "#44415a";
         };
+      };
+      tmuxOverrides = palette: {
+        status_window_active_fg = palette.semantic.surface;
       };
     });
 
@@ -198,20 +263,23 @@
           Folded = "#44415a";
         };
       };
-    });
-
-  Rose-Pine-Dawn = pkgs.callPackage ./rosepine.nix (extraArgs
-    // {
-      variant = "dawn";
-      neovimOverrides = palette: {
-        colorscheme = "rose-pine-dawn";
-        background = "light";
-        hlGroupsFg = {
-          HLChunk1 = "#907aa9";
-          HLLineNum1 = "#907aa9";
-        };
+      tmuxOverrides = palette: {
+        status_window_active_fg = palette.semantic.surface;
       };
     });
+
+  # Rose-Pine-Dawn = pkgs.callPackage ./rosepine.nix (extraArgs
+  #   // {
+  #     variant = "dawn";
+  #     neovimOverrides = palette: {
+  #       colorscheme = "rose-pine-dawn";
+  #       background = "light";
+  #       hlGroupsFg = {
+  #         HLChunk1 = "#907aa9";
+  #         HLLineNum1 = "#907aa9";
+  #       };
+  #     };
+  #   });
 
   Tsoding-Mode = pkgs.callPackage ./tsoding-mode.nix (extraArgs
     // {
@@ -227,6 +295,20 @@
           FoldColumn = "#181818";
         };
       };
+
+      tmuxOverrides = palette: {
+        status_session_fg = palette.semantic.surface;
+        status_session_bg = palette.accents.yellow;
+        status_window_active_fg = palette.semantic.surface;
+        status_window_active_bg = palette.accents.green;
+        status_modules_inner_bg = palette.accents.wisteria;
+        status_modules_outer_fg = palette.semantic.text1;
+        status_modules_outer_bg = palette.semantic.surface;
+      };
+
+      sketchybarOverrides = palette: {
+        focused_space = palette.accents.green;
+      };
     });
 
   Bluloco-Dark = pkgs.callPackage ./bluloco.nix (extraArgs
@@ -240,30 +322,42 @@
           HLLineNum1 = "#" + palette.semantic.accent1;
         };
       };
-    });
 
-  Bluloco-Light = pkgs.callPackage ./bluloco.nix (extraArgs
-    // {
-      luminance = "light";
-      neovimOverrides = palette: {
-        colorscheme = "bluloco-light";
-        background = "light";
-        hlGroupsFg = {
-          HLChunk1 = "#" + palette.semantic.accent1;
-          HLLineNum1 = "#" + palette.semantic.accent1;
-        };
+      tmuxOverrides = palette: {
+        status_window_active_fg = palette.semantic.text1;
+        status_modules_inner_fg = palette.semantic.surface;
+        status_modules_inner_bg = palette.accents.blue;
+        status_modules_outer_fg = palette.semantic.text2;
+        status_modules_outer_bg = palette.semantic.overlay;
+      };
+
+      yaziOverrides = palette: {
+        filetype_fallback_dir_fg = palette.accents.blue;
       };
     });
 
-  Oh-Lucy = pkgs.callPackage ./ohlucy.nix (extraArgs
-    // {
-      neovimOverrides = palette: {
-        colorscheme = "oh-lucy";
-        background = "dark";
-        hlGroupsFg = {
-          HLChunk1 = "#" + palette.semantic.accent2;
-          HLLineNum1 = "#" + palette.semantic.accent2;
-        };
-      };
-    });
+  # Bluloco-Light = pkgs.callPackage ./bluloco.nix (extraArgs
+  #   // {
+  #     luminance = "light";
+  #     neovimOverrides = palette: {
+  #       colorscheme = "bluloco-light";
+  #       background = "light";
+  #       hlGroupsFg = {
+  #         HLChunk1 = "#" + palette.semantic.accent1;
+  #         HLLineNum1 = "#" + palette.semantic.accent1;
+  #       };
+  #     };
+  #   });
+
+  # Oh-Lucy = pkgs.callPackage ./ohlucy.nix (extraArgs
+  #   // {
+  #     neovimOverrides = palette: {
+  #       colorscheme = "oh-lucy";
+  #       background = "dark";
+  #       hlGroupsFg = {
+  #         HLChunk1 = "#" + palette.semantic.accent2;
+  #         HLLineNum1 = "#" + palette.semantic.accent2;
+  #       };
+  #     };
+  #   });
 }

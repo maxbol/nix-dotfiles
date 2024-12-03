@@ -1,6 +1,7 @@
 {
   modules = [
     ({
+      pkgs,
       lib,
       origin,
       ...
@@ -36,6 +37,7 @@
       maxdots.features = [
         "chroma-darwin"
         "cli-hm"
+        "darwin/sketchybar"
         "development"
         "direnv"
         "neovim"
@@ -48,6 +50,10 @@
       nixpkgs.config.permittedInsecurePackages = [
         "electron-25.9.0"
         "freeimage-unstable-2021-11-01"
+      ];
+
+      home.packages = with pkgs; [
+        tiny
       ];
 
       # programs.ssh.enable = false;

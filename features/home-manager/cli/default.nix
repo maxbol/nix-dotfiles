@@ -37,6 +37,7 @@
     alejandra
     bottom
     copper.inputs.nix-index-database.comma-with-db
+    dipc
     entr
     eza
     fd

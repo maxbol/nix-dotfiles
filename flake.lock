@@ -1729,11 +1729,11 @@
         "zig2nix": "zig2nix_2"
       },
       "locked": {
-        "lastModified": 1730711056,
-        "narHash": "sha256-G2tqHlDILAk3o39jR5geUwRLlg6Hva58TUg2quMxVFg=",
+        "lastModified": 1731837496,
+        "narHash": "sha256-HTVhhWQPTDGi6DcFGHE+nNcR/I2EzF3KxHk4yzCq90U=",
         "owner": "maxbol",
         "repo": "nvim-colorctl",
-        "rev": "e9561958948cf9c3f4ac2a610345bc58893a996e",
+        "rev": "a04611638d90d57cbc1fc825401ac6ced78c95a3",
         "type": "github"
       },
       "original": {

@@ -20,9 +20,18 @@
 
   # Non-nixpkgs packages
   nancy = maxdots.packages.nancy;
+  synp = maxdots.packages.synp;
   zig = origin.inputs.zig-overlay.packages.${pkgs.system}.default;
   zls = origin.inputs.zls.packages.${pkgs.system}.default;
   nixd = origin.inputs.nixd.packages.${pkgs.system}.nixd;
+
+  ccjson = pkgs.writeShellScriptBin "ccjson" ''
+    make --always-make --dry-run \
+     | grep -wE 'clang|gcc|g\+\+' \
+     | grep -w '\-c' \
+     | jq -nR '[inputs|{directory:".", command:., file: match(" [^ ]+$").string[1:]}]' \
+     > compile_commands.json
+  '';
 in {
   home.packages =
     (with pkgs; [
@@ -48,15 +57,23 @@ in {
 
       # Rust
       cargo
+      rust-analyzer
 
       # C/C++
       gcc
       gnumake
       checkmake
-      llvm_18
-      lldb_18
+      llvm_17
+      lldb_17
       tracy
+      bear
       # gdb ## Only available on linux
+
+      #OCaml
+      ocaml
+      dune_3
+      ocamlPackages.ocaml-lsp
+      ocamlPackages.earlybird
 
       # Swift
       sourcekit-lsp
@@ -114,11 +131,13 @@ in {
     ])
     ++ [
       # Wrappers, custom and non-nixpkgs packages
-      sqlcmd
+      ccjson
       nancy
+      nixd
+      sqlcmd
       swag
+      synp
       zig
       zls
-      nixd
     ];
 }

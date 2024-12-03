@@ -9,6 +9,7 @@
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
+  sketchybarOverrides ? p: {},
   neovimOverrides ? p: {},
   ...
 }: let
@@ -144,6 +145,13 @@
     ${mkStarshipPalette "gruvbox-dark" palette_dark}
     ${mkStarshipPalette "gruvbox-light" palette_light}
   '';
+
+  tmTheme = pkgs.fetchFromGitHub {
+    owner = "subnut";
+    repo = "gruvbox-tmTheme";
+    rev = "64c47250e54298b91e2cf8d401320009aba9f991";
+    hash = "sha256-aw6uFn9xGhyv4TJwNgLUQbP72hoB7d+79X9jVcEQAM4=";
+  };
 in rec {
   palette =
     if luminance == "dark"
@@ -157,6 +165,12 @@ in rec {
   rofi.colorOverrides = rofiOverrides palette;
 
   tmux.colorOverrides = tmuxOverrides palette;
+  sketchybar.colorOverrides = sketchybarOverrides palette;
+
+  yazi.colorOverrides = {
+    filetype_fallback_dir_fg = palette.accents.aqua;
+  };
+  yazi.syntectTheme = "${tmTheme}/gruvbox-${luminance}.tmTheme";
 
   neovim = neovimOverrides palette;
 
@@ -225,16 +239,11 @@ in rec {
   };
 
   bat.theme = {
-    src = pkgs.fetchFromGitHub {
-      owner = "subnut";
-      repo = "gruvbox-tmTheme";
-      rev = "64c47250e54298b91e2cf8d401320009aba9f991";
-      hash = "sha256-aw6uFn9xGhyv4TJwNgLUQbP72hoB7d+79X9jVcEQAM4=";
-    };
+    src = tmTheme;
     file = "gruvbox-${luminance}.tmTheme";
   };
 
   macoswallpaper = {
-    wallpaper = "$HOME/wallpapers/gruvbox-default.png";
+    wallpaper = "$HOME/wallpapers/gruvbox-default.jpg";
   };
 }

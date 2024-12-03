@@ -5,7 +5,6 @@
   pkgs,
   ...
 }: let
-  tmux-sessionx = origin.inputs.tmux-sessionx.packages.${pkgs.system}.default;
   clockifyd = origin.inputs.clockifyd.packages.${pkgs.system}.default;
 
   kube-tmux = pkgs.fetchFromGitHub {
@@ -15,97 +14,10 @@
     sha256 = "sha256-PnPj2942Y+K4PF+GH6A6SJC0fkWU8/VjZdLuPlEYY7A=";
   };
 
-  theme-base-module-kube = pkgs.writeTextFile {
-    name = "theme-base-module-kube";
-    text = ''
-      show_kube() {
-        local index=$1
-        local icon=$(get_tmux_option "@theme_base_application_icon" "󱃾")
-        local color=$(get_tmux_option "@theme_base_application_color" "$thm_accent1")
-        local text="#( KUBE_TMUX_NS_ENABLE=false KUBE_TMUX_SYMBOL_ENABLE=false ${kube-tmux}/kube.tmux )"
-
-        local module=$( build_status_module "$index" "$icon" "$color" "$text" )
-
-        echo "$module"
-      }
-    '';
-    destination = "/kube.sh";
-    executable = true;
-  };
-
-  # Clockify statusline module for theme_base
-  theme-base-module-clockify = pkgs.writeTextFile {
-    name = "theme-base-module-clockify";
-    text = ''
-      show_clockify() {
-        local index=$1
-        local icon=$(get_tmux_option "@theme_base_application_icon" "󰥔")
-        local color=$(get_tmux_option "@theme_base_application_color" "$thm_accent3")
-        local text="#( ${clockifyd}/bin/clockifyd-get-current )"
-
-        local module=$( build_status_module "$index" "$icon" "$color" "$text" )
-
-        echo "$module"
-      }
-    '';
-    destination = "/clockify.sh";
-    executable = true;
-  };
-
-  theme-base-custom-plugins = pkgs.symlinkJoin {
-    name = "theme-base-custom-plugins";
-    paths = [
-      theme-base-module-clockify
-      theme-base-module-kube
-    ];
-  };
-
   usr = config.home.username;
   resurrectDirPath = "~/.tmux/resurrect/";
 in {
   copper.file.config."tmux/overrides.conf" = "config/tmux/overrides.conf";
-
-  # systemd.user.services."tmux-master" = {
-  #   Unit = {
-  #     Description = "Tmux master service";
-  #   };
-  #
-  #   Service = {
-  #     Type = "forking";
-  #     ExecStart = "${pkgs.tmux}/bin/tmux new-session -s master -d";
-  #     ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t master";
-  #   };
-  #
-  #   Install = {
-  #     WantedBy = ["multi-user.target"];
-  #   };
-  # };
-  #
-  # systemd.user.services."tmux-scratch" = {
-  #   Unit = {
-  #     Description = "Tmux scratchpad service";
-  #     PartOf = "tmux-master.service";
-  #     After = "tmux-master.service";
-  #   };
-  #
-  #   Service = {
-  #     Type = "oneshot";
-  #     RemainAfterExit = "yes";
-  #     ExecStart = "${pkgs.tmux}/bin/tmux new-session -s scratch -d";
-  #     ExecStop = "${pkgs.tmux}/bin/tmux kill-session -t scratch";
-  #   };
-  #
-  #   Install = {
-  #     WantedBy = ["multi-user.target"];
-  #   };
-  # };
-
-  programs.tmux-themer = {
-    enable = true;
-    customPluginDir = "${theme-base-custom-plugins}";
-    modulesRight = "kube clockify date_time";
-    # modulesRight = "kube date_time";
-  };
 
   programs.tmux = {
     enable = true;
@@ -121,10 +33,13 @@ in {
     sensibleOnTop = true;
 
     extraConfig = ''
-      # https://github.com/nix-community/home-manager/issues/5952
-      # set -gu default-command
-      # set -g default-shell "$SHELL"
+      set -gq @tinted-tmux-modulepane-right-outer "󱃾 #( KUBE_TMUX_NS_ENABLE=false KUBE_TMUX_SYMBOL_ENABLE=false ${kube-tmux}/kube.tmux )"
+      set -gqa @tinted-tmux-modulepane-right-outer "  "
+      set -gqa @tinted-tmux-modulepane-right-outer "󰥔 #( ${clockifyd}/bin/clockifyd-get-current )"
+      set -gqF @tinted-tmux-modulepane-right-inner "%H:%M"
+
       source-file ~/.config/tmux/overrides.conf
+      source ~/.config/chroma/active/tmux/tinted-tmux-statusline.conf
     '';
 
     plugins =
@@ -187,18 +102,6 @@ in {
           plugin = tmuxPlugins.tmux-thumbs;
         }
         {
-          # plugin = tmuxPlugins.mkTmuxPlugin {
-          #   pluginName = "vim-tmux-navigator";
-          #   rtpFilePath = "vim-tmux-navigator.tmux";
-          #   version = "unstable-2022-08-21";
-          #   src = fetchFromGitHub {
-          #     owner = "maxbol";
-          #     repo = "vim-tmux-navigator";
-          #     rev = "8cc0ac7cf9f2d28aa9a696a93cee8e70c0395b15";
-          #     hash = "sha256-WoKS+aHcJL03IwVbDJtBEqPa9kNbccg01bkYTSq0B1U=";
-          #   };
-          # };
-
           plugin = tmuxPlugins.vim-tmux-navigator;
           extraConfig = ''
             set -g @vim_navigator_mapping_left "C-Left C-h"  # use C-h and C-Left
@@ -208,21 +111,14 @@ in {
             set -g @vim_navigator_mapping_prev ""  # removes the C-\ binding
           '';
         }
-      ])
-      ++ [
         {
-          plugin = tmux-sessionx;
+          plugin = tmuxPlugins.session-wizard;
           extraConfig = ''
-            set -g @sessionx-bind 'C-o'
-            set -g @sessionx-x-path '~/dotfiles'
-            set -g @sessionx-window-height '85%'
-            set -g @sessionx-window-width '75%'
-            set -g @sessionx-zoxide-mode 'on'
-            set -g @sessionx-filter-current 'false'
-            set -g @sessionx-preview-enabled 'true'
-            set -g @sessionx-bind-kill-session 'ctrl-q'
+            set -g @session-wizard 'C-o'
           '';
         }
+      ])
+      ++ [
         {
           plugin = maxdots.packages.clockify-tmux;
         }

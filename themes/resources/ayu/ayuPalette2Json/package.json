@@ -1,0 +1,15 @@
+{
+  "name": "ayupalette2json",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p dist && node ./index.js > dist/palette.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "ayu": "^8.0.1"
+  }
+}

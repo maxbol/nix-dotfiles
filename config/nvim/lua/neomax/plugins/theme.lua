@@ -45,6 +45,18 @@ return {
 				config = function()
 					require("ayu").setup({
 						terminal = false,
+						-- transparent mode:
+						overrides = {
+							Normal = { bg = "None" },
+							ColorColumn = { bg = "None" },
+							SignColumn = { bg = "None" },
+							Folded = { bg = "None" },
+							FoldColumn = { bg = "None" },
+							CursorLine = { bg = "None" },
+							CursorColumn = { bg = "None" },
+							WhichKeyFloat = { bg = "None" },
+							VertSplit = { bg = "None" },
+						},
 					})
 				end,
 			},
@@ -90,12 +102,6 @@ return {
 				config = function(_, opts)
 					vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
 					vim.g.gruvbox_material_transparent_background = 1
-
-					-- vim.cmd([[colorscheme gruvbox-material]])
-					-- vim.cmd([[hi CursorLine guibg=#427b58]])
-					-- vim.cmd([[hi Visual guibg=#427b58]])
-					-- vim.cmd([[hi TelescopeSelection guibg=#427b58]])
-					-- vim.cmd([[hi NotifyBackground guibg=#504945]])
 				end,
 			},
 			{

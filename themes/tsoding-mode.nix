@@ -7,6 +7,7 @@
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
+  sketchybarOverrides ? p: {},
   neovimOverrides ? p: {},
   ...
 }: let
@@ -104,6 +105,8 @@ in rec {
 
   tmux.colorOverrides = tmuxOverrides palette;
 
+  sketchybar.colorOverrides = sketchybarOverrides palette;
+
   neovim = neovimOverrides palette;
 
   desktop = {
@@ -180,6 +183,6 @@ in rec {
   };
 
   macoswallpaper = {
-    wallpaper = "$HOME/wallpapers/tsodingmode-default.jpg";
+    wallpaper = "$HOME/wallpapers/tsodingmode-default.png";
   };
 }

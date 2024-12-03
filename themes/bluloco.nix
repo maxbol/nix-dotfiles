@@ -8,6 +8,8 @@
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
   neovimOverrides ? p: {},
+  sketchybarOverrides ? p: {},
+  yaziOverrides ? p: {},
   luminance ? "dark",
   ...
 }: let
@@ -150,6 +152,11 @@ in rec {
 
   tmux.colorOverrides = tmuxOverrides palette;
 
+  sketchybar.colorOverrides = sketchybarOverrides palette;
+
+  yazi.syntectTheme = "${bluloco_pkg}/extra/bat/.config/bat/themes/bluloco-${luminance}/bluloco-${luminance}.tmTheme";
+  yazi.colorOverrides = yaziOverrides palette;
+
   neovim = neovimOverrides palette;
 
   desktop = {
@@ -174,7 +181,7 @@ in rec {
     themeSource = pkgs.writeText "theme.conf" ''
       ${themeConf}
 
-      background_opacity 0.95
+      # background_opacity 0.95
       # background_opacity 1.0
       # background_blur 10
       # macos_thicken_font 1

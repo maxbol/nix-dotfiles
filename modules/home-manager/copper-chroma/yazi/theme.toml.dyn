@@ -1,0 +1,207 @@
+---
+defines:
+  manager_cwd_fg: accent1
+  manager_hovered_fg: text
+  manager_hovered_bg: overlay
+  manager_find_keyword_fg: accent2
+  manager_find_position_fg: accent3
+  manager_marker_selected_fg: accent1
+  manager_marker_selected_bg: accent1
+  manager_marker_copied_fg: accent2
+  manager_marker_copied_bg: accent2
+  manager_marker_cut_fg: accent3
+  manager_marker_cut_bg: accent3
+  manager_tab_active_fg: text
+  manager_tab_active_bg: background
+  manager_tab_inactive_fg: text
+  manager_tab_inactive_bg: surface
+  manager_border_style_fg: text2
+  status_separator_style_fg: surface
+  status_separator_style_bg: surface
+  status_mode_normal_fg: background
+  status_mode_normal_bg: accent3
+  status_mode_select_fg: background
+  status_mode_select_bg: accent1
+  status_mode_unset_fg: background
+  status_mode_unset_bg: accent2
+  status_progress_label_fg: text
+  status_progress_normal_fg: background
+  status_progress_normal_bg: surface
+  status_progress_error_fg: accent3
+  status_progress_error_bg: surface
+  status_permissions_t_fg: accent1
+  status_permissions_r_fg: accent2
+  status_permissions_w_fg: accent3
+  status_permissions_x_fg: accent1
+  status_permissions_s_fg: text2
+  input_border_fg: text2
+  select_border_fg: text2
+  select_active_fg: accent3
+  tasks_border_fg: text2
+  which_mask_bg: overlay
+  which_cand_fg: accent1
+  which_rest_fg: text1
+  which_desc_fg: accent3
+  which_separator_style_fg: text2
+  help_on_fg: accent3
+  help_exec_fg: accent1
+  help_desc_fg: text1
+  help_hovered_bg: text2
+  help_footer_fg: surface
+  help_footer_bg: text
+  filetype_image_fg: accent1
+  filetype_video_fg: accent2
+  filetype_audio_fg: accent2
+  filetype_zip_fg: accent3
+  filetype_gzip_fg: accent3
+  filetype_tar_fg: accent3
+  filetype_bzip_fg: accent3
+  filetype_bzip2_fg: accent3
+  filetype_7z_fg: accent3
+  filetype_rar_fg: accent3
+  filetype_fallback_fg: text
+  filetype_fallback_dir_fg: accent1
+---
+# vim:ft=toml:fileencoding=utf-8:foldmethod=marker
+
+
+# : Manager {{{
+
+[manager]
+cwd = { fg = "#⟨manager_cwd_fg:hex⟩" }
+
+# Hovered
+hovered = { fg = "#⟨manager_hovered_fg:hex⟩", bg = "#⟨manager_hovered_bg:hex⟩" }
+preview_hovered = { underline = true }
+
+# Find
+find_keyword = { fg = "#⟨manager_find_keyword_fg:hex⟩", italic = true }
+find_position = { fg = "#⟨manager_find_position_fg:hex⟩", bg = "reset", italic = true }
+
+# Marker
+marker_selected = { fg = "#⟨manager_marker_selected_fg:hex⟩", bg = "#⟨manager_marker_selected_bg:hex⟩" }
+marker_copied = { fg = "#⟨manager_marker_copied_fg:hex⟩", bg = "#⟨manager_marker_copied_bg:hex⟩" }
+marker_cut = { fg = "#⟨manager_marker_cut_fg:hex⟩", bg = "#⟨manager_marker_cut_bg:hex⟩" }
+
+# Tab
+tab_active = { fg = "#⟨manager_tab_active_fg:hex⟩", bg = "#⟨manager_tab_active_bg:hex⟩" }
+tab_inactive = { fg = "#⟨manager_tab_inactive_fg:hex⟩", bg = "#⟨manager_tab_inactive_bg:hex⟩" }
+tab_width = 1
+
+# Border
+border_symbol = "│"
+border_style = { fg = "#⟨manager_border_style_fg:hex⟩" }
+
+# : }}}
+
+
+# : Status {{{
+
+[status]
+separator_open = ""
+separator_close = ""
+separator_style = { fg = "#⟨status_separator_style_fg:hex⟩", bg = "#⟨status_separator_style_bg:hex⟩" }
+
+# Mode
+mode_normal = { fg = "#⟨status_mode_normal_fg:hex⟩", bg = "#⟨status_mode_normal_bg:hex⟩", bold = true }
+mode_select = { fg = "#⟨status_mode_select_fg:hex⟩", bg = "#⟨status_mode_select_bg:hex⟩", bold = true }
+mode_unset = { fg = "#⟨status_mode_unset_fg:hex⟩", bg = "#⟨status_mode_unset_bg:hex⟩", bold = true }
+
+# Progress
+progress_label = { fg = "#⟨status_progress_label_fg:hex⟩", bold = true }
+progress_normal = { fg = "#⟨status_progress_normal_fg:hex⟩", bg = "#⟨status_progress_normal_bg:hex⟩" }
+progress_error = { fg = "#⟨status_progress_error_fg:hex⟩", bg = "#⟨status_progress_error_bg:hex⟩" }
+
+# Permissions
+permissions_t = { fg = "#⟨status_permissions_t_fg:hex⟩" }
+permissions_r = { fg = "#⟨status_permissions_r_fg:hex⟩" }
+permissions_w = { fg = "#⟨status_permissions_w_fg:hex⟩" }
+permissions_x = { fg = "#⟨status_permissions_x_fg:hex⟩" }
+permissions_s = { fg = "#⟨status_permissions_s_fg:hex⟩" }
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border = { fg = "#⟨input_border_fg:hex⟩" }
+title = {}
+value = {}
+selected = { reversed = true }
+
+# : }}}
+
+
+# : Select {{{
+
+[select]
+border = { fg = "#⟨select_border_fg:hex⟩" }
+active = { fg = "#⟨select_active_fg:hex⟩" }
+inactive = {}
+
+# : }}}
+
+
+# : Tasks {{{
+
+[tasks]
+border = { fg = "#⟨tasks_border_fg:hex⟩" }
+title = {}
+hovered = { underline = true }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+mask = { bg = "#⟨which_mask_bg:hex⟩" }
+cand = { fg = "#⟨which_cand_fg:hex⟩" }
+rest = { fg = "#⟨which_rest_fg:hex⟩" }
+desc = { fg = "#⟨which_desc_fg:hex⟩" }
+separator = "  "
+separator_style = { fg = "#⟨which_separator_style_fg:hex⟩" }
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+on = { fg = "#⟨help_on_fg:hex⟩" }
+exec = { fg = "#⟨help_exec_fg:hex⟩" }
+desc = { fg = "#⟨help_desc_fg:hex⟩" }
+hovered = { bg = "#⟨help_hovered_bg:hex⟩", bold = true }
+footer = { fg = "#⟨help_footer_fg:hex⟩", bg = "#⟨help_footer_bg:hex⟩" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+
+rules = [
+    # Images
+    { mime = "image/*", fg = "#⟨filetype_image_fg:hex⟩" },
+
+    # Videos
+    { mime = "video/*", fg = "#⟨filetype_video_fg:hex⟩" },
+    { mime = "audio/*", fg = "#⟨filetype_audio_fg:hex⟩" },
+
+    # Archives
+    { mime = "application/zip", fg = "#⟨filetype_zip_fg:hex⟩" },
+    { mime = "application/gzip", fg = "#⟨filetype_gzip_fg:hex⟩" },
+    { mime = "application/x-tar", fg = "#⟨filetype_tar_fg:hex⟩" },
+    { mime = "application/x-bzip", fg = "#⟨filetype_bzip_fg:hex⟩" },
+    { mime = "application/x-bzip2", fg = "#⟨filetype_bzip2_fg:hex⟩" },
+    { mime = "application/x-7z-compressed", fg = "#⟨filetype_7z_fg:hex⟩" },
+    { mime = "application/x-rar", fg = "#⟨filetype_rar_fg:hex⟩" },
+
+    # Fallback
+    { name = "*", fg = "#⟨filetype_fallback_fg:hex⟩" },
+    { name = "*/", fg = "#⟨filetype_fallback_dir_fg:hex⟩" },
+]
+
+# : }}}

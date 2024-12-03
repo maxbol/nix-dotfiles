@@ -11,6 +11,7 @@
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
+  sketchybarOverrides ? p: {},
   neovimOverrides ? p: {},
   ...
 }: let
@@ -84,6 +85,8 @@ in rec {
   rofi.colorOverrides = rofiOverrides palette;
 
   tmux.colorOverrides = tmuxOverrides palette;
+
+  sketchybar.colorOverrides = sketchybarOverrides palette;
 
   neovim = neovimOverrides palette;
 

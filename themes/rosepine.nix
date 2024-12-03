@@ -9,6 +9,7 @@
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
   tmuxOverrides ? p: {},
+  sketchybarOverrides ? p: {},
   neovimOverrides ? p: {},
   ...
 }: let
@@ -95,6 +96,9 @@
       orange = palette_.${variant}.rose;
       purple = palette_.${variant}.iris;
       aqua = palette_.${variant}.foam;
+      highlightLow = palette_.${variant}.highlightLow;
+      highlightMed = palette_.${variant}.highlightMed;
+      highlightHigh = palette_.${variant}.highlightHigh;
     };
 
     semantic = {
@@ -142,6 +146,13 @@
     else "rose-pine-${variant}";
 
   kittyThemeFileName = "${normalizedThemeName}.conf";
+
+  tmTheme = pkgs.fetchFromGitHub {
+    owner = "rose-pine";
+    repo = "tm-theme";
+    rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
+    hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
+  };
 in rec {
   inherit palette;
 
@@ -153,7 +164,14 @@ in rec {
 
   tmux.colorOverrides = tmuxOverrides palette;
 
+  sketchybar.colorOverrides = sketchybarOverrides palette;
+
   neovim = neovimOverrides palette;
+
+  yazi.colorOverrides = {
+    filetype_fallback_dir_fg = palette.accents.${accent3};
+  };
+  yazi.syntectTheme = "${tmTheme}/dist/themes/${normalizedThemeName}.tmTheme";
 
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs
@@ -169,6 +187,7 @@ in rec {
     monospaceFont.size = 9;
     monospaceFont.package = pkgs.nerdfonts;
   };
+
   gtk = {
     theme.package = pkgs.rose-pine-gtk;
     theme.name = normalizedThemeName;
@@ -209,16 +228,15 @@ in rec {
   };
 
   bat.theme = {
-    src = pkgs.fetchFromGitHub {
-      owner = "rose-pine";
-      repo = "tm-theme";
-      rev = "c4235f9a65fd180ac0f5e4396e3a86e21a0884ec";
-      hash = "sha256-jji8WOKDkzAq8K+uSZAziMULI8Kh7e96cBRimGvIYKY=";
-    };
+    src = tmTheme;
     file = "dist/themes/${normalizedThemeName}.tmTheme";
   };
 
   macoswallpaper = {
-    wallpaper = "$HOME/wallpapers/rosepine-default.png";
+    wallpaper = "$HOME/wallpapers/rosepine-default${
+      if variant == "moon"
+      then "-3"
+      else ""
+    }.png";
   };
 }

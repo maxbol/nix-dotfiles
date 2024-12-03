@@ -118,6 +118,7 @@ local servers = {
 	"docker_compose_language_service",
 	"pyright",
 	"gleam",
+	"rust_analyzer",
 }
 
 for _, lsp in ipairs(servers) do

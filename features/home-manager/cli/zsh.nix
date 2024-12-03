@@ -161,6 +161,9 @@ in {
       # export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
       setopt PUSHDSILENT
+
+      # export TINTED_TMUX_OPTION_ACTIVE=1
+      # export TINTED_TMUX_OPTION_STATUSBAR=1
     '';
 
     plugins = [
