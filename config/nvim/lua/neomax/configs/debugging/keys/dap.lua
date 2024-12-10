@@ -109,11 +109,11 @@ return {
 		"<leader>dt",
 		function()
 			local dap = require("dap")
-			local session = dap.session()
-			if session and session.parent then
-				dap.set_session(session.parent)
-			end
-			dap.terminate()
+			-- local session = dap.session()
+			-- if session and session.parent then
+			-- 	dap.set_session(session.parent)
+			-- end
+			dap.terminate({ hierarchy = true })
 		end,
 		desc = "Terminate",
 	},

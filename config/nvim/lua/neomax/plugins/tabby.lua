@@ -5,8 +5,11 @@ return {
 	dependencies = "nvim-tree/nvim-web-devicons",
 	config = function()
 		local theme = {
-			current = { fg = "#cad3f5", bg = "transparent", style = "bold" },
-			not_current = { fg = "#5b6078", bg = "transparent" },
+
+			-- current = { fg = "#cad3f5", bg = "transparent", style = "bold" },
+			-- not_current = { fg = "#5b6078", bg = "transparent" },
+			current = "lualine_a_normal",
+			not_current = "lualine_b_normal",
 
 			fill = { bg = "transparent" },
 		}

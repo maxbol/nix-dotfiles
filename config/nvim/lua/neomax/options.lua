@@ -108,3 +108,4 @@ augroup END
 
 require("neomax.configs.make")
 require("neomax.modules.obsidian")
+require("neomax.modules.sortgroup")

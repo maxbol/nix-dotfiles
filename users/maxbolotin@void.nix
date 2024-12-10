@@ -45,6 +45,7 @@
         "productivity"
         "sops"
         "tmux"
+        "media-tui"
       ];
 
       nixpkgs.config.permittedInsecurePackages = [
