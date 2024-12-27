@@ -8,6 +8,6 @@ return {
 		vim.g.copilot_tab_fallback = ""
 
 		-- Enable copilot
-		vim.cmd([[Copilot enable]])
+		-- vim.cmd([[Copilot enable]])
 	end,
 }

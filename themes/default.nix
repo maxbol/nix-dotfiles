@@ -135,6 +135,10 @@
       tmuxOverrides = palette: {
         status_window_active_fg = palette.semantic.surface;
         status_window_active_bg = palette.accents.rosewater;
+        status_modules_inner_bg = palette.semantic.surface;
+        status_modules_inner_fg = palette.semantic.text;
+        status_modules_outer_bg = palette.semantic.overlay;
+        status_modules_outer_fg = palette.semantic.text;
       };
 
       sketchybarOverrides = palette: {

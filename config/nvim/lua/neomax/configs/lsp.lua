@@ -142,8 +142,6 @@ lspconfig.lua_ls.setup({
 	},
 })
 
--- https://github.com/NixOS/nixpkgs/issues/354768
--- local clangd_path = vim.fn.system("uname -s") == "Darwin\n" and "/usr/bin/clangd" or "clangd"
 local clangd_path = "clangd"
 
 lspconfig.clangd.setup({

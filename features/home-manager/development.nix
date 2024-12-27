@@ -67,6 +67,8 @@ in {
       lldb_17
       tracy
       bear
+      meson
+      ninja
       # gdb ## Only available on linux
 
       #OCaml
