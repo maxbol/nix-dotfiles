@@ -1,5 +1,5 @@
 {
-  config,
+  maxdots,
   origin,
   pkgs,
   ...
@@ -8,7 +8,7 @@
     origin.inputs.hyprland.nixosModules.default
   ];
 
-  copper.feature.desktop.enable = true;
+  maxdots.feature.desktop.enable = true;
 
   programs.hyprland = {
     enable = true;

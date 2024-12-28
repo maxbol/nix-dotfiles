@@ -1,6 +1,5 @@
 {pkgs, ...}: {
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio = {
     enable = false;
     extraConfig = "
@@ -23,4 +22,3 @@
     jack.enable = true;
   };
 }
-

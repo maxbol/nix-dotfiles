@@ -1,4 +1,4 @@
-{ config, ... }: let 
+{config, ...}: let
   dotfilesDir = config.copper.file.symlink.base;
 in {
   imports = [
@@ -10,3 +10,4 @@ in {
     rehome = "home-manager switch --flake ${dotfilesDir}#$USER@$(hostname)";
   };
 }
+

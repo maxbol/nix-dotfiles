@@ -4,11 +4,13 @@
 {
   pkgs,
   lib,
+  modulesPath,
   ...
 }: {
   imports = [
     # Incluse results of the hardware scan
     ./hardware-configuration.nix
+    (modulesPath + "/installer/cd-dvd/installation-cd-minimal.nix")
   ];
 
   # Manually turn of bluetooth - USB adapter
@@ -23,6 +25,7 @@
     "audio"
     "basics"
     "bluetooth"
+    "cli-nixos"
     "desktop"
     "docker"
     "flatpak"
@@ -46,7 +49,6 @@
     "tailscale"
     "udev"
     "wayland"
-    "xserver-misc"
     "hyprland"
     #"plymouth" #
   ];
