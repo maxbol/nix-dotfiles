@@ -10,7 +10,7 @@
   neovimOverrides ? p: {},
   sketchybarOverrides ? p: {},
   yaziOverrides ? p: {},
-  luminance ? "dark",
+  luminance,
   ...
 }: let
   bluloco_pkg = pkgs.fetchFromGitHub {

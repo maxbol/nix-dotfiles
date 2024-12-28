@@ -23,7 +23,6 @@
   synp = maxdots.packages.synp;
   zig = origin.inputs.zig-overlay.packages.${pkgs.system}.default;
   zls = origin.inputs.zls.packages.${pkgs.system}.default;
-  nixd = origin.inputs.nixd.packages.${pkgs.system}.nixd;
 
   ccjson = pkgs.writeShellScriptBin "ccjson" ''
     make --always-make --dry-run \
@@ -53,7 +52,7 @@ in {
       gotools
 
       # Protobuffers
-      buf-language-server
+      buf
 
       # Rust
       cargo
@@ -63,8 +62,8 @@ in {
       gcc
       gnumake
       checkmake
-      llvm_17
-      lldb_17
+      llvm_19
+      lldb_19
       tracy
       bear
       meson
@@ -88,6 +87,7 @@ in {
 
       # Nix
       alejandra
+      nixd
 
       # Lua
       stylua
@@ -135,7 +135,6 @@ in {
       # Wrappers, custom and non-nixpkgs packages
       ccjson
       nancy
-      nixd
       sqlcmd
       swag
       synp

@@ -157,6 +157,8 @@
 
   Gruvbox-Dark = pkgs.callPackage ./gruvbox.nix (extraArgs
     // {
+      luminance = "dark";
+
       hyprlandOverrides = palette: {
         active1 = "90ceaa"; # "#90ceaa";
         active2 = "ecd3a0"; # "#ecd3a0";

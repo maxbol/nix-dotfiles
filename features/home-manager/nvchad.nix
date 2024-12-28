@@ -1,3 +1,0 @@
-{...}: {
-  programs.nvchad.enable = true;
-}

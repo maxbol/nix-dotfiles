@@ -16,7 +16,7 @@ let
 in {
   programs.kitty = {
     enable = true;
-    package = maxdots.packages.kitty-nightly;
+    # package = maxdots.packages.kitty-nightly;
     font.name = lib.mkForce font;
     settings = {
       background_blur = 10;

@@ -1,7 +1,7 @@
 {
   pkgs,
   self,
-  luminance ? "dark",
+  luminance,
   accent ? "orange",
   accent2 ? "blue",
   accent3 ? "aqua",

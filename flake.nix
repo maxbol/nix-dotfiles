@@ -1,8 +1,7 @@
 {
   inputs = {
     # Use the latest nixpkgs.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/release-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
 
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
@@ -12,7 +11,6 @@
     pre-commit-hooks = {
       url = "github:cachix/git-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
       inputs.gitignore.follows = "gitignore";
       inputs.flake-compat.follows = "flake-compat";
     };
@@ -67,19 +65,6 @@
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    };
-
-    tmux-sessionx = {
-      url = "github:omerxx/tmux-sessionx";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
-    };
-
-    nixd = {
-      url = "github:nix-community/nixd/release/2.1";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
     };
 
     # The Window Manager I use

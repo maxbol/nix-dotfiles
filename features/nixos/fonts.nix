@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   # Fonts for system and TWM
   fonts = {
     packages = with pkgs; [
@@ -24,10 +21,11 @@
 
     # Do I need this?
     fontconfig.defaultFonts = {
-      serif = [ ];
-      sansSerif = [ ];
-      monospace = [ ];
-      emoji = [ ];
+      serif = [];
+      sansSerif = [];
+      monospace = [];
+      emoji = [];
     };
   };
 }
+
