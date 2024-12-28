@@ -5,6 +5,6 @@
   };
   copper.chroma.themes = maxdots.chromaThemes;
 
-  copper.chroma.kitty.enable = false;
+  copper.chroma.kitty.enable = true;
   copper.chroma.kitty-procpsfix.enable = true;
 }

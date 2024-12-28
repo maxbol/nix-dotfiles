@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  maxdots,
   ...
 }:
 # terminal config

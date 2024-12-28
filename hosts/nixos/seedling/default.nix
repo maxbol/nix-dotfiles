@@ -37,7 +37,7 @@
     "sops"
     "udev"
     "wayland"
-    "hyprland"
+    # "hyprland"
     #"plymouth" #
   ];
 
