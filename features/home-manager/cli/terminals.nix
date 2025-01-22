@@ -5,13 +5,7 @@
 }:
 # terminal config
 let
-  # font = "CaskaydiaCove Nerd Font Mono";
-  # font = "JetBrainsMono Nerd Font";
-  # font = "Hack Nerd Font";
-  # font = "Fira Code Nerd Font Mono";
-  # font = "MesloLGL Nerd Font Mono";
   font = "Iosevka";
-  # font = "BigBlueTerm437 Nerd Font";
 in {
   programs.kitty = {
     enable = true;
@@ -26,7 +20,7 @@ in {
         else "yes";
       window_margin_width = 5;
       window_padding_width = 5;
-      background_opacity = "0.9";
+      background_opacity = "1";
       # macos_thicken_font = 1;
       font_size = 22;
       # modify_font = "cell_height 110%";

@@ -1,5 +1,13 @@
 {
   modules = [
+    (
+      {origin, ...}: {
+        # Fix issues with spotlight not finding nix-installed apps
+        imports = [
+          origin.inputs.mac-app-util.homeManagerModules.default
+        ];
+      }
+    )
     ({
       pkgs,
       lib,
@@ -21,15 +29,6 @@
         options = "--delete-older-than 30d";
       };
 
-      # nix.registry = {
-      #   zig-overlay = {
-      #     flake = origin.inputs.zig-overlay;
-      #   };
-      #   zls = {
-      #     flake = origin.inputs.zls;
-      #   };
-      # };
-
       copper.features = [
         "link-config"
       ];
@@ -40,11 +39,15 @@
         "darwin/sketchybar"
         "development"
         "direnv"
+        "keycastr"
         "neovim"
         # "neovide"
+        "obsidian"
+        "pdf-viewer-zathura"
         "productivity"
         "sops"
         "tmux"
+        "tui-browser"
         # "media-tui"
       ];
 
@@ -55,43 +58,9 @@
 
       home.packages = with pkgs; [
         tiny
+        fastfetch
       ];
-
-      # programs.ssh.enable = false;
     })
-    #
-    #
-    # # The module below makes sure desktop apps are correctly copied into ~/Applications
-    # # Not sure why this is necessary, and not supplied out of the box by home-manager :sigh:
-    # # https://github.com/nix-community/home-manager/issues/1341
-    # ({
-    #   pkgs,
-    #   config,
-    #   lib,
-    #   ...
-    # }: {
-    #   home.activation = {
-    #     copyApplications = let
-    #       apps = pkgs.buildEnv {
-    #         name = "home-manager-applications";
-    #         paths = config.home.packages;
-    #         pathsToLink = "/Applications";
-    #       };
-    #     in
-    #       lib.hm.dag.entryAfter ["writeBoundary"] ''
-    #         baseDir="$HOME/Applications/Home Manager Apps"
-    #         if [ -d "$baseDir" ]; then
-    #           rm -rf "$baseDir"
-    #         fi
-    #         mkdir -p "$baseDir"
-    #         for appFile in ${apps}/Applications/*; do
-    #           target="$baseDir/$(basename "$appFile")"
-    #           $DRY_RUN_CMD cp ''${VERBOSE_ARG:+-v} -fHRL "$appFile" "$baseDir"
-    #           $DRY_RUN_CMD chmod ''${VERBOSE_ARG:+-v} -R +w "$target"
-    #         done
-    #       '';
-    #   };
-    # })
   ];
   system = "aarch64-darwin";
 }

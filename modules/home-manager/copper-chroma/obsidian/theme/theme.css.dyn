@@ -1,0 +1,96 @@
+---
+defines:
+  background_primary: background
+  background_primary_alt: surface
+  background_secondary: background
+  background_secondary_alt: surface
+  input_focus_border_color: accent1
+  input_hover_border_color: accent1
+  text_normal: text
+  text_muted: text1
+  text_faint: text2
+  text_on_accent: text
+  text_on_accent_inverted: surface
+  titlebar_background: background
+  titlebar_background_focused: background
+  interactive_normal: background
+  interactive_hover: surface
+  interactive_accent: accent1
+  inline_title_color: accent1
+  h1_color: accent1
+  h2_color: accent2
+  h3_color: accent3
+  h4_color: accent3
+  h5_color: accent3
+  h6_color: accent3
+  tab_text_color_focused_active_current: accent2
+---
+
+body {
+  --radius-s: 0px;
+  --radius-m: 0px;
+  --radius-l: 0px;
+  --input-radius: 0px;
+  --tab-radius-active: 0px;
+  --checkbox-radius: 0px;
+  --toggle-radius: 0px;
+  --toggle-thumb-radius: 0px;
+  --slider-thumb-radius: 0px;
+
+  --interactive-normal: #⟨interactive_normal:hex⟩;
+  --interactive-hover: #⟨interactive_hover:hex⟩;
+  --interactive-accent: #⟨interactive_accent:hex⟩;
+  --inline-title-color: #⟨inline_title_color:hex⟩;
+  --h1-color: #⟨h1_color:hex⟩;
+  --h2-color: #⟨h2_color:hex⟩;
+  --h3-color: #⟨h3_color:hex⟩;
+  --h4-color: #⟨h4_color:hex⟩;
+  --h5-color: #⟨h5_color:hex⟩;
+  --h6-color: #⟨h6_color:hex⟩;
+  --titlebar-background: #⟨titlebar_background:hex⟩;
+  --titlebar-background-focused: #⟨titlebar_background_focused:hex⟩;
+
+  --text-normal: #⟨text_normal:hex⟩;
+  --text-muted: #⟨text_muted:hex⟩;
+  --text-faint: #⟨text_faint:hex⟩;
+  --text-on-accent: #⟨text_on_accent:hex⟩;
+  --text-on-accent-inverted: #⟨text_on_accent_inverted:hex⟩;
+
+  --tab-text-color-focused-active-current: #⟨tab_text_color_focused_active_current:hex⟩;
+}
+
+.workspace-tab-header.is-active::before,
+.workspace-tab-header.is-active::after {
+  display: none;
+}
+
+svg * {
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+  rx: 0;
+  ry: 0;
+}
+
+.menu {
+  padding: var(--size-2-1);
+}
+
+.menu-item {
+  padding: var(--size-4-1) var(--size-4-2);
+}
+
+.menu-separator {
+  margin: var(--size-2-1) calc(var(--size-2-1) * -1);
+}
+
+.theme-dark, .theme-light {
+  --background-primary:  #⟨background_primary:hex⟩;
+  --background-primary-alt: #⟨background_primary_alt:hex⟩;
+  --background-secondary:  #⟨background_secondary:hex⟩;
+  --background-secondary-alt: #⟨background_secondary_alt:hex⟩;
+}
+
+:root {
+  --input-focus-border-color: #⟨input_focus_border_color:hex⟩;
+  --input-hover-border-color: #⟨input_hover_border_color:hex⟩;
+}

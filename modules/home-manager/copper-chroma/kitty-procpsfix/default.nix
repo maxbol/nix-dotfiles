@@ -27,8 +27,13 @@ in {
     ];
     # TODO: set the font to the monospace font?
 
-    copper.chroma.programs.kitty = {
-      reloadCommand = lib.mkForce "$(which pkill || echo \"/usr/bin/pkill\") -USR1 -u $USER kitty || true";
+    copper.chroma.programs.kitty = let
+      pkill =
+        if pkgs.stdenv.hostPlatform.isDarwin
+        then "/usr/bin/pkill"
+        else "${pkgs.procps}/bin/pkill";
+    in {
+      reloadCommand = lib.mkForce "${pkill} -USR1 -u $USER kitty || true";
     };
 
     programs.kitty.settings.include = mkIf (cfg.enable && cfg.kitty-procpsfix.enable) "${config.copper.chroma.themeDirectory}/active/kitty/theme.conf";

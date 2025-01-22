@@ -6,8 +6,8 @@
   ...
 }:
 with lib; let
-  cfg = config.copper.chroma;
   nvim-colorctl = origin.inputs.nvim-colorctl.packages.${pkgs.system}.default;
+  homeDirectory = config.home.homeDirectory;
   # inherit (import ../../../../lib/types.nix {inherit lib;}) colorType;
 in {
   options = {
@@ -64,16 +64,23 @@ in {
       };
 
       themeConfig = {config, ...}: let
-        fgGroups = lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "--hi-fg ${name},${value}") config.hlGroupsFg);
-        bgGroups = lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "--hi-bg ${name},${value}") config.hlGroupsBg);
+        padArg = arg:
+          if arg == ""
+          then ""
+          else " ${arg}";
+
+        fgGroups = padArg (lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "--hi-fg ${name},${value}") config.hlGroupsFg));
+        bgGroups = padArg (lib.concatStringsSep " " (lib.mapAttrsToList (name: value: "--hi-bg ${name},${value}") config.hlGroupsBg));
       in {
-        file."colorctl" = {
+        file."colorctl" = let
+          cmd = "${lib.getExe nvim-colorctl} --emit-lua ${homeDirectory}/.config/nvim/lua/neomax/color/init.lua -s ${config.colorscheme} -b ${config.background}${fgGroups}${bgGroups}";
+        in {
           required = true;
-          source = mkDefault (pkgs.writeShellScriptBin "colorctl" ''${lib.getExe nvim-colorctl} --emit-lua ~/.config/nvim/lua/neomax/color/init.lua -s ${config.colorscheme} -b ${config.background} ${fgGroups} ${bgGroups} & disown'');
+          source = mkDefault (pkgs.writeShellScript "colorctl" "echo \"${cmd}\" && ${cmd} && echo \"Done\".");
         };
       };
 
-      reloadCommand = "~/.config/chroma/active/neovim/colorctl/bin/colorctl";
+      reloadCommand = "~/.config/chroma/active/neovim/colorctl";
     };
   };
 }

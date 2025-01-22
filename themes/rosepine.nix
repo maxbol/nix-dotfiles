@@ -2,9 +2,9 @@
   pkgs,
   self,
   variant ? "pine",
-  accent ? "love",
-  accent2 ? "gold",
-  accent3 ? "rose",
+  accent ? "rose",
+  accent2 ? "pine",
+  accent3 ? "foam",
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},
@@ -40,6 +40,23 @@
       base = "232136"; # "#232136"
       surface = "2a273f"; # "#2a273f"
       overlay = "393552"; # "#393552"
+      muted = "6e6a86"; # "#6e6a86"
+      subtle = "908caa"; # "#908caa"
+      text = "e0def4"; # "#e0def4"
+      love = "eb6f92"; # "#eb6f92"
+      gold = "f6c177"; # "#f6c177"
+      rose = "ea9a97"; # "#ea9a97"
+      pine = "3e8fb0"; # "#3e8fb0"
+      foam = "9ccfd8"; # "#9ccfd8"
+      iris = "c4a7e7"; # "#c4a7e7"
+      highlightLow = "2a283e"; # "#2a283e"
+      highlightMed = "44415a"; # "#44415a"
+      highlightHigh = "56526e"; # "#56526e"
+    };
+    eclipse = {
+      base = "111111"; # "#111111"
+      surface = "282828"; # "#282828"
+      overlay = "453d41"; # "#453d41"
       muted = "6e6a86"; # "#6e6a86"
       subtle = "908caa"; # "#908caa"
       text = "e0def4"; # "#e0def4"
@@ -143,7 +160,12 @@
   normalizedThemeName =
     if variant == "pine"
     then "rose-pine"
-    else "rose-pine-${variant}";
+    else
+      (
+        if variant == "eclipse"
+        then "rose-pine-moon"
+        else "rose-pine-${variant}"
+      );
 
   kittyThemeFileName = "${normalizedThemeName}.conf";
 
@@ -183,7 +205,7 @@ in rec {
     font.name = "Cantarell";
     font.size = 10;
     font.package = pkgs.cantarell-fonts;
-    monospaceFont.name = "CaskaydiaCove Nerd Font Mono";
+    monospaceFont.name = "Iosevka Nerd Font";
     monospaceFont.size = 9;
     monospaceFont.package = pkgs.nerdfonts;
   };
@@ -208,7 +230,10 @@ in rec {
   };
 
   kitty = {
-    file."theme.conf".source = "${pkgs.kitty-themes}/share/kitty-themes/themes/${kittyThemeFileName}";
+    file."theme.conf".source =
+      if variant == "eclipse"
+      then ./resources/rosepine/eclipse/kitty.conf
+      else "${pkgs.kitty-themes}/share/kitty-themes/themes/${kittyThemeFileName}";
   };
 
   # TODO: replace with actual rose-pine theme
@@ -236,6 +261,8 @@ in rec {
     wallpaper = "$HOME/wallpapers/rosepine-default${
       if variant == "moon"
       then "-3"
+      else if variant == "eclipse"
+      then "-eclipse"
       else ""
     }.png";
   };

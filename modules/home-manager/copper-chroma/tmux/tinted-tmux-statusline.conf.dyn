@@ -28,11 +28,11 @@ defines:
     status_session_fg: text
     status_window_inactive_bg: overlay
     status_window_inactive_fg: text
-    status_window_active_bg: accent3
-    status_window_active_fg: text
-    status_modules_outer_bg: text2
-    status_modules_outer_fg: background
-    status_modules_inner_bg: text
+    status_window_active_bg: accent1
+    status_window_active_fg: background
+    status_modules_outer_bg: overlay
+    status_modules_outer_fg: text
+    status_modules_inner_bg: accent2
     status_modules_inner_fg: background
 ---
 

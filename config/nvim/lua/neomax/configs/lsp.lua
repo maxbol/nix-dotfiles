@@ -119,6 +119,7 @@ local servers = {
 	"pyright",
 	"gleam",
 	"rust_analyzer",
+	"ols",
 }
 
 for _, lsp in ipairs(servers) do
@@ -135,6 +136,9 @@ lspconfig.lua_ls.setup({
 	capabilities = capabilities,
 	settings = {
 		Lua = {
+			runtime = {
+				version = "LuaJIT",
+			},
 			diagnostics = {
 				globals = { "vim" },
 			},

@@ -9,6 +9,7 @@ in {
   options = {
     copper.chroma.sketchybar.enable = mkOption {
       type = types.bool;
+      # default = false;
       default = pkgs.stdenv.hostPlatform.isDarwin;
       example = false;
       description = ''
@@ -43,7 +44,7 @@ in {
         };
       };
 
-      reloadCommand = "sketchybar --reload";
+      reloadCommand = "sh -c '/opt/homebrew/bin/sketchybar --reload'";
     };
   };
 }

@@ -2,6 +2,7 @@
   inputs = {
     # Use the latest nixpkgs.
     nixpkgs.url = "github:NixOS/nixpkgs/release-24.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     gitignore = {
       url = "github:hercules-ci/gitignore.nix";
@@ -55,12 +56,20 @@
       };
     };
 
+    # Utility to fix issues with spotlight not finding nix-installed apps
+    mac-app-util.url = "github:hraban/mac-app-util";
+
     # Spicetify flake for Nix integration
     spicetify-nix = {
       url = "github:the-argus/spicetify-nix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+
+    textfox.url = "github:maxbol/textfox/copy-on-activation-mode@allow-custom-css";
+    # textfox.url = "github:maxbol/textfox/allow-custom-include-in-configcss";
+
+    nur.url = "github:nix-community/NUR";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";

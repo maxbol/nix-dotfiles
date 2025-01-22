@@ -58,12 +58,16 @@ in {
       cargo
       rust-analyzer
 
+      # Odin
+      odin
+      ols
+
       # C/C++
       gcc
       gnumake
       checkmake
-      llvm_19
-      lldb_19
+      llvm_17
+      lldb_17
       tracy
       bear
       meson

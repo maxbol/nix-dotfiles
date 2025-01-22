@@ -380,6 +380,13 @@ M.makeLanguage({
 })
 
 M.makeLanguage({
+	pattern = { "odin" },
+	grepcmd = "2>&1 | grep -E '^.+:[0-9]+:[0-9]+'",
+	makecmd = "odin build .",
+	runcmd = "odin run .",
+})
+
+M.makeLanguage({
 	pattern = { "go" },
 	grepcmds = {
 		lint = "2>/dev/null | grep -E '^.+:[0-9]+:[0-9]+'",

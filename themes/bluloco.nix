@@ -1,8 +1,8 @@
 {
   pkgs,
-  accent ? "blue",
-  accent2 ? "green",
-  accent3 ? "red",
+  accent ? "red",
+  accent2 ? "blue",
+  accent3 ? "green",
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},

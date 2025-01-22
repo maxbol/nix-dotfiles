@@ -3,6 +3,7 @@
   lib,
   ...
 }: let
+  killall = "${pkgs.killall}/bin/killall";
   wallpaper = pkgs.writeScript "wallpaper" ''
     [[ -z "$1" ]] && echo "Usage: wallpaper <path-to-image>" && exit 1
     new_wallpaper_path="$1"
@@ -15,7 +16,7 @@
       exit 0
     fi
 
-    killall WallpaperAgent
+    ${killall} WallpaperAgent
   '';
 in {
   options = {

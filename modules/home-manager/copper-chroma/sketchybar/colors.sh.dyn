@@ -1,8 +1,9 @@
 ---
 defines:
-  focused_space: accent3
+  focused_space: accent1
 ---
 
 #!/bin/bash
 
 export FOCUSED_SPACE_BG=0xff⟨focused_space:hex⟩
+

@@ -1,9 +1,9 @@
 {
   pkgs,
   variant ? "dark",
-  accent ? "yellow",
-  accent2 ? "blue",
-  accent3 ? "orange",
+  accent ? "orange",
+  accent2 ? "lightblue",
+  accent3 ? "yellow",
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
   rofiOverrides ? p: {},

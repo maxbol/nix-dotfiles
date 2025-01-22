@@ -2,24 +2,10 @@
   config,
   lib,
   pkgs,
-  # copper,
-  # origin,
   ...
 }:
 with lib; let
   cfg = config.copper.chroma;
-
-  # tinted-tmux = pkgs.tmuxPlugins.mkTmuxPlugin {
-  #   pluginName = "tinted-tmux";
-  #   version = "unstable-2024-10-21";
-  #   rtpFilePath = "tmuxcolors.tmux";
-  #   src = pkgs.fetchFromGitHub {
-  #     owner = "tinted-theming";
-  #     repo = "tinted-tmux";
-  #     rev = "f0e7f7974a6441033eb0a172a0342e96722b4f14";
-  #     hash = "sha256-1ohEFMC23elnl39kxWnjzH1l2DFWWx4DhFNNYDTYt54";
-  #   };
-  # };
 
   inherit (import ../../../../lib/types.nix {inherit lib;}) colorType;
 in {
@@ -44,10 +30,6 @@ in {
 
     copper.chroma.programs.tmux = {
       themeOptions = {
-        # tintThemeName = mkOption {
-        #   type = types.str;
-        #   default = "base16-default-dark";
-        # };
         colorOverrides = mkOption {
           type = types.attrsOf colorType;
           default = {};
@@ -62,12 +44,6 @@ in {
         opts,
         ...
       }: {
-        # file."tinted-tmux-settheme.conf" = {
-        #   required = true;
-        #   source = pkgs.writeText "tinted-tmux-settheme.conf" ''
-        #     set -g @tinted-color '${config.tintThemeName}';
-        #   '';
-        # };
         file."tinted-tmux-statusline.conf" = {
           required = true;
           source = mkDefault (opts.palette.generateDynamic {

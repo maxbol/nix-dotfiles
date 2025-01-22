@@ -20,6 +20,12 @@ map("v", "<", "<gv", { desc = "indent" })
 map("v", "J", ":m '>+1<CR>gv=gv", { desc = "move line down" })
 map("v", "K", ":m '<-2<CR>gv=gv", { desc = "move line up" })
 
+-- resize windows
+map("n", "<M-h>", "<C-w><", { desc = "resize window" })
+map("n", "<M-l>", "<C-w>>", { desc = "resize window" })
+map("n", "<M-j>", "<C-w>-", { desc = "resize window" })
+map("n", "<M-k>", "<C-w>+", { desc = "resize window" })
+
 map("x", "<leader>p", '"_dP')
 
 map("n", "<C-y>", "mmyyp`mj", { desc = "duplicate line", noremap = true })
