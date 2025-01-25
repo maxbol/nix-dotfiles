@@ -1,7 +1,10 @@
-{pkgs, ...}: {
-  home.packages = [
-    pkgs.zathura
-  ];
-
-  copper.chroma.zathura.enable = true;
+{
+  maxdots,
+  pkgs,
+  ...
+}: {
+  programs.zathura = {
+    enable = true;
+    package = maxdots.packages.zathura-darwin;
+  };
 }

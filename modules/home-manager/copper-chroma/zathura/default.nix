@@ -52,8 +52,10 @@ in {
       lib.mkIf
       (cfg.enable && cfg.zathura.enable)
       {
-        home.file.".config/zathura/zathurarc" = {
-          source = config.lib.file.mkOutOfStoreSymlink "${config.xdg.configHome}/chroma/active/zathura/zathurarc";
+        programs.zathura = {
+          extraConfig = ''
+            include ${config.xdg.configHome}/chroma/active/zathura/zathurarc
+          '';
         };
       }
     )

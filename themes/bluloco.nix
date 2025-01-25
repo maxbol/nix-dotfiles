@@ -1,7 +1,7 @@
 {
   pkgs,
-  accent ? "red",
-  accent2 ? "blue",
+  accent ? "blue",
+  accent2 ? "red",
   accent3 ? "green",
   hyprlandOverrides ? p: {},
   waybarOverrides ? p: {},
