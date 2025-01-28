@@ -31,7 +31,8 @@
     set unquoted_filePath to POSIX path of single_input
     -- first we try to find it (in case it's already opened)
     if not my activate_open_instance(quoted_filePath, unquoted_filePath, false) then
-      set zathura to "${zathuraExe}"
+      -- set zathura to "${zathuraExe}"
+      set zathura to (do shell script "which zathura")
       do shell script zathura & " " & quoted_filePath & " > /dev/null 2>&1 &"
       delay 0.8 -- delay is required so it can set the window to fullscreen, but until the window is created, you can't set its properties
       my activate_open_instance(quoted_filePath, unquoted_filePath, true)
@@ -43,5 +44,4 @@
     repeat with aFile in SelectedItems -- the loop through all selected items
         single_run(aFile)
     end repeat
-  end run
-''
+  end run''

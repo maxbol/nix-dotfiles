@@ -14,7 +14,7 @@ symlinkJoin {
       import
       ./app.nix
       {
-        inherit lib runCommand writeText;
+        inherit runCommand writeText;
         zathuraExe = lib.getExe zathura;
       }
     )

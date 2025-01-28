@@ -27,6 +27,15 @@ in {
           The name of the Firefox profile to apply the themeing to.
         '';
       };
+
+      package = lib.mkOption {
+        type = lib.types.path;
+        example = "pkgs.firefox";
+        default = config.programs.firefox.package;
+        description = ''
+          Path to the installed firefox package
+        '';
+      };
     };
   };
 
@@ -71,7 +80,17 @@ in {
         };
       };
 
-      reloadCommand = "~/.config/chroma/active/firefox/setcolors.sh";
+      reloadCommand = let
+        binPath =
+          if pkgs.stdenv.hostPlatform.isDarwin
+          then "${cfg.firefox.package}/Applications/Firefox.app/Contents/MacOS/firefox"
+          else lib.getExe cfg.firefox.package;
+
+        pkill =
+          if pkgs.stdenv.hostPlatform.isDarwin
+          then "/usr/bin/pkill"
+          else "${pkgs.procps}/bin/pkill";
+      in "~/.config/chroma/active/firefox/setcolors.sh && ${pkill} firefox && ${binPath} & disown";
     };
   };
 

@@ -6,6 +6,11 @@
 }: let
   unstable-pkgs = origin.inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
   extensions = config.nur.repos.rycee.firefox-addons;
+
+  firefox =
+    if pkgs.stdenv.hostPlatform.isDarwin == true
+    then unstable-pkgs.firefox-unwrapped
+    else pkgs.firefox;
 in {
   imports = [
     origin.inputs.nur.modules.homeManager.default
@@ -14,10 +19,7 @@ in {
 
   programs.firefox = {
     enable = true;
-    package =
-      if pkgs.stdenv.hostPlatform.isDarwin == true
-      then unstable-pkgs.firefox-unwrapped
-      else pkgs.firefox;
+    package = firefox;
     profiles = {
       default = {
         isDefault = true;
@@ -30,6 +32,7 @@ in {
         extensions = with extensions; [
           vimium
           ublock-origin
+          brotab
         ];
       };
     };
@@ -49,4 +52,9 @@ in {
       };
     };
   };
+
+  home.packages = with pkgs; [
+    brotab
+    firefox
+  ];
 }

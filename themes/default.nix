@@ -51,8 +51,8 @@
         colorscheme = "bluloco-dark";
         background = "dark";
         hlGroupsFg = {
-          HLChunk1 = "#" + palette.semantic.accent2;
-          HLLineNum1 = "#" + palette.semantic.accent2;
+          HLChunk1 = "#" + palette.semantic.accent1;
+          HLLineNum1 = "#" + palette.semantic.accent1;
         };
       };
 

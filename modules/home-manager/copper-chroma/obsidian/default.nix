@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  origin,
   ...
 }: let
   cfg = config.copper.chroma;
@@ -52,6 +53,11 @@ in
               '';
           };
         };
+
+        reloadCommand = let
+          obsidian-remote-cli = origin.inputs.obsidian-remote.packages.${pkgs.system}.default;
+        in
+          lib.mkForce "${obsidian-remote-cli}/bin/obsidian-remote run-command app:reload";
       };
     };
 

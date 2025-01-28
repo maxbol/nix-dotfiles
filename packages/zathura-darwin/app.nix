@@ -1,10 +1,9 @@
 {
-  lib,
   runCommand,
   writeText,
   zathuraExe,
 }: let
-  wflow = import ./workflow.nix {inherit lib writeText zathuraExe;};
+  wflow = import ./workflow.nix {inherit writeText zathuraExe;};
   zathura-client-app = ./src;
 in
   runCommand "zathura-client-app" {} ''
