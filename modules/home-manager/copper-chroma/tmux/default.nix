@@ -46,7 +46,7 @@ in {
       }: {
         file."tinted-tmux-statusline.conf" = {
           required = true;
-          source = mkDefault (opts.palette.generateDynamic {
+          source = mkDefault (opts.palette-ext.generateDynamic {
             template = ./tinted-tmux-statusline.conf.dyn;
             paletteOverrides = config.colorOverrides;
           });

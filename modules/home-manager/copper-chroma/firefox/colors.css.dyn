@@ -7,6 +7,7 @@ defines:
   fg_color: text
   frame_fg: text
   icon_color: text
+  newtab_bg_color: background
   primary_btn_bg: accent1
   primary_btn_fg: surface
   secondary_btn_bg: surface
@@ -15,12 +16,12 @@ defines:
   tab_color: accent3
   tab_fg_color: accent1
   tab_pinned_bg_color: accent1
-  tab_selected_bg_color: overlay
   tab_soundplaying_bg_color: accent2
+  tab_selected_bg_color: overlay
   toolbar_active_el_bg: accent1
   toolbar_active_el_fg: surface
-  toolbar_field_color: accent1
   toolbar_fg: text
+  toolbar_field_color: accent1
   urlbar_color: accent1
   urlbar_focused_color: overlay
   urlbar_results_color: accent2
@@ -70,6 +71,7 @@ defines:
   --color-accent-primary: #⟨accent_primary:hex⟩ !important;
   --color-accent-primary-hover: color-mix(in hsl, #⟨accent_primary:hex⟩, black 5%) !important;
   --color-accent-primary-active: color-mix(in hsl, #⟨accent_primary:hex⟩, black 8%) !important;
+  --newtab-background-color: #⟨newtab_bg_color:hex⟩ !important;
 }
 
 #back-button > .toolbarbutton-icon{

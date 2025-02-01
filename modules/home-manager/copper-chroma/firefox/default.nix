@@ -62,7 +62,7 @@ in {
             then "Library/Application\ Support/Firefox/Profiles"
             else ".mozilla/firefox";
 
-          colorsCss = opts.palette.generateDynamic {
+          colorsCss = opts.palette-ext.generateDynamic {
             template = ./colors.css.dyn;
             paletteOverrides = config.colorOverrides;
           };
@@ -90,7 +90,8 @@ in {
           if pkgs.stdenv.hostPlatform.isDarwin
           then "/usr/bin/pkill"
           else "${pkgs.procps}/bin/pkill";
-      in "~/.config/chroma/active/firefox/setcolors.sh && ${pkill} firefox && ${binPath} & disown";
+        # in "~/.config/chroma/active/firefox/setcolors.sh && ${pkill} firefox && ${binPath} & disown";
+      in "~/.config/chroma/active/firefox/setcolors.sh";
     };
   };
 

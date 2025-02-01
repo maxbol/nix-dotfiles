@@ -38,7 +38,7 @@ in {
       }: {
         file."zathurarc" = {
           required = true;
-          source = lib.mkDefault (opts.palette.generateDynamic {
+          source = lib.mkDefault (opts.palette-ext.generateDynamic {
             template = ./zathurarc.dyn;
             paletteOverrides = config.colorOverrides;
           });

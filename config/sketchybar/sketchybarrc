@@ -49,6 +49,7 @@ do
     icon="${SPACE_ICONS[i]}"
     icon.padding_left=7
     icon.padding_right=7
+    icon.highlight_color=$FOCUSED_SPACE_FG
     background.color=$FOCUSED_SPACE_BG
     background.corner_radius=5
     background.height=25

@@ -94,7 +94,7 @@ map("n", "<leader>fD", "<cmd>ObsidianDailies<CR>", { desc = "Find daily notes" }
 map("n", "<leader>fc", "<cmd>Telescope git_commits theme=ivy<CR>", { desc = "Telescope Git commits" })
 map("n", "<leader>gu", "<cmd>Telescope git_bcommits theme=ivy<CR>", { desc = "Telescope Git buffer commits" })
 map("n", "<leader>gf", "<cmd>AdvancedGitSearch diff_commit_file<CR>", { desc = "Git file history" })
-map("n", "<leader>gl", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
+map("x", "<leader>gl", "<cmd>AdvancedGitSearch diff_commit_line<CR>", { desc = "Git line history" })
 map("n", "<leader>gt", "<cmd>Telescope git_status theme=ivy<CR>", { desc = "Telescope Git status" })
 map("n", "<leader>gb", "<cmd>Telescope git_branches theme=ivy<CR>", { desc = "Switch git branch" })
 map("n", "<leader>gB", "<cmd>AdvancedGitSearch diff_branch_file<CR>", { desc = "Git file branch diff" })

@@ -37,7 +37,7 @@ in {
       }: {
         file."colors.sh" = {
           required = true;
-          source = mkDefault (opts.palette.generateDynamic {
+          source = mkDefault (opts.palette-ext.generateDynamic {
             template = ./colors.sh.dyn;
             paletteOverrides = config.colorOverrides;
           });

@@ -11,6 +11,7 @@
   tmuxOverrides ? p: {},
   sketchybarOverrides ? p: {},
   neovimOverrides ? p: {},
+  macoswallpaperOverrides ? {},
   ...
 }: let
   luminance =
@@ -257,13 +258,15 @@ in rec {
     file = "dist/themes/${normalizedThemeName}.tmTheme";
   };
 
-  macoswallpaper = {
-    wallpaper = "$HOME/wallpapers/rosepine-default${
-      if variant == "moon"
-      then "-3"
-      else if variant == "eclipse"
-      then "-eclipse"
-      else ""
-    }.png";
-  };
+  macoswallpaper =
+    {
+      wallpaper = "$HOME/wallpapers/rosepine-default${
+        if variant == "moon"
+        then "-3"
+        else if variant == "eclipse"
+        then "-eclipse"
+        else ""
+      }.png";
+    }
+    // macoswallpaperOverrides;
 }

@@ -1,9 +1,11 @@
 ---
 defines:
-  focused_space: accent1
+  focused_space_bg: accent1
+  focused_space_fg: background
 ---
 
 #!/bin/bash
 
-export FOCUSED_SPACE_BG=0xff⟨focused_space:hex⟩
+export FOCUSED_SPACE_BG=0xff⟨focused_space_bg:hex⟩
+export FOCUSED_SPACE_FG=0xff⟨focused_space_fg:hex⟩
 

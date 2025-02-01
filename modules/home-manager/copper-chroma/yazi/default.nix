@@ -106,7 +106,7 @@ in {
                     ${
                       if generateThemeTomlFromPalette
                       then
-                        injectSyntectTheme (builtins.readFile (opts.palette.generateDynamic {
+                        injectSyntectTheme (builtins.readFile (opts.palette-ext.generateDynamic {
                           template = ./theme.toml.dyn;
                           paletteOverrides = colorOverrides;
                         }))
