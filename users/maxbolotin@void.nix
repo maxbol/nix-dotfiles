@@ -43,7 +43,7 @@
         "neovim"
         # "neovide"
         "obsidian"
-        "pdf-viewer-zathura"
+        "zathura"
         "productivity"
         "sops"
         "tmux"

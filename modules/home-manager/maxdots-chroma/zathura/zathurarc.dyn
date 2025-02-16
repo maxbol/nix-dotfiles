@@ -1,0 +1,58 @@
+---
+defines:
+  default_bg: background
+  default_fg: text
+  statusbar_bg: overlay
+  statusbar_fg: text
+  inputbar_bg: text2 
+  inputbar_fg: accent1
+  notification_bg: text
+  notification_fg: text2
+  notification_error_bg: accent2
+  notification_error_fg: text2
+  notification_warning_bg: accent3
+  notification_warning_fg: text2
+  highlight_color: overlay
+  highlight_active_color: surface
+  completion_bg: text2
+  completion_fg: accent1
+  completion_highlight_fg: overlay
+  completion_highlight_bg: accent1
+  recolor_lightcolor: background
+  recolor_darkcolor: text
+---
+
+set default-bg                  "#⟨default_bg:hex⟩"
+set default-fg                  "#⟨default_fg:hex⟩"
+
+set statusbar-fg                "#⟨statusbar_fg:hex⟩"
+set statusbar-bg                "#⟨statusbar_bg:hex⟩"
+
+set inputbar-bg                 "#⟨inputbar_bg:hex⟩"
+set inputbar-fg                 "#⟨inputbar_fg:hex⟩"
+
+set notification-bg             "#⟨notification_bg:hex⟩"
+set notification-fg             "#⟨notification_fg:hex⟩"
+
+set notification-error-bg       "#⟨notification_error_bg:hex⟩"
+set notification-error-fg       "#⟨notification_error_fg:hex⟩"
+
+set notification-warning-bg     "#⟨notification_warning_bg:hex⟩"
+set notification-warning-fg     "#⟨notification_warning_fg:hex⟩"
+
+set highlight-color             "#⟨highlight_color:hex⟩"
+set highlight-active-color      "#⟨highlight_active_color:hex⟩"
+set highlight-opacity           0.5
+
+set completion-bg               "#⟨completion_bg:hex⟩"
+set completion-fg               "#⟨completion_fg:hex⟩"
+
+set completion-highlight-fg     "#⟨completion_highlight_fg:hex⟩"
+set completion-highlight-bg     "#⟨completion_highlight_bg:hex⟩"
+
+set recolor-lightcolor          "#⟨recolor_lightcolor:hex⟩"
+set recolor-darkcolor           "#⟨recolor_darkcolor:hex⟩"
+
+set recolor                     "true"
+set recolor-keephue             "false"
+

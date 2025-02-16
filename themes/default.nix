@@ -195,6 +195,9 @@
           Folded = "#44415a";
         };
       };
+      macoswallpaperOverrides = {
+        wallpaper = "$HOME/wallpapers/rosepine-default-4.jpeg";
+      };
     });
 
   Rose-Pine-Eclipse = pkgs.callPackage ./rosepine.nix (extraArgs

@@ -1,0 +1,190 @@
+---
+defines:
+  accent_primary: accent1
+  arrowpanel_color: text
+  bg_color2: background
+  bg_color: background
+  border_color: text2
+  fg_color: text
+  frame_fg: text
+  icon_color: text
+  newtab_bg_color: background
+  primary_btn_bg: accent1
+  primary_btn_fg: surface
+  secondary_btn_bg: surface
+  secondary_btn_fg: text
+  sidebar_color: accent2
+  tab_color: accent3
+  tab_fg_color: accent1
+  tab_pinned_bg_color: accent1
+  tab_soundplaying_bg_color: accent2
+  tab_selected_bg_color: overlay
+  toolbar_active_el_bg: accent1
+  toolbar_active_el_fg: surface
+  toolbar_fg: text
+  toolbar_field_color: accent1
+  urlbar_color: accent1
+  urlbar_focused_color: overlay
+  urlbar_results_color: accent2
+  urlbar_results_url_color: accent3
+  vimium_border_color: text2
+  vimium_hint_bg: accent1
+  vimium_hint_fg: background
+  vimium_hint_border: surface
+  vimium_search_area_bg: background
+  vimium_search_area_input_bg: background
+  vimium_search_area_input_fg: accent1
+  vimium_search_result_bg: overlay
+  vimium_search_result_fg: text
+  vimium_search_result_source_fg: text2
+  vimium_search_result_url_fg: accent1
+  vimium_search_result_active_bg: background
+---
+
+#fullscr-toggler { background-color: rgba(0, 0, 0, 0) !important; }
+:root {
+  --autocomplete-popup-background: var(--mff-bg) !important;
+  --color-accent-primary-active: color-mix(in hsl, #⟨accent_primary:hex⟩, black 8%) !important;
+  --color-accent-primary-hover: color-mix(in hsl, #⟨accent_primary:hex⟩, black 5%) !important;
+  --color-accent-primary: #⟨accent_primary:hex⟩ !important;
+  --default-arrowpanel-background: var(--mff-bg) !important;
+  --default-arrowpanel-color: #⟨arrowpanel_color:hex⟩ important;
+  --in-content-button-background-active: color-mix(in hsl, #⟨secondary_btn_bg:hex⟩, white 15%) !important;
+  --in-content-button-background-hover: color-mix(in hsl, #⟨secondary_btn_bg:hex⟩, white 10%) !important;
+  --in-content-button-background: #⟨secondary_btn_bg:hex⟩ !important;
+  --in-content-button-text-color: #⟨secondary_btn_fg:hex⟩ !important;
+  --in-content-page-color: #⟨fg_color:hex⟩ !important;
+  --in-content-primary-button-background-active: color-mix(in hsl, #⟨primary_btn_bg:hex⟩, black 8%) !important;
+  --in-content-primary-button-background-hover: color-mix(in hsl, #⟨primary_btn_bg:hex⟩, black 5%) !important;
+  --in-content-primary-button-background: #⟨primary_btn_bg:hex⟩ !important;
+  --in-content-primary-button-text-color: #⟨primary_btn_fg:hex⟩ !important;
+  --lwt-accent-color: var(--mff-bg) !important;
+  --lwt-toolbarbutton-icon-fill: var(--mff-icon-color) !important;
+  --mff-bg: #⟨bg_color2:hex⟩;
+  --mff-icon-color: #⟨icon_color:hex⟩;
+  --mff-sidebar-bg: var(--mff-bg);
+  --mff-sidebar-color: #⟨sidebar_color:hex⟩;
+  --mff-tab-color: #⟨tab_color:hex⟩;
+  --mff-tab-pinned-bg: #⟨tab_pinned_bg_color:hex⟩;
+  --mff-tab-selected-bg: #⟨tab_selected_bg_color:hex⟩;
+  --mff-tab-soundplaying-bg: #⟨tab_soundplaying_bg_color:hex⟩;
+  --mff-urlbar-color: #⟨urlbar_color:hex⟩;
+  --mff-urlbar-focused-color: #⟨urlbar_focused_color:hex⟩;
+  --mff-urlbar-results-color: #⟨urlbar_focused_color:hex⟩;
+  --mff-urlbar-results-url-color: #⟨urlbar_results_url_color:hex⟩;
+  --newtab-background-color: #⟨newtab_bg_color:hex⟩ !important;
+  --panel-disabled-color: #f9f9fa80;
+  --s-active-el-bg: #⟨toolbar_active_el_bg:hex⟩ !important;
+  --s-active-el-fg: #⟨toolbar_active_el_fg:hex⟩ !important;
+  --s-frame-bg: var(--mff-bg) !important;
+  --s-frame-fg: #⟨frame_fg:hex⟩ !important;
+  --s-toolbar-bg: var(--mff-bg) !important;
+  --s-toolbar-fg: #⟨toolbar_fg:hex⟩ !important;
+  --tf-accent: #⟨accent_primary:hex⟩ !important;
+  --tf-border: #⟨border_color:hex⟩ !important;
+  --toolbar-bgcolor: var(--mff-bg) !important;
+  --toolbar-field-color: #⟨toolbar_field_color:hex⟩ !important;
+  --uc-bg-color: #⟨bg_color:hex⟩;
+  --uc-tab-fg-color: #⟨tab_fg_color:hex⟩;
+  --urlbar-separator-color: transparent !important;
+  --vimium-border-color: #⟨vimium_border_color:hex⟩;
+  --vimium-hint-bg: #⟨vimium_hint_bg:hex⟩;
+  --vimium-hint-border: #⟨vimium_hint_border:hex⟩;
+  --vimium-hint-fg: #⟨vimium_hint_fg:hex⟩;
+  --vimium-search-area-bg: #⟨vimium_search_area_bg:hex⟩;
+  --vimium-search-area-input-bg: #⟨vimium_search_area_input_bg:hex⟩;
+  --vimium-search-area-input-fg: #⟨vimium_search_area_input_fg:hex⟩;
+  --vimium-search-result-bg: #⟨vimium_search_result_bg:hex⟩;
+  --vimium-search-result-fg: #⟨vimium_search_result_fg:hex⟩;
+  --vimium-search-result-source-fg: #⟨vimium_search_result_source_fg:hex⟩;
+  --vimium-search-result-url-fg: #⟨vimium_search_result_url_fg:hex⟩;
+  --vimium-search-result-active-bg: #⟨vimium_search_result_active_bg:hex⟩;
+  --vimium-font-family: Arial;
+}
+
+#back-button > .toolbarbutton-icon{
+  --backbutton-background: transparent !important;
+  border: none !important;
+}
+
+.tabbrowser-tab[first-visible-tab][last-visible-tab]{
+  background-color: var(--uc-bar-bg-color) !important;
+}
+.tab-text.tab-label {
+  color: var(--uc-tab-fg-color) !important;
+}
+#navigator-toolbox {
+  background: var(--uc-bg-color) !important;
+}
+
+.urlbar-icon > image {
+  fill: var(--mff-icon-color) !important;
+  color: var(--mff-icon-color) !important;
+}
+
+.toolbarbutton-text {
+  color: var(--mff-icon-color)  !important;
+}
+.urlbar-icon {
+  color: var(--mff-icon-color)  !important;
+
+}
+
+.Tab[data-active="true"] .body {
+  background-color: var(--active-el-bg) !important;
+  color: var(--active-el-fg) !important;
+}
+
+/* VIMIUM */
+div > .vimiumHintMarker {
+  /* linkhint boxes */
+  background: var(--vimium-hint-bg) !important;
+  border: 1px solid var(--vimium-hint-border) !important;
+  border-radius: 0 !important;
+  padding: 3px !important;
+}
+
+div > .vimiumHintMarker span {
+  /* linkhint text */
+  color: var(--vimium-hint-fg) !important;
+  font-family: var(--vimium-font-family) !important;
+  font-weight: bold !important;
+  font-size: 18px !important;
+}
+
+div > .vimiumHintMarker > .matchingCharacter {
+}
+
+#vomnibar {
+  background-color: var(--vimium-search-area-bg) !important;
+  font-family: var(--vimium-font-family) !important;
+  border-radius: 0 !important;
+  border: 2px solid var(--vimium-border-color) !important;
+}
+
+.vomnibarSearchArea {
+  background-color: var(--vimium-search-area-bg) !important;
+}
+
+#vomnibar > ul > li {
+  background-color: var(--vimium-search-result-bg) !important;
+  color: var(--vimium-search-result-fg) !important;
+}
+
+#vomnibar > ul > li .vomnibarSource {
+  color: var(--vimium-search-result-source-fg) !important;
+}
+
+#vomnibar > ul > li .vomnibarUrl {
+  color: var(--vimium-search-result-url-fg) !important;
+}
+
+#vomnibar > ul > li.vomnibarSelected {
+  background-color: var(--vimium-search-result-active-bg) !important;
+}
+
+#vomnibar input {
+  font-family: var(--vimium-font-family) !important;
+  background-color: var(--vimium-search-area-input-bg) !important;
+  color: var(--vimium-search-area-input-fg) !important;
+}

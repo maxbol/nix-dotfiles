@@ -1,0 +1,13 @@
+--- a/gdk/quartz/gdkwindow-quartz.c
++++ b/gdk/quartz/gdkwindow-quartz.c
+@@ -2569,7 +2569,9 @@ gdk_quartz_window_set_decorations (GdkWindow       *window,
+       new_mask = GDK_QUARTZ_BORDERLESS_WINDOW;
+     }
+   else if (decorations == 0) {
+-      new_mask = GDK_QUARTZ_BORDERLESS_WINDOW | GDK_QUARTZ_MINIATURIZABLE_WINDOW;
++      new_mask = (GDK_QUARTZ_CLOSABLE_WINDOW |
++                  GDK_QUARTZ_MINIATURIZABLE_WINDOW |
++                  GDK_QUARTZ_RESIZABLE_WINDOW);
+     }
+   else
+     {

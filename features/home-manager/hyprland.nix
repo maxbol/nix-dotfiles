@@ -77,7 +77,7 @@
 
     Service = {
       Type = "oneshot";
-      ExecStart = "${config.copper.chroma.themeDirectory}/active/activate";
+      ExecStart = "${config.maxdots.chroma.themeDirectory}/active/activate";
       Restart = "always";
     };
 

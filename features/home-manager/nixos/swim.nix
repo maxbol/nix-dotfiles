@@ -21,8 +21,8 @@
     extraSwwwArgs = lib.mkIf config.maxdots.feature.hyprland.enable [''--transition-pos'' ''"$( hyprctl cursorpos )"''];
   };
   # TODO: this doesn't belong here
-  copper.chroma.themes.Catppuccin-Latte.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/latte";
-  copper.chroma.themes.Catppuccin-Mocha.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/mocha";
-  copper.chroma.themes.Gruvbox-Dark.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/gruvbox-dark";
-  copper.chroma.themes.Gruvbox-Light.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/gruvbox-light";
+  maxdots.chroma.themes.Catppuccin-Latte.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/latte";
+  maxdots.chroma.themes.Catppuccin-Mocha.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/mocha";
+  maxdots.chroma.themes.Gruvbox-Dark.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/gruvbox-dark";
+  maxdots.chroma.themes.Gruvbox-Light.swim.wallpaperDirectory = "${config.home.homeDirectory}/wallpapers/gruvbox-light";
 }

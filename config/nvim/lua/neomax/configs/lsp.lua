@@ -105,7 +105,6 @@ capabilities.textDocument.foldingRange = {
 
 -- if you just want default config for the servers then put them in a table
 local servers = {
-	"html",
 	"cssls",
 	-- "clangd",
 	"buf_ls",
@@ -120,6 +119,8 @@ local servers = {
 	"gleam",
 	"rust_analyzer",
 	"ols",
+	"glsl_analyzer",
+	"denols",
 }
 
 for _, lsp in ipairs(servers) do
@@ -216,9 +217,48 @@ lspconfig.sourcekit.setup({
 	filetypes = { "swift" },
 })
 
-lspconfig["ts_ls"].setup({
+lspconfig["html"].setup({
+	on_attach = on_attach,
+	on_init = on_init,
+	capabilities = capabilities,
+	filetypes = { "html", "vento", "templ" },
+	init_options = {
+		provideFormatter = false,
+	},
+})
+
+lspconfig["denols"].setup({
+	on_attach = on_attach,
+	on_init = on_init,
+	capabilities = capabilities,
+	root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+	settings = {
+		deno = {
+			enable = true,
+			suggest = {
+				imports = {
+					hosts = {
+						["https://deno.land"] = true,
+					},
+				},
+			},
+		},
+	},
+})
+
+lspconfig.eslint.setup({
 	on_init = on_init,
 	on_attach = on_attach,
+	capabilites = capabilities,
+	single_file_support = false,
+	root_dir = lspconfig.util.root_pattern(".eslintrc.js", "eslint.config.mjs", ".eslintrc"),
+})
+
+lspconfig["ts_ls"].setup({
+	root_dir = lspconfig.util.root_pattern("package.json"),
+	on_init = on_init,
+	on_attach = on_attach,
+	single_file_support = false,
 	capabilities = capabilities,
 	settings = {
 		typescript = {

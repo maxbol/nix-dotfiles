@@ -7,8 +7,10 @@ local options = {
 		-- typescript = { "prettier" },
 		-- javascript = { "prettier" },
 		css = { "prettier" },
-		html = { "prettier" },
 		graphql = { "prettier" },
+		html = { "prettier_html" },
+		vento = { "prettier_html" },
+		templ = { "prettier_html" },
 
 		json = { "fixjson" },
 
@@ -31,6 +33,13 @@ local options = {
 	},
 
 	formatters = {
+		prettier_html = {
+			command = "prettier",
+			args = {
+				"--parser",
+				"html",
+			},
+		},
 		csharpier = {
 			command = "dotnet-csharpier",
 			args = {

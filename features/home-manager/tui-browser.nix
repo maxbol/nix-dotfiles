@@ -33,6 +33,7 @@ in {
           vimium
           ublock-origin
           brotab
+          darkreader
         ];
       };
     };

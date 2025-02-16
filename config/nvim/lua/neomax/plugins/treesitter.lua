@@ -164,5 +164,14 @@ return {
 	},
 	config = function(_, opts)
 		require("nvim-treesitter.configs").setup(opts)
+
+		local augroup = vim.api.nvim_create_augroup("ts_indent_filetypes", { clear = true })
+		vim.api.nvim_create_autocmd("FileType", {
+			group = augroup,
+			pattern = { "html", "templ", "vento" },
+			callback = function()
+				vim.bo.indentexpr = "nvim_treesitter#indent()"
+			end,
+		})
 	end,
 }

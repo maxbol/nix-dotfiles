@@ -1,0 +1,10 @@
+--- a/girara/session.c
++++ b/girara/session.c
+@@ -445,6 +445,7 @@ girara_session_init(girara_session_t* session, const char* sessionname)
+     .width_inc   = 0
+   };
+ 
++	gtk_window_set_decorated(GTK_WINDOW(session->gtk.window), false);
+   gtk_window_set_geometry_hints(GTK_WINDOW(session->gtk.window), NULL, &hints, GDK_HINT_MIN_SIZE);
+ 
+   /* view */

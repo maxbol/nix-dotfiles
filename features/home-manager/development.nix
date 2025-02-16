@@ -103,6 +103,10 @@ in {
       # Gleam
       gleam
 
+      # GLSL
+      glsl_analyzer
+      shaderc
+
       # Python
       # (python3.withPackages
       #   (ps: [
