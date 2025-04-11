@@ -12,11 +12,12 @@
         colorscheme = "ayu-dark";
         background = "dark";
         hlGroupsFg = {
-          HLChunk1 = "#" + palette.semantic.accent1;
-          HLLineNum1 = "#" + palette.semantic.accent1;
+          HLChunk1 = "#" + palette.semantic.accent2;
+          HLLineNum1 = "#" + palette.semantic.accent2;
           LineNr = "#" + palette.semantic.text2;
           IncSearch = "#" + palette.semantic.background;
           Function = "#" + palette.semantic.text;
+          BlinkCmpGhostText = "#" + palette.semantic.text1;
         };
         hlGroupsBg = {
           Visual = "#" + palette.semantic.text2;
@@ -37,6 +38,7 @@
           HLChunk1 = "#" + palette.semantic.accent1;
           HLLineNum1 = "#" + palette.semantic.accent1;
           Function = "#" + palette.accents.mauve;
+          BlinkCmpGhostText = "#" + palette.semantic.text1;
         };
         hlGroupsBg = {
           Visual = "#" + palette.semantic.text2;
@@ -44,6 +46,9 @@
       };
     });
 
+  Blue-Nightmare = pkgs.callPackage ./blue-nightmare.nix (extraArgs
+    // {
+    });
   Bluloco-Dark = pkgs.callPackage ./bluloco.nix (extraArgs
     // {
       luminance = "dark";
@@ -96,6 +101,9 @@
           HLChunk1 = "#" + palette.semantic.accent2;
           HLLineNum1 = "#" + palette.semantic.accent2;
         };
+        hlGroupsBg = {
+          CursorLine = "#bcc0cc";
+        };
       };
     });
 
@@ -139,6 +147,11 @@
           HLLineNum1 = "#" + palette.semantic.accent2;
         };
       };
+
+      tmuxOverrides = palette: {
+        status_window_inactive_bg = palette.semantic.surface;
+        status_modules_outer_bg = palette.semantic.surface;
+      };
     });
 
   Gruvbox-Dark = pkgs.callPackage ./gruvbox.nix (extraArgs
@@ -170,6 +183,7 @@
         hlGroupsFg = {
           HLChunk1 = "#8ec07c";
           HLLineNum1 = "#8ec07c";
+          BlinkCmpGhostText = "#" + palette.semantic.text1;
         };
         hlGroupsBg = {
           # CursorLine = "#" + palette.semantic.overlay;
@@ -179,6 +193,17 @@
       };
     });
 
+  Newpaper-Dark = pkgs.callPackage ./newpaper.nix (extraArgs
+    // {
+      luminance = "dark";
+      neovimOverrides = palette: {
+        background = "dark";
+      };
+    });
+  Newpaper-Light = pkgs.callPackage ./newpaper.nix (extraArgs
+    // {
+      luminance = "light";
+    });
   Rose-Pine = pkgs.callPackage ./rosepine.nix (extraArgs
     // {
       variant = "pine";
@@ -196,7 +221,7 @@
         };
       };
       macoswallpaperOverrides = {
-        wallpaper = "$HOME/wallpapers/rosepine-default-4.jpeg";
+        wallpaper = "$HOME/wallpapers/rosepine-default-7.png";
       };
     });
 
@@ -244,11 +269,15 @@
         hlGroupsFg = {
           HLChunk1 = "#ffdd33";
           HLLineNum1 = "#ffdd33";
-          "@property" = "#" + palette.accents.darkbrown;
+          "@property" = "#" + palette.semantic.text;
+          BlinkCmpGhostText = "#949494";
         };
         hlGroupsBg = {
           FoldColumn = "#181818";
         };
+      };
+      tmuxOverrides = palette: {
+        status_session_fg = palette.accents.yellow;
       };
     });
 }

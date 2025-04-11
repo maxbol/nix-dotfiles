@@ -64,8 +64,8 @@ return {
 					["ac"] = "@class.outer",
 					["i/"] = "@comment.inner",
 					["a/"] = "@comment.outer",
-					["iS"] = "@statement.inner",
-					["aS"] = "@statement.outer",
+					["i;"] = "@statement.inner",
+					["a;"] = "@statement.outer",
 
 					-- You can optionally set descriptions to the mappings (used in the desc parameter of
 					-- nvim_buf_set_keymap) which plugins like which-key display

@@ -1,5 +1,3 @@
-require("neomax.modules.lazy-obsession")
-
 -- Profiling
 local should_profile = os.getenv("NVIM_PROFILE")
 if should_profile then
@@ -58,6 +56,7 @@ require("lazy").setup({
 }, lazy_config)
 
 require("neomax.options")
+require("neomax.modules.lazy-obsession")
 
 -- load theme
 -- dofile(vim.g.base46_cache .. "defaults")

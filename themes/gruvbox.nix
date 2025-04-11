@@ -188,6 +188,7 @@ in rec {
     monospaceFont.size = 9;
     monospaceFont.package = pkgs.nerdfonts;
   };
+
   gtk = {
     theme.package =
       pkgs
@@ -220,17 +221,6 @@ in rec {
     '';
   in {
     file."theme.conf".source = themeSource;
-  };
-
-  # TODO: replace with actual gruvbox theme
-  fish.theme = {
-    file = "${pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "fish";
-      rev = "91e6d6721362be05a5c62e235ed8517d90c567c9";
-      hash = "sha256-l9V7YMfJWhKDL65dNbxaddhaM6GJ0CFZ6z+4R6MJwBA=";
-    }}/themes/Catppuccin Mocha.theme";
-    name = "Catppuccin Mocha";
   };
 
   starship.palette = {

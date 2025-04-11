@@ -15,10 +15,13 @@ return {
 	-- Optional dependencies
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	config = function(opts)
-		require("oil").setup({
+		local oil = require("oil")
+
+		oil.setup({
 			default_file_explorer = true,
 			prompt_save_on_select_new_entry = false,
 			lsp_file_methods = {
+				enabled = true,
 				autosave_changes = "unmodified",
 			},
 			columns = {
@@ -45,15 +48,41 @@ return {
 		-- Set the local working directory to the current buffer's directory
 		-- when working with oil buffers so we can execute shell commands directly
 		-- in the oil dir with !cmd
-		augroup("OilLocalCwd", { clear = true })
+		local group = augroup("OilLocalCwd", { clear = true })
 		autocmd("BufEnter", {
-			group = "OilLocalCwd",
+			group = group,
 			callback = function(o)
 				if o.match:find("^oil://") then
 					vim.cmd("lcd " .. (require("oil").get_current_dir()))
 				else
 					vim.cmd("lcd " .. (vim.fn.getcwd(-1)))
 				end
+			end,
+		})
+
+		-- Misc user customizations to Oil
+		group = augroup("OilUserExt", { clear = true })
+		autocmd("BufEnter", {
+			group = group,
+			pattern = { "oil://*" },
+			callback = function(o)
+				-- Add binding M-g to enter a command propmt to execute a UNIX command with the file name
+				-- as argument
+				vim.keymap.set("n", "<M-g>", function()
+					local window = vim.fn.bufwinid(o.buf)
+					local row = vim.api.nvim_win_get_cursor(window)[1]
+					local entry = oil.get_entry_on_line(o.buf, row)
+					if not entry then
+						return
+					end
+
+					local name_len = #entry.name
+
+					vim.api.nvim_input(":! " .. entry.name)
+					for _ = 1, name_len + 1, 1 do
+						vim.api.nvim_input("<Left>")
+					end
+				end, { buffer = o.buf })
 			end,
 		})
 	end,

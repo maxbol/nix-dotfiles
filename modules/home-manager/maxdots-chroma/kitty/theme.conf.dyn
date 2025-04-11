@@ -1,0 +1,67 @@
+---
+defines:
+  foreground: text
+  background: background
+  selection_foreground: text2
+  selection_background: overlay
+  cursor: text
+  cursor_text_color: background
+  active_tab_background: overlay
+  active_tab_foreground: text2
+  inactive_tab_background: surface
+  inactive_tab_foreground: text1
+  color0: background
+  color1: background
+  color2: background
+  color3: background
+  color4: background
+  color5: background
+  color6: background
+  color7: background
+  color8: background
+  color9: background
+  color10: background
+  color11: background
+  color12: background
+  color13: background
+  color14: background
+  color15: background
+---
+
+# vim:ft=kitty
+## name: gruber-darker
+## author: Max Bolotin
+## license: MIT
+foreground                      #⟨foreground:hex⟩ 
+background                      #⟨background:hex⟩ 
+selection_foreground            #⟨selection_foreground:hex⟩  
+selection_background            #⟨selection_background:hex⟩  
+# Cursor colors
+cursor                          #⟨cursor:hex⟩  
+cursor_text_color               #⟨cursor_text_color:hex⟩  
+# URL underline color when hovering with mouse
+# kitty window border colors
+# OS Window titlebar colors
+# Tab bar colors
+active_tab_foreground           #⟨active_tab_foreground:hex⟩  
+active_tab_background           #⟨active_tab_background:hex⟩ 
+inactive_tab_foreground         #⟨inactive_tab_foreground:hex⟩  
+inactive_tab_background         #⟨inactive_tab_background:hex⟩ 
+
+# Colors for marks (marked text in the terminal)
+color0 #⟨color0:hex⟩ 
+color1 #⟨color1:hex⟩  
+color2 #⟨color2:hex⟩  
+color3 #⟨color3:hex⟩  
+color4 #⟨color4:hex⟩  
+color5 #⟨color5:hex⟩  
+color6 #⟨color6:hex⟩  
+color7 #⟨color7:hex⟩  
+color8 #⟨color8:hex⟩  
+color9 #⟨color9:hex⟩  
+color10 #⟨color10:hex⟩  
+color11 #⟨color11:hex⟩  
+color12 #⟨color12:hex⟩  
+color13 #⟨color13:hex⟩  
+color14 #⟨color14:hex⟩  
+color15 #⟨color15:hex⟩  

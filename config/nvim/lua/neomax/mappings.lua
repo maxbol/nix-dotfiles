@@ -10,7 +10,7 @@ map("n", "<D-d>", "<C-d>zz", { desc = "scroll down" })
 map("n", "<D-u>", "<C-u>zz", { desc = "scroll up" })
 map("n", "<C-d>", "<C-d>zz")
 map("n", "<C-u>", "<C-u>zz")
-map("n", "J", "mzJ`z", { desc = "join lines" })
+map("n", "J", "mzJ`z<CMD>delm z<CR>", { desc = "join lines" })
 map("n", "N", "Nzzzv", { desc = "search previous" })
 map("n", "n", "nzzzv", { desc = "search next" })
 -- map("i", "kk", "")
@@ -28,5 +28,8 @@ map("n", "<M-k>", "<C-w>+", { desc = "resize window" })
 
 map("x", "<leader>p", '"_dP')
 
-map("n", "<C-y>", "mmyyp`mj", { desc = "duplicate line", noremap = true })
+map("n", "<C-y>", "mzyyp`zj<CMD>delm z<CR>", { desc = "duplicate line", noremap = true })
 map("v", "<C-y>", "y`>p`[V`]", { desc = "duplicate selection", noremap = true })
+
+-- search in selection
+map("x", "<M-/>", "<Esc>/\\%V")

@@ -4,10 +4,12 @@
   ...
 }: let
   obsidian-remote-cli = origin.inputs.obsidian-remote.packages.${pkgs.system}.default;
+  monoFont = "Iosevka";
 in {
   home.packages = with pkgs; [
     obsidian
     obsidian-remote-cli
+    fira-code
   ];
 
   programs.obsidian-config = {
@@ -18,9 +20,10 @@ in {
     config = {
       appearance = {
         enable = true;
-        interfaceFontFamily = "Iosevka";
-        textFontFamily = "Iosevka";
-        monospaceFontFamily = "Iosevka";
+        interfaceFontFamily = monoFont;
+        textFontFamily = monoFont;
+        monospaceFontFamily = monoFont;
+        baseFontSize = 18;
       };
     };
   };

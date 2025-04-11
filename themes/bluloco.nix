@@ -159,35 +159,17 @@ in rec {
 
   neovim = neovimOverrides palette;
 
-  desktop = {
-    # Note: this propagatedInputs override should be upstreamed to nixpkgs
-    iconTheme.package = pkgs.tela-icon-theme.overrideAttrs (final: prev: {propagatedBuildInputs = prev.propagatedBuildInputs ++ [pkgs.gnome.adwaita-icon-theme pkgs.libsForQt5.breeze-icons];});
-    iconTheme.name = "Tela-${telaMap.${accent}}";
-    cursorTheme.package = pkgs.bibata-cursors;
-    cursorTheme.name = "Bibata-Original-Ice";
-    cursorTheme.size = 20;
-    font.name = "Cantarell";
-    font.size = 10;
-    font.package = pkgs.cantarell-fonts;
-    monospaceFont.name = "CaskaydiaCove Nerd Font Mono";
-    monospaceFont.size = 9;
-    monospaceFont.package = pkgs.nerdfonts;
+  dynawall.colorOverrides = {
+    accents = [
+      ("#" + palette.accents.blue)
+      ("#" + palette.accents.magenta)
+      ("#" + palette.accents.red)
+      ("#" + palette.accents.orange)
+    ];
   };
 
-  kitty = let
-    themeFile = "${bluloco_pkg}/terminal-themes/kitty/Bluloco${Luminance}.conf";
-    themeConf = builtins.readFile themeFile;
-
-    themeSource = pkgs.writeText "theme.conf" ''
-      ${themeConf}
-
-      # background_opacity 0.95
-      # background_opacity 1.0
-      # background_blur 10
-      # macos_thicken_font 1
-    '';
-  in {
-    file."theme.conf".source = themeSource;
+  kitty = {
+    file."theme.conf".source = "${bluloco_pkg}/terminal-themes/kitty/Bluloco${Luminance}.conf";
   };
 
   starship.palette = {
@@ -198,17 +180,6 @@ in rec {
   bat.theme = {
     src = bluloco_pkg;
     file = "extra/bat/.config/bat/themes/bluloco-${luminance}/bluloco-${luminance}.tmTheme";
-  };
-
-  # TODO: replace with actual-pine theme
-  fish.theme = {
-    file = "${pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "fish";
-      rev = "91e6d6721362be05a5c62e235ed8517d90c567c9";
-      hash = "sha256-l9V7YMfJWhKDL65dNbxaddhaM6GJ0CFZ6z+4R6MJwBA=";
-    }}/themes/Catppuccin Mocha.theme";
-    name = "Catppuccin Mocha";
   };
 
   macoswallpaper = {

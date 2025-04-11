@@ -24,8 +24,8 @@ sketchybar --bar position=top height=35 blur_radius=10 color=0x40000000
 default=(
   padding_left=5
   padding_right=5
-  icon.font="Iosevka Nerd Font:Bold:20.0"
-  label.font="Iosevka Nerd Font:Bold:16.0"
+  icon.font="Iosevka Nerd Font:Bold:16.0"
+  label.font="Iosevka:Bold:14.0"
   icon.color=0xffffffff
   label.color=0xffffffff
   icon.padding_left=4

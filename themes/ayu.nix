@@ -139,6 +139,17 @@ in rec {
 
   neovim = neovimOverrides palette;
 
+  dynawall.shader = "monterrey2";
+  dynawall.colorOverrides = {
+    accents = [
+      ("#" + palette.accents.blue)
+      ("#" + palette.accents.lightblue)
+      ("#" + palette.accents.teal)
+      ("#" + palette.accents.grey)
+      ("#" + palette.accents.mauve)
+    ];
+  };
+
   desktop = {
     # Note: this propagatedInputs override should be upstreamed to nixpkgs
     iconTheme.package = pkgs.tela-icon-theme.overrideAttrs (final: prev: {propagatedBuildInputs = prev.propagatedBuildInputs ++ [pkgs.gnome.adwaita-icon-theme pkgs.libsForQt5.breeze-icons];});
@@ -164,12 +175,9 @@ in rec {
 
     themeSource = pkgs.writeText "theme.conf" ''
       ${themeConf}
-      # background_opacity 1
-
       ${
         if variant == "latte"
         then ''
-          background_opacity 1
           macos_thicken_font 1
         ''
         else ""
@@ -189,7 +197,6 @@ in rec {
     file = "ayu-${variant}.tmTheme";
   };
 
-  # TODO: replace with actual-pine theme
   fish.theme = {
     file = "${ayuFishTheme}/conf.d/ayu-${variant}.fish";
     name = "ayu_${variant}";

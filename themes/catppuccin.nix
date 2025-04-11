@@ -141,13 +141,18 @@ in rec {
       ${
         if variant == "latte"
         then ''
-          background_opacity 1
-          macos_thicken_font 1
+          # macos_thicken_font 1
+          # background #ccd0da
         ''
         else ""
       }
     '';
   in {
+    # font = {
+    #   name = "Fira Code";
+    #   package = pkgs.fira-code;
+    #   size = 16;
+    # };
     file."theme.conf".source = themeSource;
   };
 

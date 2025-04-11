@@ -17,7 +17,7 @@
   home.sessionVariables = {
     # set default applications
     EDITOR = "nv";
-    BROWSER = "google-chrome-stable";
+    BROWSER = "firefox";
     TERMINAL = "kitty";
     HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "fg=green,bold";
     HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND = "fg=red,bold";

@@ -1,6 +1,5 @@
 ---
 defines:
-    bg: background
     fg: text
     pane_inactive_border: surface
     pane_active_border: text1
@@ -81,7 +80,7 @@ set -ogqF @tinted-tmux-modulepane-right-outer "%Y-%m-%d  %H:%M"
 
 set-option -g status "on"
 set-option -g status-justify "left" 
-set-option -g status-left "#[fg=#⟨status_session_fg:hex⟩,bg=#⟨status_session_bg:hex⟩,bold] #S #[fg=#⟨status_session_bg:hex⟩,bg=#⟨bg:hex⟩,nobold,noitalics,nounderscore]"
+set-option -g status-left "#[fg=#⟨status_session_fg:hex⟩,bg=#⟨status_session_bg:hex⟩,bold] #S #[fg=#⟨status_session_bg:hex⟩,bg=terminal,nobold,noitalics,nounderscore]"
 set-option -g status-left-length "80"
 set-option -g status-left-style none
 set-option -g status-right "#[fg=#⟨status_modules_outer_bg:hex⟩,bg=terminal nobold, nounderscore, noitalics]#[fg=#⟨status_modules_outer_fg:hex⟩,bg=#⟨status_modules_outer_bg:hex⟩] #{E:@tinted-tmux-modulepane-right-outer} #[fg=#⟨status_modules_inner_bg:hex⟩,bg=#⟨status_modules_outer_bg:hex⟩,nobold,noitalics,nounderscore]#[fg=#⟨status_modules_inner_fg:hex⟩,bg=#⟨status_modules_inner_bg:hex⟩] #{E:@tinted-tmux-modulepane-right-inner} "

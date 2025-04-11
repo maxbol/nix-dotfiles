@@ -36,6 +36,11 @@ in
                       type = types.path;
                       example = "./Soothe";
                     };
+                    baseFontSize = mkOption {
+                      type = types.int;
+                      example = 16;
+                      default = 16;
+                    };
                     interfaceFontFamily = mkOption {
                       type = types.str;
                       example = "Fira Code";
@@ -91,7 +96,8 @@ in
               "cssTheme": "${basename cfg.config.appearance.cssTheme}",
               "interfaceFontFamily": "${cfg.config.appearance.interfaceFontFamily}",
               "textFontFamily": "${cfg.config.appearance.textFontFamily}",
-              "monospaceFontFamily": "${cfg.config.appearance.monospaceFontFamily}"
+              "monospaceFontFamily": "${cfg.config.appearance.monospaceFontFamily}",
+              "baseFontSize": ${toString cfg.config.appearance.baseFontSize}
             }
           '';
 

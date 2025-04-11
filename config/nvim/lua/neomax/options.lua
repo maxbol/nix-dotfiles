@@ -20,6 +20,9 @@ opt.foldmethod = "syntax"
 opt.cursorline = true
 opt.guicursor = "n-v-c-i:block-Cursor/lCursor"
 
+-- Hide mode notation in cmdline
+opt.showmode = false
+
 -- Cmdline options
 -- opt.cmdheight = 0
 
@@ -86,6 +89,9 @@ g["loaded_ruby_provider"] = 0
 -- c headers are c, not cpp lol
 g["c_syntax_for_h"] = 1
 
+-- Allow folding in manpages
+g["ft_man_folding_enable"] = 1
+
 -- add binaries installed by mason.nvim to path
 local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
@@ -105,6 +111,9 @@ augroup grepqf
   autocmd QuickFixCmdPost l*    lwindow
 augroup END
 ]])
+
+-- Additional FT Binds
+vim.cmd([[autocmd! BufNewFile,BufRead *.vs,*.fs,*.frag,*.vert set ft=glsl]])
 
 require("neomax.configs.make")
 require("neomax.modules.obsidian")

@@ -40,16 +40,20 @@
         "development"
         "direnv"
         "keycastr"
+        "media-tui"
         "neovim"
-        # "neovide"
         "obsidian"
-        "zathura"
         "productivity"
         "sops"
         "tmux"
         "tui-browser"
+        "zathura"
         # "media-tui"
+        # "neovide"
       ];
+
+      maxdots.chroma.dynawall.enable = true;
+      maxdots.chroma.fish.enable = false;
 
       nixpkgs.config.permittedInsecurePackages = [
         "electron-25.9.0"

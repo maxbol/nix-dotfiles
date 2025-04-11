@@ -2,6 +2,7 @@
   config,
   origin,
   pkgs,
+  lib,
   ...
 }: let
   unstable-pkgs = origin.inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
@@ -11,6 +12,11 @@
     if pkgs.stdenv.hostPlatform.isDarwin == true
     then unstable-pkgs.firefox-unwrapped
     else pkgs.firefox;
+
+  firefoxMacOSCmd = pkgs.writeShellScriptBin "firefox" ''
+    cd ${firefox}/Applications/Firefox.app/Contents/MacOS
+    ./firefox $@
+  '';
 in {
   imports = [
     origin.inputs.nur.modules.homeManager.default
@@ -42,14 +48,14 @@ in {
   textfox = {
     enable = true;
     profile = "default";
-    copyOnActivation = true;
+    # copyOnActivation = true;
     config = {
       displayNavButtons = true;
       displaySidebarTools = true;
       displayTitles = false;
       font = {
         family = "Iosevka";
-        size = "20px";
+        size = "18px";
       };
     };
   };
@@ -57,5 +63,11 @@ in {
   home.packages = with pkgs; [
     brotab
     firefox
+    fira-code
+    (lib.mkIf
+      (pkgs.stdenv.hostPlatform.isDarwin == true)
+      firefoxMacOSCmd)
   ];
+
+  home.sessionVariables.BROWSER = "firefox";
 }

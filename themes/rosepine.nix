@@ -196,38 +196,14 @@ in rec {
   };
   yazi.syntectTheme = "${tmTheme}/dist/themes/${normalizedThemeName}.tmTheme";
 
-  desktop = {
-    # Note: this propagatedInputs override should be upstreamed to nixpkgs
-    iconTheme.package = pkgs.tela-icon-theme.overrideAttrs (final: prev: {propagatedBuildInputs = prev.propagatedBuildInputs ++ [pkgs.gnome.adwaita-icon-theme pkgs.libsForQt5.breeze-icons];});
-    iconTheme.name = "Tela-${telaMap.${accent}}";
-    cursorTheme.package = pkgs.bibata-cursors;
-    cursorTheme.name = "Bibata-Original-Ice";
-    cursorTheme.size = 20;
-    font.name = "Cantarell";
-    font.size = 10;
-    font.package = pkgs.cantarell-fonts;
-    monospaceFont.name = "Iosevka Nerd Font";
-    monospaceFont.size = 9;
-    monospaceFont.package = pkgs.nerdfonts;
-  };
-
-  gtk = {
-    theme.package = pkgs.rose-pine-gtk;
-    theme.name = normalizedThemeName;
-    documentFont = desktop.font;
-    colorScheme = "prefer-${luminance}";
-  };
-
-  qt = {
-    kvantum = {
-      package = self.hyprdots-kvantum;
-      name = "Rose-Pine";
-    };
-
-    qtct = {
-      package = self.hyprdots-qt5ct;
-      name = "Rose-Pine";
-    };
+  dynawall.shader = "monterrey2";
+  dynawall.colorOverrides = {
+    accents = [
+      ("#" + palette.accents.love)
+      ("#" + palette.accents.foam)
+      ("#" + palette.accents.iris)
+      ("#" + palette.accents.gold)
+    ];
   };
 
   kitty = {
@@ -235,17 +211,6 @@ in rec {
       if variant == "eclipse"
       then ./resources/rosepine/eclipse/kitty.conf
       else "${pkgs.kitty-themes}/share/kitty-themes/themes/${kittyThemeFileName}";
-  };
-
-  # TODO: replace with actual rose-pine theme
-  fish.theme = {
-    file = "${pkgs.fetchFromGitHub {
-      owner = "catppuccin";
-      repo = "fish";
-      rev = "91e6d6721362be05a5c62e235ed8517d90c567c9";
-      hash = "sha256-l9V7YMfJWhKDL65dNbxaddhaM6GJ0CFZ6z+4R6MJwBA=";
-    }}/themes/Catppuccin Mocha.theme";
-    name = "Catppuccin Mocha";
   };
 
   starship.palette = {

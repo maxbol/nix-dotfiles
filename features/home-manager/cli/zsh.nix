@@ -157,10 +157,13 @@ in {
 
       export ZIG_BLEEDING_EDGE_BIN="${zig-bleeding-edge}/bin/zig"
 
-      eval "$(${lib.getExe pkgs.bat-extras.batman} --export-env)"
+      # eval "$(${lib.getExe pkgs.bat-extras.batman} --export-env)"
       # export MANPAGER="less -R --use-color -Dd+r -Du+b"
+      export MANPAGER='nvim +Man!'
 
       setopt PUSHDSILENT
+
+      alias time="/usr/bin/time"
 
       # export TINTED_TMUX_OPTION_ACTIVE=1
       # export TINTED_TMUX_OPTION_STATUSBAR=1

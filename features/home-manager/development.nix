@@ -63,6 +63,8 @@ in {
       ols
 
       # C/C++
+      man-pages
+      man-pages-posix
       gcc
       gnumake
       checkmake

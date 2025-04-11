@@ -57,15 +57,15 @@ with python3Packages;
     src = fetchFromGitHub {
       owner = "kovidgoyal";
       repo = "kitty";
-      rev = "5e7e512d8af21b52984238dc43688fbb6482d319";
-      hash = "sha256-P3NsGXIlKV+7wiUayOC4SdKpjvHIpwePiRaMa6q2ZPo=";
+      rev = "v0.40.0";
+      hash = "sha256-c+u+lMuokDR8kWM0an3jFPC/qoK2RZTKqHZtfEnqtnM=";
     };
 
     goModules =
       (buildGo123Module {
         pname = "kitty-go-modules";
         inherit src version;
-        vendorHash = "sha256-d5jRhOm53HDGnsU5Lg5tVGU/9z8RGqORzS53hOyIKBk=";
+        vendorHash = "sha256-gBEzW2k1HDDmg1P1t6u90Lf1lLe1IKGpF2T9iCA31qs=";
       })
       .goModules;
 

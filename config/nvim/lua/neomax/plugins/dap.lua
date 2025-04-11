@@ -4,16 +4,22 @@ return {
 	dependencies = {
 
 		-- fancy UI for the debugger
+		-- {
+		-- 	"rcarriga/nvim-dap-ui",
+		-- 	keys = require("neomax.configs.debugging.keys.dap-ui"),
+		-- 	opts = {},
+		-- 	config = require("neomax.configs.debugging.dap-ui"),
+		-- 	dependencies = {
+		-- 		"nvim-neotest/nvim-nio",
+		-- 	},
+		-- },
+
 		{
-			"rcarriga/nvim-dap-ui",
+			"igorlfs/nvim-dap-view",
 			keys = require("neomax.configs.debugging.keys.dap-ui"),
 			opts = {},
 			config = require("neomax.configs.debugging.dap-ui"),
-			dependencies = {
-				"nvim-neotest/nvim-nio",
-			},
 		},
-
 		-- virtual text for the debugger
 		{
 			"theHamsta/nvim-dap-virtual-text",

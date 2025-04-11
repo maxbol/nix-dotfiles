@@ -33,13 +33,16 @@ end, { desc = "Format Files" })
 
 -- Copilot
 vim.keymap.set("i", "<C-l>", function()
-	local copilot_keys = vim.fn["copilot#Accept"]()
-	if copilot_keys ~= "" then
-		vim.api.nvim_feedkeys(copilot_keys, "i", true)
-	else
-		local keys = vim.api.nvim_replace_termcodes("<Right>", true, true, true)
-		vim.api.nvim_feedkeys(keys, "i", false)
+	local copilot_fn = vim.fn["copilot#Accept"]
+	if copilot_fn then
+		local copilot_keys = vim.fn["copilot#Accept"]()
+		if copilot_keys ~= "" then
+			vim.api.nvim_feedkeys(copilot_keys, "i", true)
+			return
+		end
 	end
+	local keys = vim.api.nvim_replace_termcodes("<Right>", true, true, true)
+	vim.api.nvim_feedkeys(keys, "i", false)
 end, { expr = true, silent = true })
 
 -- Comment
@@ -55,8 +58,8 @@ map(
 )
 
 -- Extra incremente/decrement mappings to allow me to keep C-A as my tmux leader :)
-map("x", "<M-a>", "<C-a>", { noremap = true, silent = true })
-map("x", "<M-x>", "<C-x>", { noremap = true, silent = true })
+map({ "n", "x" }, "<M-a>", "<C-a>", { noremap = true, silent = true })
+map({ "n", "x" }, "<M-x>", "<C-x>", { noremap = true, silent = true })
 
 -- map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
 map(
@@ -122,6 +125,9 @@ map("n", "<leader>ghW", '<cmd>!tmux display-popup -E "gh run watch"<CR>', { desc
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 map("t", "<ESC>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
 
+-- goto manpage
+map({ "n", "x" }, "gm", "<cmd>vertical Man<cr>", { desc = "Goto manpage" })
+
 -- whichkey
 map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "Whichkey all keymaps" })
 
@@ -163,6 +169,11 @@ vim.api.nvim_create_autocmd("BufReadPost", { pattern = "quickfix", command = "nn
 
 map("n", "<C-n>", "<cmd>cn<CR>", { desc = "Next quickfix" })
 map("n", "<C-p>", "<cmd>cp<CR>", { desc = "Prev quickfix" })
+
+-- Math stuff
+map({ "n", "x" }, "<leader>m", function()
+	vim.api.nvim_input(":s/\\d\\+/\\=submatch(0)/<Left>")
+end, { desc = "Multiply cword" })
 
 -- Live preview of qflist buffers
 -- vim.api.nvim_create_autocmd("FileType", {

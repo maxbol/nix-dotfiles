@@ -12,9 +12,9 @@
   ...
 }: let
   palette_ = {
-    base = "181818"; # "#181818"
-    surface = "282828"; # "#282828"
-    overlay = "453d41"; # "#453d41"
+    base = "003078"; # "#003078"
+    surface = "0070d2"; # "#0070d2"
+    overlay = "0090e2"; # "#0090e2"
     muted = "e4e4e4"; # "#e4e4e4"
     subtle = "f4f4ff"; # "#f4f4ff"
     text = "f5f5f5"; # "#f5f5f5"
@@ -30,6 +30,10 @@
     highlightLow = "21202e"; # "#21202e"
     highlightMed = "9e95c7"; # "#9e95c7"
     highlightHigh = "96a6c8"; # "#96a6c8"
+
+    darkyellow = "f4bb00";
+    dustypink = "e1aacc";
+    slimygreen = "d2ee88";
   };
 
   telaMap = {
@@ -52,7 +56,7 @@
 
     accents = {
       inherit (colors) red green yellow blue;
-      inherit (palette_) darkred darkbrown wisteria niagara lightred darkestniagara;
+      inherit (palette_) darkred darkbrown wisteria niagara lightred darkestniagara darkyellow dustypink slimygreen;
       orange = palette_.darkbrown;
       purple = palette_.wisteria;
       aqua = palette_.niagara;
@@ -107,7 +111,21 @@ in rec {
 
   sketchybar.colorOverrides = sketchybarOverrides palette;
 
-  neovim = neovimOverrides palette;
+  neovim =
+    {
+      colorscheme = "borland";
+      hlGroupsBg = {
+        Normal = "none";
+        NormalFloat = "#" + palette.semantic.overlay;
+      };
+      hlGroupsFg = {
+        lualine_a_normal = "#" + palette.semantic.text;
+        Type = "#" + palette.accents.dustypink;
+        "@function.call" = "#" + palette.accents.darkyellow;
+        "@keyword" = "#" + palette.accents.slimygreen;
+      };
+    }
+    // neovimOverrides palette;
 
   dynawall.colorOverrides = {
     accents = [
@@ -115,15 +133,33 @@ in rec {
     ];
   };
 
-  kitty = let
-    themeFile = ./resources/tsoding-mode/kitty.conf;
-    themeConf = builtins.readFile themeFile;
-
-    themeSource = pkgs.writeText "theme.conf" ''
-      ${themeConf}
-    '';
-  in {
-    file."theme.conf".source = themeSource;
+  kitty = {
+    font = {
+      name = "PxPlus IBM VGA 9x16";
+      size = 18;
+      package = pkgs.ultimate-oldschool-pc-font-pack;
+    };
+    autoGenerate = {
+      enable = true;
+      colorOverrides = {
+        color0 = palette.semantic.background;
+        color1 = palette.accents.red;
+        color2 = palette.accents.green;
+        color3 = palette.accents.darkbrown;
+        color4 = palette.accents.niagara;
+        color5 = palette.accents.wisteria;
+        color6 = palette.accents.niagara;
+        color7 = palette.semantic.text;
+        color8 = palette.semantic.overlay;
+        color9 = palette.accents.darkred;
+        color10 = palette.accents.yellow;
+        color11 = palette.accents.darkbrown;
+        color12 = palette.accents.wisteria;
+        color13 = palette.accents.niagara;
+        color14 = palette.accents.wisteria;
+        color15 = palette.semantic.text2;
+      };
+    };
   };
 
   starship.palette = {
@@ -131,12 +167,8 @@ in rec {
     name = "tsoding-mode";
   };
 
-  bat = {
-    theme = null;
-    colorOverrides = {};
-  };
-
   macoswallpaper = {
-    wallpaper = "$HOME/wallpapers/tsodingmode-default-3.jpg";
+    # wallpaper = "$HOME/wallpapers/tsodingmode-default.png";
+    wallpaper = "$HOME/wallpapers/tsodingmode-default2.jpg";
   };
 }

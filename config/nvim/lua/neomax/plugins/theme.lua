@@ -40,6 +40,18 @@ return {
 			},
 
 			-- Themes
+			-- {
+			--
+			{
+				"yorik1984/newpaper.nvim",
+			},
+			{
+				"letorbi/vim-colors-modern-borland",
+				config = function()
+					vim.g.BorlandStyle = "modern"
+					vim.g.BorlandParen = 1
+				end,
+			},
 			{
 				"Shatur/neovim-ayu",
 				config = function()

@@ -12,6 +12,10 @@
       noto-fonts-emoji
       noto-fonts-extra
 
+      meslo-lg
+      hack-font
+      inconsolata
+
       # nerdfonts
       nerdfonts
     ];
@@ -28,4 +32,3 @@
     };
   };
 }
-

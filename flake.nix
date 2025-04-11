@@ -71,6 +71,8 @@
 
     nur.url = "github:nix-community/NUR";
 
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -117,7 +119,7 @@
     };
 
     clockifyd.url = "github:maxbol/clockifyd";
-    nvim-colorctl.url = "github:maxbol/nvim-colorctl";
+    nvim-colorctl.url = "github:maxbol/nvim-colorctl/log-the-shit-out-of-the-filenotfound-error";
     obsidian-remote.url = "github:maxbol/obsidian-remote";
   };
 

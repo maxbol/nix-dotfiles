@@ -1,4 +1,5 @@
 local g = vim.g
+local os = require("os")
 
 if g.loaded_lazy_obsession ~= nil then
 	return
@@ -27,6 +28,11 @@ local load_session = function()
 			return
 		end
 
+		if v == "+Man!" then
+			-- Neovim is being used as a manpager
+			return
+		end
+
 		if i > 1 and vim.fn.filereadable(v) == 1 then
 			-- Neovim was started with a file, so we should not load or start a session
 			return
@@ -44,7 +50,12 @@ local load_session = function()
 	if vim.fn.filereadable(session_path) == 0 then
 		vim.cmd("Obsession " .. session_path)
 	else
-		vim.cmd("source " .. session_path)
+		local ok = pcall(vim.cmd, "source " .. session_path)
+		if not ok then
+			print("Couldn't fully restore session, clearing session data")
+			os.remove(session_path)
+			os.remove(session_directory)
+		end
 	end
 end
 

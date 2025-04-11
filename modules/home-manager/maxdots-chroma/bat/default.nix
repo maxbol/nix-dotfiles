@@ -25,6 +25,8 @@ with lib; let
     '') (attrNames enabledBoolFlags);
   in
     keyValuePairs + switches;
+
+  inherit (import ../../../../lib/types.nix {inherit lib;}) colorType;
 in {
   options = {
     maxdots.chroma.bat = {
@@ -36,8 +38,16 @@ in {
     {
       maxdots.chroma.programs.bat = {
         themeOptions = {
+          colorOverrides = mkOption {
+            type = types.attrsOf colorType;
+            default = {};
+            description = ''
+              Color overrides to apply to the palette-generated theme.
+            '';
+          };
           theme = mkOption {
-            type = options.programs.bat.themes.type.nestedTypes.elemType;
+            default = null;
+            type = lib.types.nullOr options.programs.bat.themes.type.nestedTypes.elemType;
             example = literalExpression ''
               {
                 src = pkgs.fetchFromGitHub {
@@ -71,10 +81,27 @@ in {
       ];
 
       programs.bat = {
-        themes =
+        themes = let
+          generateDynamic = name: theme: let
+            dyn = theme.palette.generateDynamic {
+              template = ./bat.tmTheme.dyn;
+              paletteOverrides = theme.bat.colorOverrides;
+            };
+            src = pkgs.runCommand "tmTheme_${name}" {} ''
+              mkdir -p $out
+              cp ${dyn} $out/${name}.tmTheme
+            '';
+          in {
+            inherit src;
+            file = "${name}.tmTheme";
+          };
+        in
           mapAttrs' (name: value: {
             name = "_chroma_${name}";
-            value = value.bat.theme;
+            value =
+              if value.bat.theme == null
+              then (generateDynamic name value)
+              else value.bat.theme;
           })
           cfg.themes;
       };
@@ -83,4 +110,3 @@ in {
     })
   ];
 }
-
