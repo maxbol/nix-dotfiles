@@ -56,7 +56,10 @@ require("lazy").setup({
 }, lazy_config)
 
 require("neomax.options")
-require("neomax.modules.lazy-obsession")
+
+if vim.g.neovide == nil then
+	require("neomax.modules.lazy-obsession")
+end
 
 -- load theme
 -- dofile(vim.g.base46_cache .. "defaults")

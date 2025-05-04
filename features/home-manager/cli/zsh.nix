@@ -109,11 +109,11 @@ in {
       save = 10000;
       share = true;
     };
-    historySubstringSearch = {
-      enable = true;
-      searchUpKey = ["^[[A"];
-      searchDownKey = ["^[[B"];
-    };
+    # historySubstringSearch = {
+    #   enable = true;
+    #   searchUpKey = ["^[[A"];
+    #   searchDownKey = ["^[[B"];
+    # };
 
     profileExtra = ''
       if command -v systemctl &> /dev/null; then
@@ -122,6 +122,8 @@ in {
     '';
 
     initExtra = ''
+      export EDITOR=nvim
+
       # case insensitive tab completion in a menu
       zstyle ':completion:*' completer _complete _ignored _approximate
       zstyle ':completion:*' list-colors
@@ -139,12 +141,15 @@ in {
         export NIX_CONFIG="access-tokens = github.com=$(cat "$token_file")"
       fi
 
+      ZVM_INIT_MODE=sourcing
+
       source <(${lib.getExe maxdots.packages.clockify-cli} completion zsh)
       source ${pkgs.zsh-vi-mode}/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
       source ${zsh-vi-clipboard-fix}/bin/zsh-vi-clipboard-fix.sh
+      source ${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search/zsh-fzf-history-search.zsh
 
-      bindkey "^[[A" history-beginning-search-backward
-      bindkey "^[[B" history-beginning-search-forward
+      # bindkey "^[[A" history-beginning-search-backward
+      # bindkey "^[[B" history-beginning-search-forward
 
       export LLDB_VSCODE_PATH="${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter"
       export PATH="$PATH:$HOME/bin:$HOME/go/bin:/opt/homebrew/bin:$HOME/.local/bin:$LLDB_VSCODE_PATH"
@@ -157,16 +162,12 @@ in {
 
       export ZIG_BLEEDING_EDGE_BIN="${zig-bleeding-edge}/bin/zig"
 
-      # eval "$(${lib.getExe pkgs.bat-extras.batman} --export-env)"
       # export MANPAGER="less -R --use-color -Dd+r -Du+b"
       export MANPAGER='nvim +Man!'
 
       setopt PUSHDSILENT
 
       alias time="/usr/bin/time"
-
-      # export TINTED_TMUX_OPTION_ACTIVE=1
-      # export TINTED_TMUX_OPTION_STATUSBAR=1
     '';
 
     plugins = [

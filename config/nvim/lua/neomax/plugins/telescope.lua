@@ -17,8 +17,16 @@ return {
 					live_grep = {
 						cwd = vim.fn.getcwd(-1),
 					},
+					colorscheme = {
+						enable_preview = true,
+					},
 				},
 				extensions = {
+					opener = {
+						hidden = false, -- do not show hidden directories
+						root_dir = "~/Source", -- search from home directory by default
+						respect_gitignore = true, -- respect .gitignore files
+					},
 					dap = {
 						theme = require("telescope.themes").get_ivy(),
 					},

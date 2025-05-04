@@ -96,6 +96,7 @@ in {
           generateDynamic = {
             template,
             paletteOverrides,
+            executable ? false,
           }:
             with lib; let
               templateName = baseNameOf (toString template);
@@ -108,6 +109,11 @@ in {
                 echo "${palette}"
                 echo "${overrides}"
                 ${lib.getExe maxdots.packages.dynachrome} "${template}" "${palette}" ${overrides} > $out
+                ${
+                  if executable == true
+                  then "chmod a+x $out"
+                  else ""
+                }
               '';
 
           file."palette.json".text = builtins.toJSON {inherit (config) semantic colors accents;};

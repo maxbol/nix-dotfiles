@@ -381,7 +381,7 @@ M.makeLanguage({
 
 M.makeLanguage({
 	pattern = { "odin" },
-	grepcmd = "2>&1 | grep -E '^.+:[0-9]+:[0-9]+'",
+	grepcmd = "2>&1 | grep -E '^.+\\([0-9]+:[0-9]+\\)' | sed -E 's/\\(([0-9]+:[0-9]+)\\)/:\\1/g'",
 	makecmd = "odin build .",
 	runcmd = "odin run .",
 })

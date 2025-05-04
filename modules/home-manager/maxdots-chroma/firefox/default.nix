@@ -51,6 +51,16 @@ in {
   config = {
     maxdots.chroma.programs.firefox = {
       themeOptions = {
+        enableColors = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = ''Wether to apply theme colors to firefox chrome and omnibar'';
+        };
+        enableSiteColors = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = ''Wether to apply theme colors to a select number of sites'';
+        };
         colorOverrides = lib.mkOption {
           type = lib.types.attrsOf colorType;
           default = {};
@@ -71,10 +81,28 @@ in {
             then "Library/Application\ Support/Firefox/Profiles"
             else ".mozilla/firefox";
 
-          colorsCss = opts.palette.generateDynamic {
+          chromeColorsCss = opts.palette.generateDynamic {
             template = ./colors.css.dyn;
             paletteOverrides = config.colorOverrides;
           };
+
+          siteColorsCss = opts.palette.generateDynamic {
+            template = ./sitecolors.css.dyn;
+            paletteOverrides = config.colorOverrides;
+          };
+
+          colorsCss = pkgs.writeText "colors.css" (lib.strings.concatStringsSep "\n" [
+            (
+              if config.enableColors == true
+              then (builtins.readFile chromeColorsCss)
+              else ""
+            )
+            (
+              if config.enableSiteColors == true
+              then (builtins.readFile siteColorsCss)
+              else ""
+            )
+          ]);
         in {
           required = true;
           source = lib.mkDefault (pkgs.writeScript "setcolors.sh" ''
@@ -89,18 +117,7 @@ in {
         };
       };
 
-      reloadCommand = let
-        binPath =
-          if pkgs.stdenv.hostPlatform.isDarwin
-          then "${cfg.firefox.package}/Applications/Firefox.app/Contents/MacOS/firefox"
-          else lib.getExe cfg.firefox.package;
-
-        pkill =
-          if pkgs.stdenv.hostPlatform.isDarwin
-          then "/usr/bin/pkill"
-          else "${pkgs.procps}/bin/pkill";
-        # in "~/.config/chroma/active/firefox/setcolors.sh && ${pkill} firefox && ${binPath} & disown";
-      in "~/.config/chroma/active/firefox/setcolors.sh";
+      reloadCommand = "~/.config/chroma/active/firefox/setcolors.sh";
     };
   };
 

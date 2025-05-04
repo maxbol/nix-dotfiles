@@ -280,4 +280,19 @@
         status_session_fg = palette.accents.yellow;
       };
     });
+
+  Oh-Lucy = pkgs.callPackage ./oh-lucy.nix (extraArgs
+    // {
+      neovimOverrides = palette: {
+        colorscheme = "oh-lucy";
+      };
+    });
+
+  Oh-Lucy-Evening = pkgs.callPackage ./oh-lucy.nix (extraArgs
+    // {
+      variant = "evening";
+      neovimOverrides = palette: {
+        colorscheme = "oh-lucy";
+      };
+    });
 }

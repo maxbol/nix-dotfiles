@@ -11,12 +11,16 @@ return {
 		-- "3rd/image.nvim",
 		-- branch = "master",
 		dependencies = { "luarocks.nvim" },
-		lazy = false,
+		cond = function()
+			return vim.g.neovide == nil
+		end,
+		lazy = true,
 		filetypes = { "markdown", "vimwiki", "nofile", "image", "jpg", "png", "gif", "webp" },
 		config = function()
 			local image = require("image")
 			image.setup({
 				backend = "kitty",
+				kitty_method = "normal",
 				integrations = {
 					markdown = {
 						enabled = true,

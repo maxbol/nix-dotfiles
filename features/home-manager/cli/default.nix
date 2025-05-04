@@ -16,7 +16,7 @@
   # add environment variables
   home.sessionVariables = {
     # set default applications
-    EDITOR = "nv";
+    EDITOR = "nvim";
     BROWSER = "firefox";
     TERMINAL = "kitty";
     HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND = "fg=green,bold";

@@ -31,7 +31,6 @@
     rev = "v2.0.0";
     sha256 = "sha256-rx9izD2pc3hLObOehuiMwFB4Ta5G1lWVv9Jdb+JHIz0=";
   };
-  #
 
   ayuYaziFlavor = pkgs.fetchFromGitHub {
     owner = "kmlupreti";

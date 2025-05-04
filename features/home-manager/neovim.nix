@@ -63,7 +63,7 @@
   #   fi
   # '';
 in {
-  home.sessionVariables.EDITOR = "nv";
+  home.sessionVariables.EDITOR = "nvim";
 
   programs.neovim = {
     enable = true;
@@ -75,6 +75,9 @@ in {
       fd
       ripgrep
       luajit # Used by some neovim packages
+
+      # For Copilot chat
+      luajitPackages.tiktoken_core
     ];
     extraLuaPackages = ps: [ps.magick];
   };

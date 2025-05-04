@@ -44,7 +44,7 @@ in {
         };
       };
 
-      reloadCommand = "sh -c '/opt/homebrew/bin/sketchybar --reload'";
+      reloadCommand = "sh -c 'sketchybar --reload'";
     };
   };
 }

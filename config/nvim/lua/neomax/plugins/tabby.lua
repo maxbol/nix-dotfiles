@@ -11,7 +11,8 @@ return {
 			current = "lualine_a_normal",
 			not_current = "lualine_b_normal",
 
-			fill = { bg = "transparent" },
+			fill = {--[[  bg = "transparent"  ]]
+			},
 		}
 
 		require("tabby.tabline").set(function(line)

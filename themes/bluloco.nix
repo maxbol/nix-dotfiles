@@ -159,13 +159,16 @@ in rec {
 
   neovim = neovimOverrides palette;
 
-  dynawall.colorOverrides = {
-    accents = [
-      ("#" + palette.accents.blue)
-      ("#" + palette.accents.magenta)
-      ("#" + palette.accents.red)
-      ("#" + palette.accents.orange)
-    ];
+  dynawall = {
+    shader = "voronoi2nobuf";
+    colorOverrides = {
+      accents = [
+        ("#" + palette.accents.blue)
+        ("#" + palette.accents.magenta)
+        ("#" + palette.accents.red)
+        ("#" + palette.accents.orange)
+      ];
+    };
   };
 
   kitty = {

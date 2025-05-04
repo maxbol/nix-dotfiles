@@ -16,7 +16,7 @@ in {
     maxdots.chroma.programs.dynawall = {
       themeOptions = {
         shader = lib.mkOption {
-          type = lib.types.enum ["default" "helloworld" "voronoi2" "monterrey2"];
+          type = lib.types.enum ["default" "helloworld" "voronoi2nobuf" "voronoi2" "monterrey2"];
           default = "voronoi2";
           description = ''
             The shader to use

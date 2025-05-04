@@ -41,6 +41,15 @@ in {
       themeOptions = {
         font = mkOption {
           type = types.nullOr hm.types.fontType;
+          # default = {
+          #   name = "family=\"NotoSansM Nerd Font Mono\" style=\"Condensed Light\"";
+          #   size = 18;
+          #   # package = pkgs.noto-fonts;
+          # };
+          # default = {
+          #   name = "Berkeley Mono Trial";
+          #   size = 18;
+          # };
           default = {
             name = "Iosevka";
             size = 18;

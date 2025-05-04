@@ -61,32 +61,46 @@ map(
 map({ "n", "x" }, "<M-a>", "<C-a>", { noremap = true, silent = true })
 map({ "n", "x" }, "<M-x>", "<C-x>", { noremap = true, silent = true })
 
--- map("n", "<leader>fw", search_with_cache, { desc = "Telescope Live grep" })
-map(
-	"n",
-	"<leader><leader>",
-	"<cmd>Telescope find_files find_command=rg,--ignore,--files,--sortr,accessed<CR>",
-	{ desc = "Telescope find (based on access time)" }
-)
-map("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Find files" })
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "Telescope Live grep" })
+map("n", "<leader><leader>", function()
+	require("telescope.builtin").find_files({
+		find_command = { "rg", "--ignore", "--files", "--sortr", "accessed" },
+		cwd = vim.fn.getcwd(-1),
+	})
+end, { desc = "Telescope find (based on access time)" })
+
+map("n", "<leader>ff", function()
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.getcwd(-1),
+	})
+end, { desc = "Telescope find files" })
+
+map("n", "<leader>fa", function()
+	require("telescope.builtin").find_files({
+		follow = true,
+		no_ignore = true,
+		hidden = true,
+	})
+end, { desc = "Telescope Find all files" })
+
+map("n", "<leader>fw", function()
+	require("telescope.builtin").live_grep({
+		cwd = vim.fn.getcwd(-1),
+	})
+end, { desc = "Telescope Live grep" })
+
+map("n", "<leader>fo", function()
+	require("telescope.builtin").oldfiles({ cwd = vim.fn.getcwd(-1), cwd_only = true })
+end, { desc = "Telescope Find oldfiles" })
+
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Telescope Find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "Telescope Help page" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "Telescope Find oldfiles" })
-map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current buffer" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Telescope Find files" })
+map("n", "<leader>f/", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "Telescope Find in current buffer" })
 map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Telescope Find symbol in document" })
 map("n", "<leader>fS", function()
 	require("telescope.builtin").lsp_dynamic_workspace_symbols({
 		symbols = { "function", "class", "interface", "method", "enum" },
 	})
 end, { desc = "Telescope Find symbol in workspace" })
-map(
-	"n",
-	"<leader>fa",
-	"<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-	{ desc = "Telescope Find all files" }
-)
 
 -- Telescope Obsidian commands
 map("n", "<leader>fn", "<cmd>ObsidianQuickSwitch<CR>", { desc = "Find notes" })
@@ -118,7 +132,7 @@ map("n", "<leader>ghc", "<cmd>Octo pr create<CR>", { desc = "Create PR" })
 map("n", "<leader>ghw", "<cmd>Octo pr checks<CR>", { desc = "Watch PR checks" })
 map("n", "<leader>ghl", "<cmd>Octo pr list<CR>", { desc = "List PRs" })
 map("n", "<leader>fO", "<cmd>Octo actions<CR>", { desc = "Find Octo actions" })
-map("n", "<leader>fh", "<cmd>Octo search<CR>", { desc = "Search on Octo" })
+-- map("n", "<leader>fh", "<cmd>Octo search<CR>", { desc = "Search on Octo" })
 map("n", "<leader>ghW", '<cmd>!tmux display-popup -E "gh run watch"<CR>', { desc = "Watch workflow run" })
 
 -- terminal
@@ -174,6 +188,9 @@ map("n", "<C-p>", "<cmd>cp<CR>", { desc = "Prev quickfix" })
 map({ "n", "x" }, "<leader>m", function()
 	vim.api.nvim_input(":s/\\d\\+/\\=submatch(0)/<Left>")
 end, { desc = "Multiply cword" })
+
+-- Undotree
+map("n", "<leader>u", "<Cmd>UndotreeToggle<CR>", { desc = "Toggle undotree" })
 
 -- Live preview of qflist buffers
 -- vim.api.nvim_create_autocmd("FileType", {

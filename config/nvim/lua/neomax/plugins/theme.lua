@@ -55,9 +55,8 @@ return {
 			{
 				"Shatur/neovim-ayu",
 				config = function()
-					require("ayu").setup({
-						terminal = false,
-						-- transparent mode:
+					local overrides = {}
+					if vim.g.neovide == nil then
 						overrides = {
 							Normal = { bg = "None" },
 							ColorColumn = { bg = "None" },
@@ -68,7 +67,12 @@ return {
 							CursorColumn = { bg = "None" },
 							WhichKeyFloat = { bg = "None" },
 							VertSplit = { bg = "None" },
-						},
+						}
+					end
+					require("ayu").setup({
+						terminal = false,
+						-- transparent mode:
+						overrides = overrides,
 					})
 				end,
 			},
@@ -99,7 +103,7 @@ return {
 			{
 				"kvrohit/rasmus.nvim",
 				config = function()
-					vim.g.rasmus_transparent = true
+					vim.g.rasmus_transparent = vim.g.neovide == nil
 				end,
 			},
 			{
@@ -113,14 +117,14 @@ return {
 				"sainnhe/gruvbox-material",
 				config = function(_, opts)
 					vim.g.gruvbox_material_background = "medium" -- hard, medium, soft
-					vim.g.gruvbox_material_transparent_background = 1
+					vim.g.gruvbox_material_transparent_background = vim.g.neovide == nil
 				end,
 			},
 			{
 				"vague2k/vague.nvim",
 				config = function()
 					require("vague").setup({
-						transparent = true,
+						transparent = vim.g.neovide == nil,
 						-- optional configuration here
 					})
 				end,
@@ -131,7 +135,7 @@ return {
 				config = function()
 					require("bluloco").setup({
 						style = "auto", -- "auto" | "dark" | "light"
-						transparent = true,
+						transparent = vim.g.neovide == nil,
 						-- transparent = true,
 						italics = false,
 						terminal = vim.fn.has("gui_running") == 1, -- bluoco colors are enabled in gui terminals per default.
@@ -145,12 +149,12 @@ return {
 					require("kanagawa").setup({
 						compile = false, -- enable compiling the colorscheme
 						undercurl = true, -- enable undercurls
-						commentStyle = { italic = true },
+						commentStyle = { italic = false },
 						functionStyle = {},
-						keywordStyle = { italic = true },
+						keywordStyle = { italic = false },
 						statementStyle = { bold = true },
 						typeStyle = {},
-						transparent = true, -- do not set background color
+						transparent = vim.g.neovide == nil, -- do not set background color
 						dimInactive = true, -- dim inactive window `:h hl-NormalNC`
 						terminalColors = true, -- define vim.g.terminal_color_{0,17}
 						colors = { -- add/modify theme and palette colors
@@ -173,7 +177,7 @@ return {
 				config = function()
 					require("tokyonight").setup({
 						style = "night",
-						transparent = true,
+						transparent = vim.g.neovide == nil,
 					})
 				end,
 			},
@@ -182,7 +186,7 @@ return {
 				config = function()
 					require("neofusion").setup({
 						terminal_colors = true,
-						transparent_mode = true,
+						transparent_mode = vim.g.neovide == nil,
 					})
 				end,
 			},
@@ -192,7 +196,7 @@ return {
 				config = function()
 					require("catppuccin").setup({
 						flavour = "mocha",
-						transparent_background = true,
+						transparent_background = vim.g.neovide == nil,
 						integrations = {
 							cmp = true,
 							gitsigns = true,
@@ -225,8 +229,8 @@ return {
 
 						styles = {
 							bold = true,
-							italic = true,
-							transparency = true,
+							italic = false,
+							transparency = vim.g.neovide == nil,
 						},
 
 						groups = {

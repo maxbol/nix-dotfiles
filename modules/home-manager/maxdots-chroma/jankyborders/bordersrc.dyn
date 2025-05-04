@@ -1,0 +1,17 @@
+---
+defines:
+  active_color: accent1
+  inactive_color: surface
+  background_color: accent1
+---
+
+options=(
+  style=round
+  width=6.0
+  hidpi=off
+  active_color=0xff⟨active_color:hex⟩
+  inactive_color=0x99⟨inactive_color:hex⟩
+  background_color=0x00⟨background_color:hex⟩
+)
+
+borders "${options[@]}"

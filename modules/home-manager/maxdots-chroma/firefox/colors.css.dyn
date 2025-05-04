@@ -60,7 +60,7 @@ defines:
   --in-content-primary-button-text-color: #⟨primary_btn_fg:hex⟩ !important;
   --lwt-accent-color: var(--mff-bg) !important;
   --lwt-toolbarbutton-icon-fill: var(--mff-icon-color) !important;
-  --mff-bg: #⟨bg_color2:hex⟩;
+  --mff-bg: #⟨bg_color2:hex⟩ !important;
   --mff-icon-color: #⟨icon_color:hex⟩;
   --mff-sidebar-bg: var(--mff-bg);
   --mff-sidebar-color: #⟨sidebar_color:hex⟩;
@@ -84,8 +84,8 @@ defines:
   --tf-border: #⟨border_color:hex⟩ !important;
   --toolbar-bgcolor: var(--mff-bg) !important;
   --toolbar-field-color: #⟨toolbar_field_color:hex⟩ !important;
-  --uc-bg-color: #⟨bg_color:hex⟩;
-  --uc-tab-fg-color: #⟨tab_fg_color:hex⟩;
+  --uc-bg-color: #⟨bg_color:hex⟩ !important;
+  --uc-tab-fg-color: #⟨tab_fg_color:hex⟩ !important;
   --urlbar-separator-color: transparent !important;
   --vimium-border-color: #⟨vimium_border_color:hex⟩;
   --vimium-hint-bg: #⟨vimium_hint_bg:hex⟩;
@@ -189,43 +189,3 @@ div > .vimiumHintMarker > .matchingCharacter {
   color: var(--vimium-search-area-input-fg) !important;
 }
 
-@-moz-document domain(google.com) {
-  body {
-    background: var(--mff-bg) !important;
-  }
-  :root {
-    --xhUGwc: var(--mff-bg) !important;
-  }
-  #appbar {
-    background: var(--mff-bg) !important;
-  }
-  #taw > div > div {
-    background: var(--mff-bg) !important;
-  }
-  #rso > div {
-    background: var(--mff-bg) !important;
-  }
-  #searchform > div:first-child {
-    background: var(--mff-bg) !important;
-  }
-}
-
-@-moz-document domain(youtube.com) {
-  :root, html, [dark] {
-    --yt-spec-base-background: var(--mff-bg) !important;
-  }
-}
-
-@-moz-document domain(neovim.io) {
-  :root {
-    --bg-color: var(--mff-bg) !important;
-  }
-}
-
-@-moz-document domain(github.com) {
-  :root {
-    --bgColor-default: var(--mff-bg) !important;
-    --bgColor-inset: var(--mff-bg) !important;
-    --AppHeader-bg: var(--mff-bg) !important;
-  }
-}

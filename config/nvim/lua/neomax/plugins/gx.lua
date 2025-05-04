@@ -25,6 +25,7 @@ return {
 		end
 
 		require("gx").setup({
+			-- https://www.google.com
 			open_browser_app = open_browser_app, -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
 			open_browser_args = open_browser_args, -- specify any arguments, such as --background for macOS' "open".
 			handlers = {

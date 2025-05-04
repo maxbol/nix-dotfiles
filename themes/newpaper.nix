@@ -160,4 +160,11 @@ in rec {
       else "dark"
     }.jpg";
   };
+
+  firefox = let
+    enable = luminance == "dark";
+  in {
+    enableColors = enable;
+    enableSiteColors = enable;
+  };
 }

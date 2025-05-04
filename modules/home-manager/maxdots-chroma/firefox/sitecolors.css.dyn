@@ -1,0 +1,49 @@
+---
+defines:
+  site_bg: background
+---
+
+:root {
+  --site-bg: #⟨site_bg:hex⟩;
+}
+
+@-moz-document domain(google.com) {
+  body {
+    background: var(--site-bg) !important;
+  }
+  :root {
+    --xhUGwc: var(--site-bg) !important;
+  }
+  #appbar {
+    background: var(--site-bg) !important;
+  }
+  #taw > div > div {
+    background: var(--site-bg) !important;
+  }
+  #rso > div {
+    background: var(--site-bg) !important;
+  }
+  #searchform > div:first-child {
+    background: var(--site-bg) !important;
+  }
+}
+
+@-moz-document domain(youtube.com) {
+  :root, html, [dark] {
+    --yt-spec-base-background: var(--site-bg) !important;
+  }
+}
+
+@-moz-document domain(neovim.io) {
+  :root {
+    --bg-color: var(--site-bg) !important;
+  }
+}
+
+@-moz-document domain(github.com) {
+  :root {
+    --bgColor-default: var(--site-bg) !important;
+    --bgColor-inset: var(--site-bg) !important;
+    --AppHeader-bg: var(--site-bg) !important;
+  }
+}

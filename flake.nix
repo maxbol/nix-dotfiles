@@ -66,7 +66,9 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
+    # textfox.url = "github:maxbol/textfox/?rev=7e24bdc1ea35a858ee25f2e8e868265a1919af13";
     textfox.url = "github:maxbol/textfox/copy-on-activation-mode@allow-custom-css";
+    # textfox.url = "git+file:///Users/maxbolotin/Source/textfox?ref=copy-on-activation-mode@allow-custom-css&shallow=1";
     # textfox.url = "github:maxbol/textfox/allow-custom-include-in-configcss";
 
     nur.url = "github:nix-community/NUR";
@@ -110,10 +112,12 @@
     };
 
     zls = {
-      # Lock to 0.13 revision for now
-      url = "github:zigtools/zls?rev=a26718049a8657d4da04c331aeced1697bc7652b";
-      # inputs.nixpkgs.follows = "nixpkgs";
+      # 0.14
+      url = "github:zigtools/zls";
       # inputs.zig-overlay.follows = "zig-overlay";
+      # Lock to 0.13 revision for now
+      # url = "github:zigtools/zls?rev=a26718049a8657d4da04c331aeced1697bc7652b";
+      # inputs.nixpkgs.follows = "nixpkgs";
       # inputs.gitignore.follows = "gitignore";
       # inputs.flake-utils.follows = "flake-utils";
     };

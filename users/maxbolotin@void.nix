@@ -39,6 +39,8 @@
         "darwin/sketchybar"
         "development"
         "direnv"
+        "emacs"
+        # "gamedev"
         "keycastr"
         "media-tui"
         "neovim"
@@ -49,10 +51,11 @@
         "tui-browser"
         "zathura"
         # "media-tui"
-        # "neovide"
+        "neovide"
       ];
 
       maxdots.chroma.dynawall.enable = true;
+      maxdots.chroma.jankyborders.enable = true;
       maxdots.chroma.fish.enable = false;
 
       nixpkgs.config.permittedInsecurePackages = [
@@ -63,6 +66,8 @@
       home.packages = with pkgs; [
         tiny
         fastfetch
+        nix-du
+        graphviz
       ];
     })
   ];

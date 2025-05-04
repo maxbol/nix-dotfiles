@@ -41,6 +41,8 @@ return {
 				["<C-l>"] = false,
 				["<C-h>"] = false,
 				["<C-r>"] = "actions.refresh",
+				["gy"] = "actions.copy_to_system_clipboard",
+				["gp"] = "actions.paste_from_system_clipboard",
 				["Q"] = "actions.send_to_qflist",
 			},
 		})

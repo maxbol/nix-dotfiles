@@ -66,18 +66,28 @@ local on_attach = function(client, bufnr)
 	end
 
 	if client.name == "ts_ls" then
-		client.server_capabilities.documentFormattingProvider = false
-		client.server_capabilities.DocumentRangeFormattingProvider = false
+		-- client.server_capabilities.documentFormattingProvider = false
+		-- client.server_capabilities.DocumentRangeFormattingProvider = false
 	end
 end
 
 local on_init = function(client, _)
-	if client.supports_method("textDocument/semanticTokens") then
-		client.server_capabilities.semanticTokensProvider = nil
-	end
+	-- if client.supports_method("textDocument/semanticTokens") then
+	-- 	client.server_capabilities.semanticTokensProvider = nil
+	-- end
 end
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require("blink.cmp").get_lsp_capabilities()
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+--
+-- capabilities = vim.tbl_extend(
+-- 	"keep",
+-- 	capabilities or {},
+-- 	require("blink.cmp").get_lsp_capabilities({
+-- 		textDocument = { completion = { completionItem = { snippetSupport = true } } },
+-- 	})
+-- )
+
 -- capabilities = vim.tbl_extend("keep", capabilities or {}, lsp_status.capabilities)
 
 capabilities.textDocument.completion.completionItem = {
@@ -118,9 +128,9 @@ local servers = {
 	"pyright",
 	"gleam",
 	"rust_analyzer",
-	"ols",
 	"glsl_analyzer",
 	"denols",
+	"ols",
 }
 
 for _, lsp in ipairs(servers) do
@@ -130,6 +140,24 @@ for _, lsp in ipairs(servers) do
 		capabilities = capabilities,
 	})
 end
+
+-- lspconfig.ols.setup({
+-- 	on_init = on_init,
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	init_options = {
+-- 		enable_format = true,
+-- 		enable_hover = true,
+-- 		enable_snippets = true,
+-- 		enable_semantic_tokens = true,
+-- 		enable_document_symbols = true,
+-- 		enable_fake_methods = true,
+-- 		enable_procedure_snippet = true,
+-- 		enable_checker_only_saved = false,
+-- 		enable_references = true,
+-- 		enable_rename = true,
+-- 	},
+-- })
 
 lspconfig.lua_ls.setup({
 	on_init = on_init,
@@ -260,30 +288,30 @@ lspconfig["ts_ls"].setup({
 	on_attach = on_attach,
 	single_file_support = false,
 	capabilities = capabilities,
-	settings = {
-		typescript = {
-			inlayHints = {
-				includeInlayParameterNameHints = "literal",
-				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-				includeInlayFunctionParameterTypeHints = false,
-				includeInlayVariableTypeHints = false,
-				includeInlayPropertyDeclarationTypeHints = false,
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayEnumMemberValueHints = true,
-			},
-		},
-		javascript = {
-			inlayHints = {
-				includeInlayParameterNameHints = "all",
-				includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-				includeInlayFunctionParameterTypeHints = true,
-				includeInlayVariableTypeHints = true,
-				includeInlayPropertyDeclarationTypeHints = true,
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayEnumMemberValueHints = true,
-			},
-		},
-	},
+	-- settings = {
+	-- 	typescript = {
+	-- 		inlayHints = {
+	-- 			includeInlayParameterNameHints = "literal",
+	-- 			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+	-- 			includeInlayFunctionParameterTypeHints = false,
+	-- 			includeInlayVariableTypeHints = false,
+	-- 			includeInlayPropertyDeclarationTypeHints = false,
+	-- 			includeInlayFunctionLikeReturnTypeHints = true,
+	-- 			includeInlayEnumMemberValueHints = true,
+	-- 		},
+	-- 	},
+	-- 	javascript = {
+	-- 		inlayHints = {
+	-- 			includeInlayParameterNameHints = "all",
+	-- 			includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+	-- 			includeInlayFunctionParameterTypeHints = true,
+	-- 			includeInlayVariableTypeHints = true,
+	-- 			includeInlayPropertyDeclarationTypeHints = true,
+	-- 			includeInlayFunctionLikeReturnTypeHints = true,
+	-- 			includeInlayEnumMemberValueHints = true,
+	-- 		},
+	-- 	},
+	-- },
 })
 
 -- vim.api.nvim_create_autocmd("LspAttach", {
