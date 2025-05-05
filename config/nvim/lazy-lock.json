@@ -23,6 +23,7 @@
   "gruber-darker.nvim": { "branch": "main", "commit": "a2dda61d9c1225e16951a51d6b89795b0ac35cd6" },
   "gruvbox-material": { "branch": "master", "commit": "f5f912fbc7cf2d45da6928b792d554f85c7aa89a" },
   "gx.nvim": { "branch": "main", "commit": "c7e6a0ace694a098a5248d92a866c290bd2da1cc" },
+  "hererocks": { "branch": "master", "commit": "c9c5444dea1e07e005484014a8231aa667be30b6" },
   "hlchunk.nvim": { "branch": "main", "commit": "19bf4090ab8619fffe07b73a4f92348324f35c98" },
   "image.nvim": { "branch": "pr-199@tmux-session-agnostic-status-getters", "commit": "060948a4e2d07520bc5d3e6b54831a805094bebb" },
   "kanagawa-paper.nvim": { "branch": "master", "commit": "4f41353f6a2bf9f25b2466a0f1eb6883d8fd09c1" },
