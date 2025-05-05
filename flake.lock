@@ -2538,16 +2538,16 @@
         "nur": "nur_2"
       },
       "locked": {
-        "lastModified": 1746390060,
+        "lastModified": 1746444473,
         "narHash": "sha256-DPufFovy72Joz53VbVpx996TiWAqAUUEW08uhunOkb4=",
         "owner": "maxbol",
         "repo": "textfox",
-        "rev": "6f7db4651604bfe02f23c2820d30372c8bc0e16d",
+        "rev": "c0cdd4511968604d3652df198817284bb31afed9",
         "type": "github"
       },
       "original": {
         "owner": "maxbol",
-        "ref": "copy-on-activation-mode@allow-custom-css",
+        "ref": "copy-on-activation-mode@allow-custom-css@flatten-css",
         "repo": "textfox",
         "type": "github"
       }

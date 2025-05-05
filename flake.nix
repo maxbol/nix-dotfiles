@@ -67,7 +67,7 @@
     };
 
     # textfox.url = "github:maxbol/textfox/?rev=7e24bdc1ea35a858ee25f2e8e868265a1919af13";
-    textfox.url = "github:maxbol/textfox/copy-on-activation-mode@allow-custom-css";
+    textfox.url = "github:maxbol/textfox/copy-on-activation-mode@allow-custom-css@flatten-css";
     # textfox.url = "git+file:///Users/maxbolotin/Source/textfox?ref=copy-on-activation-mode@allow-custom-css&shallow=1";
     # textfox.url = "github:maxbol/textfox/allow-custom-include-in-configcss";
 
