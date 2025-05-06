@@ -23,7 +23,7 @@
 
       nix.registry = inputsToRegistry origin.inputs;
 
-      nix.gc = {
+      nix.gc = lib.mkForce {
         automatic = true;
         frequency = "daily";
         options = "--delete-older-than 1d";
