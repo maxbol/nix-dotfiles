@@ -14,10 +14,16 @@
   #   # TS Parsers are installed through Lazy.vim
   #   treesitter-parsers = {};
   # };
-  neovim-unwrapped = origin.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.overrideAttrs {
-    # TS Parsers are installed through Lazy.vim
+  neovim-unwrapped = origin.inputs.neovim-nightly-overlay.packages.${pkgs.system}.default.overrideAttrs (old: {
+    meta =
+      old.meta
+      or {}
+      // {
+        maintainers = old.maintainers or [];
+      }; # TS Parsers are installed through Lazy.vim
     treesitter-parsers = {};
-  };
+  });
+
   nvim-colorctl = origin.inputs.nvim-colorctl.packages.${pkgs.system}.default;
   # nv = writeShellScriptBin "nv" ''
   #   pushd () {

@@ -24,7 +24,7 @@ opt.guicursor = "n-v-c-i:block-Cursor/lCursor"
 opt.showmode = false
 
 -- Cmdline options
--- opt.cmdheight = 0
+opt.cmdheight = 0
 
 -- Session options
 opt.sessionoptions = "curdir,folds,globals,help,tabpages,terminal,winsize"
@@ -114,6 +114,8 @@ augroup END
 
 -- Additional FT Binds
 vim.cmd([[autocmd! BufNewFile,BufRead *.vs,*.fs,*.frag,*.vert set ft=glsl]])
+
+require("vim._extui").enable({})
 
 require("neomax.configs.make")
 require("neomax.modules.obsidian")
