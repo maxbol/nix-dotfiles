@@ -35,7 +35,7 @@ in {
   home.packages =
     (with pkgs; [
       # NodeJS
-      nodejs
+      nodejs_22
       yarn
       yarn2nix
       vscode-langservers-extracted

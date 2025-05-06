@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.packages = with pkgs; [
     # archives
     zip
@@ -18,7 +16,6 @@
     # misc
     xdg-utils
     graphviz
-    nodejs
     emote
 
     qbittorrent

@@ -129,5 +129,20 @@
 
   outputs = inputs:
     inputs.copper.lib.mkGleamingFlake inputs ./. "maxdots" (flakeModules: {
+      perSystem = {system, ...}: {
+        # https://github.com/NixOS/nixpkgs/issues/402079
+        _module.args.pkgs = import inputs.nixpkgs {
+          inherit system;
+          overlays = [
+            (final: prev: {
+              nodejs = prev.nodejs_22;
+              nodejs-slim = prev.nodejs-slim_22;
+
+              nodejs_20 = prev.nodejs_22;
+              nodejs-slim_20 = prev.nodejs-slim_22;
+            })
+          ];
+        };
+      };
     });
 }
